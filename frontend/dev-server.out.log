@@ -1,0 +1,10 @@
+
+> goal-ai-frontend@0.2.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.15 (Turbopack)
+   - Local:        http://localhost:3002
+   - Network:      http://192.168.1.31:3002
+
+ ✓ Starting...
+ ✓ Ready in 1047ms

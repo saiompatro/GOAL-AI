@@ -1,0 +1,40 @@
+data:
+  raw_dir: ../data/raw
+  processed_dir: ../data/processed
+  matches_csv: results.csv          # from martj42 dataset
+  wc_csv: WorldCupMatches.csv       # optional tournament enrichment
+  players_csv: fifa_players.csv     # aggregated FIFA player ratings
+
+features:
+  form_windows: [5, 10]
+  elo:
+    start: 1500
+    k: 30
+    home_advantage: 65
+  h2h_last_n: 5
+
+split:
+  train_end: 2018-12-31
+  val_end: 2021-12-31
+
+training:
+  random_state: 42
+  xgb:
+    n_estimators: 600
+    max_depth: 5
+    learning_rate: 0.05
+    subsample: 0.9
+    colsample_bytree: 0.9
+  lgbm:
+    n_estimators: 800
+    num_leaves: 63
+    learning_rate: 0.04
+  nn:
+    hidden: [128, 64]
+    dropout: 0.3
+    epochs: 40
+    batch_size: 256
+    lr: 0.001
+
+artifacts_dir: artifacts
+model_version: v1
