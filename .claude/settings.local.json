@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "mcp__claude_ai_Hugging_Face__hub_repo_search",
+      "mcp__claude_ai_kaggle__search_datasets",
+      "mcp__claude_ai_Hugging_Face__hf_hub_query"
+    ]
+  }
+}
