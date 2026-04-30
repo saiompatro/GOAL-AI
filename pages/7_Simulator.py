@@ -54,6 +54,7 @@ if st.button("Run simulation", type="primary"):
 
     diff = merged.assign(delta_win=merged["p_win_custom"] - merged["p_win_baseline"])
     st.subheader("Largest title-probability moves")
+    st.caption("Column legend: p_win_baseline = original champion probability, p_win_custom = adjusted champion probability, delta_win = change after your Elo adjustment.")
     st.dataframe(
         diff[["team", "p_win_baseline", "p_win_custom", "delta_win"]]
         .sort_values("delta_win", ascending=False)

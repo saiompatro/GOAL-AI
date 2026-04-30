@@ -11,6 +11,8 @@ _ROOT = Path(__file__).resolve().parents[1]
 ART = _ROOT / "ml" / "artifacts"
 sys.path.insert(0, str(_ROOT / "ml" / "src"))
 
+from goal_ai.world_cup import canonical_team, qualified_teams_present
+
 
 @st.cache_data
 def _load_features() -> pd.DataFrame:
@@ -27,18 +29,24 @@ if feats.empty:
     st.error("No feature data found. Run `python ml/scripts/run_pipeline.py` first.")
     st.stop()
 
-all_teams = sorted(set(feats["home_team"].tolist() + feats["away_team"].tolist()))
+available_teams = set(feats["home_team"].tolist() + feats["away_team"].tolist())
+all_teams = qualified_teams_present(available_teams)
+if not all_teams:
+    st.error("No 2026 qualified teams found in the feature data.")
+    st.stop()
 team = st.selectbox("Select team", all_teams, index=all_teams.index("Brazil") if "Brazil" in all_teams else 0)
+home_team_names = feats["home_team"].apply(canonical_team)
+away_team_names = feats["away_team"].apply(canonical_team)
 
 # Filter matches involving this team
-home_m = feats[feats["home_team"] == team][["date", "elo_home_pre", "home_win_rate_5",
+home_m = feats[home_team_names == team][["date", "elo_home_pre", "home_win_rate_5",
                                               "home_gf_5", "home_ga_5"]].rename(columns={
     "elo_home_pre": "elo",
     "home_win_rate_5": "win_rate_5",
     "home_gf_5": "gf_5",
     "home_ga_5": "ga_5",
 })
-away_m = feats[feats["away_team"] == team][["date", "elo_away_pre", "away_win_rate_5",
+away_m = feats[away_team_names == team][["date", "elo_away_pre", "away_win_rate_5",
                                               "away_gf_5", "away_ga_5"]].rename(columns={
     "elo_away_pre": "elo",
     "away_win_rate_5": "win_rate_5",
@@ -84,8 +92,9 @@ if trend_cols:
 
 # Recent match history
 st.subheader("Recent matches")
+st.caption("Result legend: H = home team won, D = draw, A = away team won.")
 history_cols = [c for c in ["date", "home_team", "away_team", "result", "tournament"] if c in feats.columns]
 recent = feats[
-    (feats["home_team"] == team) | (feats["away_team"] == team)
+    (home_team_names == team) | (away_team_names == team)
 ][history_cols].sort_values("date", ascending=False).head(20)
 st.dataframe(recent, use_container_width=True, hide_index=True)

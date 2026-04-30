@@ -82,6 +82,7 @@ if st.button("Predict", type="primary"):
                 # SHAP drivers
                 if result.get("drivers"):
                     st.subheader("Top feature drivers (XGBoost SHAP)")
+                    st.caption("SHAP legend: positive values push the model toward a home-win prediction; negative values push away from it.")
                     driver_df = pd.DataFrame(result["drivers"])
                     st.dataframe(driver_df, use_container_width=True, hide_index=True)
 

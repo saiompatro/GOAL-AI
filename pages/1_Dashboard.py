@@ -97,6 +97,7 @@ else:
 # ── Recent fixtures ───────────────────────────────────────────────────────────
 if not feats.empty:
     st.subheader("Recent fixtures")
+    st.caption("Result legend: H = home team won, D = draw, A = away team won.")
     display_cols = [c for c in ["date", "home_team", "away_team", "home_score",
                                  "away_score", "result", "tournament",
                                  "elo_home_pre", "elo_away_pre", "elo_diff"] if c in feats.columns]

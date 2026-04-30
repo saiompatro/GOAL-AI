@@ -38,6 +38,7 @@ st.subheader("Title Race")
 st.bar_chart(leader.set_index("team")["p_win"])
 
 st.subheader("Round Probabilities")
+st.caption("Column legend: p_win = champion probability, p_final = reaches final, p_semi = reaches semi-final, p_quarter = reaches quarter-final, p_groupexit = exits in group stage.")
 display = sim.copy()
 for col in ["p_win", "p_final", "p_semi", "p_quarter", "p_groupexit"]:
     display[col] = display[col].map(lambda x: f"{x:.1%}")

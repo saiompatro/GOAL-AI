@@ -109,7 +109,7 @@ def predict_fixture(home: str, away: str, neutral: bool = True, stage: str = "FI
                       lgbm_m.predict_proba(x.reshape(1, -1))]
         ensemble_members = metrics_data.get("ensemble_members", ["xgb", "lgbm"])
         if "nn" in ensemble_members and (art / "nn.pt").exists():
-            state = torch.load(art / "nn.pt", map_location="cpu", weights_only=True)
+            state = torch.load(art / "nn.pt", map_location="cpu", weights_only=False)
             model = FFN(state["in_dim"], state["hidden"], state["dropout"])
             model.load_state_dict(state["state_dict"])
             model.eval()
@@ -123,10 +123,13 @@ def predict_fixture(home: str, away: str, neutral: bool = True, stage: str = "FI
         model = joblib.load(art / f"{chosen}.joblib")
         probs = model.predict_proba(x.reshape(1, -1))[0]
 
-    # SHAP drivers from XGB (always available)
-    from .explain import build_explainer, top_drivers
-    xgb_m = joblib.load(art / "xgb.joblib")
-    drivers = top_drivers(build_explainer(xgb_m), x, k=5)
+    drivers = []
+    try:
+        from .explain import build_explainer, top_drivers
+        xgb_m = joblib.load(art / "xgb.joblib")
+        drivers = top_drivers(build_explainer(xgb_m), x, k=5)
+    except Exception:
+        drivers = []
 
     p_home, p_draw, p_away = map(float, probs)
     confidence = float(max(probs))
