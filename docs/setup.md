@@ -1,50 +1,52 @@
 # Setup
 
 ## Prereqs
+
 - Python 3.10+
-- Kaggle account + API token (`~/.kaggle/kaggle.json` or env vars)
-- Supabase project (free tier is fine)
+- Optional Supabase project for hosted writes
+- Optional Kaggle credentials for auxiliary non-World-Cup data refreshes
 
-## 1. Environment
-Copy `.env.example` → `.env` at the repo root and fill in Supabase + Kaggle keys.
+## Raw Evidence
 
-## 2. Supabase schema
-In the Supabase SQL editor, run `supabase/schema.sql` then `supabase/seed.sql`.
+The requested reference repositories are mirrored under:
 
-## 3. ML pipeline
-```bash
-cd ml
-python -m venv .venv && source .venv/Scripts/activate   # Windows bash
-pip install -r requirements.txt
-python scripts/run_pipeline.py
+```text
+data/raw/external_repos/
 ```
-Artifacts land in `ml/artifacts/` (models, metrics.json, confusion matrix, SHAP plot, model_card.md).
 
-## 4. Push to Supabase
+`jfjelstul/worldcup` is the primary historical World Cup source. The Kaggle/public
+international results file is still used for auxiliary non-World-Cup fixtures
+when `data/raw/results.csv` is available.
+
+## ML Pipeline
+
 ```bash
-python scripts/push_to_supabase.py
+pip install -r ml/requirements.txt
+python ml/scripts/run_pipeline.py
 ```
-Writes `teams`, `players`, `matches`, `predictions`, `model_runs`, `insights`.
 
-## 5. Streamlit app
-From the repo root:
+Artifacts land in `ml/artifacts/`, including model files, metrics, player
+tables, feature tables, plots, and `simulation.parquet`.
+
+## Streamlit App
+
 ```bash
 pip install -r requirements_app.txt
+python scripts/bootstrap.py
 streamlit run app.py
 ```
-Opens at http://localhost:8501. Pages: Dashboard, Predict, Teams, Players, Model.
 
-## 6. On-demand prediction
+Pages: Dashboard, Predict, Teams, Players, Model, Bracket, Simulator.
+
+## Deployment
+
+- Frontend: Streamlit Cloud pointing at `app.py` with `requirements_app.txt`.
+- Backend refresh: Render cron from `render.yaml`, running the ML pipeline and
+  Supabase push weekly.
+
+## Verification
+
 ```bash
-python -m goal_ai.predict --home Brazil --away Argentina
+PYTHONPATH=ml/src pytest ml/tests
+python scripts/bootstrap.py
 ```
-Writes a row into `predictions` with SHAP drivers; the Streamlit Predict page reads it.
-
-## 7. Deployment
-- **Frontend**: Streamlit Cloud — point at `app.py`, set `requirements_app.txt`, add Supabase env vars as secrets.
-- **Backend (pipeline + HF jobs)**: Render — deploy `ml/` as a cron job or background worker that runs `scripts/run_pipeline.py` + `scripts/push_to_supabase.py` on a schedule.
-
-## Troubleshooting
-- **Kaggle 403**: ensure `KAGGLE_USERNAME` / `KAGGLE_KEY` env vars are set or `~/.kaggle/kaggle.json` exists with 600 perms.
-- **Supabase RLS**: `schema.sql` enables RLS with a permissive read policy for anon; service-role writes bypass RLS.
-- **Torch install slow/fails**: use CPU wheel `pip install torch --index-url https://download.pytorch.org/whl/cpu`.

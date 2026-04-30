@@ -79,7 +79,11 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
     out = pd.DataFrame(index=df.index)
     out["player_name"] = _first_existing(df, ["long_name", "name", "player_name", "full_name"]).astype(str).str.strip()
     out["short_name"] = _first_existing(df, ["short_name", "known_as", "player_short_name"]).astype(str).str.strip()
-    out["team"] = _first_existing(df, ["nationality_name", "nationality", "country"]).map(_canon)
+    if "player_id" in df.columns:
+        out["player_id"] = df["player_id"].astype(str)
+    if "player_wikipedia_link" in df.columns:
+        out["player_wikipedia_link"] = df["player_wikipedia_link"].astype(str)
+    out["team"] = _first_existing(df, ["nationality_name", "nationality", "country", "team"]).map(_canon)
     out["club_name"] = _first_existing(df, ["club_name", "club", "club_team", "team_name"]).astype(str).str.strip()
     out["positions"] = _first_existing(df, ["player_positions", "position", "positions"]).astype(str).str.strip()
     out["primary_position"] = out["positions"].map(_primary_position)
@@ -122,12 +126,16 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
     out["international_reputation"] = _numeric(_first_existing(df, ["international_reputation"]), 0)
     out["value_eur"] = _numeric(_first_existing(df, ["value_eur", "value"]), 0)
     out["wage_eur"] = _numeric(_first_existing(df, ["wage_eur", "wage", "salary"]), 0)
+    for optional in ["appearances", "starts", "goals", "sendings_off"]:
+        if optional in df.columns:
+            out[optional] = _numeric(df[optional], 0)
 
     out = out.dropna(subset=["team", "player_name"])
     out = out[(out["team"].astype(str).str.len() > 0) & (out["player_name"].astype(str).str.len() > 0)]
     out = out[out["overall"] > 0]
     out = out.sort_values(["team", "overall", "potential"], ascending=[True, False, False])
-    out = out.drop_duplicates(subset=["team", "player_name"], keep="first").reset_index(drop=True)
+    dedupe_key = ["player_id"] if "player_id" in out.columns else ["team", "player_name"]
+    out = out.drop_duplicates(subset=dedupe_key, keep="first").reset_index(drop=True)
     return out
 
 

@@ -1,42 +1,60 @@
 # GOAL AI
 
-ML-first FIFA World Cup match prediction, team insights, and player analysis.
+Open-source FIFA World Cup 2026 prediction lab: match probabilities, player analytics, and Monte Carlo bracket odds in Streamlit.
 
-- **Python + XGBoost / LightGBM / PyTorch ensemble** for match outcome prediction
-- **SHAP** for per-prediction explanations
-- **Hugging Face** summarization for natural-language player/team insights
-- **Supabase** for storage
-- **Streamlit** frontend (Dashboard, Predict, Teams, Players, Model)
+![CI](https://github.com/saiompatro/GOAL-AI/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/frontend-Streamlit-red)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-Backend deployment target: **Render**. Frontend: **Streamlit Cloud** (or Render web service running `streamlit run app.py`).
-
-## Quick start
+## Quick Start
 
 ```bash
-# 1. ML pipeline
-cd ml
-pip install -r requirements.txt
-cp ../.env.example ../.env   # fill in Kaggle + Supabase keys
-python scripts/run_pipeline.py          # ingest → features → train → evaluate → explain
-python scripts/push_to_supabase.py      # push artifacts + sample predictions
-
-# 2. Streamlit app (from repo root)
-cd ..
 pip install -r requirements_app.txt
+python scripts/bootstrap.py
 streamlit run app.py
 ```
 
-See `docs/setup.md` for detailed instructions and `docs/research.md` for dataset/model choices.
+If artifacts are missing, rebuild them:
 
-## Structure
-```
-app.py        Streamlit entry point
-pages/        Streamlit pages (Dashboard, Predict, Teams, Players, Model)
-ml/           Python pipeline (ingest, features, train, evaluate, explain, HF insights)
-supabase/     schema + seed SQL
-docs/         research notes, model card, setup, graphify
-data/         raw + processed (gitignored)
+```bash
+pip install -r ml/requirements.txt
+python ml/scripts/run_pipeline.py
 ```
 
-## Model choice (summary)
-XGBoost primary, compared against LightGBM, a PyTorch FFN, a stacked ensemble, and an LR baseline. Selection by validation log-loss + Brier. Full justification in `docs/model_card.md` (written by the pipeline).
+## What It Does
+
+- Uses `jfjelstul/worldcup` as the primary historical World Cup source.
+- Keeps auxiliary international results for non-World Cup context when present.
+- Trains and compares logistic regression, XGBoost, LightGBM, PyTorch, and a stack.
+- Simulates the 2026 48-team format with Poisson scorelines from Elo and form.
+- Ships Streamlit pages for dashboard, prediction, teams, players, model, bracket, and custom simulations.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    raw["data/raw/external_repos"] --> ingest["goal_ai.ingest_jfjelstul"]
+    aux["data/raw/results.csv"] --> ingest
+    ingest --> clean["clean + aggregate"]
+    clean --> features["Elo, form, H2H, squad features"]
+    features --> train["model comparison"]
+    train --> artifacts["ml/artifacts"]
+    artifacts --> app["Streamlit app.py + pages"]
+    artifacts --> sim["2026 Monte Carlo simulation"]
+    sim --> app
+```
+
+## Data Credits
+
+Primary historical data: `jfjelstul/worldcup` (mirrored locally under `data/raw/external_repos/jfjelstul_worldcup`). Reference 2026 fixture/simulation material is mirrored from:
+
+- `PoolJinez/WORLDCUP-Tournament-2026`
+- `EhteshamBahoo/Fifa-WorldCup-Data-Analysis-1930-2026`
+- `zvizdo/fifa-wc-2026-simulation`
+
+The raw evidence mirror includes a manifest at `data/raw/external_repos/SOURCE_MANIFEST.md`.
+
+## Trade-Offs
+
+Poisson scorelines assume independent team goal counts; future Dixon-Coles correction is planned for low-score correlation. The bundled demo artifacts are frozen at training time; `render.yaml` documents a weekly Render cron path for refreshing the model and Supabase tables.

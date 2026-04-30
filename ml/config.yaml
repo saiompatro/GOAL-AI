@@ -38,3 +38,6 @@ training:
 
 artifacts_dir: artifacts
 model_version: v1
+
+simulation:
+  n: 100000

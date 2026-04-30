@@ -1,0 +1,10 @@
+services:
+  - type: cron
+    name: goal-ai-weekly-pipeline
+    env: python
+    schedule: "0 6 * * 1"
+    buildCommand: "pip install -r ml/requirements.txt"
+    startCommand: "cd ml && python scripts/run_pipeline.py && python scripts/push_to_supabase.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"

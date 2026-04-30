@@ -13,11 +13,13 @@ Time-based: train ≤ {train_end}, val in between, test ≥ {val_end}. No shuffl
 
 | model      | val log-loss | val Brier | val macro-F1 | test log-loss | test Brier | test macro-F1 | test acc |
 |-----------|--------------|-----------|--------------|---------------|------------|---------------|----------|
-| lr         | 0.8386 | 0.1638 | 0.473 | 0.8837 | 0.1731 | 0.449 | 0.598 |
-| xgb        | 0.8389 | 0.1639 | 0.490 | 0.8872 | 0.1735 | 0.467 | 0.599 |
-| lgbm       | 0.8551 | 0.1670 | 0.491 | 0.9114 | 0.1772 | 0.472 | 0.591 |
-| nn         | 0.8359 | 0.1635 | 0.467 | 0.8839 | 0.1729 | 0.447 | 0.601 |
-| stack      | 0.8311 | 0.1620 | 0.484 | 0.8813 | 0.1727 | 0.460 | 0.602 |
+| lr         | 0.8395 | 0.1641 | 0.458 | 0.8809 | 0.1726 | 0.450 | 0.599 |
+| xgb        | 0.8413 | 0.1643 | 0.481 | 0.8877 | 0.1738 | 0.466 | 0.600 |
+| lgbm       | 0.8643 | 0.1683 | 0.481 | 0.9063 | 0.1769 | 0.468 | 0.590 |
+| nn         | 0.8383 | 0.1639 | 0.463 | 0.8850 | 0.1733 | 0.443 | 0.594 |
+| stack      | 0.8352* | 0.1630* | 0.487* | 0.8845 | 0.1734 | 0.461 | 0.598 |
+
+\* stack val metrics are in-sample (meta-learner was trained on the val split).
 
 ## Selection rule
 Best on validation log-loss, tie-break Brier → macro-F1. Stacked ensemble is selected only if it beats the best single model on the held-out **test** set (to avoid meta-learner overfit on val).

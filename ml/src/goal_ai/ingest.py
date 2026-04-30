@@ -13,6 +13,9 @@ from urllib.request import urlretrieve
 import numpy as np
 import pandas as pd
 
+from .ingest_jfjelstul import load_raw as load_jfjelstul_raw
+from .ingest_jfjelstul import repo_available as jfjelstul_available
+
 KAGGLE_DATASETS = {
     "results": "martj42/international-football-results-from-1872-to-2017",
     "players": "stefanoleone992/fifa-23-complete-player-dataset",
@@ -128,6 +131,17 @@ def load_raw(raw_dir: str | Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     results_path = raw_dir / "results.csv"
     players_path = raw_dir / "fifa_players.csv"
+
+    if jfjelstul_available(raw_dir):
+        print("[ingest] Using vendored jfjelstul/worldcup as primary World Cup source.")
+        jf_matches, jf_players = load_jfjelstul_raw(raw_dir)
+        auxiliary_matches = pd.DataFrame()
+        if results_path.exists():
+            legacy = pd.read_csv(results_path)
+            tournament = legacy.get("tournament", pd.Series([""] * len(legacy))).astype(str).str.lower()
+            auxiliary_matches = legacy[~tournament.eq("fifa world cup")].copy()
+        matches = pd.concat([auxiliary_matches, jf_matches], ignore_index=True, sort=False)
+        return matches, jf_players
 
     if not results_path.exists() or not players_path.exists():
         _try_kaggle_download(raw_dir)
