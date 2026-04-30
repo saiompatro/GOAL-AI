@@ -5,9 +5,6 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
-node_modules/
-dist/
-.vite/
 data/raw/
 data/processed/
 ml/artifacts/*.pkl

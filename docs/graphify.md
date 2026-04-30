@@ -1,6 +1,6 @@
 # Graphify
 
-Generated for `.` on 2026-04-20.
+Generated for `.` on 2026-04-20. Updated 2026-05-01 (frontend consolidated to Streamlit; Next.js removed).
 
 ## System Graph
 
@@ -31,14 +31,13 @@ flowchart LR
         insights[(insights)]
     end
 
-    subgraph web[frontend]
-        data[lib/data.ts]
-        dashboard[app/page.tsx]
-        predict[app/predict/page.tsx]
-        teamsPage[app/teams/page.tsx]
-        playersPage[app/players/page.tsx]
-        modelPage[app/model/page.tsx]
-        demo[lib/demo-data.ts]
+    subgraph web[Streamlit app]
+        appentry[app.py]
+        dashboard[pages/1_Dashboard.py]
+        predict[pages/2_Predict.py]
+        teamsPage[pages/3_Teams.py]
+        playersPage[pages/4_Players.py]
+        modelPage[pages/5_Model.py]
     end
 
     kaggle --> ingest
@@ -55,19 +54,18 @@ flowchart LR
     push --> model_runs
     push --> insights
 
-    teams --> data
-    players --> data
-    matches --> data
-    predictions --> data
-    model_runs --> data
-    insights --> data
-    demo --> data
+    teams --> appentry
+    players --> appentry
+    matches --> appentry
+    predictions --> appentry
+    model_runs --> appentry
+    insights --> appentry
 
-    data --> dashboard
-    data --> predict
-    data --> teamsPage
-    data --> playersPage
-    data --> modelPage
+    appentry --> dashboard
+    appentry --> predict
+    appentry --> teamsPage
+    appentry --> playersPage
+    appentry --> modelPage
 ```
 
 ## Directory Map
@@ -75,6 +73,14 @@ flowchart LR
 ```text
 .
 |-- README.md
+|-- app.py
+|-- requirements_app.txt
+|-- pages/
+|   |-- 1_Dashboard.py
+|   |-- 2_Predict.py
+|   |-- 3_Teams.py
+|   |-- 4_Players.py
+|   `-- 5_Model.py
 |-- docs/
 |   |-- setup.md
 |   |-- research.md
@@ -82,39 +88,27 @@ flowchart LR
 |-- supabase/
 |   |-- schema.sql
 |   `-- seed.sql
-|-- ml/
-|   |-- config.yaml
-|   |-- scripts/
-|   |   |-- run_pipeline.py
-|   |   `-- push_to_supabase.py
-|   |-- src/goal_ai/
-|   |   |-- ingest.py
-|   |   |-- clean.py
-|   |   |-- features.py
-|   |   |-- train.py
-|   |   |-- evaluate.py
-|   |   |-- explain.py
-|   |   |-- predict.py
-|   |   |-- hf_insights.py
-|   |   `-- supabase_io.py
-|   `-- artifacts/
-`-- frontend/
-    |-- app/
-    |   |-- page.tsx
-    |   |-- predict/page.tsx
-    |   |-- teams/page.tsx
-    |   |-- players/page.tsx
-    |   `-- model/page.tsx
-    |-- components/
-    |-- lib/
-    |   |-- data.ts
-    |   |-- supabase.ts
-    |   `-- demo-data.ts
-    `-- types/
+`-- ml/
+    |-- config.yaml
+    |-- scripts/
+    |   |-- run_pipeline.py
+    |   `-- push_to_supabase.py
+    |-- src/goal_ai/
+    |   |-- ingest.py
+    |   |-- clean.py
+    |   |-- features.py
+    |   |-- train.py
+    |   |-- evaluate.py
+    |   |-- explain.py
+    |   |-- predict.py
+    |   |-- hf_insights.py
+    |   `-- supabase_io.py
+    `-- artifacts/
 ```
 
 ## Notes
 
 - Training flow is `ingest -> clean -> features -> train -> evaluate -> explain`.
 - `push_to_supabase.py` publishes model outputs, seeded teams/players, predictions, and Hugging Face summaries.
-- `frontend/lib/data.ts` is the main read layer; it uses Supabase when configured and falls back to demo data when not.
+- The Streamlit app (`app.py` + `pages/`) reads from Supabase directly via `supabase-py`.
+- Deployment: Streamlit Cloud (frontend) + Render (backend pipeline / cron).
