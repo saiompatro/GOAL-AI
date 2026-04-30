@@ -145,12 +145,12 @@ def main():
     ap.add_argument("--away", required=True)
     ap.add_argument("--neutral", action="store_true")
     ap.add_argument("--stage", default="FIFA World Cup")
-    ap.add_argument("--push", action="store_true", help="Push result to Supabase")
+    ap.add_argument("--push", action="store_true", help="Push result to Firebase")
     args = ap.parse_args()
     out = predict_fixture(args.home, args.away, args.neutral, args.stage)
     print(json.dumps(out, indent=2))
     if args.push:
-        from .supabase_io import push_single_prediction
+        from .firebase_io import push_single_prediction
         push_single_prediction(out)
 
 

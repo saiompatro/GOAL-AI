@@ -54,7 +54,7 @@ Pick final model by **validation log-loss** and **Brier score** (proper scoring 
 - **`sentence-transformers/all-MiniLM-L6-v2`** — player-similarity embeddings ("players like X") for the Players page.
 - Not used: large generative LLMs (hallucination risk on specific player facts without grounding).
 
-Rule: HF runs offline as a batch job; outputs cached in Supabase `insights` table. Never on the prediction hot path.
+Rule: HF runs offline as a batch job; outputs cached in Firebase `insights` table. Never on the prediction hot path.
 
 ## 4. Feature engineering
 

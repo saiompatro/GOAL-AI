@@ -57,4 +57,4 @@ The raw evidence mirror includes a manifest at `data/raw/external_repos/SOURCE_M
 
 ## Trade-Offs
 
-Poisson scorelines assume independent team goal counts; future Dixon-Coles correction is planned for low-score correlation. The bundled demo artifacts are frozen at training time; `render.yaml` documents a weekly Render cron path for refreshing the model and Supabase tables.
+Poisson scorelines assume independent team goal counts; future Dixon-Coles correction is planned for low-score correlation. The bundled demo artifacts are frozen at training time; `render.yaml` documents a weekly Render cron path for refreshing the model and Firebase tables.

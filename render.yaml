@@ -8,9 +8,7 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.9"
-      - key: SUPABASE_URL
-        sync: false
-      - key: SUPABASE_ANON_KEY
+      - key: FIREBASE_SERVICE_ACCOUNT_KEY
         sync: false
 
   - type: cron
@@ -18,13 +16,11 @@ services:
     runtime: python
     schedule: "0 6 * * 1"
     buildCommand: "pip install -r ml/requirements.txt"
-    startCommand: "cd ml && python scripts/run_pipeline.py && python scripts/push_to_supabase.py"
+    startCommand: "cd ml && python scripts/run_pipeline.py && python scripts/push_to_firebase.py"
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.9"
-      - key: SUPABASE_URL
-        sync: false
-      - key: SUPABASE_SERVICE_ROLE_KEY
+      - key: FIREBASE_SERVICE_ACCOUNT_KEY
         sync: false
       - key: KAGGLE_USERNAME
         sync: false

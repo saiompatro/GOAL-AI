@@ -18,11 +18,11 @@ flowchart LR
         explain[goal_ai.explain]
         hf[hf_insights]
         pipeline[scripts/run_pipeline.py]
-        push[scripts/push_to_supabase.py]
+        push[scripts/push_to_firebase.py]
         artifacts[ml/artifacts]
     end
 
-    subgraph db[Supabase]
+    subgraph db[Firebase]
         teams[(teams)]
         players[(players)]
         matches[(matches)]
@@ -85,14 +85,14 @@ flowchart LR
 |   |-- setup.md
 |   |-- research.md
 |   `-- graphify.md
-|-- supabase/
+|-- firebase/
 |   |-- schema.sql
 |   `-- seed.sql
 `-- ml/
     |-- config.yaml
     |-- scripts/
     |   |-- run_pipeline.py
-    |   `-- push_to_supabase.py
+    |   `-- push_to_firebase.py
     |-- src/goal_ai/
     |   |-- ingest.py
     |   |-- clean.py
@@ -102,13 +102,13 @@ flowchart LR
     |   |-- explain.py
     |   |-- predict.py
     |   |-- hf_insights.py
-    |   `-- supabase_io.py
+    |   `-- firebase_io.py
     `-- artifacts/
 ```
 
 ## Notes
 
 - Training flow is `ingest -> clean -> features -> train -> evaluate -> explain`.
-- `push_to_supabase.py` publishes model outputs, seeded teams/players, predictions, and Hugging Face summaries.
-- The Streamlit app (`app.py` + `pages/`) reads from Supabase directly via `supabase-py`.
+- `push_to_firebase.py` publishes model outputs, seeded teams/players, predictions, and Hugging Face summaries.
+- The Streamlit app (`app.py` + `pages/`) reads from Firebase directly via `firebase-admin`.
 - Deployment: Streamlit Cloud (frontend) + Render (backend pipeline / cron).

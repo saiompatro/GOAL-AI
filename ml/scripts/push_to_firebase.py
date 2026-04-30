@@ -1,4 +1,4 @@
-"""Push teams, predictions for a fixture set, HF insights, and model_runs to Supabase."""
+"""Push teams, predictions for a fixture set, HF insights, and model_runs to Firebase."""
 from __future__ import annotations
 
 import json
@@ -12,7 +12,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from goal_ai import hf_insights, supabase_io
+from goal_ai import hf_insights, firebase_io
 from goal_ai.predict import predict_fixture
 
 
@@ -30,10 +30,10 @@ def main():
     metrics = json.loads((art / "metrics.json").read_text())
 
     # 1. Model run
-    supabase_io.push_run(cfg["model_version"], metrics["chosen"], metrics["metrics"])
+    firebase_io.push_run(cfg["model_version"], metrics["chosen"], metrics["metrics"])
 
     # 2. Teams (upsert)
-    supabase_io.push_teams(FIXTURE_TEAMS)
+    firebase_io.push_teams(FIXTURE_TEAMS)
 
     # 2b. Players (top squad rows with detailed club context)
     players_path = art / "players.parquet"
@@ -42,7 +42,7 @@ def main():
         players = pd.read_parquet(players_path)
         seeded_players = players[players["team"].isin(FIXTURE_TEAMS)].copy()
         if not seeded_players.empty:
-            player_id_map = supabase_io.push_players(seeded_players, limit_per_team=18)
+            player_id_map = firebase_io.push_players(seeded_players, limit_per_team=18)
 
     # 3. Predictions for a round-robin preview (capped for demo size)
     preds = []
@@ -51,7 +51,7 @@ def main():
             preds.append(predict_fixture(home, away, neutral=True, stage="FIFA World Cup"))
         except Exception as e:
             print(f"skip {home} vs {away}: {e}")
-    supabase_io.push_batch_predictions(preds)
+    firebase_io.push_batch_predictions(preds)
     (art / "sample_predictions.json").write_text(json.dumps(preds, indent=2, default=float))
 
     # 4. HF insights (teams)
@@ -76,8 +76,8 @@ def main():
         }))
     insight_rows = hf_insights.summarize_teams(team_stats)
 
-    # Resolve team names → ids via Supabase (or skip if offline)
-    name_to_id = supabase_io.push_teams(FIXTURE_TEAMS)
+    # Resolve team names → ids via Firebase (or skip if offline)
+    name_to_id = firebase_io.push_teams(FIXTURE_TEAMS)
     final_rows = []
     for r in insight_rows:
         tid = name_to_id.get(r["entity_key"])
@@ -85,7 +85,7 @@ def main():
             final_rows.append({"entity_type": "team", "entity_id": tid,
                                "summary_text": r["summary_text"], "model": r["model"]})
     if final_rows:
-        supabase_io.push_insights(final_rows, replace_entity_type="team")
+        firebase_io.push_insights(final_rows, replace_entity_type="team")
 
     # 5. Player insights
     if players_path.exists() and player_id_map:
@@ -103,7 +103,7 @@ def main():
                     "model": row["model"],
                 })
         if final_player_rows:
-            supabase_io.push_insights(final_player_rows, replace_entity_type="player")
+            firebase_io.push_insights(final_player_rows, replace_entity_type="player")
 
     (art / "team_insights.json").write_text(json.dumps(insight_rows, indent=2))
 

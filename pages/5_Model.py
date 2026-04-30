@@ -21,7 +21,7 @@ st.title("GOAL AI — Model Card")
 if live_data and live_data.is_configured():
     runs = live_data.model_runs(limit=10)
     if not runs.empty:
-        st.subheader("Supabase model run history")
+        st.subheader("Firebase model run history")
         display = runs.copy()
         if "metrics" in display.columns:
             display["metrics"] = display["metrics"].apply(lambda value: json.dumps(value)[:160])

@@ -41,7 +41,7 @@ if live_data and live_data.is_configured():
     live_players = live_data.players()
     if not live_players.empty:
         players = live_players
-        st.caption("Live backend: Supabase rosters")
+        st.caption("Live backend: Firebase rosters")
 
 if players.empty:
     st.error("No player data found. Run `python ml/scripts/run_pipeline.py` first.")

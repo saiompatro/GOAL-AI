@@ -3,7 +3,7 @@
 ## Prereqs
 
 - Python 3.10+
-- Optional Supabase project for hosted writes
+- Optional Firebase project for hosted writes
 - Optional Kaggle credentials for auxiliary non-World-Cup data refreshes
 
 ## Raw Evidence
@@ -42,7 +42,7 @@ Pages: Dashboard, Predict, Teams, Players, Model, Bracket, Simulator.
 
 - Frontend: Streamlit Cloud pointing at `app.py` with `requirements_app.txt`.
 - Backend refresh: Render cron from `render.yaml`, running the ML pipeline and
-  Supabase push weekly.
+  Firebase push weekly.
 
 ## Verification
 

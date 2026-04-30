@@ -41,20 +41,20 @@ metrics = _load_metrics()
 feats = _load_features()
 
 if live_data and live_data.is_configured():
-    st.caption("Live backend: Supabase connected")
+    st.caption("Live backend: Firebase connected")
     live_runs = live_data.model_runs(limit=5)
     live_predictions = live_data.recent_predictions(limit=25)
 
     if not live_runs.empty:
         latest = live_runs.iloc[0]
-        st.subheader("Latest Supabase model run")
+        st.subheader("Latest Firebase model run")
         c1, c2, c3 = st.columns(3)
         c1.metric("Version", latest.get("version", ""))
         c2.metric("Algorithm", str(latest.get("algo", "")).upper())
         c3.metric("Created", str(latest.get("created_at", ""))[:19])
 
     if not live_predictions.empty:
-        st.subheader("Latest Supabase predictions")
+        st.subheader("Latest Firebase predictions")
         cols = [c for c in [
             "created_at", "match_date", "home", "away", "stage",
             "model_version", "p_home", "p_draw", "p_away", "confidence",

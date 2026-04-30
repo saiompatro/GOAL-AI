@@ -9,4 +9,4 @@ lightgbm>=4.0.0
 xgboost>=2.0.0
 pyyaml>=6.0
 python-dotenv>=1.0.0
-supabase>=2.4
+firebase-admin>=6.5.0

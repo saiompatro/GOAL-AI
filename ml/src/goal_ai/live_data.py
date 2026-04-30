@@ -1,7 +1,8 @@
-"""Read-only Supabase helpers for the Streamlit app."""
+"""Read-only Firebase helpers for the Streamlit app."""
 from __future__ import annotations
 
 import os
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -13,15 +14,24 @@ ROOT = Path(__file__).resolve().parents[3]
 
 def _client():
     load_dotenv(ROOT / ".env")
-    url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-    if not url or not key:
-        return None
+    cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    if not cred_path:
+        key_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_KEY")
+        if not key_json:
+            return None
     try:
-        from supabase import create_client
+        import firebase_admin
+        from firebase_admin import credentials, firestore
+        if not firebase_admin._apps:
+            if cred_path:
+                cred = credentials.Certificate(cred_path)
+            else:
+                cred_dict = json.loads(os.getenv("FIREBASE_SERVICE_ACCOUNT_KEY"))
+                cred = credentials.Certificate(cred_dict)
+            firebase_admin.initialize_app(cred)
+        return firestore.client()
     except Exception:
         return None
-    return create_client(url, key)
 
 
 def is_configured() -> bool:
@@ -32,28 +42,32 @@ def teams() -> pd.DataFrame:
     client = _client()
     if client is None:
         return pd.DataFrame()
-    rows = client.table("teams").select("id,name,code,confederation,created_at").order("name").execute().data
-    return pd.DataFrame(rows or [])
+    docs = client.collection("teams").stream()
+    rows = []
+    for doc in docs:
+        d = doc.to_dict()
+        d["id"] = doc.id
+        rows.append(d)
+    return pd.DataFrame(rows).sort_values("name") if rows else pd.DataFrame()
 
 
 def players() -> pd.DataFrame:
     client = _client()
     if client is None:
         return pd.DataFrame()
-    rows = client.table("players").select("*").order("overall", desc=True).limit(1000).execute().data
+    docs = client.collection("players").order_by("overall", direction="DESCENDING").limit(1000).stream()
+    rows = []
+    for doc in docs:
+        d = doc.to_dict()
+        d["id"] = doc.id
+        rows.append(d)
     if not rows:
         return pd.DataFrame()
 
     player_df = pd.DataFrame(rows)
-    team_df = teams()
-    if not team_df.empty and "team_id" in player_df.columns:
-        player_df = player_df.merge(
-            team_df[["id", "name"]].rename(columns={"id": "team_id", "name": "team"}),
-            on="team_id",
-            how="left",
-        )
+    # Firebase players now have team_name saved directly, but we can also merge team_df if needed.
+    player_df = player_df.rename(columns={"name": "player_name", "position": "primary_position", "team_name": "team"})
 
-    player_df = player_df.rename(columns={"name": "player_name", "position": "primary_position"})
     if "attrs" in player_df.columns:
         attrs = pd.json_normalize(player_df["attrs"].apply(lambda value: value or {}))
         player_df = pd.concat([player_df.drop(columns=["attrs"]), attrs], axis=1)
@@ -64,15 +78,12 @@ def model_runs(limit: int = 10) -> pd.DataFrame:
     client = _client()
     if client is None:
         return pd.DataFrame()
-    rows = (
-        client.table("model_runs")
-        .select("version,algo,metrics,notes,created_at")
-        .order("created_at", desc=True)
-        .limit(limit)
-        .execute()
-        .data
-    )
-    return pd.DataFrame(rows or [])
+    docs = client.collection("model_runs").order_by("created_at", direction="DESCENDING").limit(limit).stream()
+    rows = []
+    for doc in docs:
+        d = doc.to_dict()
+        rows.append(d)
+    return pd.DataFrame(rows)
 
 
 def recent_predictions(limit: int = 25) -> pd.DataFrame:
@@ -80,14 +91,13 @@ def recent_predictions(limit: int = 25) -> pd.DataFrame:
     if client is None:
         return pd.DataFrame()
 
-    predictions_rows = (
-        client.table("predictions")
-        .select("id,match_id,model_version,p_home,p_draw,p_away,confidence,created_at")
-        .order("created_at", desc=True)
-        .limit(limit)
-        .execute()
-        .data
-    )
+    docs = client.collection("predictions").order_by("created_at", direction="DESCENDING").limit(limit).stream()
+    predictions_rows = []
+    for doc in docs:
+        d = doc.to_dict()
+        d["id"] = doc.id
+        predictions_rows.append(d)
+
     if not predictions_rows:
         return pd.DataFrame()
 
@@ -96,14 +106,20 @@ def recent_predictions(limit: int = 25) -> pd.DataFrame:
     if not match_ids:
         return prediction_df
 
-    matches_rows = (
-        client.table("matches")
-        .select("id,match_date,home_id,away_id,stage,neutral")
-        .in_("id", match_ids)
-        .execute()
-        .data
-    )
-    match_df = pd.DataFrame(matches_rows or [])
+    matches_rows = []
+    # Firestore in-queries are limited to 10 items, better to fetch one by one or in batches of 10
+    from firebase_admin.firestore import FieldFilter
+    for i in range(0, len(match_ids), 10):
+        batch_ids = match_ids[i:i+10]
+        # In Firestore we can't query by id easily using in_, we get the document directly
+        for m_id in batch_ids:
+            m_doc = client.collection("matches").document(m_id).get()
+            if m_doc.exists:
+                m_dict = m_doc.to_dict()
+                m_dict["id"] = m_doc.id
+                matches_rows.append(m_dict)
+
+    match_df = pd.DataFrame(matches_rows)
     team_df = teams()
     if match_df.empty or team_df.empty:
         return prediction_df

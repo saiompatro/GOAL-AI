@@ -1,4 +1,4 @@
-"""Hugging Face powered insights — offline, batch, cached to Supabase.
+"""Hugging Face powered insights — offline, batch, cached to Firebase.
 
 Uses a small summarization model to turn structured stat blocks into short
 natural-language insights for teams and players. Kept deliberately lightweight;

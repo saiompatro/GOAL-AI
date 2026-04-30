@@ -1,5 +1,10 @@
 .env
 .env.local
+.env.*
+!.env.example
+firebase-service-account*.json
+serviceAccountKey*.json
+google-application-credentials*.json
 __pycache__/
 *.pyc
 *.egg-info/
