@@ -13,6 +13,11 @@ _ROOT = Path(__file__).resolve().parents[1]
 ART = _ROOT / "ml" / "artifacts"
 sys.path.insert(0, str(_ROOT / "ml" / "src"))
 
+try:
+    from goal_ai import live_data
+except Exception:
+    live_data = None
+
 
 @st.cache_data
 def _load_metrics() -> dict:
@@ -34,6 +39,29 @@ st.title("GOAL AI — Dashboard")
 
 metrics = _load_metrics()
 feats = _load_features()
+
+if live_data and live_data.is_configured():
+    st.caption("Live backend: Supabase connected")
+    live_runs = live_data.model_runs(limit=5)
+    live_predictions = live_data.recent_predictions(limit=25)
+
+    if not live_runs.empty:
+        latest = live_runs.iloc[0]
+        st.subheader("Latest Supabase model run")
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Version", latest.get("version", ""))
+        c2.metric("Algorithm", str(latest.get("algo", "")).upper())
+        c3.metric("Created", str(latest.get("created_at", ""))[:19])
+
+    if not live_predictions.empty:
+        st.subheader("Latest Supabase predictions")
+        cols = [c for c in [
+            "created_at", "match_date", "home", "away", "stage",
+            "model_version", "p_home", "p_draw", "p_away", "confidence",
+        ] if c in live_predictions.columns]
+        st.dataframe(live_predictions[cols], use_container_width=True, hide_index=True)
+else:
+    st.caption("Live backend: local artifacts")
 
 # ── Model summary ────────────────────────────────────────────────────────────
 if metrics:

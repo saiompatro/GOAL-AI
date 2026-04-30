@@ -2,14 +2,30 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import streamlit as st
 
 _ROOT = Path(__file__).resolve().parents[1]
 ART = _ROOT / "ml" / "artifacts"
+sys.path.insert(0, str(_ROOT / "ml" / "src"))
+
+try:
+    from goal_ai import live_data
+except Exception:
+    live_data = None
 
 st.title("GOAL AI — Model Card")
+
+if live_data and live_data.is_configured():
+    runs = live_data.model_runs(limit=10)
+    if not runs.empty:
+        st.subheader("Supabase model run history")
+        display = runs.copy()
+        if "metrics" in display.columns:
+            display["metrics"] = display["metrics"].apply(lambda value: json.dumps(value)[:160])
+        st.dataframe(display, use_container_width=True, hide_index=True)
 
 # ── Model card markdown ────────────────────────────────────────────────────────
 card_path = ART / "model_card.md"

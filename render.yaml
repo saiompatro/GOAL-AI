@@ -1,10 +1,34 @@
 services:
+  - type: web
+    name: goal-ai
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements_app.txt"
+    startCommand: "streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
   - type: cron
     name: goal-ai-weekly-pipeline
-    env: python
+    runtime: python
     schedule: "0 6 * * 1"
     buildCommand: "pip install -r ml/requirements.txt"
     startCommand: "cd ml && python scripts/run_pipeline.py && python scripts/push_to_supabase.py"
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.9"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: KAGGLE_USERNAME
+        sync: false
+      - key: KAGGLE_KEY
+        sync: false
+      - key: HF_TOKEN
+        sync: false

@@ -11,6 +11,11 @@ _ROOT = Path(__file__).resolve().parents[1]
 ART = _ROOT / "ml" / "artifacts"
 sys.path.insert(0, str(_ROOT / "ml" / "src"))
 
+try:
+    from goal_ai import live_data
+except Exception:
+    live_data = None
+
 
 @st.cache_data
 def _load_players() -> pd.DataFrame:
@@ -32,6 +37,11 @@ st.title("GOAL AI — Players")
 
 players = _load_players()
 team_agg = _load_team_agg()
+if live_data and live_data.is_configured():
+    live_players = live_data.players()
+    if not live_players.empty:
+        players = live_players
+        st.caption("Live backend: Supabase rosters")
 
 if players.empty:
     st.error("No player data found. Run `python ml/scripts/run_pipeline.py` first.")
