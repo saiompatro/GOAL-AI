@@ -1,0 +1,178 @@
+{
+ "Mexico": {
+  "matches": 1,
+  "ppg": 3.0,
+  "gf_pg": 2.0,
+  "ga_pg": 0.0,
+  "gd_pg": 2.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": 0.92,
+  "eligible": false
+ },
+ "South Africa": {
+  "matches": 1,
+  "ppg": 0.0,
+  "gf_pg": 0.0,
+  "ga_pg": 2.0,
+  "gd_pg": -2.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.92,
+  "eligible": false
+ },
+ "South Korea": {
+  "matches": 1,
+  "ppg": 3.0,
+  "gf_pg": 2.0,
+  "ga_pg": 1.0,
+  "gd_pg": 1.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": 0.76,
+  "eligible": false
+ },
+ "Czech Republic": {
+  "matches": 1,
+  "ppg": 0.0,
+  "gf_pg": 1.0,
+  "ga_pg": 2.0,
+  "gd_pg": -1.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.76,
+  "eligible": false
+ },
+ "Canada": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "Bosnia and Herzegovina": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "United States": {
+  "matches": 1,
+  "ppg": 3.0,
+  "gf_pg": 4.0,
+  "ga_pg": 1.0,
+  "gd_pg": 3.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": 1.0,
+  "eligible": false
+ },
+ "Paraguay": {
+  "matches": 1,
+  "ppg": 0.0,
+  "gf_pg": 1.0,
+  "ga_pg": 4.0,
+  "gd_pg": -3.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -1.0,
+  "eligible": false
+ },
+ "Qatar": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "Switzerland": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "Brazil": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "Morocco": {
+  "matches": 1,
+  "ppg": 1.0,
+  "gf_pg": 1.0,
+  "ga_pg": 1.0,
+  "gd_pg": 0.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.2,
+  "eligible": false
+ },
+ "Haiti": {
+  "matches": 1,
+  "ppg": 0.0,
+  "gf_pg": 0.0,
+  "ga_pg": 1.0,
+  "gd_pg": -1.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.76,
+  "eligible": false
+ },
+ "Scotland": {
+  "matches": 1,
+  "ppg": 3.0,
+  "gf_pg": 1.0,
+  "ga_pg": 0.0,
+  "gd_pg": 1.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": 0.76,
+  "eligible": false
+ },
+ "Australia": {
+  "matches": 1,
+  "ppg": 3.0,
+  "gf_pg": 2.0,
+  "ga_pg": 0.0,
+  "gd_pg": 2.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": 0.92,
+  "eligible": false
+ },
+ "Turkey": {
+  "matches": 1,
+  "ppg": 0.0,
+  "gf_pg": 0.0,
+  "ga_pg": 2.0,
+  "gd_pg": -2.0,
+  "possession": null,
+  "assists_pg": null,
+  "form_score": -0.92,
+  "eligible": false
+ }
+}

@@ -1,0 +1,192 @@
+"""Flask API + front-end for the FIFA World Cup prediction model."""
+import os
+import sys
+import json
+import time
+import threading
+import subprocess
+from flask import Flask, request, jsonify, send_from_directory
+
+from geo import VENUES
+
+SRC = os.path.dirname(__file__)
+ROOT = os.path.join(SRC, "..")
+WEB = os.path.join(ROOT, "web")
+app = Flask(__name__, static_folder=None)
+
+_eng = None
+
+# Pipeline artifacts: file produced, the script that makes it, and how long
+# before it should be considered stale (None = make-once, never stale by age).
+ARTIFACTS = [
+    {"key": "results", "path": "data/results.csv", "label": "Historical match results",
+     "producer": "(download)", "max_age_h": None},
+    {"key": "training_table", "path": "data/training_table.csv", "label": "Training feature table",
+     "producer": "features.py", "max_age_h": None},
+    {"key": "model", "path": "models/fifa_model.joblib", "label": "Trained model",
+     "producer": "train.py", "max_age_h": None},
+    {"key": "ensemble", "path": "models/fifa_model_ensemble.joblib", "label": "Ensemble model (GPU)",
+     "producer": "train_ensemble.py", "max_age_h": None, "optional": True},
+    {"key": "squads", "path": "data/squads.csv", "label": "World Cup squads",
+     "producer": "fetch_squads_api.py", "max_age_h": 48},
+    {"key": "withdrawals", "path": "data/withdrawals.json", "label": "Injury withdrawals",
+     "producer": "detect_withdrawals.py", "max_age_h": 24},
+    {"key": "squad_strength", "path": "data/squad_strength.json", "label": "Squad strength ratings",
+     "producer": "squad_strength.py", "max_age_h": 48},
+    {"key": "tournament_form", "path": "data/tournament_form.json", "label": "In-tournament form",
+     "producer": "tournament_form.py", "max_age_h": 12},
+]
+
+# Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
+# the withdrawal scan, once to apply its result).
+REFRESH_STEPS = [
+    ("Fetch current squads", "fetch_squads_api.py"),
+    ("Rate squads", "squad_strength.py"),
+    ("Detect injury withdrawals", "detect_withdrawals.py"),
+    ("Re-rate excluding withdrawn players", "squad_strength.py"),
+    ("Fetch in-tournament form", "tournament_form.py"),
+]
+
+_refresh = {"running": False, "steps": [], "started": None, "finished": None, "error": None}
+_refresh_lock = threading.Lock()
+
+
+def eng():
+    """Lazy-load the model so the server binds its port immediately
+    (torch + ensemble take ~15s to import)."""
+    global _eng
+    if _eng is None:
+        import predict
+        _eng = predict
+    return _eng
+
+
+@app.route("/")
+def index():
+    return send_from_directory(WEB, "index.html")
+
+
+@app.route("/api/teams")
+def teams():
+    e = eng()
+    wc = sorted(e._squad.keys())
+    others = sorted(t for t in e._state["elo"] if t not in e._squad
+                    and e._state["elo"][t] > 1600)
+    return jsonify({"world_cup": wc, "others": others})
+
+
+@app.route("/api/venues")
+def venues():
+    return jsonify([{"name": k, "city": v[0], "altitude": v[3], "roof": v[4],
+                     "temp": v[5]} for k, v in VENUES.items()])
+
+
+@app.route("/api/sentiment/<team>")
+def sentiment(team):
+    from sentiment import team_sentiment
+    s, heads = team_sentiment(team)
+    return jsonify({"team": team, "sentiment": s, "headlines": heads[:8]})
+
+
+@app.route("/api/predict", methods=["POST"])
+def api_predict():
+    q = request.get_json(force=True)
+    home, away, venue = q["home"], q["away"], q.get("venue") or None
+
+    # live data, fetched fresh on every click (manual overrides win if given)
+    from live import gather
+    lat, lon = (VENUES[venue][1], VENUES[venue][2]) if venue in VENUES else (None, None)
+    lv = gather(home, away, venue, lat, lon)
+    w = lv["weather"]
+    temp = q.get("temp") or (w["temp_c"] if w else None)
+    humidity = q.get("humidity") or (w["humidity_class"] if w else None)
+
+    res = eng().predict(
+        home, away, venue=venue,
+        neutral=bool(q.get("neutral", True)),
+        is_wc=bool(q.get("is_wc", True)),
+        temp=temp, humidity=humidity,
+        sentiment_home=lv["sentiment"]["home"],
+        sentiment_away=lv["sentiment"]["away"],
+        sentiment_mode=q.get("sentiment_mode", "high"),
+    )
+    res["live"] = {
+        "weather_live": w is not None,
+        "weather": w,
+        "sentiment": lv["sentiment"],
+        "breakdown": lv["breakdown"],
+        "injuries": lv["injuries"],
+        "headlines": lv["headlines"],
+    }
+    return jsonify(res)
+
+
+def _artifact_status():
+    now = time.time()
+    items, any_stale, any_missing = [], False, False
+    for a in ARTIFACTS:
+        fp = os.path.join(ROOT, a["path"])
+        exists = os.path.exists(fp)
+        age_h = (now - os.path.getmtime(fp)) / 3600 if exists else None
+        if not exists:
+            state = "missing"
+        elif a["max_age_h"] is not None and age_h > a["max_age_h"]:
+            state = "stale"
+        else:
+            state = "ok"
+        if state == "missing" and not a.get("optional"):
+            any_missing = True
+        if state == "stale":
+            any_stale = True
+        items.append({**{k: a[k] for k in ("key", "label", "producer", "max_age_h")},
+                      "exists": exists, "state": state,
+                      "age_hours": round(age_h, 1) if age_h is not None else None,
+                      "optional": a.get("optional", False)})
+    return {"artifacts": items, "any_stale": any_stale, "any_missing": any_missing}
+
+
+@app.route("/api/status")
+def status():
+    return jsonify({**_artifact_status(), "refresh": _refresh})
+
+
+def _run_refresh():
+    steps = [{"name": n, "script": s, "state": "pending", "tail": ""} for n, s in REFRESH_STEPS]
+    with _refresh_lock:
+        _refresh.update(running=True, steps=steps, started=time.time(),
+                        finished=None, error=None)
+    try:
+        for st in steps:
+            st["state"] = "running"
+            p = subprocess.run([sys.executable, st["script"]], cwd=SRC,
+                               capture_output=True, text=True, timeout=900)
+            out = (p.stdout or "") + (p.stderr or "")
+            st["tail"] = "\n".join(out.strip().splitlines()[-4:])
+            if p.returncode != 0:
+                st["state"] = "failed"
+                raise RuntimeError(f"{st['script']} exited {p.returncode}")
+            st["state"] = "done"
+        # hot-reload in-memory data so predictions use the fresh files
+        eng().reload()
+        import live
+        live.reload()
+    except Exception as e:
+        with _refresh_lock:
+            _refresh["error"] = str(e)
+    finally:
+        with _refresh_lock:
+            _refresh.update(running=False, finished=time.time())
+
+
+@app.route("/api/refresh", methods=["POST"])
+def refresh():
+    with _refresh_lock:
+        if _refresh["running"]:
+            return jsonify({"started": False, "reason": "already running"}), 409
+    threading.Thread(target=_run_refresh, daemon=True).start()
+    return jsonify({"started": True})
+
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=int(os.environ.get("PORT", 5000)), debug=False,
+            threaded=True)

@@ -1,0 +1,20 @@
+# Core — enough to run the app and the single-model pipeline
+# (features.py, train.py, squad_strength.py, predict.py, app.py).
+pandas
+numpy
+scikit-learn
+scipy
+requests
+flask
+joblib
+lxml          # Wikipedia squad scraping (fetch_squads.py)
+
+# Optional — only needed to retrain the GPU ensemble (train_ensemble.py).
+# Install separately; most of these want CUDA. The app runs fine without them,
+# falling back to models/fifa_model.joblib.
+#   lightgbm
+#   xgboost
+#   catboost
+#   optuna
+#   torch
+#   tabpfn      # also requires a Prior Labs TABPFN_TOKEN

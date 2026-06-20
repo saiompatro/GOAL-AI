@@ -1,0 +1,39 @@
+{
+ "lgb": {
+  "objective": "multiclass",
+  "num_class": 3,
+  "verbosity": -1,
+  "n_estimators": 2000,
+  "learning_rate": 0.044805290591388755,
+  "num_leaves": 27,
+  "min_child_samples": 38,
+  "reg_lambda": 3.2965173924835494,
+  "feature_fraction": 0.9131960889827277,
+  "bagging_fraction": 0.7849762996940426,
+  "bagging_freq": 1
+ },
+ "xgb": {
+  "objective": "multi:softprob",
+  "num_class": 3,
+  "tree_method": "hist",
+  "device": "cuda",
+  "eval_metric": "mlogloss",
+  "n_estimators": 600,
+  "learning_rate": 0.08734136338927213,
+  "max_depth": 4,
+  "min_child_weight": 4.136087566947802,
+  "reg_lambda": 0.5232974930449745,
+  "subsample": 0.6183478770748706,
+  "colsample_bytree": 0.9961475776827047
+ },
+ "cat": {
+  "loss_function": "MultiClass",
+  "iterations": 1200,
+  "verbose": false,
+  "learning_rate": 0.03090041968738201,
+  "depth": 4,
+  "l2_leaf_reg": 11.699586424888071,
+  "task_type": "GPU",
+  "devices": "0"
+ }
+}

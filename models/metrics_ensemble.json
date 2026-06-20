@@ -1,0 +1,17 @@
+{
+ "test_accuracy": 0.5988,
+ "test_logloss": 0.8713,
+ "n_test": 4541,
+ "members": [
+  "lgb",
+  "xgb",
+  "cat",
+  "histgb",
+  "mlp"
+ ],
+ "blend": "probability average",
+ "single_model_comparison": {
+  "accuracy": 0.6005,
+  "logloss": 0.872
+ }
+}

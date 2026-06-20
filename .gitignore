@@ -1,0 +1,20 @@
+# secrets — never commit
+.env
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# heavy / GPU-only model (regenerate with: python train_ensemble.py).
+# The lightweight single model (models/fifa_model.joblib, ~1 MB, sklearn-only)
+# IS committed so the app runs out of the box.
+models/fifa_model_ensemble.joblib
+
+# training scratch / logs
+src/catboost_info/
+
+# stale snapshot, only used as a fallback by fetch_squads_api.py
+data/squads_wikipedia_backup.csv

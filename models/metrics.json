@@ -1,0 +1,29 @@
+{
+ "test_accuracy": 0.6014093811935697,
+ "test_logloss": 0.871440239866321,
+ "baseline_home": 0.4776480951332306,
+ "baseline_elo": 0.595023122660207,
+ "mae_home": 1.0293908252359543,
+ "mae_away": 0.8370620686076,
+ "n_test": 4541,
+ "importance": {
+  "elo_diff": 0.1456,
+  "h2h_gd": 0.0098,
+  "gd10_diff": 0.0063,
+  "att_vs_def": 0.0057,
+  "def_vs_att": 0.0053,
+  "travel_diff": 0.0043,
+  "morale_diff": 0.004,
+  "alt_diff": 0.0035,
+  "heat_diff": 0.0034,
+  "streak_diff": 0.0032,
+  "exp_diff": 0.003,
+  "hum_diff": 0.0022,
+  "ppg5_diff": 0.0021,
+  "rest_diff": 0.0018,
+  "neutral": 0.0018,
+  "tz_east_diff": 0.0017,
+  "h2h_rate": 0.0017,
+  "is_wc": 0.0004
+ }
+}
