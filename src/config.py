@@ -26,3 +26,9 @@ _load_env()
 
 def get_token():
     return os.environ.get("FOOTBALL_DATA_TOKEN", "").strip()
+
+
+def get_apifootball_key():
+    """API-Football (api-sports.io) key — enables live WC match statistics
+    (shots, shots on target, possession, xG) in recent_stats.py. Optional."""
+    return os.environ.get("API_FOOTBALL_KEY", "").strip()

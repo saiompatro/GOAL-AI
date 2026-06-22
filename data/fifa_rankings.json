@@ -1,0 +1,250 @@
+{
+  "_comment": "Official FIFA/Coca-Cola Men's World Ranking snapshot, last official update 2026-06-11. Keyed by the app's canonical team names. points is null where only the rank is published (top 20 carry exact points). Refresh with: python src/fifa_rankings.py",
+  "_updated": "2026-06-11",
+  "rankings": {
+    "Argentina": {
+      "rank": 1,
+      "points": 1877.27
+    },
+    "Spain": {
+      "rank": 2,
+      "points": 1874.71
+    },
+    "France": {
+      "rank": 3,
+      "points": 1870.7
+    },
+    "England": {
+      "rank": 4,
+      "points": 1828.02
+    },
+    "Portugal": {
+      "rank": 5,
+      "points": 1767.85
+    },
+    "Brazil": {
+      "rank": 6,
+      "points": 1765.86
+    },
+    "Morocco": {
+      "rank": 7,
+      "points": 1755.1
+    },
+    "Netherlands": {
+      "rank": 8,
+      "points": 1753.57
+    },
+    "Belgium": {
+      "rank": 9,
+      "points": 1742.24
+    },
+    "Germany": {
+      "rank": 10,
+      "points": 1735.77
+    },
+    "Croatia": {
+      "rank": 11,
+      "points": 1714.87
+    },
+    "Italy": {
+      "rank": 12,
+      "points": 1704.73
+    },
+    "Colombia": {
+      "rank": 13,
+      "points": 1698.35
+    },
+    "Mexico": {
+      "rank": 14,
+      "points": 1687.48
+    },
+    "Senegal": {
+      "rank": 15,
+      "points": 1684.07
+    },
+    "Uruguay": {
+      "rank": 16,
+      "points": 1673.07
+    },
+    "United States": {
+      "rank": 17,
+      "points": 1671.23
+    },
+    "Japan": {
+      "rank": 18,
+      "points": 1661.58
+    },
+    "Switzerland": {
+      "rank": 19,
+      "points": 1650.06
+    },
+    "Iran": {
+      "rank": 20,
+      "points": 1619.58
+    },
+    "Denmark": {
+      "rank": 21,
+      "points": null
+    },
+    "Turkey": {
+      "rank": 22,
+      "points": null
+    },
+    "Ecuador": {
+      "rank": 23,
+      "points": null
+    },
+    "Austria": {
+      "rank": 24,
+      "points": null
+    },
+    "South Korea": {
+      "rank": 25,
+      "points": null
+    },
+    "Nigeria": {
+      "rank": 26,
+      "points": null
+    },
+    "Australia": {
+      "rank": 27,
+      "points": null
+    },
+    "Algeria": {
+      "rank": 28,
+      "points": null
+    },
+    "Egypt": {
+      "rank": 29,
+      "points": null
+    },
+    "Canada": {
+      "rank": 30,
+      "points": null
+    },
+    "Norway": {
+      "rank": 31,
+      "points": null
+    },
+    "Ukraine": {
+      "rank": 32,
+      "points": null
+    },
+    "Ivory Coast": {
+      "rank": 33,
+      "points": null
+    },
+    "Panama": {
+      "rank": 34,
+      "points": null
+    },
+    "Russia": {
+      "rank": 35,
+      "points": null
+    },
+    "Poland": {
+      "rank": 36,
+      "points": null
+    },
+    "Wales": {
+      "rank": 37,
+      "points": null
+    },
+    "Sweden": {
+      "rank": 38,
+      "points": null
+    },
+    "Hungary": {
+      "rank": 39,
+      "points": null
+    },
+    "Czech Republic": {
+      "rank": 40,
+      "points": null
+    },
+    "Paraguay": {
+      "rank": 41,
+      "points": null
+    },
+    "Scotland": {
+      "rank": 42,
+      "points": null
+    },
+    "Serbia": {
+      "rank": 43,
+      "points": null
+    },
+    "Cameroon": {
+      "rank": 44,
+      "points": null
+    },
+    "Tunisia": {
+      "rank": 45,
+      "points": null
+    },
+    "DR Congo": {
+      "rank": 46,
+      "points": null
+    },
+    "Slovakia": {
+      "rank": 47,
+      "points": null
+    },
+    "Greece": {
+      "rank": 48,
+      "points": null
+    },
+    "Venezuela": {
+      "rank": 49,
+      "points": null
+    },
+    "Uzbekistan": {
+      "rank": 50,
+      "points": null
+    },
+    "Qatar": {
+      "rank": 56,
+      "points": null
+    },
+    "Iraq": {
+      "rank": 57,
+      "points": null
+    },
+    "South Africa": {
+      "rank": 60,
+      "points": null
+    },
+    "Saudi Arabia": {
+      "rank": 61,
+      "points": null
+    },
+    "Jordan": {
+      "rank": 63,
+      "points": null
+    },
+    "Bosnia and Herzegovina": {
+      "rank": 64,
+      "points": null
+    },
+    "Cape Verde": {
+      "rank": 67,
+      "points": null
+    },
+    "Ghana": {
+      "rank": 73,
+      "points": null
+    },
+    "Curaçao": {
+      "rank": 82,
+      "points": null
+    },
+    "Haiti": {
+      "rank": 83,
+      "points": null
+    },
+    "New Zealand": {
+      "rank": 85,
+      "points": null
+    }
+  }
+}

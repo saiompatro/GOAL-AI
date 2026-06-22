@@ -265,10 +265,10 @@ England,James Trafford,GK,2,Manchester City,1970.85388184,exact
 England,John Stones,DF,88,Manchester City,1970.85388184,exact
 England,Dan Burn,DF,7,Newcastle United,1837.53125,exact
 England,Ezri Konsa,DF,19,Aston Villa,1920.97021484,exact
+England,Trevoh Chalobah,DF,0,,1398.90234375,unmatched
 England,Reece James,DF,23,Chelsea,1831.1036377,exact
 England,Djed Spence,DF,5,Tottenham Hotspur,1777.30895996,exact
 England,Marc Guéhi,DF,28,Manchester City,1970.85388184,exact
-England,Valentino Livramento,DF,0,,1398.90234375,unmatched
 England,Jarell Quansah,DF,2,Bayer Leverkusen,1804.02624512,exact
 England,Nico O'Reilly,DF,4,Manchester City,1970.85388184,exact
 England,Jordan Henderson,MF,90,Brentford,1836.59033203,exact
@@ -461,10 +461,10 @@ New Zealand,Joe Bell,MF,32,Viking,1631.9107666,exact
 New Zealand,Marko Stamenic,MF,39,Swansea City,1536.28552246,token
 New Zealand,Ben Old,MF,24,Saint-Étienne,1507.84033203,exact
 New Zealand,Kosta Barbarouses,FW,76,Western Sydney Wanderers,1398.90234375,unmatched
+New Zealand,Logan Rogerson,FW,0,,1398.90234375,unmatched
 New Zealand,Chris Wood,FW,90,Nottingham Forest,1822.17028809,exact
 New Zealand,Ben Waine,FW,31,Port Vale,1398.90234375,unmatched
 New Zealand,Elijah Just,FW,44,Motherwell,1389.7043457,exact
-New Zealand,Matthew Garbett,FW,37,Peterborough United,1398.90234375,unmatched
 New Zealand,Lachlan Bayliss,FW,4,Newcastle Jets,1837.53125,token
 New Zealand,Jesse Randall,FW,11,Auckland FC,1398.90234375,unmatched
 Switzerland,Gregor Kobel,GK,21,Borussia Dortmund,1834.76867676,exact
@@ -666,7 +666,6 @@ Turkey,Salih Özcan,MF,30,Borussia Dortmund,1834.76867676,exact
 Turkey,Hakan Çalhanoğlu,MF,105,Inter Milan,1888.60229492,exact
 Turkey,Orkun Kökçü,MF,50,Beşiktaş,1516.34155273,exact
 Turkey,İsmail Yüksek,MF,32,Fenerbahçe,1655.55847168,exact
-Turkey,Arda Guler,MF,29,Real Madrid,1922.91210938,exact
 Turkey,Oguz Aydin,MF,0,,1398.90234375,unmatched
 Turkey,Baris Yilmaz,MF,0,,1398.90234375,unmatched
 Turkey,İrfan Kahveci,MF,0,,1398.90234375,unmatched
@@ -920,7 +919,7 @@ Bosnia and Herzegovina,Nikola Katić,DF,17,Schalke 04,1519.7421875,token
 Bosnia and Herzegovina,Stjepan Radeljić,DF,5,Rijeka,1387.4979248,exact
 Bosnia and Herzegovina,Amar Dedić,DF,28,Benfica,1823.50866699,exact
 Bosnia and Herzegovina,Tarik Muharemović,DF,14,Sassuolo,1622.01721191,exact
-Bosnia and Herzegovina,Nidal Čelik,DF,2,Lens,1767.04321289,exact
+Bosnia and Herzegovina,Arjan Malic,DF,0,,1398.90234375,unmatched
 Bosnia and Herzegovina,Dženis Burnić,MF,20,Karlsruher SC,1435.78088379,fuzzy
 Bosnia and Herzegovina,Ivan Šunjić,MF,11,Pafos,1398.90234375,unmatched
 Bosnia and Herzegovina,Amir Hadžiahmetović,MF,36,Hull City,1532.88049316,token
@@ -1141,8 +1140,8 @@ Uzbekistan,Azizjon Ganiev,MF,19,Al Bataeh,1398.90234375,unmatched
 Uzbekistan,Odiljon Hamrobekov,MF,72,Tractor,1490.0,curated
 Uzbekistan,Sherzod Esanov,MF,1,Bukhara,1398.90234375,unmatched
 Uzbekistan,Eldor Shomurodov,FW,92,İstanbul Başakşehir,1398.90234375,unmatched
-Uzbekistan,Jaloliddin Masharipov,FW,74,Esteghlal,1520.0,curated
 Uzbekistan,Igor Sergeev,FW,83,Persepolis,1530.0,curated
+Uzbekistan,Ruslanbek Jiyanov,FW,0,,1398.90234375,unmatched
 Uzbekistan,Azizbek Amonov,FW,12,Dinamo Samarqand,1398.90234375,unmatched
 Netherlands,Mark Flekken,GK,12,Bayer Leverkusen,1804.02624512,exact
 Netherlands,Bart Verbruggen,GK,29,Brighton & Hove Albion,1842.01049805,token

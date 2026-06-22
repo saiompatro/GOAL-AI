@@ -23,6 +23,7 @@ from fetch_squads_api import TEAM_CANON
 
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 OUT = os.path.join(DATA, "tournament_form.json")
+WC_MATCHES = os.path.join(DATA, "wc_matches.json")  # raw finished results -> live_ratings.py
 BASE = "https://api.football-data.org/v4"
 MIN_MATCHES = 5
 
@@ -87,6 +88,18 @@ def main():
     matches = fetch_wc_matches(token)
     form = compute(matches)
     json.dump(form, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+
+    # raw finished results, folded into live Elo/form/morale by live_ratings.py
+    records = []
+    for m in matches:
+        ft = m.get("score", {}).get("fullTime", {})
+        gh, ga = ft.get("home"), ft.get("away")
+        if gh is None or ga is None:
+            continue
+        records.append({"date": (m.get("utcDate") or "")[:10],
+                        "home": canon(m["homeTeam"]["name"]), "away": canon(m["awayTeam"]["name"]),
+                        "home_goals": int(gh), "away_goals": int(ga)})
+    json.dump(records, open(WC_MATCHES, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     elig = [t for t, v in form.items() if v["eligible"]]
     print(f"{len(matches)} finished WC matches -> form for {len(form)} teams")
     print(f"eligible (>= {MIN_MATCHES} matches): {len(elig)} -> {', '.join(elig) or 'none yet'}")

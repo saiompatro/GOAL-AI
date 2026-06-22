@@ -6,15 +6,25 @@ scorelines) from **real football results only** — no video-game data or rating
 ## Quick start
 
 ```powershell
-pip install -r requirements.txt
+pip install -r requirements.txt   # from the repo root
 cd src
-python app.py          # then open http://127.0.0.1:5000
+python app.py                     # starts the server; leave it running
 ```
+
+Then open **http://127.0.0.1:5000** in a browser and predict a match.
+
+Stop the server with `Ctrl+C` in that terminal (or `Stop-Process -Name python`).
+The port defaults to 5000; override with `$env:PORT=8080; python app.py`.
 
 The committed `models/fifa_model.joblib` (sklearn-only, ~1 MB) means it runs out
 of the box — no training step needed. Live squad refresh and in-tournament form
 need a free [football-data.org](https://www.football-data.org/client/register)
 token: copy `.env.example` to `.env` and fill in `FOOTBALL_DATA_TOKEN`.
+
+The GPU ensemble (`models/fifa_model_ensemble.joblib`) is used automatically when
+its deps (torch, catboost, xgboost, lightgbm) are installed; if they're missing or
+fail to load, `predict.py` falls back to the plain model — so a fresh
+`pip install -r requirements.txt` always runs without extra setup.
 
 Retrain from scratch (in `src/`):
 
@@ -93,6 +103,24 @@ otherwise falls back to the single model.
   automatically if a key is configured. Refresh during the tournament with
   `python tournament_form.py` (the football-data.org token is read from the
   gitignored `.env`; or pass it as an argument).
+- **Recent World Cup form** (`src/recent_stats.py`) — the last two weeks of WC 2026
+  matches, per team and per player, shown in the Team/Player tabs and folded into the
+  model as a bounded secondary nudge (`RSTATS_K`). With an optional
+  [API-Football](https://www.api-football.com/) key in `.env` (`API_FOOTBALL_KEY`)
+  it carries real **shots, shots on target, possession and xG**; without a key it
+  falls back to the live scores already on hand (goal-difference form), and the
+  shot/possession/xG tiles read as “—”. Rebuilt on the data-refresh.
+- **Live base-rating updates** (`src/live_ratings.py`) — **the part that makes the
+  model usable mid-tournament.** The offline `current_state.json` (Elo, form,
+  morale, head-to-head, attack/defence) is frozen at the pre-tournament build.
+  Every finished World Cup match (same football-data.org feed, cached to
+  `data/wc_matches.json`) is folded into those ratings at load time using the
+  *exact* update math from `features.py` (K=60, goal-margin multiplier, identical
+  EWMA coefficients). So a group-stage thrashing immediately moves a team's Elo,
+  morale and form — unlike the tournament-form layer above, which stays gated to
+  the quarter-finals. Idempotent (re-applying results never double-counts) and
+  fail-soft (no results yet → plain pre-tournament ratings). Each prediction
+  reports how many matches were folded in (`live_ratings` in the response).
 - **Live data on every prediction** (`src/live.py`): each Predict click fetches,
   in parallel and uncached — (1) the venue's *current* temperature and relative
   humidity from Open-Meteo, (2) fresh Google News headlines + sentiment for both
@@ -118,6 +146,24 @@ back to `fifa_model.joblib`):
   requires a Prior Labs license token (`TABPFN_TOKEN`) to activate.
 - Two Poisson HistGradientBoosting regressors → expected goals → scoreline grid
 - Retrain: `python train.py` (single model), `python train_ensemble.py` (ensemble)
+
+**Player & betting markets** (`src/scorers.py`): from each match's expected goals
+the engine derives, for the prediction response and UI:
+- **Anytime goalscorer** — real data: each squad player's international goals
+  (`data/goalscorers.csv`) over his caps give a regularised goals/game rate
+  (shrinkage keeps small samples honest); the team's expected goals are shared out
+  in proportion, so P(score) = 1 − e^(−player_λ). Penalty takers are flagged from
+  who historically took penalties.
+- **Anytime assist** — *estimated*, clearly labelled: the free dataset has **no
+  assist data**, so this is a heuristic from position + experience + goal
+  involvement, not a measured rate.
+- **Derived match markets** — Over/Under 1.5/2.5/3.5, both-teams-to-score, clean
+  sheets, win-to-nil, double chance — all exact under the model's independent-
+  Poisson goals assumption (same one behind the scoreline grid).
+- **Parlays** — ~9 same-game combinations (scorer doubles, result + Over 2.5,
+  result + BTTS, Over 2.5 + BTTS, double chance + Over 1.5, win-to-nil, star
+  scorer + Over 2.5, …). Legs are multiplied assuming independence; real SGPs are
+  correlated, so they're a guide, not a price.
 
 ## Honest evaluation (strict time split, train <2022, test 2022→Jun 2026)
 

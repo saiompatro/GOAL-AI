@@ -35,6 +35,12 @@ ARTIFACTS = [
      "producer": "squad_strength.py", "max_age_h": 48},
     {"key": "tournament_form", "path": "data/tournament_form.json", "label": "In-tournament form",
      "producer": "tournament_form.py", "max_age_h": 12},
+    {"key": "wc_matches", "path": "data/wc_matches.json", "label": "Live WC results (folded into ratings)",
+     "producer": "tournament_form.py", "max_age_h": 12, "optional": True},
+    {"key": "fifa_rankings", "path": "data/fifa_rankings.json", "label": "FIFA World Ranking snapshot",
+     "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
+    {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (shots/SoT/possession/xG)",
+     "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
 ]
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
@@ -45,6 +51,7 @@ REFRESH_STEPS = [
     ("Detect injury withdrawals", "detect_withdrawals.py"),
     ("Re-rate excluding withdrawn players", "squad_strength.py"),
     ("Fetch in-tournament form", "tournament_form.py"),
+    ("Aggregate recent WC shooting form", "recent_stats.py"),
 ]
 
 _refresh = {"running": False, "steps": [], "started": None, "finished": None, "error": None}
@@ -73,6 +80,17 @@ def teams():
     others = sorted(t for t in e._state["elo"] if t not in e._squad
                     and e._state["elo"][t] > 1600)
     return jsonify({"world_cup": wc, "others": others})
+
+
+@app.route("/api/team/<team>")
+def team(team):
+    return jsonify(eng().team_analysis(team))
+
+
+@app.route("/api/player")
+def player():
+    return jsonify(eng().player_analysis(request.args.get("team", ""),
+                                         request.args.get("name", "")))
 
 
 @app.route("/api/venues")

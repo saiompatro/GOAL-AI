@@ -4,134 +4,224 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 Match Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* shadcn-inspired design tokens (slate dark). Pure CSS — no build step, works offline. */
   :root {
-    --bg: #0b1220; --card: #131c2e; --card2: #18233a; --line: #233152;
-    --text: #e8eefc; --muted: #8fa3c8; --accent: #4ade80; --accent2: #60a5fa;
-    --red: #f87171; --gold: #fbbf24;
+    --bg: hsl(222 47% 5%); --bg2: hsl(222 47% 8%);
+    --card: hsl(222 44% 9%); --card2: hsl(217 33% 13%);
+    --line: hsl(217 33% 18%); --line2: hsl(217 33% 24%);
+    --text: hsl(210 40% 98%); --muted: hsl(215 20% 65%);
+    --primary: hsl(142 71% 45%); --primary-fg: hsl(144 80% 6%);
+    --blue: hsl(217 91% 60%); --red: hsl(0 84% 68%); --gold: hsl(43 96% 56%);
+    --radius: 14px;
+    --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 24px -8px rgba(0,0,0,.5);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: linear-gradient(160deg, #0b1220 0%, #101a30 60%, #0d1426 100%);
-         color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif;
-         min-height: 100vh; padding: 32px 16px; }
-  .wrap { max-width: 980px; margin: 0 auto; }
-  h1 { font-size: 26px; font-weight: 700; letter-spacing: .5px; }
-  h1 span { color: var(--accent); }
-  .sub { color: var(--muted); margin: 6px 0 24px; font-size: 14px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
-  label { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase;
-          letter-spacing: 1px; margin: 12px 0 5px; }
+  body { background:
+           radial-gradient(1200px 600px at 80% -10%, hsl(217 60% 14% / .5), transparent),
+           radial-gradient(900px 500px at 0% 0%, hsl(142 50% 12% / .35), transparent),
+           var(--bg);
+         color: var(--text); min-height: 100vh; padding: 36px 16px 60px;
+         font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; }
+  h1 span { background: linear-gradient(90deg, var(--primary), var(--blue));
+            -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { color: var(--muted); margin: 8px 0 22px; font-size: 14px; line-height: 1.5; max-width: 760px; }
+
+  /* tabs (segmented control) */
+  .tabs { display: inline-flex; gap: 4px; background: var(--card2); border: 1px solid var(--line);
+          border-radius: 12px; padding: 4px; margin-bottom: 22px; }
+  .tab { border: 0; background: transparent; color: var(--muted); font-family: inherit;
+         font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: 9px; cursor: pointer;
+         transition: all .15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: linear-gradient(180deg, var(--card), var(--bg2)); border: 1px solid var(--line);
+          border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  label { display: block; font-size: 12px; color: var(--muted); font-weight: 600;
+          letter-spacing: .3px; margin: 14px 0 6px; }
+  label:first-child { margin-top: 0; }
   select, input[type=number] { width: 100%; background: var(--card2); color: var(--text);
-          border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 15px; }
+          border: 1px solid var(--line2); border-radius: 9px; padding: 10px 12px; font-size: 14.5px;
+          font-family: inherit; transition: border-color .15s, box-shadow .15s; }
+  select:focus, input:focus { outline: 0; border-color: var(--primary);
+          box-shadow: 0 0 0 3px hsl(142 71% 45% / .18); }
   .row { display: flex; gap: 12px; }
   .row > div { flex: 1; }
-  .check { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; color: var(--muted); }
-  button { width: 100%; margin-top: 20px; padding: 14px; font-size: 16px; font-weight: 700;
-           background: linear-gradient(90deg, #16a34a, #22c55e); color: #04220f; border: 0;
-           border-radius: 10px; cursor: pointer; }
-  button:hover { filter: brightness(1.1); }
-  button.secondary { background: var(--card2); color: var(--accent2); border: 1px solid var(--line);
-           font-weight: 600; font-size: 13px; padding: 9px; margin-top: 10px; }
+  .check { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+  .check input { accent-color: var(--primary); width: 16px; height: 16px; }
+  button.go { width: 100%; margin-top: 20px; padding: 13px; font-size: 15px; font-weight: 700;
+           font-family: inherit; background: linear-gradient(90deg, hsl(142 71% 42%), hsl(142 71% 50%));
+           color: var(--primary-fg); border: 0; border-radius: 10px; cursor: pointer; transition: filter .15s; }
+  button.go:hover { filter: brightness(1.08); }
+  button.secondary { width: 100%; background: var(--card2); color: var(--blue); border: 1px solid var(--line2);
+           font-weight: 600; font-size: 13px; padding: 10px; margin-top: 10px; border-radius: 9px;
+           cursor: pointer; font-family: inherit; }
+  button.secondary:hover { border-color: var(--blue); }
+
   /* result header */
   .matchup { text-align: center; font-size: 15px; font-weight: 600; color: var(--muted); }
   .matchup b { color: var(--text); }
-  .score { font-size: 44px; font-weight: 800; text-align: center; margin: 2px 0 0; color: var(--gold);
-           letter-spacing: 1px; }
+  .score { font-size: 46px; font-weight: 800; text-align: center; margin: 4px 0 0; color: var(--gold);
+           letter-spacing: 1px; font-variant-numeric: tabular-nums; }
   .scoresub { text-align: center; color: var(--muted); font-size: 11px; text-transform: uppercase;
            letter-spacing: 1.5px; margin-bottom: 18px; }
-  /* probability bar */
-  .probbar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; margin: 0 0 6px;
+  .probbar { display: flex; height: 42px; border-radius: 10px; overflow: hidden; margin: 0 0 7px;
              font-size: 13px; font-weight: 700; }
   .probbar div { display: flex; align-items: center; justify-content: center; min-width: 30px;
-             transition: width .6s ease; white-space: nowrap; }
-  .ph { background: #16a34a; color: #04220f; } .pd { background: #475569; }
-  .pa { background: #2563eb; color: #e8eefc; }
+             transition: width .6s cubic-bezier(.2,.8,.2,1); white-space: nowrap; }
+  .ph { background: hsl(142 71% 42%); color: var(--primary-fg); } .pd { background: hsl(215 16% 40%); }
+  .pa { background: hsl(217 91% 55%); color: var(--text); }
   .legend { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+
   /* sections */
-  .section { margin-top: 22px; }
-  .section-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px;
-           font-weight: 700; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
-  /* scoreline rows with mini bars */
+  .section { margin-top: 24px; }
+  .section-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.3px;
+           font-weight: 700; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+
+  /* stat tiles (team / player analysis) */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 480px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .tile { background: var(--card2); border: 1px solid var(--line); border-radius: 11px; padding: 12px 13px; }
+  .tile .k { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px;
+           font-weight: 600; }
+  .tile .v { font-size: 22px; font-weight: 800; margin-top: 4px; font-variant-numeric: tabular-nums;
+           letter-spacing: -.5px; }
+  .tile .vsub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .tile.accent .v { color: var(--primary); } .tile.blue .v { color: var(--blue); }
+  .tile.gold .v { color: var(--gold); }
+
+  /* WDL form pills */
+  .form-strip { display: flex; gap: 5px; flex-wrap: wrap; }
+  .wdl { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center;
+         justify-content: center; font-size: 13px; font-weight: 800; position: relative; }
+  .wdl.W { background: hsl(142 71% 42% / .2); color: var(--primary); border: 1px solid hsl(142 71% 42% / .4); }
+  .wdl.D { background: var(--card2); color: var(--muted); border: 1px solid var(--line2); }
+  .wdl.L { background: hsl(0 84% 60% / .15); color: var(--red); border: 1px solid hsl(0 84% 60% / .35); }
+  .wdl .gd { position: absolute; bottom: -16px; font-size: 9.5px; color: var(--muted); font-weight: 600; }
+
+  /* generic table (roster) */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th { text-align: left; color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase;
+           letter-spacing: .5px; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  .tbl td { padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tbl .pos { display: inline-block; min-width: 26px; text-align: center; font-size: 10.5px; font-weight: 700;
+           border-radius: 5px; padding: 1px 5px; background: var(--card2); border: 1px solid var(--line2); color: var(--muted); }
+  .tbl tr:hover td { background: hsl(217 33% 13% / .5); }
+
+  /* scoreline rows */
   .sl-row { display: grid; grid-template-columns: 1fr 70px 38px; align-items: center; gap: 10px;
            font-size: 13px; padding: 3px 0; }
   .sl-track { background: var(--card2); border-radius: 99px; height: 7px; overflow: hidden; }
   .sl-fill { background: var(--gold); height: 100%; border-radius: 99px; }
   .sl-pct { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
   /* team comparison rows */
   .cmp { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px;
            font-size: 13px; padding: 5px 0; }
-  .cmp .lbl { text-align: center; color: var(--muted); font-size: 11px; text-transform: uppercase;
-           letter-spacing: .5px; }
-  .cmp .hv { text-align: right; } .cmp .av { text-align: left; }
-  .cmp b { color: var(--text); }
-  /* sentiment shift callout */
+  .cmp .lbl { text-align: center; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  .cmp .hv { text-align: right; } .cmp .av { text-align: left; } .cmp b { color: var(--text); }
+
   .shift { background: var(--card2); border: 1px solid var(--line); border-radius: 10px;
            padding: 10px 12px; font-size: 13px; color: var(--muted); margin-top: 10px; }
   .shift b { color: var(--text); }
+
   /* badges */
-  .badge { display: inline-block; border-radius: 99px; padding: 2px 8px; font-size: 12px;
+  .badge { display: inline-block; border-radius: 99px; padding: 2px 9px; font-size: 12px;
            font-weight: 700; font-variant-numeric: tabular-nums; }
-  .b-pos { background: rgba(74,222,128,.15); color: var(--accent); }
-  .b-neg { background: rgba(248,113,113,.15); color: var(--red); }
+  .b-pos { background: hsl(142 71% 45% / .15); color: var(--primary); }
+  .b-neg { background: hsl(0 84% 68% / .15); color: var(--red); }
   .b-neu { background: var(--card2); color: var(--muted); }
+  .chip { display: inline-block; background: var(--card2); border: 1px solid var(--line2); border-radius: 7px;
+          padding: 3px 9px; font-size: 12px; font-weight: 600; color: var(--text); margin-right: 6px; }
+  .chip.gold { border-color: hsl(43 96% 56% / .5); color: var(--gold); }
+  .chip.green { border-color: hsl(142 71% 45% / .5); color: var(--primary); }
+
   /* two-column layout for players / news */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 520px) { .cols { grid-template-columns: 1fr; } }
+  @media (max-width: 540px) { .cols { grid-template-columns: 1fr; } }
   .col-head { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .prow { display: flex; align-items: center; justify-content: space-between; gap: 8px;
-           padding: 4px 0; font-size: 13px; }
+           padding: 5px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+  .prow:last-child { border-bottom: 0; }
   .prow .pname { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .inj { color: var(--red); font-size: 11px; margin-left: 4px; }
+  .pmeta { color: var(--muted); font-size: 11px; }
+  .ppct { color: var(--primary); white-space: nowrap; font-weight: 600; }
+  .pen { color: var(--gold); font-size: 10px; font-weight: 700; margin-left: 5px;
+         border: 1px solid var(--gold); border-radius: 4px; padding: 0 3px; }
+  .assist-note { color: var(--muted); font-size: 11px; margin-top: 8px; font-style: italic; }
+  .parlay { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0;
+            border-top: 1px solid var(--line); font-size: 13px; }
+
   /* factor pills */
-  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .pill { background: var(--card2); border: 1px solid var(--line); border-radius: 8px;
-          padding: 6px 10px; font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill { background: var(--card2); border: 1px solid var(--line); border-radius: 9px;
+          padding: 7px 11px; font-size: 12px; color: var(--muted); line-height: 1.35; }
   .pill b { color: var(--text); }
-  /* tournament-form callout */
-  .tform-on { background: linear-gradient(90deg, rgba(251,191,36,.16), rgba(251,191,36,.04));
-           border: 1px solid rgba(251,191,36,.4); border-radius: 10px; padding: 12px 14px; }
+
+  .tform-on { background: linear-gradient(90deg, hsl(43 96% 56% / .16), hsl(43 96% 56% / .04));
+           border: 1px solid hsl(43 96% 56% / .4); border-radius: 11px; padding: 12px 14px; }
   .tform-on .big { font-size: 14px; color: var(--gold); font-weight: 700; }
-  .tform-off { font-size: 13px; color: var(--muted); }
+  .tform-off { font-size: 13px; color: var(--muted); line-height: 1.5; }
   .tform-stat { font-size: 12px; color: var(--muted); margin-top: 8px; }
   .tform-stat b { color: var(--text); }
-  /* injury rows */
+
   .inj-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start;
            border-left: 2px solid var(--red); padding: 8px 0 8px 12px; margin-bottom: 8px; }
   .inj-name { color: var(--text); font-weight: 600; font-size: 14px; }
   .inj-meta { color: var(--muted); font-size: 12px; margin-top: 2px; line-height: 1.4; }
   .inj-when { text-align: right; color: var(--red); font-size: 12px; font-weight: 600; white-space: nowrap; }
-  .inj-imp { display: inline-block; background: var(--card2); border: 1px solid var(--line);
+  .inj-imp { display: inline-block; background: var(--card2); border: 1px solid var(--line2);
            border-radius: 6px; padding: 1px 7px; font-size: 11px; color: var(--text); margin-right: 6px; }
   .ok-note { font-size: 13px; color: var(--muted); }
-  /* headlines */
+
   .headline { font-size: 12.5px; color: var(--muted); line-height: 1.45; padding: 5px 0 5px 10px;
            border-left: 2px solid var(--line); margin-bottom: 4px; }
-  .live-tag { display: inline-block; background: rgba(74,222,128,.15); color: var(--accent);
+  .live-tag { display: inline-block; background: hsl(142 71% 45% / .15); color: var(--primary);
            font-size: 11px; font-weight: 700; border-radius: 6px; padding: 2px 7px; margin-bottom: 8px; }
-  .cond { font-size: 13px; color: var(--muted); }
-  .cond b { color: var(--text); }
+  .cond { font-size: 13px; color: var(--muted); } .cond b { color: var(--text); }
+
   .hidden { display: none; }
-  .loading { text-align: center; color: var(--muted); padding: 40px 20px; line-height: 1.6; }
+  .loading { text-align: center; color: var(--muted); padding: 48px 20px; line-height: 1.6; }
   .err { color: var(--red); font-size: 13px; margin-top: 10px; }
-  /* data status panel */
-  #statusPanel { margin-top: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+
+  #statusPanel { margin-top: 12px; border: 1px solid var(--line); border-radius: 11px; padding: 14px; }
   .stat-verdict { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
-  .stat-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 4px 0;
+  .stat-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 5px 0;
            border-bottom: 1px solid var(--line); }
   .stat-label { color: var(--text); flex: 1; }
   .stat-age { color: var(--muted); font-size: 11.5px; white-space: nowrap; }
   #refreshLog { margin-top: 10px; }
   .step { font-size: 12.5px; color: var(--muted); padding: 3px 0; }
-  .ok-step { color: var(--accent); } .err-step { color: var(--red); }
+  .ok-step { color: var(--primary); } .err-step { color: var(--red); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>⚽ World Cup 2026 <span>Match Predictor</span></h1>
-  <div class="sub">Real-results model: 150 years of internationals · player club strength · stadium altitude, heat, humidity &amp; travel · morale from form and live news.</div>
+  <div class="sub">Real-results model: 150 years of internationals · player club strength · stadium altitude, heat, humidity &amp; travel · morale from form and live news. Predict a match, or dive into a single team or player.</div>
 
+  <div class="tabs">
+    <button class="tab active" data-tab="match">Match</button>
+    <button class="tab" data-tab="team">Team analysis</button>
+    <button class="tab" data-tab="player">Player analysis</button>
+  </div>
+
+  <!-- ===================== MATCH ===================== -->
+  <div class="panel active" id="panel-match">
   <div class="grid">
     <div class="card">
       <label>Home / first team</label>
@@ -152,7 +242,7 @@
         <option value="normal">Normal — secondary to Elo</option>
         <option value="off">Off — stats only</option>
       </select>
-      <button id="go">Predict match</button>
+      <button class="go" id="go">Predict match</button>
       <div class="check" style="margin-top:10px"><span>⚡ Each prediction fetches <b>live</b> venue weather and fresh news for both teams &amp; the venue.</span></div>
       <div class="err hidden" id="err"></div>
       <button class="secondary" id="statusBtn">⚙ Data status &amp; refresh</button>
@@ -174,32 +264,30 @@
           <div class="section-title">In-tournament form</div>
           <div id="tform"></div>
         </div>
-
         <div class="section">
           <div class="section-title">Most likely scorelines</div>
           <div id="scorelines"></div>
         </div>
-
+        <div class="section" id="markets-section">
+          <div class="section-title">Goalscorers, assists &amp; parlays</div>
+          <div id="markets"></div>
+        </div>
         <div class="section" id="sent-section">
           <div class="section-title">Live sentiment</div>
           <div id="sentiment"></div>
         </div>
-
         <div class="section" id="players-section">
           <div class="section-title">Key players</div>
           <div class="cols" id="players"></div>
         </div>
-
         <div class="section" id="injuries-section">
           <div class="section-title">Injuries</div>
           <div id="injuries"></div>
         </div>
-
         <div class="section">
           <div class="section-title">Key factors</div>
           <div class="pills" id="factors"></div>
         </div>
-
         <div class="section">
           <div class="section-title">Conditions &amp; latest headlines</div>
           <div id="headlines"></div>
@@ -207,26 +295,85 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <!-- ===================== TEAM ===================== -->
+  <div class="panel" id="panel-team">
+  <div class="grid">
+    <div class="card">
+      <label>Team</label>
+      <select id="tTeam"></select>
+      <button class="go" id="tGo">Analyse team</button>
+      <div class="check" style="margin-top:12px"><span>Profile uses the same live-updated ratings as the match model — Elo, squad club-strength, form, attack/defence and in-tournament form.</span></div>
+      <div class="err hidden" id="tErr"></div>
+    </div>
+    <div class="card">
+      <div id="tPlaceholder" class="loading">Pick a team and hit <b>Analyse</b>.</div>
+      <div id="tOut" class="hidden"></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===================== PLAYER ===================== -->
+  <div class="panel" id="panel-player">
+  <div class="grid">
+    <div class="card">
+      <label>Team</label>
+      <select id="pTeam"></select>
+      <label>Player</label>
+      <select id="pPlayer"><option>— pick a team first —</option></select>
+      <button class="go" id="pGo">Analyse player</button>
+      <div class="check" style="margin-top:12px"><span>Player profile from real data: club Elo strength, international caps &amp; goals, scoring rate and squad role.</span></div>
+      <div class="err hidden" id="pErr"></div>
+    </div>
+    <div class="card">
+      <div id="pPlaceholder" class="loading">Pick a team, then a player.</div>
+      <div id="pOut" class="hidden"></div>
+    </div>
+  </div>
+  </div>
 </div>
 
 <script>
 const $ = id => document.getElementById(id);
+const pc = x => Math.round(x * 100) + '%';
+const fsign = x => (x >= 0 ? '+' : '') + Number(x).toFixed(2);
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const sentBadge = v => {
+  const cls = v > 0.05 ? 'b-pos' : (v < -0.05 ? 'b-neg' : 'b-neu');
+  return `<span class="badge ${cls}">${fsign(v)}</span>`;
+};
+const ordinal = n => { const s = ['th','st','nd','rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+let TEAM_OPTS = '';
+
+// ---- tabs ----
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  $('panel-' + t.dataset.tab).classList.add('active');
+});
 
 async function init() {
   const [teams, venues] = await Promise.all([
     fetch('/api/teams').then(r => r.json()),
     fetch('/api/venues').then(r => r.json())
   ]);
-  const opts = g => g.map(t => `<option>${t}</option>`).join('');
-  const all = `<optgroup label="World Cup 2026 squads">${opts(teams.world_cup)}</optgroup>
+  const opts = g => g.map(t => `<option>${esc(t)}</option>`).join('');
+  TEAM_OPTS = `<optgroup label="World Cup 2026 squads">${opts(teams.world_cup)}</optgroup>
                <optgroup label="Other nations">${opts(teams.others)}</optgroup>`;
-  $('home').innerHTML = all; $('away').innerHTML = all;
+  const wcOnly = `<optgroup label="World Cup 2026 squads">${opts(teams.world_cup)}</optgroup>`;
+  $('home').innerHTML = TEAM_OPTS; $('away').innerHTML = TEAM_OPTS;
   $('home').value = 'Mexico'; $('away').value = 'Norway';
+  $('tTeam').innerHTML = TEAM_OPTS; $('tTeam').value = 'Brazil';
+  $('pTeam').innerHTML = wcOnly; $('pTeam').value = teams.world_cup[0];
+  loadSquad();
   $('venue').innerHTML = '<option value="">Generic neutral ground</option>' +
-    venues.map(v => `<option value="${v.name}">${v.name} — ${v.temp}°C${v.roof ? ' · roof' : ''}${v.altitude > 500 ? ' · ' + v.altitude + 'm' : ''}</option>`).join('');
+    venues.map(v => `<option value="${esc(v.name)}">${esc(v.name)} — ${v.temp}°C${v.roof ? ' · roof' : ''}${v.altitude > 500 ? ' · ' + v.altitude + 'm' : ''}</option>`).join('');
   $('venue').value = 'Estadio Azteca (Mexico City)';
 }
 
+// ===================== MATCH =====================
 $('go').onclick = async () => {
   $('err').classList.add('hidden');
   $('placeholder').classList.remove('hidden');
@@ -234,8 +381,7 @@ $('go').onclick = async () => {
   $('placeholder').textContent = 'Fetching live weather & news, then crunching…';
   try {
     const body = {
-      home: $('home').value, away: $('away').value,
-      venue: $('venue').value || null,
+      home: $('home').value, away: $('away').value, venue: $('venue').value || null,
       neutral: $('neutral').checked, is_wc: $('iswc').checked,
       temp: $('temp').value || null, humidity: $('hum').value || null,
       sentiment_mode: $('smode').value
@@ -247,31 +393,21 @@ $('go').onclick = async () => {
   } catch (e) {
     $('err').textContent = 'Prediction failed: ' + e.message;
     $('err').classList.remove('hidden');
+    $('placeholder').classList.add('hidden');
   }
-};
-
-const pc = x => Math.round(x * 100) + '%';
-const fsign = x => (x >= 0 ? '+' : '') + x.toFixed(2);
-const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-const sentBadge = v => {
-  const cls = v > 0.05 ? 'b-pos' : (v < -0.05 ? 'b-neg' : 'b-neu');
-  return `<span class="badge ${cls}">${fsign(v)}</span>`;
 };
 
 function render(d) {
   $('placeholder').classList.add('hidden');
   $('out').classList.remove('hidden');
   const p = d.prob;
-
   $('matchup').innerHTML = `<b>${esc(d.home)}</b> vs <b>${esc(d.away)}</b>`;
   $('xg').textContent = `${d.expected_goals.home} – ${d.expected_goals.away}`;
-
   $('bh').style.width = (p.home_win * 100) + '%'; $('bh').textContent = pc(p.home_win);
   $('bd').style.width = (p.draw * 100) + '%';     $('bd').textContent = pc(p.draw);
   $('ba').style.width = (p.away_win * 100) + '%'; $('ba').textContent = pc(p.away_win);
   $('lh').textContent = d.home + ' win'; $('ld').textContent = 'Draw'; $('la').textContent = d.away + ' win';
 
-  // scorelines as labelled mini-bars
   const top = d.top_scorelines[0].p;
   $('scorelines').innerHTML = d.top_scorelines.map(s => `
     <div class="sl-row">
@@ -280,7 +416,40 @@ function render(d) {
       <span class="sl-pct">${pc(s.p)}</span>
     </div>`).join('');
 
-  // live sentiment: composite comparison + shift callout
+  const pm = d.player_markets || {};
+  if (!pm.available) { $('markets-section').classList.add('hidden'); }
+  else {
+    $('markets-section').classList.remove('hidden');
+    const scoreCol = (team, list, pen) => `<div><div class="col-head">${esc(team)} — anytime scorer</div>` +
+      (list.length ? list.map(s => `
+        <div class="prow"><span class="pname">${esc(s.player)}` +
+          (s.penalty_taker ? '<span class="pen">PEN</span>' : '') +
+          `<span class="pmeta"> ${s.goals_intl} intl gls</span></span>` +
+          `<b class="ppct">${pc(s.p_score)}</b></div>`).join('')
+        : `<div class="prow"><span class="pmeta">no goal data for this squad</span></div>`) + `</div>`;
+    const assistCol = (team, list) => `<div><div class="col-head">${esc(team)} — assist (est.)</div>` +
+      list.map(s => `<div class="prow"><span class="pname">${esc(s.player)}` +
+        `<span class="pmeta"> ${esc(s.position)}</span></span><b class="ppct">${pc(s.p_assist)}</b></div>`).join('') + `</div>`;
+    let html = `<div class="cond">P(at least one goal in match): <b>${pc(pm.p_any_goal)}</b></div>`;
+    const mk = pm.match_markets || {};
+    const mkpill = (label, v) => v == null ? '' : `<span class="pill">${label}<br><b>${pc(v)}</b></span>`;
+    html += `<div class="pills" style="margin:10px 0 4px">` +
+      mkpill('Over 1.5', mk.over_1_5) + mkpill('Over 2.5', mk.over_2_5) + mkpill('Over 3.5', mk.over_3_5) +
+      mkpill('BTTS', mk.btts) + mkpill(esc(d.home) + ' clean sheet', mk.home_clean_sheet) +
+      mkpill(esc(d.away) + ' clean sheet', mk.away_clean_sheet) + `</div>`;
+    html += `<div class="cols">${scoreCol(d.home, pm.scorers.home, pm.penalty_takers.home)}` +
+            `${scoreCol(d.away, pm.scorers.away, pm.penalty_takers.away)}</div>`;
+    html += `<div class="cols" style="margin-top:12px">${assistCol(d.home, pm.assists_estimated.home)}` +
+            `${assistCol(d.away, pm.assists_estimated.away)}</div>`;
+    html += `<div class="assist-note">⚠ ${esc(pm.assist_note)}</div>`;
+    if (pm.parlays && pm.parlays.length) {
+      html += `<div class="col-head" style="margin-top:14px">Example parlays (legs assumed independent)</div>`;
+      html += pm.parlays.map(x => `<div class="parlay"><span>${esc(x.name)}: ${esc(x.legs.join(' + '))}</span>` +
+        `<b class="ppct">${pc(x.p)}</b></div>`).join('');
+    }
+    $('markets').innerHTML = html;
+  }
+
   const lv = d.live || {};
   let sent = '';
   if (lv.sentiment) {
@@ -298,7 +467,6 @@ function render(d) {
   if (!sent) { $('sent-section').classList.add('hidden'); }
   else { $('sent-section').classList.remove('hidden'); $('sentiment').innerHTML = sent; }
 
-  // in-tournament form — the dominant factor once active
   const tf = d.tournament_form || {};
   const statline = (team, v) => v
     ? `<div class="tform-stat">${esc(team)}: <b>${v.matches}</b> WC matches · ppg <b>${v.ppg}</b> · goal diff/game <b>${v.gd_pg >= 0 ? '+' : ''}${v.gd_pg}</b> · form <b>${fsign(v.form_score)}</b></div>`
@@ -314,8 +482,13 @@ function render(d) {
       `Until then the prediction relies on Elo, squad strength, form and sentiment.</div>` +
       statline(d.home, tf.home) + statline(d.away, tf.away);
   }
+  const lr = d.live_ratings || {};
+  if (lr.wc_matches_folded_in) {
+    $('tform').innerHTML += `<div class="tform-stat">📈 Base Elo / form / morale updated with ` +
+      `<b>${lr.wc_matches_folded_in}</b> finished World Cup match(es)` +
+      `${lr.through ? ' (through ' + esc(lr.through) + ')' : ''}.</div>`;
+  }
 
-  // key players in two columns
   const bd = lv.breakdown || {};
   const pcol = (team, c) => {
     if (!c || !c.players) return '';
@@ -328,11 +501,9 @@ function render(d) {
   if (!players) { $('players-section').classList.add('hidden'); }
   else { $('players-section').classList.remove('hidden'); $('players').innerHTML = players; }
 
-  // injuries — who, how important, and when it was reported
   const inj = (lv.injuries || []);
-  if (!bd.home && !bd.away) {
-    $('injuries-section').classList.add('hidden');
-  } else if (!inj.length) {
+  if (!bd.home && !bd.away) { $('injuries-section').classList.add('hidden'); }
+  else if (!inj.length) {
     $('injuries-section').classList.remove('hidden');
     $('injuries').innerHTML = `<div class="ok-note">No injuries detected in live news among either team's key players.</div>`;
   } else {
@@ -348,7 +519,6 @@ function render(d) {
     }).join('');
   }
 
-  // key factors
   const c = d.conditions, rt = d.ratings, fe = d.form_extra;
   const pill = (label, h, a) => `<span class="pill">${label}<br><b>${h}</b> vs <b>${a}</b></span>`;
   $('factors').innerHTML =
@@ -363,7 +533,6 @@ function render(d) {
     `<span class="pill">Venue<br><b>${c.temp_c}°C${c.roof ? ' (roof)' : ''}</b> · alt <b>${c.altitude_m}m</b></span>` +
     (d.h2h.meetings ? `<span class="pill">H2H (${d.h2h.meetings})<br>${esc(d.home)} rate <b>${d.h2h.home_rate}</b> · GD <b>${d.h2h.home_gd}</b></span>` : '');
 
-  // conditions + headlines
   const hl = lv.headlines || {};
   let news = '';
   if (lv.weather_live && lv.weather) {
@@ -379,31 +548,204 @@ function render(d) {
   $('headlines').innerHTML = news;
 }
 
-// ---- data status & refresh ----
+// ===================== TEAM =====================
+$('tGo').onclick = async () => {
+  $('tErr').classList.add('hidden');
+  $('tPlaceholder').classList.remove('hidden'); $('tPlaceholder').textContent = 'Analysing…';
+  $('tOut').classList.add('hidden');
+  try {
+    const d = await fetch('/api/team/' + encodeURIComponent($('tTeam').value)).then(r => r.json());
+    if (d.error) throw new Error(d.error);
+    renderTeam(d);
+  } catch (e) {
+    $('tErr').textContent = 'Failed: ' + e.message; $('tErr').classList.remove('hidden');
+    $('tPlaceholder').classList.add('hidden');
+  }
+};
+
+function renderTeam(d) {
+  $('tPlaceholder').classList.add('hidden');
+  $('tOut').classList.remove('hidden');
+  const rankSub = (r, n) => r ? `${ordinal(r)} of ${n}` : '';
+  const squadTile = d.squad_club_elo != null
+    ? `<div class="tile blue"><div class="k">Squad club-Elo</div><div class="v">${d.squad_club_elo}</div><div class="vsub">${d.squad_context ? esc(d.squad_context.tier) + ' · ' : ''}${rankSub(d.squad_rank, d.n_wc)} at WC</div></div>`
+    : `<div class="tile"><div class="k">Squad club-Elo</div><div class="v">—</div><div class="vsub">not a WC squad</div></div>`;
+  const fifaTile = d.fifa_rank
+    ? `<div class="tile gold"><div class="k">FIFA World Ranking</div><div class="v">#${d.fifa_rank.rank}</div><div class="vsub">${d.fifa_rank.points != null ? d.fifa_rank.points + ' pts' : 'official FIFA rank'}</div></div>`
+    : '';
+
+  const recent = d.form.recent.map(x =>
+    `<div class="wdl ${x.r}">${x.r}<span class="gd">${x.gd >= 0 ? '+' : ''}${x.gd}</span></div>`).join('');
+
+  let html = `<div class="matchup" style="font-size:20px;color:var(--text)"><b>${esc(d.team)}</b>` +
+    (d.in_wc ? ' <span class="chip green" style="vertical-align:middle">WC 2026</span>' : '') + `</div>
+    <div class="scoresub" style="margin-bottom:18px">team profile</div>
+
+    <div class="stats">
+      <div class="tile accent"><div class="k">Intl Elo</div><div class="v">${d.elo}</div><div class="vsub">${esc(d.elo_context.tier)} · ${rankSub(d.elo_rank, d.n_teams)}</div></div>
+      ${squadTile}
+      ${fifaTile}
+      <div class="tile"><div class="k">Effective rating</div><div class="v">${d.effective_elo}</div><div class="vsub">Elo + squad blend</div></div>
+    </div>
+    <div class="tform-off" style="margin-top:12px">${esc(d.elo_context.blurb)}${d.fifa_rank ? ` Ranked <b style="color:var(--text)">#${d.fifa_rank.rank}</b> in the official FIFA/Coca-Cola World Ranking — the recognised global standing.` : ''}</div>
+
+    <div class="section">
+      <div class="section-title">Recent form (latest → older)</div>
+      <div class="form-strip" style="margin-bottom:18px">${recent || '<span class="ok-note">no recent matches</span>'}</div>
+      <div class="stats">
+        <div class="tile"><div class="k">Points / game (5)</div><div class="v">${d.form.ppg5}</div></div>
+        <div class="tile"><div class="k">Goal diff / game (10)</div><div class="v">${d.form.gd10 >= 0 ? '+' : ''}${d.form.gd10}</div></div>
+        <div class="tile"><div class="k">Unbeaten streak</div><div class="v">${d.form.streak}</div></div>
+        <div class="tile"><div class="k">Attack rating</div><div class="v">${d.attack}</div><div class="vsub">adj. goals scored</div></div>
+        <div class="tile"><div class="k">Defense rating</div><div class="v">${d.defense}</div><div class="vsub">adj. goals conceded</div></div>
+        <div class="tile"><div class="k">Morale</div><div class="v">${fsign(d.morale)}</div><div class="vsub">vs expectation</div></div>
+      </div>
+    </div>`;
+
+  const rs = d.recent_stats;
+  if (rs) {
+    const adv = rs.shots != null;   // full stats present (API-Football key set)
+    let tiles =
+      `<div class="tile accent"><div class="k">Matches (last 2 wks)</div><div class="v">${rs.matches}</div><div class="vsub">WC 2026</div></div>` +
+      `<div class="tile"><div class="k">Goals / game</div><div class="v">${rs.goals_pm}</div><div class="vsub">${rs.goals} for · ${rs.ga} against</div></div>` +
+      `<div class="tile ${rs.form_score >= 0 ? 'accent' : 'blue'}"><div class="k">Form score</div><div class="v">${fsign(rs.form_score)}</div><div class="vsub">feeds the model</div></div>`;
+    if (adv) {
+      tiles +=
+        `<div class="tile"><div class="k">Shots / game</div><div class="v">${rs.shots_pm}</div><div class="vsub">${rs.shots} total</div></div>` +
+        `<div class="tile"><div class="k">On target / game</div><div class="v">${rs.sot_pm}</div><div class="vsub">${rs.sot_pct}% of shots</div></div>` +
+        `<div class="tile blue"><div class="k">Possession</div><div class="v">${rs.possession}%</div><div class="vsub">avg ball share</div></div>` +
+        `<div class="tile gold"><div class="k">xG for / game</div><div class="v">${rs.xg_for_pm}</div><div class="vsub">vs ${rs.xg_against_pm} against</div></div>`;
+    }
+    const note = adv
+      ? 'Live shots, shots on target, possession and xG from API-Football for this and last week\'s World Cup 2026 matches. The xG-difference form score feeds the match model as a secondary nudge.'
+      : 'From the last two weeks of World Cup 2026 results. Shots, shots on target, possession and xG appear here once an API-Football key is added to <code>.env</code> (see README). Goal-difference form already feeds the match model.';
+    html += `<div class="section"><div class="section-title">Recent World Cup form — last 2 weeks</div>` +
+      `<div class="stats">${tiles}</div>` +
+      `<div class="tform-off" style="margin-top:12px">${note}</div></div>`;
+  }
+
+  const tf = d.tournament_form;
+  if (tf) {
+    html += `<div class="section"><div class="section-title">In this World Cup</div>` +
+      `<div class="tform-on"><span class="big">${tf.matches} WC matches</span>` +
+      `<div class="tform-stat">ppg <b>${tf.ppg}</b> · goal diff/game <b>${tf.gd_pg >= 0 ? '+' : ''}${tf.gd_pg}</b> · form score <b>${fsign(tf.form_score)}</b>` +
+      `${tf.eligible ? '' : ' · <span style="color:var(--muted)">not yet ≥5 matches</span>'}</div></div></div>`;
+  }
+
+  if (d.top_scorers && d.top_scorers.length) {
+    html += `<div class="section"><div class="section-title">Top scoring threats (international rate)</div>` +
+      d.top_scorers.map(s => `<div class="prow"><span class="pname">${esc(s.player)}` +
+        `<span class="pmeta"> ${s.goals} gls / ${s.caps} caps</span></span>` +
+        `<b class="ppct">${s.rate.toFixed(2)} /game</b></div>`).join('') + `</div>`;
+  }
+
+  if (d.roster && d.roster.length) {
+    html += `<div class="section"><div class="section-title">Squad — by club strength</div>` +
+      `<table class="tbl"><thead><tr><th>Player</th><th>Club</th><th>Pos</th><th class="num">Caps</th><th class="num">Club Elo</th></tr></thead><tbody>` +
+      d.roster.map(p => `<tr><td>${esc(p.player)}</td><td class="pmeta">${esc(p.club)}</td>` +
+        `<td><span class="pos">${esc(p.position)}</span></td><td class="num">${p.caps}</td>` +
+        `<td class="num"><b>${p.club_elo}</b></td></tr>`).join('') +
+      `</tbody></table></div>`;
+  }
+  $('tOut').innerHTML = html;
+}
+
+// ===================== PLAYER =====================
+$('pTeam').onchange = loadSquad;
+
+async function loadSquad() {
+  const sel = $('pPlayer');
+  sel.innerHTML = '<option>loading…</option>';
+  try {
+    const d = await fetch('/api/team/' + encodeURIComponent($('pTeam').value)).then(r => r.json());
+    if (!d.roster || !d.roster.length) { sel.innerHTML = '<option>no squad data</option>'; return; }
+    // roster comes sorted by club strength; alphabetise for picking
+    const names = d.roster.map(p => p.player).sort((a, b) => a.localeCompare(b));
+    sel.innerHTML = names.map(n => `<option>${esc(n)}</option>`).join('');
+  } catch (e) { sel.innerHTML = '<option>failed to load</option>'; }
+}
+
+$('pGo').onclick = async () => {
+  $('pErr').classList.add('hidden');
+  $('pPlaceholder').classList.remove('hidden'); $('pPlaceholder').textContent = 'Analysing…';
+  $('pOut').classList.add('hidden');
+  try {
+    const q = '?team=' + encodeURIComponent($('pTeam').value) + '&name=' + encodeURIComponent($('pPlayer').value);
+    const d = await fetch('/api/player' + q).then(r => r.json());
+    if (d.error) throw new Error(d.error);
+    renderPlayer(d);
+  } catch (e) {
+    $('pErr').textContent = 'Failed: ' + e.message; $('pErr').classList.remove('hidden');
+    $('pPlaceholder').classList.add('hidden');
+  }
+};
+
+function renderPlayer(d) {
+  $('pPlaceholder').classList.add('hidden');
+  $('pOut').classList.remove('hidden');
+  const matchNote = {exact: 'matched club', curated: 'curated estimate', fuzzy: 'fuzzy-matched club',
+                     token: 'matched club', unmatched: 'league-median proxy'}[d.club_match] || d.club_match;
+  const chips = [
+    `<span class="chip">${esc(d.position)}</span>`,
+    d.starter_xi ? '<span class="chip green">Projected XI</span>' : '<span class="chip">Squad depth</span>',
+    d.is_penalty_taker ? '<span class="chip gold">Penalty taker</span>' : ''
+  ].join('');
+
+  const rs = d.recent_stats;
+  const rsBlock = rs
+    ? `<div class="section"><div class="section-title">Recent World Cup shooting — last 2 weeks</div>
+        <div class="stats">
+          <div class="tile accent"><div class="k">Shots</div><div class="v">${rs.shots}</div><div class="vsub">${rs.shots_pm}/game · ${rs.matches} matches</div></div>
+          <div class="tile"><div class="k">On target</div><div class="v">${rs.sot}</div><div class="vsub">${rs.sot_pct}% of shots</div></div>
+          ${rs.xg != null ? `<div class="tile gold"><div class="k">xG</div><div class="v">${rs.xg}</div><div class="vsub">${rs.xg_pm}/game</div></div>` : ''}
+          <div class="tile"><div class="k">Goals (these games)</div><div class="v">${rs.goals}</div>${rs.xg != null ? `<div class="vsub">vs ${rs.xg} xG</div>` : ''}</div>
+        </div>
+        <div class="tform-off" style="margin-top:12px">Live shot-level output from API-Football for this and last week's World Cup 2026 matches — distinct from the career international rate above.</div></div>`
+    : '';
+
+  $('pOut').innerHTML =
+    `<div class="matchup" style="font-size:20px;color:var(--text)"><b>${esc(d.player)}</b></div>
+     <div class="scoresub" style="margin-bottom:8px">${esc(d.club)} · ${esc(d.team)}</div>
+     <div style="text-align:center;margin-bottom:18px">${chips}</div>
+
+     <div class="stats">
+       <div class="tile blue"><div class="k">Club Elo</div><div class="v">${d.club_elo}</div><div class="vsub">${d.club_elo_context ? esc(d.club_elo_context.tier) : esc(matchNote)}</div></div>
+       <div class="tile"><div class="k">Caps</div><div class="v">${d.caps}</div></div>
+       <div class="tile accent"><div class="k">Intl goals</div><div class="v">${d.intl_goals}</div><div class="vsub">${d.penalties} pen</div></div>
+       <div class="tile gold"><div class="k">Goals / game</div><div class="v">${d.goals_per_game}</div><div class="vsub">regularised rate</div></div>
+       <div class="tile"><div class="k">Goals / cap</div><div class="v">${d.goals_per_cap}</div><div class="vsub">raw</div></div>
+       <div class="tile"><div class="k">Squad role</div><div class="v">#${d.squad_importance_rank}</div><div class="vsub">of ${d.squad_size}, by club strength</div></div>
+     </div>
+     ${rsBlock}
+
+     <div class="section"><div class="tform-off">
+       <b style="color:var(--text)">${esc(d.player)}</b> is the <b style="color:var(--text)">${ordinal(d.squad_importance_rank)}</b>-strongest
+       player in ${esc(d.team)}'s squad by club Elo${d.starter_xi ? ', placing him in the projected starting XI' : ''}.
+       His scoring rate of <b style="color:var(--text)">${d.goals_per_game}</b> goals/game feeds the match model's
+       anytime-scorer market. Club strength is a <b style="color:var(--text)">${esc(matchNote)}</b>.
+       ${d.club_elo_context ? esc(d.club_elo_context.blurb) : ''}
+       ${d.team_fifa_rank ? `${esc(d.team)} sit <b style="color:var(--text)">#${d.team_fifa_rank.rank}</b> in the official FIFA World Ranking.` : ''}
+     </div></div>`;
+}
+
+// ---- data status & refresh (Match tab) ----
 $('statusBtn').onclick = () => {
   const panel = $('statusPanel');
   if (!panel.classList.contains('hidden')) { panel.classList.add('hidden'); return; }
   panel.classList.remove('hidden');
   checkStatus();
 };
-
 async function checkStatus() {
   $('statusPanel').innerHTML = '<div class="stat-verdict">Checking…</div>';
-  try {
-    const s = await fetch('/api/status').then(r => r.json());
-    renderStatus(s);
-  } catch (e) {
-    $('statusPanel').innerHTML = '<div class="err">Status check failed.</div>';
-  }
+  try { renderStatus(await fetch('/api/status').then(r => r.json())); }
+  catch (e) { $('statusPanel').innerHTML = '<div class="err">Status check failed.</div>'; }
 }
-
 function ageText(a) {
   if (a.age_hours == null) return 'missing';
   if (a.age_hours < 1) return 'just now';
   if (a.age_hours < 48) return Math.round(a.age_hours) + 'h ago';
   return Math.round(a.age_hours / 24) + 'd ago';
 }
-
 function renderStatus(s) {
   const dot = st => st === 'ok' ? '🟢' : (st === 'stale' ? '🟡' : '🔴');
   const verdict = s.any_missing ? '🔴 Required data missing — run the pipeline.'
@@ -421,14 +763,12 @@ function renderStatus(s) {
   $('refreshBtn').onclick = runRefresh;
   if (s.refresh && s.refresh.running) pollRefresh();
 }
-
 async function runRefresh() {
   $('refreshBtn').disabled = true;
   $('refreshLog').innerHTML = '<div class="step">⏳ Starting… (squad fetch + injury scan can take ~2–3 min)</div>';
   await fetch('/api/refresh', { method: 'POST' });
   pollRefresh();
 }
-
 async function pollRefresh() {
   $('refreshBtn').disabled = true;
   while (true) {
@@ -440,7 +780,6 @@ async function pollRefresh() {
     await new Promise(r => setTimeout(r, 1500));
   }
 }
-
 function renderRefreshProgress(rf) {
   if (!rf || !rf.steps || !rf.steps.length) return;
   const icon = st => ({ done: '✅', running: '⏳', failed: '❌' }[st] || '•');

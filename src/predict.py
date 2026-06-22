@@ -27,26 +27,41 @@ os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 os.environ.setdefault("OMP_NUM_THREADS", "4")
 import ensemble_model  # noqa: F401  (needed to unpickle StackEnsemble/TorchMLP)
 _ens_path = os.path.join(BASE, "models", "fifa_model_ensemble.joblib")
+_model = None
 if os.path.exists(_ens_path):
-    _model = joblib.load(_ens_path)
-    if hasattr(_model["clf"], "members"):
-        for _name, _m in _model["clf"].members.items():
-            if _name == "xgb":
-                _m.set_params(device="cpu", n_jobs=1)
-            elif _name == "lgb":
-                _m.set_params(n_jobs=1)
-else:
+    # ponytail: ensemble is optional; if its deps (torch/catboost/xgb) are
+    # missing or broken, fall back to the plain model instead of 500ing.
+    try:
+        _model = joblib.load(_ens_path)
+        if hasattr(_model["clf"], "members"):
+            for _name, _m in _model["clf"].members.items():
+                if _name == "xgb":
+                    _m.set_params(device="cpu", n_jobs=1)
+                elif _name == "lgb":
+                    _m.set_params(n_jobs=1)
+    except Exception as _e:
+        print(f"[predict] ensemble load failed ({_e}); using plain model", file=__import__("sys").stderr)
+        _model = None
+if _model is None:
     _model = joblib.load(os.path.join(BASE, "models", "fifa_model.joblib"))
+import live_ratings
+import scorers
+import fifa_rankings
+import recent_stats
 SQUAD_W = 0.30
 _state = _squad = _tform = None
 _a = _b = None
+_live_ratings = {"applied": 0, "through": None}
 
 
 def _load_data():
     """(Re)load the data artifacts produced by the offline pipeline. Called at
     import and again by reload() after the data-refresh button reruns scripts."""
-    global _state, _squad, _tform, _a, _b
-    _state = json.load(open(os.path.join(BASE, "data", "current_state.json")))
+    global _state, _squad, _tform, _a, _b, _live_ratings
+    base = json.load(open(os.path.join(BASE, "data", "current_state.json")))
+    # fold finished World Cup matches into the frozen base ratings (Elo/form/morale/
+    # h2h/att-def), so predictions reflect the latest results, not just pre-tournament
+    _state, _live_ratings = live_ratings.apply_live_results(base)
     _squad = json.load(open(os.path.join(BASE, "data", "squad_strength.json")))
     tpath = os.path.join(BASE, "data", "tournament_form.json")
     _tform = json.load(open(tpath, encoding="utf-8")) if os.path.exists(tpath) else {}
@@ -62,6 +77,9 @@ _load_data()
 def reload():
     """Re-read data files so a running server picks up a fresh pipeline run."""
     _load_data()
+    scorers.reload()
+    fifa_rankings.load()
+    recent_stats.load()
 
 
 def effective_elo(team):
@@ -70,6 +88,56 @@ def effective_elo(team):
         squad_scaled = _a * _squad[team] + _b
         return (1 - SQUAD_W) * elo + SQUAD_W * squad_scaled
     return elo
+
+
+# ---- rating context: turn a raw Elo into "is this good?" for ordinary users ----
+# Bands are calibrated to the live distributions (measured this build): international
+# Elo spans ~700-2360 (median ~1490); per-player club Elo ~1040-2060 (median ~1580);
+# squad club-Elo across the 48 WC teams ~1400-1920.
+# ponytail: thresholds are calibrated constants, not magic numbers — revisit if a
+# rating scale shifts. The percentile is computed live, so it always reflects the data.
+INTL_ELO_BANDS = [(2100, "World-class"), (1900, "Elite"), (1750, "Very strong"),
+                  (1600, "Strong"), (1450, "Mid-tier"), (0, "Developing")]
+CLUB_ELO_BANDS = [(1950, "Champions-League elite"), (1800, "Top European club"),
+                  (1650, "Strong first-division"), (1500, "Solid first-division"),
+                  (1350, "Lower first-division"), (0, "Lower-league")]
+SQUAD_ELO_BANDS = [(1850, "favourite"), (1750, "contender"), (1650, "solid"),
+                   (1550, "mid"), (0, "outsider")]
+
+
+def _tier(elo, bands):
+    for thr, label in bands:
+        if elo >= thr:
+            return label
+    return bands[-1][1]
+
+
+def _pct_below(elo, values):
+    """Share of the distribution (0-100) a value is stronger than — i.e. how good it is
+    relative to peers, the plain-English counterpart of the absolute band."""
+    vals = [v for v in values]
+    return round(100 * sum(v < elo for v in vals) / len(vals)) if vals else None
+
+
+def intl_elo_context(elo):
+    tier = _tier(elo, INTL_ELO_BANDS)
+    pct = _pct_below(elo, _state["elo"].values())
+    blurb = (f"{tier} — an international Elo of {round(elo)} is stronger than {pct}% of "
+             f"national teams." if pct is not None else f"{tier}.")
+    return {"tier": tier, "percentile": pct, "blurb": blurb}
+
+
+def club_elo_context(elo):
+    tier = _tier(elo, CLUB_ELO_BANDS)
+    pct = _pct_below(elo, scorers._squads["club_elo"].astype(float))
+    blurb = (f"{tier} — a club Elo of {round(elo)} is stronger than {pct}% of World Cup "
+             f"squad players." if pct is not None else f"{tier}.")
+    return {"tier": tier, "percentile": pct, "blurb": blurb}
+
+
+def squad_elo_context(elo):
+    return {"tier": _tier(elo, SQUAD_ELO_BANDS),
+            "percentile": _pct_below(elo, _squad.values())}
 
 
 def _form(team):
@@ -104,6 +172,15 @@ SENTIMENT_K = {"off": 0.0, "normal": 0.35, "high": 0.85}
 # log-odds by TFORM_K * 2 = 2.4 -- larger than sentiment (1.7) and Elo (~1.45),
 # i.e. how a team is actually doing in this World Cup dominates the prediction.
 TFORM_K = 1.2
+
+# Recent-form layer: the last two weeks of WC 2026 matches (see recent_stats.py).
+# form_score is in [-1, 1] -- tanh of xG-difference/match when a stats key is set,
+# else goal-difference/match -- shrunk for small samples. A full gap (2.0) shifts
+# win log-odds by RSTATS_K * 2 = 0.9: a high but deliberately secondary weight,
+# below a 1-SD Elo edge (~1.45) and sentiment (1.7), so recent World Cup form
+# colours the prediction without overruling the model or (>=5-match) in-tournament
+# form. A stated recent-form prior, not a retrained feature.
+RSTATS_K = 0.45
 
 
 def predict(home, away, venue=None, neutral=True, is_wc=True,
@@ -182,6 +259,22 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
         lam_h *= gadj
         lam_a /= gadj
 
+    # recent WC-form layer (last two weeks of WC 2026, only when both teams have played)
+    rs_h, rs_a = recent_stats.form_score(home), recent_stats.form_score(away)
+    rstats_active = rs_h is not None and rs_a is not None
+    prob_before_rstats = {"home_win": round(float(p_home), 3), "draw": round(float(p_draw), 3),
+                          "away_win": round(float(p_away), 3)}
+    if rstats_active:
+        rdiff = rs_h - rs_a
+        lg = np.log(np.array([p_away, p_draw, p_home]) + 1e-12)
+        lg[2] += RSTATS_K * rdiff
+        lg[0] -= RSTATS_K * rdiff
+        e = np.exp(lg - lg.max())
+        p_away, p_draw, p_home = e / e.sum()
+        gadj = math.exp(0.25 * RSTATS_K * rdiff)
+        lam_h *= gadj
+        lam_a /= gadj
+
     # in-tournament form layer (dominant, only when both teams have >= 5 WC matches)
     tf_h, tf_a = _tform.get(home), _tform.get(away)
     tform_active = bool(tf_h and tf_a and tf_h.get("eligible") and tf_a.get("eligible"))
@@ -204,17 +297,30 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
     grid = [(i, j, pois(lam_h, i) * pois(lam_a, j)) for i in range(7) for j in range(7)]
     grid.sort(key=lambda g: -g[2])
 
+    # player markets: who scores (real data) / who assists (estimated), + parlays
+    final_prob = {"home_win": float(p_home), "draw": float(p_draw), "away_win": float(p_away)}
+    player_markets = scorers.predict_match(home, away, lam_h, lam_a, prob=final_prob)
+
     return {
         "home": home, "away": away, "venue": venue,
         "prob": {"home_win": round(float(p_home), 3), "draw": round(float(p_draw), 3),
                  "away_win": round(float(p_away), 3)},
         "expected_goals": {"home": round(lam_h, 2), "away": round(lam_a, 2)},
         "top_scorelines": [{"score": f"{i}-{j}", "p": round(p, 3)} for i, j, p in grid[:5]],
+        "player_markets": player_markets,
         "ratings": {"home_intl_elo": round(_state["elo"].get(home, 1500), 1),
                     "away_intl_elo": round(_state["elo"].get(away, 1500), 1),
                     "home_effective": round(eh, 1), "away_effective": round(ea, 1),
                     "home_squad_club_elo": round(_squad.get(home, 0), 1),
                     "away_squad_club_elo": round(_squad.get(away, 0), 1)},
+        "live_ratings": {
+            "wc_matches_folded_in": _live_ratings["applied"],
+            "through": _live_ratings["through"],
+            "note": ("Elo/form/morale/h2h updated with "
+                     f"{_live_ratings['applied']} finished World Cup match(es)"
+                     if _live_ratings["applied"] else
+                     "no World Cup results yet — base (pre-tournament) ratings"),
+        },
         "morale": {"home": round(mor_h, 3), "away": round(mor_a, 3)},
         "sentiment_layer": {"mode": sentiment_mode, "k": k,
                             "input": {"home": round(float(sentiment_home), 3),
@@ -227,6 +333,17 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
             "home": tf_h, "away": tf_a,
             "note": ("dominant factor applied" if tform_active else
                      "inactive — both teams need >= 5 World Cup matches (from the QF stage)"),
+        },
+        "recent_form": {
+            "active": rstats_active, "k": RSTATS_K,
+            "window": recent_stats.meta().get("_window"),
+            "advanced": recent_stats.meta().get("_advanced"),
+            "competitions": recent_stats.meta().get("_competitions", []),
+            "prob_before": prob_before_rstats if rstats_active else None,
+            "home": recent_stats.get_team(home), "away": recent_stats.get_team(away),
+            "note": ("last two weeks of WC 2026 form, applied as a secondary nudge"
+                     if rstats_active else
+                     "inactive — one or both teams have no WC 2026 matches yet"),
         },
         "h2h": {"meetings": len(meetings), "home_rate": round(h2h_rate, 2),
                 "home_gd": round(h2h_gd, 2)},
@@ -244,6 +361,95 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
     }
 
 
+def _wdl(frac):
+    return "W" if frac >= 0.99 else ("L" if frac <= 0.01 else "D")
+
+
+def team_analysis(team):
+    """Standalone team profile: rating + rank, form, attack/defence, squad, scorers.
+    Reuses the same in-memory state the match model uses (live-updated mid-tournament)."""
+    if team not in _state["elo"]:
+        return {"error": f"unknown team: {team}"}
+    elo = _state["elo"][team]
+    rank = sum(1 for v in _state["elo"].values() if v > elo) + 1
+    eff = effective_elo(team)
+    ppg5, gd10 = _form(team)
+    recent = [{"r": _wdl(x[0]), "gd": int(x[1])} for x in _state["hist"].get(team, [])[-10:]][::-1]
+
+    squad_elo = _squad.get(team)
+    wc_rank = (sum(1 for v in _squad.values() if v > squad_elo) + 1) if squad_elo is not None else None
+
+    s = scorers._squads[scorers._squads["team"] == team]
+    roster = [{"player": r.player, "club": str(r.club), "position": str(r.position),
+               "caps": int(pd.to_numeric(r.caps, errors="coerce") or 0),
+               "club_elo": round(float(r.club_elo))}
+              for r in s.sort_values("club_elo", ascending=False).itertuples()]
+    tp = scorers._team_players(team) if not s.empty else []
+    top_scorers = [{"player": p["player"], "goals": p["goals"], "caps": p["caps"],
+                    "rate": round(p["rate"], 3)}
+                   for p in sorted((p for p in tp if p["goals"] > 0), key=lambda p: -p["rate"])[:6]]
+
+    return {
+        "team": team, "in_wc": team in _squad,
+        "elo": round(elo, 1), "elo_rank": rank, "n_teams": len(_state["elo"]),
+        "effective_elo": round(eff, 1),
+        "elo_context": intl_elo_context(elo),
+        "fifa_rank": fifa_rankings.get(team),
+        "squad_club_elo": round(squad_elo, 1) if squad_elo is not None else None,
+        "squad_rank": wc_rank, "n_wc": len(_squad),
+        "squad_context": squad_elo_context(squad_elo) if squad_elo is not None else None,
+        "form": {"ppg5": round(ppg5, 2), "gd10": round(gd10, 2),
+                 "streak": _state["streak"].get(team, 0), "recent": recent},
+        "attack": round(_state["att"].get(team, 1.3), 2),
+        "defense": round(_state["dfn"].get(team, 1.3), 2),
+        "morale": round(_state["morale"].get(team, 0.0), 3),
+        "big_exp": round(_state["big_exp"].get(team, 0.0), 1),
+        "roster": roster, "top_scorers": top_scorers,
+        "tournament_form": _tform.get(team),
+        "recent_stats": recent_stats.get_team(team),
+    }
+
+
+def player_analysis(team, player):
+    """Standalone player profile: club strength, international scoring, squad role."""
+    s = scorers._squads[scorers._squads["team"] == team]
+    if s.empty:
+        return {"error": f"no World Cup squad data for {team}"}
+    row = s[s["player"] == player]
+    if row.empty:
+        return {"error": f"{player} not found in {team}'s squad"}
+    r = row.iloc[0]
+    tp = scorers._team_players(team)
+    g = next((p for p in tp if p["player"] == player), {})
+    caps = int(pd.to_numeric(r["caps"], errors="coerce") or 0)
+    goals, pens = g.get("goals", 0), g.get("pens", 0)
+    club_elo = float(r["club_elo"])
+    elos = s["club_elo"].astype(float)
+    imp_rank = int((elos > club_elo).sum()) + 1
+    max_pens = max((p["pens"] for p in tp), default=0)
+    return {
+        "team": team, "player": player,
+        "club": str(r["club"]), "club_elo": round(club_elo),
+        "club_elo_context": club_elo_context(club_elo),
+        "team_fifa_rank": fifa_rankings.get(team),
+        "club_match": str(r["match_type"]),
+        "position": str(r["position"]), "caps": caps,
+        "intl_goals": goals, "penalties": pens,
+        "goals_per_game": round(g.get("rate", 0.0), 3),
+        "goals_per_cap": round(goals / caps, 3) if caps else 0.0,
+        "squad_importance_rank": imp_rank, "squad_size": len(s),
+        "is_penalty_taker": pens > 0 and pens == max_pens,
+        "starter_xi": imp_rank <= 11,
+        "recent_stats": recent_stats.get_player(player, team),
+    }
+
+
 if __name__ == "__main__":
     r = predict("Mexico", "Norway", venue="Estadio Azteca (Mexico City)", neutral=False)
     print(json.dumps(r, indent=1))
+    print("\n--- team_analysis(Brazil) ---")
+    t = team_analysis("Brazil")
+    print(json.dumps({k: t[k] for k in ("elo", "elo_rank", "squad_club_elo", "squad_rank", "form")}, indent=1))
+    print("top player:", t["roster"][0] if t["roster"] else None)
+    print("\n--- player_analysis ---")
+    print(json.dumps(player_analysis("Brazil", t["roster"][0]["player"]) if t["roster"] else {}, indent=1))

@@ -1,0 +1,495 @@
+{
+ "_updated": "2026-06-22",
+ "_window": [
+  "2026-06-07",
+  "2026-06-21"
+ ],
+ "_source": "live WC 2026 scores (data/wc_matches.json) — no key configured",
+ "_advanced": false,
+ "_competitions": [
+  "FIFA World Cup 2026 (last 14 days)"
+ ],
+ "teams": {
+  "Algeria": {
+   "matches": 1,
+   "goals": 0,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Argentina": {
+   "matches": 1,
+   "goals": 3,
+   "ga": 0,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Australia": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Austria": {
+   "matches": 1,
+   "goals": 3,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Belgium": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Bosnia and Herzegovina": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 5,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Brazil": {
+   "matches": 2,
+   "goals": 4,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Canada": {
+   "matches": 2,
+   "goals": 7,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Cape Verde": {
+   "matches": 1,
+   "goals": 0,
+   "ga": 0,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Colombia": {
+   "matches": 1,
+   "goals": 3,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Croatia": {
+   "matches": 1,
+   "goals": 2,
+   "ga": 4,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Curaçao": {
+   "matches": 2,
+   "goals": 1,
+   "ga": 7,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Czech Republic": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "DR Congo": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Ecuador": {
+   "matches": 2,
+   "goals": 0,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Egypt": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "England": {
+   "matches": 1,
+   "goals": 4,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "France": {
+   "matches": 1,
+   "goals": 3,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Germany": {
+   "matches": 2,
+   "goals": 9,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Ghana": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 0,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Haiti": {
+   "matches": 2,
+   "goals": 0,
+   "ga": 4,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Iran": {
+   "matches": 1,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Iraq": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 4,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Ivory Coast": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Japan": {
+   "matches": 1,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Jordan": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Mexico": {
+   "matches": 2,
+   "goals": 3,
+   "ga": 0,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Morocco": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Netherlands": {
+   "matches": 2,
+   "goals": 7,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "New Zealand": {
+   "matches": 1,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Norway": {
+   "matches": 1,
+   "goals": 4,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Panama": {
+   "matches": 1,
+   "goals": 0,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Paraguay": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 4,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Portugal": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Qatar": {
+   "matches": 2,
+   "goals": 1,
+   "ga": 7,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Saudi Arabia": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Scotland": {
+   "matches": 2,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Senegal": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "South Africa": {
+   "matches": 2,
+   "goals": 1,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "South Korea": {
+   "matches": 2,
+   "goals": 2,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Spain": {
+   "matches": 1,
+   "goals": 0,
+   "ga": 0,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Sweden": {
+   "matches": 2,
+   "goals": 6,
+   "ga": 6,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Switzerland": {
+   "matches": 2,
+   "goals": 5,
+   "ga": 2,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Tunisia": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 5,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Turkey": {
+   "matches": 2,
+   "goals": 0,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "United States": {
+   "matches": 2,
+   "goals": 6,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Uruguay": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 1,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  },
+  "Uzbekistan": {
+   "matches": 1,
+   "goals": 1,
+   "ga": 3,
+   "shots": null,
+   "sot": null,
+   "possession": null,
+   "xg_for": null,
+   "xg_against": null
+  }
+ },
+ "players": {}
+}
