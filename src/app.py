@@ -39,7 +39,7 @@ ARTIFACTS = [
      "producer": "tournament_form.py", "max_age_h": 12, "optional": True},
     {"key": "fifa_rankings", "path": "data/fifa_rankings.json", "label": "FIFA World Ranking snapshot",
      "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
-    {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (shots/SoT/possession/xG)",
+    {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (goal-difference)",
      "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
 ]
 

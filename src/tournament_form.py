@@ -2,9 +2,10 @@
 but only once a team has played enough of the tournament to be meaningful.
 
 How a team is doing IN the current World Cup is the strongest signal available,
-so when active it outweighs Elo, squad and sentiment. Per requirement it is
-IGNORED entirely until a team has played >= MIN_MATCHES (5) World Cup matches
-(i.e. from the quarter-finals onward in the 2026 format).
+so when active it outweighs Elo, squad and sentiment. It now weighs in from the
+first finished match (eligible once matches >= 1); predict.py shrinks its weight
+by sample size (full strength at FULL_CONF matches) so one early result can't
+dominate. MIN_MATCHES marks that full-confidence point, not a hard cutoff.
 
 Source: football-data.org WC matches (free tier = scores/goals; no possession or
 assists). The metric therefore uses results + goals, which are the core "form"
@@ -25,7 +26,7 @@ DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 OUT = os.path.join(DATA, "tournament_form.json")
 WC_MATCHES = os.path.join(DATA, "wc_matches.json")  # raw finished results -> live_ratings.py
 BASE = "https://api.football-data.org/v4"
-MIN_MATCHES = 5
+MIN_MATCHES = 5  # full-confidence threshold; form is active from match 1 (see predict.py)
 
 
 def canon(name):
@@ -74,7 +75,7 @@ def compute(matches):
             "gd_pg": round(gd_pg, 2),
             "possession": None, "assists_pg": None,  # filled only by a paid feed
             "form_score": form_score(ppg, gd_pg),
-            "eligible": n >= MIN_MATCHES,
+            "eligible": n >= 1,
         }
     return out
 

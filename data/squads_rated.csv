@@ -32,7 +32,6 @@ Germany,Jonathan Tah,DF,47,Bayern Munich,2000.87023926,exact
 Germany,Waldemar Anton,DF,13,Borussia Dortmund,1834.76867676,exact
 Germany,Antonio Rüdiger,DF,82,Real Madrid,1922.91210938,exact
 Germany,David Raum,DF,37,RB Leipzig,1761.90344238,token
-Germany,Nico Schlotterbeck,DF,27,Borussia Dortmund,1834.76867676,exact
 Germany,Malick Thiaw,DF,5,Newcastle United,1837.53125,exact
 Germany,Nathaniel Brown,DF,5,Eintracht Frankfurt,1663.77978516,exact
 Germany,Nadiem Amiri,MF,11,Mainz 05,1671.92553711,token
@@ -666,6 +665,7 @@ Turkey,Salih Özcan,MF,30,Borussia Dortmund,1834.76867676,exact
 Turkey,Hakan Çalhanoğlu,MF,105,Inter Milan,1888.60229492,exact
 Turkey,Orkun Kökçü,MF,50,Beşiktaş,1516.34155273,exact
 Turkey,İsmail Yüksek,MF,32,Fenerbahçe,1655.55847168,exact
+Turkey,Arda Guler,MF,29,Real Madrid,1922.91210938,exact
 Turkey,Oguz Aydin,MF,0,,1398.90234375,unmatched
 Turkey,Baris Yilmaz,MF,0,,1398.90234375,unmatched
 Turkey,İrfan Kahveci,MF,0,,1398.90234375,unmatched
@@ -791,11 +791,11 @@ Colombia,Daniel Muñoz,DF,46,Crystal Palace,1803.82470703,exact
 Colombia,Jhon Lucumí,DF,37,Bologna,1701.2779541,exact
 Colombia,Willer Ditta,DF,5,Cruz Azul,1600.0,curated
 Colombia,James Rodríguez,MF,126,Minnesota United FC,1398.90234375,unmatched
+Colombia,Juan Fernando Quintero,MF,49,River Plate,1740.0,curated
 Colombia,Jefferson Lerma,MF,65,Crystal Palace,1803.82470703,exact
 Colombia,Jhon Arias,MF,38,Palmeiras,1790.0,curated
 Colombia,Jorge Carrascal,MF,24,Flamengo,1800.0,curated
 Colombia,Kevin Castaño,MF,25,River Plate,1740.0,curated
-Colombia,Juan Quintero,MF,0,,1398.90234375,unmatched
 Colombia,Jaminton Campaz,MF,10,Rosario Central,1398.90234375,unmatched
 Colombia,Richard Rios,MF,32,Benfica,1823.50866699,exact
 Colombia,Juan Portilla,MF,10,Athletico Paranaense,1398.90234375,unmatched

@@ -1,7 +1,22 @@
 # World Cup 2026 Match Predictor
 
-Predicts FIFA World Cup match outcomes (win/draw/loss probabilities + most likely
-scorelines) from **real football results only** — no video-game data or ratings.
+A match-outcome engine for the 2026 World Cup. It returns win/draw/loss
+probabilities and a full scoreline grid, plus derived goalscorer, match and
+parlay markets, from a feature set built on 150+ years of international results.
+
+Team strength fuses an international Elo computed over 48,000+ matches since 1872
+with a club-level squad rating (each player mapped to his club's clubelo.com
+rating), then layers in form, head-to-head, tournament experience, morale, live
+news sentiment, jet lag and venue-climate mismatch. The outcome classifier is a
+probability-averaged ensemble of five members — Optuna-tuned LightGBM,
+GPU XGBoost, GPU CatBoost, a seed-ensembled PyTorch MLP and HistGradientBoosting —
+with twin Poisson regressors driving the scoreline grid. Ratings update live from
+the in-tournament match feed, so a group-stage result moves a team's Elo, form and
+morale immediately.
+
+On a strict time split (train <2022, test 2022→Jun 2026, 4,541 matches) it scores
+**60.1% three-way accuracy / 0.871 log-loss**, against a 59.5% Elo-favourite
+baseline — near the practical ceiling for three-way football prediction.
 
 ## Quick start
 
@@ -41,152 +56,149 @@ otherwise falls back to the single model.
 
 ## How a prediction is made
 
-**Team strength** blends two real-results signals:
+### Team strength
 
-1. **International Elo (70%)** — computed over 48,000+ international matches since
-   1872 (`data/results.csv`, the open martj42 dataset). K-factor scales with
-   competition importance (World Cup > qualifiers > friendlies) and goal margin.
-2. **Squad club strength (30%)** — the player layer. Squads come from the
-   football-data.org API (`fetch_squads_api.py`, authoritative current rosters),
-   then a live news scan (`detect_withdrawals.py`) removes players confirmed OUT
-   of the tournament after registration — no squad API tracks injury
-   withdrawals, so e.g. Wataru Endo (foot injury, retired mid-tournament) is
-   dropped and the next-best player promoted. Each player is mapped to his club, and
-   each club's Elo from clubelo.com (built from Premier League, Bundesliga, La Liga,
-   UCL and every other European competition's actual results) proxies the level the
-   player performs at weekly. Caps-weighted, best-XI-weighted mean per team; strong
-   non-European clubs (Flamengo, Al-Hilal, Club América…) use curated continental-
-   performance estimates.
+Two real-results signals, blended 70 / 30:
 
-**Context features** per match:
+| Weight | Signal | Source |
+|---|---|---|
+| **70%** | International Elo | 48,000+ internationals since 1872 (`data/results.csv`, martj42). K-factor scales with competition importance (World Cup > qualifiers > friendlies) and goal margin. |
+| **30%** | Squad club strength | Each player → his club → that club's clubelo.com rating, a proxy for the level he plays at weekly. Caps- and best-XI-weighted per team. |
 
-- **Form**: points-per-game (last 5), goal difference (last 10), unbeaten streak
-- **Attack/defense ratings**: opponent-strength-adjusted EWMA of goals scored and
-  conceded (pi-/Berrar-rating style split — literature shows rating splits beat
-  plain Elo when fed to gradient-boosted trees)
-- **Head-to-head**: win rate and goal difference over the sides' last 10 meetings
-  (2nd most important feature after Elo in held-out testing)
-- **Major-tournament experience**: decaying count of WC/continental matches played
-- **Morale**: exponentially-weighted momentum of results *vs expectation* (beating a
-  stronger side lifts morale more), plus **live news sentiment** pulled from
-  Google News headlines and scored with a football lexicon (`src/sentiment.py`)
-- **Key-player sentiment** (`src/live.py`): each team's 8 most important players
-  (ranked by club Elo x international caps — for Brazil this surfaces Casemiro,
-  Alisson, Vinícius, Neymar, Raphinha...) get individual live news fetches on
-  every prediction. Injury-related headlines are detected and weigh in extra
-  negatively. Composite = 40% general team news + 60% importance-weighted players.
-- **Injuries panel** (UI, below Key players): every injured key player found in live
-  news, with how central they are to the team (importance label + weight) and when
-  the injury was first reported (from the news publication date).
-- **Data status & refresh** (UI, "⚙ Data status & refresh" button): checks every
-  pipeline artifact (model, squads, withdrawals, squad ratings, in-tournament form)
-  and shows fresh 🟢 / stale 🟡 / missing 🔴 with ages. One click runs the
-  tournament refresh (fetch squads → rate → detect withdrawals → re-rate → fetch
-  form) as background subprocesses, streams step progress, then hot-reloads the
-  data in memory so predictions use it immediately — no server restart.
-  Endpoints: `GET /api/status`, `POST /api/refresh`.
-- **Sentiment-priority layer** (`src/predict.py`): user-configurable. In "high"
-  mode (default) a full sentiment split shifts win log-odds by more than a
-  1-standard-deviation Elo edge (~250 pts), so live sentiment outweighs Elo while
-  Elo still works underneath; "normal" makes it secondary; "off" is stats-only.
-  This layer is a stated prior, not a fitted parameter — no historical news
-  archive exists for 37k past matches, so it cannot be trained; the UI shows
-  before/after probabilities for transparency.
-- **In-tournament form** (`src/tournament_form.py`) — **the single heaviest
-  win-prediction factor, but only once it is meaningful.** How a team is actually
-  doing in the *current* World Cup (results + goals per game, from the live
-  football-data.org match feed) dominates the prediction: a full form gap shifts
-  win log-odds more than sentiment or Elo. Per design it is **ignored entirely
-  until both teams have played ≥ 5 World Cup matches** (i.e. from the
-  quarter-finals in the 2026 format), since a 1–2 game sample is noise. Possession
-  and assists need a paid stats API (the free tier is scores only) and slot in
-  automatically if a key is configured. Refresh during the tournament with
-  `python tournament_form.py` (the football-data.org token is read from the
-  gitignored `.env`; or pass it as an argument).
-- **Recent World Cup form** (`src/recent_stats.py`) — the last two weeks of WC 2026
-  matches, per team and per player, shown in the Team/Player tabs and folded into the
-  model as a bounded secondary nudge (`RSTATS_K`). With an optional
-  [API-Football](https://www.api-football.com/) key in `.env` (`API_FOOTBALL_KEY`)
-  it carries real **shots, shots on target, possession and xG**; without a key it
-  falls back to the live scores already on hand (goal-difference form), and the
-  shot/possession/xG tiles read as “—”. Rebuilt on the data-refresh.
-- **Live base-rating updates** (`src/live_ratings.py`) — **the part that makes the
-  model usable mid-tournament.** The offline `current_state.json` (Elo, form,
-  morale, head-to-head, attack/defence) is frozen at the pre-tournament build.
-  Every finished World Cup match (same football-data.org feed, cached to
-  `data/wc_matches.json`) is folded into those ratings at load time using the
-  *exact* update math from `features.py` (K=60, goal-margin multiplier, identical
-  EWMA coefficients). So a group-stage thrashing immediately moves a team's Elo,
-  morale and form — unlike the tournament-form layer above, which stays gated to
-  the quarter-finals. Idempotent (re-applying results never double-counts) and
-  fail-soft (no results yet → plain pre-tournament ratings). Each prediction
-  reports how many matches were folded in (`live_ratings` in the response).
-- **Live data on every prediction** (`src/live.py`): each Predict click fetches,
-  in parallel and uncached — (1) the venue's *current* temperature and relative
-  humidity from Open-Meteo, (2) fresh Google News headlines + sentiment for both
-  teams, (3) headlines about the venue. Live weather replaces the static June
-  averages (manual overrides still win); falls back to climate averages offline,
-  and the response flags which values were live.
-- **Stadium & weather**: all 16 real 2026 venues with altitude, roof, June heat and
-  humidity. The model uses *mismatch* features — how much hotter/more humid/higher
-  the venue is than what each team's home country is used to (e.g. Norway suffers at
-  a 34 °C Monterrey afternoon kickoff; Mexico doesn't), plus travel distance, rest
-  days, and **eastward jet lag** (timezones crossed eastward — sports-science studies
-  find eastward travel impairs performance more than westward)
-- **Home advantage / neutrality** and World Cup flag
+The squad layer pulls authoritative rosters from the football-data.org API
+(`fetch_squads_api.py`), then a live news scan (`detect_withdrawals.py`) drops
+players confirmed OUT after registration — no squad API tracks injury
+withdrawals, so e.g. Wataru Endo (foot injury) is removed and the next-best
+player promoted. clubelo.com is Europe-only, so strong non-European clubs
+(Flamengo, Al-Hilal, Club América…) use curated continental-performance estimates.
 
-**Models** (`models/fifa_model_ensemble.joblib`, preferred when present; falls
-back to `fifa_model.joblib`):
-- Production classifier: probability-averaged ensemble of five members —
-  Optuna-tuned LightGBM, XGBoost (GPU), CatBoost (GPU), a seed-ensembled
-  PyTorch MLP (GPU), and the original HistGradientBoosting model.
-  Outcome of a deliberate complexity study: LR-stacking and individual tuned
-  models were also evaluated; simple probability averaging gave the best
-  held-out log-loss. TabPFN-2.5 (tabular foundation model) is wired in but
-  requires a Prior Labs license token (`TABPFN_TOKEN`) to activate.
-- Two Poisson HistGradientBoosting regressors → expected goals → scoreline grid
-- Retrain: `python train.py` (single model), `python train_ensemble.py` (ensemble)
+### Model features (per match)
 
-**Player & betting markets** (`src/scorers.py`): from each match's expected goals
-the engine derives, for the prediction response and UI:
-- **Anytime goalscorer** — real data: each squad player's international goals
-  (`data/goalscorers.csv`) over his caps give a regularised goals/game rate
-  (shrinkage keeps small samples honest); the team's expected goals are shared out
-  in proportion, so P(score) = 1 − e^(−player_λ). Penalty takers are flagged from
-  who historically took penalties.
-- **Anytime assist** — *estimated*, clearly labelled: the free dataset has **no
-  assist data**, so this is a heuristic from position + experience + goal
-  involvement, not a measured rate.
-- **Derived match markets** — Over/Under 1.5/2.5/3.5, both-teams-to-score, clean
-  sheets, win-to-nil, double chance — all exact under the model's independent-
-  Poisson goals assumption (same one behind the scoreline grid).
-- **Parlays** — ~9 same-game combinations (scorer doubles, result + Over 2.5,
-  result + BTTS, Over 2.5 + BTTS, double chance + Over 1.5, win-to-nil, star
-  scorer + Over 2.5, …). Legs are multiplied assuming independence; real SGPs are
-  correlated, so they're a guide, not a price.
+The trained inputs to the classifier:
 
-## Honest evaluation (strict time split, train <2022, test 2022→Jun 2026)
-
-| metric | value |
+| Feature | What it measures |
 |---|---|
-| 3-way accuracy (4,541 matches) | **60.1%** |
-| log-loss | **0.871** |
-| always-pick-home baseline | 47.8% |
-| pick-Elo-favourite baseline | 59.5% |
+| **Form** | Points-per-game (last 5), goal difference (last 10), unbeaten streak |
+| **Attack / defense** | Opponent-adjusted EWMA of goals scored and conceded — a pi-/Berrar-style rating split (literature shows splits beat plain Elo when fed to gradient-boosted trees) |
+| **Head-to-head** | Win rate and goal difference over the last 10 meetings — the 2nd most important feature after Elo in held-out testing |
+| **Tournament experience** | Decaying count of WC / continental matches played |
+| **Morale** | EWMA momentum of results *vs expectation* — beating a stronger side lifts it more |
+| **Stadium & weather** | All 16 venues' altitude, roof and June heat/humidity, used as a *mismatch* vs each team's home climate (Norway suffers in a 34 °C Monterrey kickoff; Mexico doesn't), plus travel distance, rest days and **eastward jet lag** (eastward travel impairs performance more than westward) |
+| **Home advantage** | Home / neutral flag and a World Cup flag |
 
-(Adding the research-driven features — H2H, attack/defense splits, jet lag, streak,
-tournament experience — improved accuracy from 59.6% and log-loss from 0.880.)
+### Live layers (recomputed at request or load time)
 
-Ensemble study (same split): the 5-member average reached **log-loss 0.8713 /
-59.9% accuracy** vs 0.8720 / 60.1% for the single tuned model — better
-calibrated probabilities, accuracy difference within noise (±0.7pp). All
-differences are small because ~60% / 0.87 is near the irreducible noise ceiling
-for 3-way football outcomes; further gains require better *information*
-(lineups, injuries, market data), not more parameters.
+Beyond the trained features, several layers refresh from live data:
 
-The classifier's edge over raw Elo is mostly in calibrated probabilities and draw
-handling (log-loss), not headline accuracy — typical for football, where ~60% is
-near the practical ceiling for 3-way prediction.
+- **Live fetch on every Predict** (`src/live.py`) — in parallel and uncached: the
+  venue's *current* temperature and humidity (Open-Meteo, replacing static June
+  averages), fresh Google News headlines + sentiment for both teams, and venue
+  headlines. Falls back to climate averages offline; the response flags which
+  values were live.
+- **Key-player sentiment** (`src/live.py`) — each team's 8 most important players
+  (ranked by club Elo × caps; for Brazil this surfaces Casemiro, Alisson,
+  Vinícius, Neymar, Raphinha…) get individual news fetches, with injury headlines
+  weighted extra-negative. Composite = 40% team news + 60% importance-weighted
+  players.
+- **Live base-rating updates** (`src/live_ratings.py`) — *what makes the model
+  usable mid-tournament.* The frozen pre-tournament `current_state.json` (Elo,
+  form, morale, H2H, attack/defence) is updated at load time by folding in every
+  finished WC match (cached to `data/wc_matches.json`) using the *exact* math from
+  `features.py` (K=60, goal-margin multiplier, identical EWMA coefficients). A
+  group-stage thrashing moves Elo, morale and form immediately. Idempotent and
+  fail-soft; each prediction reports how many matches were folded in.
+- **In-tournament form** (`src/tournament_form.py`) — **the single heaviest win
+  factor, but gated.** How a team is doing in the *current* WC (results +
+  goals/game from the live feed) dominates: a full form gap shifts win log-odds
+  more than sentiment or Elo. Ignored entirely until both teams have played
+  **≥ 5 WC matches** (the quarter-finals in the 2026 format), since 1–2 games is
+  noise. Possession/assists slot in automatically with a paid stats key.
+- **Recent WC form** (`src/recent_stats.py`) — the last two weeks of WC 2026
+  matches per team (shown in the Team tab), folded in as a bounded secondary nudge
+  (`RSTATS_K`). Built from the live WC scores already on hand
+  (`data/wc_matches.json`, free football-data.org feed) as a goal-difference form
+  score — no extra key or paid stats feed required.
+- **Sentiment-priority layer** (`src/predict.py`) — user-configurable: `high`
+  (default) lets a full sentiment split shift win log-odds by more than a 1-SD Elo
+  edge (~250 pts), so live sentiment outweighs Elo while Elo still works
+  underneath; `normal` makes it secondary; `off` is stats-only. It's a stated
+  prior, not a fitted parameter — there's no news archive for 37k past matches to
+  train on — and the UI shows before/after probabilities.
+
+The UI adds an **Injuries panel** (every injured key player found in live news,
+their importance, and when the injury was first reported) and a **Data status &
+refresh** panel (`GET /api/status`, `POST /api/refresh`): it checks every pipeline
+artifact and shows fresh 🟢 / stale 🟡 / missing 🔴 with ages, then on one click
+runs the refresh chain (fetch squads → rate → detect withdrawals → re-rate → fetch
+form) as background subprocesses, streams progress, and hot-reloads data in
+memory — no restart.
+
+### Models
+
+`models/fifa_model_ensemble.joblib` is preferred when present; otherwise
+`predict.py` falls back to `fifa_model.joblib`.
+
+**Outcome classifier** — a probability-averaged ensemble of five members:
+
+| Member | Tuning | Device |
+|---|---|---|
+| LightGBM | Optuna | CPU |
+| XGBoost | Optuna | GPU |
+| CatBoost | Optuna | GPU |
+| PyTorch MLP | seed-ensembled | GPU |
+| HistGradientBoosting | baseline | CPU |
+
+Plain probability averaging won a deliberate complexity study — LR-stacking and
+individual tuned models were also evaluated and gave worse held-out log-loss.
+TabPFN-2.5 (tabular foundation model) is wired in but needs a Prior Labs token
+(`TABPFN_TOKEN`).
+
+**Scoreline** — two Poisson HistGradientBoosting regressors → expected goals → a
+scoreline probability grid.
+
+Retrain: `python train.py` (single), `python train_ensemble.py` (ensemble).
+
+### Player & betting markets
+
+Derived from each match's expected goals (`src/scorers.py`):
+
+| Market | Basis | Real / estimated |
+|---|---|---|
+| **Anytime goalscorer** | Player international goals/caps → regularised rate (shrinkage keeps small samples honest); team xG shared in proportion, P(score) = 1 − e^(−λ). Penalty takers flagged from history. | Real |
+| **Anytime assist** | Heuristic from position + experience + goal involvement — the free dataset has no assist data | Estimated (labelled) |
+| **Match markets** | Over/Under 1.5/2.5/3.5, BTTS, clean sheets, win-to-nil, double chance — exact under the independent-Poisson assumption behind the scoreline grid | Real |
+| **Parlays** | ~9 same-game combos (scorer doubles, result + Over 2.5, result + BTTS, …); legs multiplied assuming independence | Guide, not a price |
+
+## Performance
+
+Strict time split — train < 2022, test 2022 → Jun 2026 (4,541 test matches):
+
+| Metric | Model | Baseline |
+|---|---|---|
+| 3-way accuracy | **60.1%** | 59.5% Elo favourite · 47.8% always-home |
+| log-loss | **0.871** | — |
+
+Research-driven features (H2H, attack/defense splits, jet lag, streak, tournament
+experience) lifted accuracy from 59.6% and log-loss from 0.880.
+
+**Ensemble vs single model** (same split): the 5-member average reached log-loss
+0.8713 / 59.9% accuracy vs 0.8720 / 60.1% for the single tuned model — better-
+calibrated probabilities, accuracy difference within noise (±0.7pp). The
+classifier's edge over raw Elo is mostly in calibration and draw handling
+(log-loss), not headline accuracy. ~60% / 0.87 is near the irreducible noise
+ceiling for 3-way football; further gains need better *information* (lineups,
+injuries, market odds), not more parameters.
+
+## Why no "accuracy boost" was forced in
+
+Before shipping any change, candidate improvements were **measured on the strict
+2022→2026 split**: probability calibration (isotonic / temperature — temperature
+came out at T≈0.98, i.e. already calibrated), recency sample-weighting, extra
+regularization, and derived features (draw-proximity `|elo_diff|`, `elo×is_wc`, …).
+Every one left log-loss flat or slightly worse, so none were added — they would
+only overfit test noise. Genuine gains require new *information*, not more model;
+the highest-value, lowest-overfit-risk next step is a **market-odds feature**
+(bookmaker closing prices are the strongest known single predictor).
 
 ## Files
 
@@ -209,30 +221,18 @@ web/     index.html (front-end)
 - Squad data is a snapshot (June 2026); rerun `fetch_squads_api.py` +
   `squad_strength.py` after injuries/replacements.
 
-## Why no "accuracy boost" was forced in
-
-The headline ~60% / 0.871 log-loss is near the irreducible noise floor for 3-way
-football outcomes. Before shipping any change, candidate improvements were
-**measured on the strict 2022→2026 time split**: probability calibration
-(isotonic / temperature — temperature came out at T≈0.98, i.e. the model is
-already calibrated), recency sample-weighting, extra regularization, and several
-derived features (draw-proximity `|elo_diff|`, `elo×is_wc`, …). Every one left
-log-loss flat or slightly worse, so none were added — adding them would only
-overfit test noise. Genuine gains require new *information*, not more model:
-the highest-value, lowest-overfit-risk next step is a **market-odds feature**
-(bookmaker closing prices are the strongest known single predictor).
-
 ## Data sources & attribution
 
-- **International results** (`data/results.csv`, `goalscorers.csv`, `shootouts.csv`):
-  [martj42/international_results](https://github.com/martj42/international_results) (CC0).
-- **Club Elo ratings** (`data/clubelo_latest.csv`): [clubelo.com](http://clubelo.com).
-- **Squads & live results**: [football-data.org](https://www.football-data.org) API.
-- **Live weather**: [Open-Meteo](https://open-meteo.com).
-- **News headlines**: Google News RSS.
+| Data | Source | Terms |
+|---|---|---|
+| International results, scorers, shootouts | [martj42/international_results](https://github.com/martj42/international_results) | CC0 |
+| Club Elo ratings (`clubelo_latest.csv`) | [clubelo.com](http://clubelo.com) | site terms |
+| Squads & live results | [football-data.org](https://www.football-data.org) API | API terms |
+| Live weather | [Open-Meteo](https://open-meteo.com) | site terms |
+| News headlines | Google News RSS | — |
 
-These are used under their respective terms for a non-commercial research/demo
-project; please review each source's terms before any other use.
+Used under their respective terms for a non-commercial research/demo project;
+review each source's terms before any other use.
 
 ## License
 

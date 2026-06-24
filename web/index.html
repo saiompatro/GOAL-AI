@@ -478,8 +478,8 @@ function render(d) {
       `<div class="tform-stat">Moved ${esc(d.home)} win ${pc(b.home_win)} <b>${arrow} ${pc(d.prob.home_win)}</b></div>` +
       statline(d.home, tf.home) + statline(d.away, tf.away) + `</div>`;
   } else {
-    $('tform').innerHTML = `<div class="tform-off">⏳ Not yet active — needs both teams to have played ≥ ${tf.min_matches || 5} World Cup matches (kicks in from the quarter-finals). ` +
-      `Until then the prediction relies on Elo, squad strength, form and sentiment.</div>` +
+    $('tform').innerHTML = `<div class="tform-off">⏳ Not yet active — needs both teams to have played at least one World Cup match. ` +
+      `It kicks in from the first finished match and grows to full strength by 5 matches; until then the prediction relies on Elo, squad strength, form and sentiment.</div>` +
       statline(d.home, tf.home) + statline(d.away, tf.away);
   }
   const lr = d.live_ratings || {};
@@ -604,21 +604,11 @@ function renderTeam(d) {
 
   const rs = d.recent_stats;
   if (rs) {
-    const adv = rs.shots != null;   // full stats present (API-Football key set)
-    let tiles =
+    const tiles =
       `<div class="tile accent"><div class="k">Matches (last 2 wks)</div><div class="v">${rs.matches}</div><div class="vsub">WC 2026</div></div>` +
       `<div class="tile"><div class="k">Goals / game</div><div class="v">${rs.goals_pm}</div><div class="vsub">${rs.goals} for · ${rs.ga} against</div></div>` +
       `<div class="tile ${rs.form_score >= 0 ? 'accent' : 'blue'}"><div class="k">Form score</div><div class="v">${fsign(rs.form_score)}</div><div class="vsub">feeds the model</div></div>`;
-    if (adv) {
-      tiles +=
-        `<div class="tile"><div class="k">Shots / game</div><div class="v">${rs.shots_pm}</div><div class="vsub">${rs.shots} total</div></div>` +
-        `<div class="tile"><div class="k">On target / game</div><div class="v">${rs.sot_pm}</div><div class="vsub">${rs.sot_pct}% of shots</div></div>` +
-        `<div class="tile blue"><div class="k">Possession</div><div class="v">${rs.possession}%</div><div class="vsub">avg ball share</div></div>` +
-        `<div class="tile gold"><div class="k">xG for / game</div><div class="v">${rs.xg_for_pm}</div><div class="vsub">vs ${rs.xg_against_pm} against</div></div>`;
-    }
-    const note = adv
-      ? 'Live shots, shots on target, possession and xG from API-Football for this and last week\'s World Cup 2026 matches. The xG-difference form score feeds the match model as a secondary nudge.'
-      : 'From the last two weeks of World Cup 2026 results. Shots, shots on target, possession and xG appear here once an API-Football key is added to <code>.env</code> (see README). Goal-difference form already feeds the match model.';
+    const note = 'From the last two weeks of World Cup 2026 results (live scores). The goal-difference form score feeds the match model as a secondary nudge.';
     html += `<div class="section"><div class="section-title">Recent World Cup form — last 2 weeks</div>` +
       `<div class="stats">${tiles}</div>` +
       `<div class="tform-off" style="margin-top:12px">${note}</div></div>`;
@@ -691,17 +681,23 @@ function renderPlayer(d) {
     d.is_penalty_taker ? '<span class="chip gold">Penalty taker</span>' : ''
   ].join('');
 
-  const rs = d.recent_stats;
-  const rsBlock = rs
-    ? `<div class="section"><div class="section-title">Recent World Cup shooting — last 2 weeks</div>
-        <div class="stats">
-          <div class="tile accent"><div class="k">Shots</div><div class="v">${rs.shots}</div><div class="vsub">${rs.shots_pm}/game · ${rs.matches} matches</div></div>
-          <div class="tile"><div class="k">On target</div><div class="v">${rs.sot}</div><div class="vsub">${rs.sot_pct}% of shots</div></div>
-          ${rs.xg != null ? `<div class="tile gold"><div class="k">xG</div><div class="v">${rs.xg}</div><div class="vsub">${rs.xg_pm}/game</div></div>` : ''}
-          <div class="tile"><div class="k">Goals (these games)</div><div class="v">${rs.goals}</div>${rs.xg != null ? `<div class="vsub">vs ${rs.xg} xG</div>` : ''}</div>
-        </div>
-        <div class="tform-off" style="margin-top:12px">Live shot-level output from API-Football for this and last week's World Cup 2026 matches — distinct from the career international rate above.</div></div>`
-    : '';
+  // current-tournament stats (hand-maintained, key starters only). null = not tracked.
+  const num = v => (v === null || v === undefined) ? '—' : v;
+  const statBlock = (s, label) => !s ? '' :
+    `<div style="margin-top:10px"><div class="vsub" style="margin-bottom:6px">${label} · ${num(s.matches)} matches</div>
+     <div class="stats">
+       <div class="tile gold"><div class="k">Goals</div><div class="v">${num(s.goals)}</div></div>
+       <div class="tile accent"><div class="k">Assists</div><div class="v">${num(s.assists)}</div></div>
+       <div class="tile"><div class="k">Shots</div><div class="v">${num(s.shots)}</div></div>
+       <div class="tile blue"><div class="k">On target</div><div class="v">${num(s.shots_on_target)}</div></div>
+     </div></div>`;
+  const t = d.tournament;
+  const tourHtml = (t && (t.wc || t.other)) ? `
+     <div class="section"><div class="section-title">Current-tournament stats</div>
+       ${statBlock(t.wc, 'This World Cup')}
+       ${statBlock(t.other, 'Friendlies / qualifiers')}
+       <div class="check" style="margin-top:10px"><span>Hand-updated for key starters; “—” means not yet sourced. World Cup and friendly/qualifier matches are kept separate.</span></div>
+     </div>` : '';
 
   $('pOut').innerHTML =
     `<div class="matchup" style="font-size:20px;color:var(--text)"><b>${esc(d.player)}</b></div>
@@ -716,7 +712,7 @@ function renderPlayer(d) {
        <div class="tile"><div class="k">Goals / cap</div><div class="v">${d.goals_per_cap}</div><div class="vsub">raw</div></div>
        <div class="tile"><div class="k">Squad role</div><div class="v">#${d.squad_importance_rank}</div><div class="vsub">of ${d.squad_size}, by club strength</div></div>
      </div>
-     ${rsBlock}
+     ${tourHtml}
 
      <div class="section"><div class="tform-off">
        <b style="color:var(--text)">${esc(d.player)}</b> is the <b style="color:var(--text)">${ordinal(d.squad_importance_rank)}</b>-strongest

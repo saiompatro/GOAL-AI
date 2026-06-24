@@ -167,10 +167,11 @@ def _rest(team, match_date=None):
 SENTIMENT_K = {"off": 0.0, "normal": 0.35, "high": 0.85}
 
 # In-tournament form is the single most important factor once it is active.
-# It only activates when BOTH teams have played >= 5 World Cup matches (see
-# tournament_form.py). form_score is in [-1, 1], so a full gap (2.0) shifts win
-# log-odds by TFORM_K * 2 = 2.4 -- larger than sentiment (1.7) and Elo (~1.45),
-# i.e. how a team is actually doing in this World Cup dominates the prediction.
+# It activates as soon as BOTH teams have any finished WC match, but its weight is
+# shrunk by sample size (full strength at 5 matches; see predict()). form_score is
+# in [-1, 1], so at full confidence a full gap (2.0) shifts win log-odds by
+# TFORM_K * 2 = 2.4 -- larger than sentiment (1.7) and Elo (~1.45), i.e. how a team
+# is actually doing in this World Cup dominates the prediction.
 TFORM_K = 1.2
 
 # Recent-form layer: the last two weeks of WC 2026 matches (see recent_stats.py).
@@ -178,8 +179,8 @@ TFORM_K = 1.2
 # else goal-difference/match -- shrunk for small samples. A full gap (2.0) shifts
 # win log-odds by RSTATS_K * 2 = 0.9: a high but deliberately secondary weight,
 # below a 1-SD Elo edge (~1.45) and sentiment (1.7), so recent World Cup form
-# colours the prediction without overruling the model or (>=5-match) in-tournament
-# form. A stated recent-form prior, not a retrained feature.
+# colours the prediction without overruling the model or in-tournament form.
+# A stated recent-form prior, not a retrained feature.
 RSTATS_K = 0.45
 
 
@@ -275,13 +276,15 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
         lam_h *= gadj
         lam_a /= gadj
 
-    # in-tournament form layer (dominant, only when both teams have >= 5 WC matches)
+    # in-tournament form layer (dominant; active once both teams have >= 1 WC match, full weight at 5)
     tf_h, tf_a = _tform.get(home), _tform.get(away)
     tform_active = bool(tf_h and tf_a and tf_h.get("eligible") and tf_a.get("eligible"))
     prob_before_tform = {"home_win": round(float(p_home), 3), "draw": round(float(p_draw), 3),
                          "away_win": round(float(p_away), 3)}
     if tform_active:
-        fdiff = tf_h["form_score"] - tf_a["form_score"]
+        # shrink by sample size so a 1-2 match team doesn't dominate; full weight at 5 matches
+        conf = min(1.0, min(tf_h["matches"], tf_a["matches"]) / 5.0)
+        fdiff = (tf_h["form_score"] - tf_a["form_score"]) * conf
         lg = np.log(np.array([p_away, p_draw, p_home]) + 1e-12)
         lg[2] += TFORM_K * fdiff
         lg[0] -= TFORM_K * fdiff
@@ -328,11 +331,11 @@ def predict(home, away, venue=None, neutral=True, is_wc=True,
                             "prob_before_sentiment": base_prob},
         "tournament_form": {
             "active": tform_active,
-            "min_matches": 5,
+            "confidence": round(min(1.0, min(tf_h["matches"], tf_a["matches"]) / 5.0), 2) if tform_active else 0.0,
             "prob_before": prob_before_tform if tform_active else None,
             "home": tf_h, "away": tf_a,
-            "note": ("dominant factor applied" if tform_active else
-                     "inactive — both teams need >= 5 World Cup matches (from the QF stage)"),
+            "note": ("dominant factor, weight shrunk by sample size (full at 5 matches)"
+                     if tform_active else "inactive — both teams need >= 1 finished World Cup match"),
         },
         "recent_form": {
             "active": rstats_active, "k": RSTATS_K,
@@ -435,12 +438,14 @@ def player_analysis(team, player):
         "club_match": str(r["match_type"]),
         "position": str(r["position"]), "caps": caps,
         "intl_goals": goals, "penalties": pens,
-        "goals_per_game": round(g.get("rate", 0.0), 3),
+        "goals_per_game": round(g.get("intl_rate", g.get("rate", 0.0)), 3),
         "goals_per_cap": round(goals / caps, 3) if caps else 0.0,
         "squad_importance_rank": imp_rank, "squad_size": len(s),
         "is_penalty_taker": pens > 0 and pens == max_pens,
         "starter_xi": imp_rank <= 11,
-        "recent_stats": recent_stats.get_player(player, team),
+        # current-tournament stats (hand-maintained, key starters only): wc vs
+        # friendly/qualifier kept separate. null fields = not available, not zero.
+        "tournament": scorers.tournament_stats(team, player),
     }
 
 

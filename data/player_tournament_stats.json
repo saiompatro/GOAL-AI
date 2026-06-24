@@ -1,0 +1,175 @@
+{
+ "_meta": {
+  "updated": "2026-06-24",
+  "scope": "key starting players for most teams; Canada + Switzerland carry their FULL starting XI for the 24 Jun 2026 Group B decider, with per-player detail (shots/SoT/key passes/pass accuracy) where sourceable.",
+  "split": "wc = current World Cup 2026 matches; other = friendly + qualifier matches (kept separate)",
+  "fields": "wc: matches, goals, assists, shots, shots_on_target, key_passes (chances created), pass_accuracy (%), note. Newer fields exist only on Canada/Switzerland entries.",
+  "sources": "Goals: complete per-match scorer lists (NBC, ESPN, Sky Sports, Al Jazeera, FIFA, VAVEL). Per-player shots/passes: match reports + player-ratings pieces (SI, Sports Mole, Goal, Opta Analyst). Full per-player stat TABLES (Sofascore/FotMob/WhoScored/FBref) are JS-rendered and not fetchable, so granular shot/pass counts are only present where a report stated them.",
+  "confidence": "goals: high (full scorer lists across all 4 Group B matches, so goals=0 is confirmed). assists/key_passes/shots/pass_accuracy: medium where a number is given, else null. IMPORTANT: for shots/passes, null = not reported (NOT zero) — no complete tables were available. matches = team WC matches played (2).",
+  "refresh": "edit this file by hand from a stats source, then run `python src/scorers.py` to list what loaded and self-check the parlay blend."
+ },
+ "Argentina": {
+  "Lionel Messi": {
+   "wc": {"matches": 2, "goals": 5, "assists": null, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "France": {
+  "Kylian Mbappé": {
+   "wc": {"matches": 2, "goals": 4, "assists": null, "shots": null, "shots_on_target": null},
+   "other": null
+  },
+  "Michael Olise": {
+   "wc": {"matches": 2, "goals": null, "assists": 3, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "Norway": {
+  "Erling Haaland": {
+   "wc": {"matches": 2, "goals": 4, "assists": null, "shots": null, "shots_on_target": 7},
+   "other": null
+  },
+  "Martin Ødegaard": {
+   "wc": {"matches": 2, "goals": null, "assists": 2, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "Sweden": {
+  "Alexander Isak": {
+   "wc": {"matches": 2, "goals": null, "assists": 3, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "Canada": {
+  "Maxime Crépeau": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "GK; untroubled in the 6-0 vs Qatar (no saves needed per ratings)."},
+   "other": null
+  },
+  "Alistair Johnston": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "RB; involved in attacking build-up vs Qatar, no shot/key-pass figures reported."},
+   "other": null
+  },
+  "Luc De Fougerolles": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": 2, "pass_accuracy": null,
+          "note": "CB; created 2 chances vs Qatar (SI ratings)."},
+   "other": null
+  },
+  "Derek Cornelius": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CB; defensive role, no attacking output reported."},
+   "other": null
+  },
+  "Richie Laryea": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "LB; defensive role, no shot/key-pass figures reported."},
+   "other": null
+  },
+  "Tajon Buchanan": {
+   "wc": {"matches": 2, "goals": 0, "assists": 1, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "RM; assisted David's 2nd vs Qatar (beat his man to set it up); anonymous vs Bosnia."},
+   "other": null
+  },
+  "Ismael Kone": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CM; injured early vs Qatar (limited minutes) — real doubt to start today."},
+   "other": null
+  },
+  "Stephen Eustáquio": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CM; midfield control, no individual shot/pass figures reported."},
+   "other": null
+  },
+  "Ali Ahmed": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "LM; active but 'missed the end product' (SI ratings); no shot count reported."},
+   "other": null
+  },
+  "Jonathan David": {
+   "wc": {"matches": 2, "goals": 3, "assists": 1, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "Hat-trick vs Qatar + assisted Larin's opener; shot straight at the keeper from a big chance vs Bosnia (no goal). Exact shot count not in fetchable tables."},
+   "other": null
+  },
+  "Cyle Larin": {
+   "wc": {"matches": 2, "goals": 2, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "Scored vs Bosnia (as sub, first touch) and vs Qatar (16'); 2 tournament goals."},
+   "other": null
+  }
+ },
+ "Switzerland": {
+  "Gregor Kobel": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "GK; no individual attacking data."},
+   "other": null
+  },
+  "Silvan Widmer": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "RB; came in for Zakaria/Vargas reshuffle vs Bosnia; no shot/key-pass figures reported."},
+   "other": null
+  },
+  "Nico Elvedi": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CB; defensive role, no attacking output reported."},
+   "other": null
+  },
+  "Manuel Akanji": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CB; dominant defensively vs Bosnia (won 7 duels, all tackles, 5 recoveries — Sports Mole)."},
+   "other": null
+  },
+  "Ricardo Rodriguez": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": 1, "pass_accuracy": null,
+          "note": "LB; found Ndoye in the box vs Qatar (chance created); set-piece deliverer."},
+   "other": null
+  },
+  "Michel Aebischer": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "CM; had an effort blocked on the line vs Qatar (>=1 shot)."},
+   "other": null
+  },
+  "Granit Xhaka": {
+   "wc": {"matches": 2, "goals": 1, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": 91,
+          "note": "Penalty vs Bosnia (90+7'); 91% pass success + won most duels vs Bosnia; long-range effort pushed over vs Qatar."},
+   "other": null
+  },
+  "Fabian Rieder": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "Came in for Vargas vs Bosnia; no individual shot/pass figures reported."},
+   "other": null
+  },
+  "Remo Freuler": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "Won the penalty vs Qatar (fouled by Abunada); shot wide vs Bosnia (>=1 shot)."},
+   "other": null
+  },
+  "Breel Embolo": {
+   "wc": {"matches": 2, "goals": 1, "assists": null, "shots": null, "shots_on_target": null, "key_passes": null, "pass_accuracy": null,
+          "note": "Penalty vs Qatar (17'); won the foul leading to Bosnia's red card; header saved vs Bosnia. Exact shot count not in fetchable tables."},
+   "other": null
+  },
+  "Dan Ndoye": {
+   "wc": {"matches": 2, "goals": 0, "assists": null, "shots": 6, "shots_on_target": 3, "key_passes": null, "pass_accuracy": null,
+          "note": "Busiest attacker: 4 shots / 2 on target + 9 opp-box touches vs Bosnia (Sports Mole); ~2 shots / 1 on target vs Qatar (report). Totals are report-derived, not from a stat table."},
+   "other": null
+  }
+ },
+ "Germany": {
+  "Deniz Undav": {
+   "wc": {"matches": 2, "goals": 3, "assists": null, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "New Zealand": {
+  "Chris Wood": {
+   "wc": {"matches": 2, "goals": null, "assists": 2, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ },
+ "Paraguay": {
+  "Julio Enciso": {
+   "wc": {"matches": 2, "goals": null, "assists": 2, "shots": null, "shots_on_target": null},
+   "other": null
+  }
+ }
+}

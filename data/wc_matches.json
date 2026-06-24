@@ -243,5 +243,96 @@
   "away": "Curaçao",
   "home_goals": 0,
   "away_goals": 0
+ },
+ {
+  "date": "2026-06-21",
+  "home": "Tunisia",
+  "away": "Japan",
+  "home_goals": 0,
+  "away_goals": 4
+ },
+ {
+  "date": "2026-06-21",
+  "home": "Spain",
+  "away": "Saudi Arabia",
+  "home_goals": 4,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-21",
+  "home": "Belgium",
+  "away": "Iran",
+  "home_goals": 0,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-21",
+  "home": "Uruguay",
+  "away": "Cape Verde",
+  "home_goals": 2,
+  "away_goals": 2
+ },
+ {
+  "date": "2026-06-22",
+  "home": "New Zealand",
+  "away": "Egypt",
+  "home_goals": 1,
+  "away_goals": 3
+ },
+ {
+  "date": "2026-06-22",
+  "home": "Argentina",
+  "away": "Austria",
+  "home_goals": 2,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-22",
+  "home": "France",
+  "away": "Iraq",
+  "home_goals": 3,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-23",
+  "home": "Norway",
+  "away": "Senegal",
+  "home_goals": 3,
+  "away_goals": 2
+ },
+ {
+  "date": "2026-06-23",
+  "home": "Jordan",
+  "away": "Algeria",
+  "home_goals": 1,
+  "away_goals": 2
+ },
+ {
+  "date": "2026-06-23",
+  "home": "Portugal",
+  "away": "Uzbekistan",
+  "home_goals": 5,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-23",
+  "home": "England",
+  "away": "Ghana",
+  "home_goals": 0,
+  "away_goals": 0
+ },
+ {
+  "date": "2026-06-23",
+  "home": "Panama",
+  "away": "Croatia",
+  "home_goals": 0,
+  "away_goals": 1
+ },
+ {
+  "date": "2026-06-24",
+  "home": "Colombia",
+  "away": "DR Congo",
+  "home_goals": 1,
+  "away_goals": 0
  }
 ]

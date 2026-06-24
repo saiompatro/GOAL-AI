@@ -16,6 +16,7 @@ keeps the picks honest and avoids overfitting to a handful of appearances.
 """
 import os
 import re
+import json
 import math
 import unicodedata
 import pandas as pd
@@ -24,8 +25,11 @@ DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 SHRINK = 6                  # pseudo-appearances pulling rare scorers toward 0
 ASSIST_FRACTION = 0.75      # ~3 in 4 goals are assisted; scales estimated assists
 POS_CREATE = {"FW": 1.0, "MF": 0.85, "DF": 0.30, "GK": 0.0}  # assist propensity by position
+TSTATS = os.path.join(DATA, "player_tournament_stats.json")
+WC_SHRINK = 3               # pseudo-matches damping a tiny WC sample
+TFORM_W = 0.5               # how hard current-WC scoring form bends a player's scorer share
 
-_goals = _squads = None
+_goals = _squads = _tstats = None
 
 
 def _norm(s):
@@ -34,7 +38,7 @@ def _norm(s):
 
 
 def _load():
-    global _goals, _squads
+    global _goals, _squads, _tstats
     g = pd.read_csv(os.path.join(DATA, "goalscorers.csv"))
     g = g[~g["own_goal"].fillna(False)]
     g["n"], g["tn"] = g["scorer"].map(_norm), g["team"].map(_norm)
@@ -42,6 +46,14 @@ def _load():
     pens = g[g["penalty"].fillna(False)].groupby(["tn", "n"]).size().rename("pens")
     _goals = pd.concat([goals, pens], axis=1).fillna(0)
     _squads = pd.read_csv(os.path.join(DATA, "squads_rated.csv"))
+    _tstats = json.load(open(TSTATS, encoding="utf-8")) if os.path.exists(TSTATS) else {}
+
+
+def tournament_stats(team, player):
+    """Hand-maintained current-tournament stats for a key starter, or None.
+    Returns {"wc": {...}, "other": {...}} with goals/assists/shots/shots_on_target
+    (any may be null = not available). See data/player_tournament_stats.json."""
+    return (_tstats.get(team) or {}).get(player)
 
 
 _load()
@@ -62,9 +74,19 @@ def _team_players(team):
         pens = int(_goals["pens"].get((tn, n), 0)) if (tn, n) in _goals.index else 0
         caps = int(pd.to_numeric(r.caps, errors="coerce") or 0)
         apps = max(caps, goals, 1)
-        rate = goals / (apps + SHRINK)                       # regularised goals/game
+        intl_rate = goals / (apps + SHRINK)                  # regularised career goals/game
+        # bend the scorer share toward how the player is actually scoring in this WC.
+        # distribution in predict_match is relative within the squad, so this lifts an
+        # in-form scorer's anytime-scorer/parlay odds. Display rate stays intl_rate.
+        rate = intl_rate
+        ts = tournament_stats(team, r.player)
+        wc = (ts or {}).get("wc")
+        if wc and wc.get("matches") and wc.get("goals") is not None:
+            wc_rate = wc["goals"] / (wc["matches"] + WC_SHRINK)
+            rate = intl_rate + TFORM_W * wc_rate
         rows.append({"player": r.player, "position": str(r.position), "caps": caps,
-                     "goals": goals, "pens": pens, "rate": rate})
+                     "goals": goals, "pens": pens, "rate": rate, "intl_rate": intl_rate,
+                     "wc": wc})
     return rows
 
 
@@ -119,7 +141,8 @@ def predict_match(home, away, lam_h, lam_a, prob=None, top_n=6):
                 scorers.append({"player": p["player"], "position": p["position"],
                                 "goals_intl": p["goals"], "caps": p["caps"],
                                 "p_score": round(p_score, 3),
-                                "penalty_taker": p["player"] == pen_taker})
+                                "penalty_taker": p["player"] == pen_taker,
+                                "wc": p.get("wc")})  # current-tournament form, if tracked
             assisters.append({"player": p["player"], "position": p["position"],
                               "caps": p["caps"], "p_assist": round(p_assist, 3)})
         scorers.sort(key=lambda x: -x["p_score"])
@@ -184,3 +207,23 @@ def predict_match(home, away, lam_h, lam_a, prob=None, top_n=6):
         "match_markets": mk,
         "parlays": parlays,
     }
+
+
+if __name__ == "__main__":
+    # self-check: a player scoring in the current WC must outrank his career rate
+    # in the squad's scorer distribution (so parlays reflect tournament form).
+    ps = {p["player"]: p for p in _team_players("Argentina")}
+    messi = ps.get("Lionel Messi")
+    if messi and messi.get("wc") and messi["wc"].get("goals"):
+        assert messi["rate"] > messi["intl_rate"], "WC form should lift scorer share"
+        print(f"OK: Messi rate {messi['rate']:.3f} > career {messi['intl_rate']:.3f} "
+              f"(WC {messi['wc']['goals']}g/{messi['wc']['matches']}m)")
+    else:
+        print("No WC stats loaded for Messi — check data/player_tournament_stats.json")
+    tracked = [(t, p) for t, ps in (_tstats or {}).items() if t != "_meta" for p in ps]
+    print(f"\n{len(tracked)} tracked players across {len({t for t, _ in tracked})} teams:")
+    for team, player in tracked:
+        wc = (_tstats[team][player].get("wc") or {})
+        print(f"  {team:13s} {player:20s} WC "
+              f"g={wc.get('goals')} a={wc.get('assists')} "
+              f"sh={wc.get('shots')} sot={wc.get('shots_on_target')}")
