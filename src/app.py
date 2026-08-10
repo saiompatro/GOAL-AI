@@ -15,6 +15,7 @@ WEB = os.path.join(ROOT, "web")
 app = Flask(__name__, static_folder=None)
 
 _eng = None
+_league_eng = None
 
 # Pipeline artifacts: file produced, the script that makes it, and how long
 # before it should be considered stale (None = make-once, never stale by age).
@@ -41,6 +42,12 @@ ARTIFACTS = [
      "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
     {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (goal-difference)",
      "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
+    {"key": "premier_league_results", "path": "data/club/premier_league_results.csv",
+     "label": "Premier League historical results", "producer": "fetch_club_results.py",
+     "max_age_h": None, "optional": True},
+    {"key": "premier_league_model", "path": "models/premier_league_model.joblib",
+     "label": "Premier League model", "producer": "train_league.py",
+     "max_age_h": None, "optional": True},
 ]
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
@@ -66,6 +73,14 @@ def eng():
         import predict
         _eng = predict
     return _eng
+
+
+def league_eng():
+    global _league_eng
+    if _league_eng is None:
+        import predict_league
+        _league_eng = predict_league
+    return _league_eng
 
 
 @app.route("/")
@@ -97,6 +112,27 @@ def player():
 def venues():
     return jsonify([{"name": k, "city": v[0], "altitude": v[3], "roof": v[4],
                      "temp": v[5]} for k, v in VENUES.items()])
+
+
+@app.route("/api/leagues")
+def leagues():
+    return jsonify(league_eng().available_leagues())
+
+
+@app.route("/api/league_team")
+def league_team():
+    return jsonify(league_eng().team_analysis(
+        request.args.get("league", ""), request.args.get("team", "")))
+
+
+@app.route("/api/predict_league", methods=["POST"])
+def api_predict_league():
+    q = request.get_json(force=True)
+    res = league_eng().predict(q["league"], q["home"], q["away"],
+                               neutral=bool(q.get("neutral", False)))
+    if "error" in res:
+        return jsonify(res), 400
+    return jsonify(res)
 
 
 @app.route("/api/sentiment/<team>")

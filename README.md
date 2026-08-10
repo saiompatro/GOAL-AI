@@ -4,6 +4,13 @@ A match-outcome engine for the 2026 World Cup. It returns win/draw/loss
 probabilities and a full scoreline grid, plus derived goalscorer, match and
 parlay markets, from a feature set built on 150+ years of international results.
 
+It also now covers the **Premier League** (the first of several club leagues
+and continental tournaments planned — La Liga, Serie A and UEFA/Copa América
+coverage are the natural next steps) under a **Leagues** tab: pick a
+competition and two clubs and get the same win/draw/loss + scoreline-grid +
+match-markets treatment, from a domestic Elo model trained on 30+ seasons of
+real results. See [Club leagues](#club-leagues) below.
+
 Team strength fuses an international Elo computed over 48,000+ matches since 1872
 with a club-level squad rating (each player mapped to his club's clubelo.com
 rating), then layers in form, head-to-head, tournament experience, morale, live
@@ -210,6 +217,58 @@ src/     features.py (Elo+form+morale+climate), squad_strength.py, train.py,
 models/  fifa_model.joblib, metrics.json
 web/     index.html (front-end)
 ```
+
+## Club leagues
+
+The competing prediction sites and repos that inspired this feature (SPI/FiveThirtyEight-
+style club Elo trackers, football-data.co.uk-based Kaggle notebooks, various
+odds-comparison tools) almost all cover club leagues — the World Cup happens
+once every four years, but Premier League fixtures happen every week. This
+was the biggest gap between this project (100% international, WC-2026-only)
+and the field, so it's the first thing being closed.
+
+**Premier League** is live under the **Leagues** tab. Independent pipeline
+from the World Cup model — separate data, features and trained model — using
+the same walk-forward, no-leakage philosophy as the international engine:
+
+| Signal | Source |
+|---|---|
+| **Elo** | K=20, goal-margin multiplier, +70 home-advantage bonus (club football runs a stronger home edge than internationals), computed match-by-match over 30+ seasons |
+| **Form** | Points-per-game (last 5), goal difference (last 10) |
+| **Attack/defense** | Opponent-adjusted EWMA of goals scored/conceded, same split as the WC model |
+| **Morale** | EWMA of result vs Elo expectation |
+| **Head-to-head** | Win rate and goal diff over the last 10 meetings |
+
+Outcome classifier + twin Poisson goal regressors (`src/train_league.py`),
+same architecture as `train.py`. On a strict 2-season holdout (2022-23 +
+2023-24): **54.9% three-way accuracy / 0.955 log-loss**, against a 55.3%
+Elo-favourite baseline. Club football is far more competitively balanced than
+international football (fewer lopsided squad gaps, deeper benches), so this
+sits close to the accuracy ceiling reported in prediction-market literature
+for the Premier League — there's less signal to extract than a WC where a
+top-10 nation can play a part-timer squad.
+
+Data: `src/fetch_club_results.py` pulls season-by-season results (1993-94
+onward) from the [footballcsv/cache.footballdata](https://github.com/footballcsv/cache.footballdata)
+GitHub mirror of football-data.co.uk. `src/club_features.py` builds the
+training table; `src/predict_league.py` serves predictions via
+`GET /api/leagues`, `GET /api/league_team`, `POST /api/predict_league`.
+
+Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`)
+plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
+no other code changes.
+
+### Known limitations (club leagues)
+
+- Results run through the 2023-24 season only — the cache mirror hadn't
+  picked up 2024-25 at fetch time; re-run `fetch_club_results.py` periodically.
+- No player-level markets (goalscorer/assist/parlays) yet — those need a
+  squad + per-player goals dataset, which the club-league pipeline doesn't
+  pull in yet.
+- No live in-season Elo updates (the WC model's `live_ratings.py` equivalent)
+  — ratings are frozen as of the last fetched season until the pipeline reruns.
+- Home-advantage and K-factor are fixed constants tuned by eye, not fit per
+  league; expect them to need retuning once a second league is added.
 
 ## Known limitations
 
