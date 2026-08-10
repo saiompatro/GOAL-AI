@@ -218,6 +218,7 @@
     <button class="tab active" data-tab="match">Match</button>
     <button class="tab" data-tab="team">Team analysis</button>
     <button class="tab" data-tab="player">Player analysis</button>
+    <button class="tab" data-tab="league">Leagues</button>
   </div>
 
   <!-- ===================== MATCH ===================== -->
@@ -332,6 +333,48 @@
     </div>
   </div>
   </div>
+
+  <!-- ===================== LEAGUES ===================== -->
+  <div class="panel" id="panel-league">
+  <div class="grid">
+    <div class="card">
+      <label>Competition</label>
+      <select id="lgComp"></select>
+      <label>Home team</label>
+      <select id="lgHome"></select>
+      <label>Away team</label>
+      <select id="lgAway"></select>
+      <div class="check"><input type="checkbox" id="lgNeutral"> <span>Neutral venue</span></div>
+      <button class="go" id="lgGo">Predict match</button>
+      <div class="check" style="margin-top:12px"><span>Club-league model: domestic Elo (with goal-margin K-factor and a home-advantage bonus), recent form, morale, attack/defense split and head-to-head — trained on 30+ seasons of real results, walk-forward with no leakage.</span></div>
+      <div class="err hidden" id="lgErr"></div>
+    </div>
+    <div class="card">
+      <div id="lgPlaceholder" class="loading">Pick a competition and two teams, then hit <b>Predict</b>.</div>
+      <div id="lgOut" class="hidden">
+        <div class="matchup" id="lgMatchup"></div>
+        <div class="score" id="lgXg"></div>
+        <div class="scoresub">expected goals</div>
+        <div class="probbar">
+          <div class="ph" id="lgBh"></div><div class="pd" id="lgBd"></div><div class="pa" id="lgBa"></div>
+        </div>
+        <div class="legend"><span id="lgLh"></span><span id="lgLd"></span><span id="lgLa"></span></div>
+        <div class="section">
+          <div class="section-title">Most likely scorelines</div>
+          <div id="lgScorelines"></div>
+        </div>
+        <div class="section">
+          <div class="section-title">Match markets</div>
+          <div class="pills" id="lgMarkets"></div>
+        </div>
+        <div class="section">
+          <div class="section-title">Ratings, form &amp; head-to-head</div>
+          <div class="stats" id="lgStats"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </div>
 
 <script>
@@ -371,6 +414,75 @@ async function init() {
   $('venue').innerHTML = '<option value="">Generic neutral ground</option>' +
     venues.map(v => `<option value="${esc(v.name)}">${esc(v.name)} — ${v.temp}°C${v.roof ? ' · roof' : ''}${v.altitude > 500 ? ' · ' + v.altitude + 'm' : ''}</option>`).join('');
   $('venue').value = 'Estadio Azteca (Mexico City)';
+
+  LEAGUES = await fetch('/api/leagues').then(r => r.json());
+  $('lgComp').innerHTML = LEAGUES.map(l => `<option value="${esc(l.key)}">${esc(l.name)} (${esc(l.country)}) — ${esc(l.season)}</option>`).join('');
+  loadLeagueTeams();
+}
+
+// ===================== LEAGUES =====================
+let LEAGUES = [];
+function loadLeagueTeams() {
+  const lg = LEAGUES.find(l => l.key === $('lgComp').value) || LEAGUES[0];
+  if (!lg) return;
+  const opts = lg.teams.map(t => `<option>${esc(t)}</option>`).join('');
+  $('lgHome').innerHTML = opts; $('lgAway').innerHTML = opts;
+  $('lgHome').value = lg.teams[0]; $('lgAway').value = lg.teams[1] || lg.teams[0];
+}
+$('lgComp').onchange = loadLeagueTeams;
+
+$('lgGo').onclick = async () => {
+  $('lgErr').classList.add('hidden');
+  $('lgPlaceholder').classList.remove('hidden');
+  $('lgOut').classList.add('hidden');
+  $('lgPlaceholder').textContent = 'Crunching…';
+  try {
+    const body = { league: $('lgComp').value, home: $('lgHome').value, away: $('lgAway').value,
+                  neutral: $('lgNeutral').checked };
+    const r = await fetch('/api/predict_league', { method: 'POST',
+      headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    if (!r.ok) throw new Error((await r.json()).error || r.statusText);
+    renderLeague(await r.json());
+  } catch (e) {
+    $('lgErr').textContent = 'Prediction failed: ' + e.message;
+    $('lgErr').classList.remove('hidden');
+    $('lgPlaceholder').classList.add('hidden');
+  }
+};
+
+function renderLeague(d) {
+  $('lgPlaceholder').classList.add('hidden');
+  $('lgOut').classList.remove('hidden');
+  const p = d.prob;
+  $('lgMatchup').innerHTML = `<b>${esc(d.home)}</b> vs <b>${esc(d.away)}</b>`;
+  $('lgXg').textContent = `${d.expected_goals.home} – ${d.expected_goals.away}`;
+  $('lgBh').style.width = (p.home_win * 100) + '%'; $('lgBh').textContent = pc(p.home_win);
+  $('lgBd').style.width = (p.draw * 100) + '%';     $('lgBd').textContent = pc(p.draw);
+  $('lgBa').style.width = (p.away_win * 100) + '%'; $('lgBa').textContent = pc(p.away_win);
+  $('lgLh').textContent = d.home + ' win'; $('lgLd').textContent = 'Draw'; $('lgLa').textContent = d.away + ' win';
+
+  const top = d.top_scorelines[0].p;
+  $('lgScorelines').innerHTML = d.top_scorelines.map(s => `
+    <div class="sl-row">
+      <span>${esc(d.home)} <b>${s.score}</b> ${esc(d.away)}</span>
+      <span class="sl-track"><span class="sl-fill" style="width:${Math.round(s.p / top * 100)}%"></span></span>
+      <span class="sl-pct">${pc(s.p)}</span>
+    </div>`).join('');
+
+  const mk = d.match_markets || {};
+  const mkpill = (label, v) => v == null ? '' : `<span class="pill">${label}<br><b>${pc(v)}</b></span>`;
+  $('lgMarkets').innerHTML = mkpill('Over 1.5', mk.over_1_5) + mkpill('Over 2.5', mk.over_2_5) +
+    mkpill('Over 3.5', mk.over_3_5) + mkpill('BTTS', mk.btts) +
+    mkpill(esc(d.home) + ' clean sheet', mk.home_clean_sheet) +
+    mkpill(esc(d.away) + ' clean sheet', mk.away_clean_sheet);
+
+  const tile = (k, v, sub) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div>${sub ? `<div class="vsub">${sub}</div>` : ''}</div>`;
+  $('lgStats').innerHTML =
+    tile(esc(d.home) + ' Elo', d.ratings.home_elo) + tile(esc(d.away) + ' Elo', d.ratings.away_elo) +
+    tile('Head-to-head', pc(d.h2h.home_win_rate), `${esc(d.home)} pts share · ${d.h2h.meetings} meetings`) +
+    tile(esc(d.home) + ' form', fsign(d.form.home.gd10), 'goal diff/game, last 10') +
+    tile(esc(d.away) + ' form', fsign(d.form.away.gd10), 'goal diff/game, last 10') +
+    tile('Avg goal diff (H2H)', fsign(d.h2h.avg_goal_diff), esc(d.home) + '’s perspective');
 }
 
 // ===================== MATCH =====================
