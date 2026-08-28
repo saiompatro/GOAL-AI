@@ -107,24 +107,19 @@ def test_clean_players_and_aggregate_rich_fields():
     assert agg.loc[0, "potential_mean"] >= agg.loc[0, "squad_mean"]
 
 
-def test_clean_players_handles_public_fifa_shape_without_overall():
+def test_clean_players_handles_real_player_stats_without_game_ratings():
     raw = pd.DataFrame([
         {
-            "Name": "Test Star",
-            "Age": 24,
-            "Nationality": "Brazil",
-            "Club": "Example FC",
-            "Value": 45000000,
-            "Wage": 180000,
-            "Position": "LW",
-            "Pace": 92,
-            "Shooting": 84,
-            "Passing": 81,
-            "Dribbling": 90,
-            "Defending": 42,
-            "Strength": 74,
-            "Stamina": 86,
-            "Jumping": 79,
+            "player_name": "Test Star",
+            "age": 24,
+            "nationality": "Brazil",
+            "club": "Example FC",
+            "position": "FW",
+            "appearances": 38,
+            "starts": 31,
+            "goals": 19,
+            "assists": 8,
+            "minutes": 2860,
         }
     ])
     cleaned = clean_players(raw)
@@ -132,3 +127,4 @@ def test_clean_players_handles_public_fifa_shape_without_overall():
     assert cleaned.loc[0, "club_name"] == "Example FC"
     assert cleaned.loc[0, "overall"] > 0
     assert cleaned.loc[0, "physic"] > 0
+    assert cleaned.loc[0, "goals"] == 19

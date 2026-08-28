@@ -8,15 +8,17 @@
 
 ## Raw Evidence
 
-The requested reference repositories are mirrored under:
+Approved raw data is kept under:
 
 ```text
-data/raw/external_repos/
+data/raw/
 ```
 
-`jfjelstul/worldcup` is the primary historical World Cup source. The Kaggle/public
-international results file is still used for auxiliary non-World-Cup fixtures
-when `data/raw/results.csv` is available.
+`jfjelstul/worldcup` is the only mirrored external repository. The public
+international results CSVs, StatsBomb competition index, openfootball 2026
+schedule JSON, and curated 2026 venue CSV are the other approved local raw
+sources. EA Sports FC, SOFIFA, FUTBIN, FUTWIZ, and synthetic/demo data are
+rejected.
 
 ## ML Pipeline
 
@@ -33,10 +35,11 @@ tables, feature tables, plots, and `simulation.parquet`.
 ```bash
 pip install -r requirements_app.txt
 python scripts/bootstrap.py
+python ml/scripts/fetch_2026_squads.py
 streamlit run app.py
 ```
 
-Pages: Dashboard, Predict, Teams, Players, Model, Bracket, Simulator.
+Pages: Player Analysis, Team Analysis, Player Head to Head, Team Head to Head, Match Analysis + Predictor.
 
 ## Deployment
 
@@ -48,5 +51,6 @@ Pages: Dashboard, Predict, Teams, Players, Model, Bracket, Simulator.
 
 ```bash
 PYTHONPATH=ml/src pytest ml/tests
+python scripts/validate_real_data_sources.py
 python scripts/bootstrap.py
 ```

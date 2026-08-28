@@ -47,7 +47,7 @@ def load_players(repo_dir: str | Path) -> pd.DataFrame:
     jfjelstul is a historical roster/event database, not a ratings feed. The
     derived `overall` field is intentionally conservative and experience-based
     so existing squad-strength features can consume the roster without pretending
-    it is a FIFA video-game rating.
+    it is an imported player rating.
     """
     repo_dir = Path(repo_dir)
     players = pd.read_csv(repo_dir / "data-csv" / "players.csv")

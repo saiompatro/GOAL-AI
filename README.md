@@ -1,60 +1,75 @@
-# GOAL AI
+# GOAL AI ⚽
 
-Open-source FIFA World Cup 2026 prediction lab: match probabilities, player analytics, and Monte Carlo bracket odds in Streamlit.
+A multi-competition football intelligence and machine-learning lab, built with Streamlit.
+Projects are grouped by competition so World Cup and Premier League data, models, and workflows
+stay in context.
 
-![CI](https://github.com/saiompatro/GOAL-AI/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/frontend-Streamlit-red)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## Quick Start
+## Project groups
+
+### FIFA World Cup 2026
+
+1. **Player Analysis** - single-player real-data profile, peer percentiles, squad rank.
+2. **Team Analysis** - Elo trajectory, recent form, squad-derived strength, match history.
+3. **Player Head to Head** - compare two players with real roster/event-derived indices.
+4. **Team Head to Head** - form/squad comparison plus all-time meeting record.
+5. **Match Analysis + Predictor** - who wins, factoring the **football ground**, its **conditions**
+   (altitude, roof, surface) and the **predicted match-day weather** for the chosen FIFA 2026 venue.
+
+### Premier League
+
+1. **Transfer Value Predictor** - train a linear model on player goals, assists, minutes, age, and
+   position, then compare predicted and recorded transfer values.
+2. **Match Outcome Predictor** - train a leakage-safe random forest on historical results, rolling
+   attack/defence, recent form, and home advantage; predict win, draw, or loss for a future fixture.
+3. **Player Scouting System** - search for a player, find their nearest statistical matches, and use
+   K-means to organize players into playing-style clusters.
+
+All three open with clearly labelled generated starter data. Upload a licensed CSV for real player
+analysis. The match project can also pull completed Premier League fixtures from football-data.org
+using `requests`; set `FOOTBALL_DATA_API_KEY` in `.env` or paste a key into the app.
+
+## Quick start
 
 ```bash
 pip install -r requirements_app.txt
-python scripts/bootstrap.py
+python ml/scripts/fetch_fifa_data.py   # pull the latest open FIFA data (no keys needed)
+python ml/scripts/fetch_2026_squads.py # build the approved 2026 player pool
+python scripts/validate_real_data_sources.py
+python ml/scripts/build_schedule.py    # build the 2026 fixture list (104 matches)
 streamlit run app.py
 ```
 
-If artifacts are missing, rebuild them:
+If the model artifacts under `ml/artifacts/` are missing, rebuild them:
 
 ```bash
 pip install -r ml/requirements.txt
 python ml/scripts/run_pipeline.py
 ```
 
-## What It Does
-
-- Uses `jfjelstul/worldcup` as the primary historical World Cup source.
-- Keeps auxiliary international results for non-World Cup context when present.
-- Trains and compares logistic regression, XGBoost, LightGBM, PyTorch, and a stack.
-- Simulates the 2026 48-team format with Poisson scorelines from Elo and form.
-- Ships Streamlit pages for dashboard, prediction, teams, players, model, bracket, and custom simulations.
-
-## Architecture
+## How match prediction works
 
 ```mermaid
 flowchart LR
-    raw["data/raw/external_repos"] --> ingest["goal_ai.ingest_jfjelstul"]
-    aux["data/raw/results.csv"] --> ingest
-    ingest --> clean["clean + aggregate"]
-    clean --> features["Elo, form, H2H, squad features"]
-    features --> train["model comparison"]
-    train --> artifacts["ml/artifacts"]
-    artifacts --> app["Streamlit app.py + pages"]
-    artifacts --> sim["2026 Monte Carlo simulation"]
-    sim --> app
+    model["Trained model<br/>(neutral probabilities)"] --> adj
+    venue["Ground: altitude,<br/>roof, surface"] --> adj
+    wx["Open-Meteo<br/>match-day weather"] --> adj
+    adj["match_context.adjust<br/>(bounded, transparent)"] --> out["Win prob + scoreline<br/>+ explained factors"]
 ```
 
-## Data Credits
+The base trained model produces venue-neutral probabilities; a **bounded** adjustment layer tilts
+them for host advantage, altitude, heat/humidity, rain (wet pitch) and wind — and explains every
+shift. Weather comes from Open-Meteo (live forecast within ~16 days, otherwise a multi-year
+climatology). See [`docs/research.md`](docs/research.md) for the full data-source catalogue.
 
-Primary historical data: `jfjelstul/worldcup` (mirrored locally under `data/raw/external_repos/jfjelstul_worldcup`). Reference 2026 fixture/simulation material is mirrored from:
+## Data
 
-- `PoolJinez/WORLDCUP-Tournament-2026`
-- `EhteshamBahoo/Fifa-WorldCup-Data-Analysis-1930-2026`
-- `zvizdo/fifa-wc-2026-simulation`
-
-The raw evidence mirror includes a manifest at `data/raw/external_repos/SOURCE_MANIFEST.md`.
-
-## Trade-Offs
-
-Poisson scorelines assume independent team goal counts; future Dixon-Coles correction is planned for low-score correlation. The bundled demo artifacts are frozen at training time; `render.yaml` documents a weekly Render cron path for refreshing the model and Firebase tables.
+World Cup primary sources: `martj42/international_results` (matches, scorers, shootouts),
+`jfjelstul/worldcup` (World Cup matches, squads, players, events and stadiums), curated 2026
+host venues, and Open-Meteo weather. EA Sports FC, SOFIFA and other video-game datasets are
+excluded. Premier League match and squad metadata can come from football-data.org; richer player
+and event metrics must be supplied from an appropriately licensed dataset. The World Cup
+implementation roadmap is in [`data/FIFA_2026_REAL_DATASET_ROADMAP.md`](data/FIFA_2026_REAL_DATASET_ROADMAP.md).

@@ -63,6 +63,7 @@ _ALIASES = {
     "turkey": "Türkiye",
     "turkiye": "Türkiye",
     "türkiye": "Türkiye",
+    "czech republic": "Czechia",
     "usa": "United States",
     "united states": "United States",
     "korea republic": "South Korea",

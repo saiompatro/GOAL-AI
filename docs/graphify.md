@@ -1,114 +1,81 @@
-# Graphify
-
-Generated for `.` on 2026-04-20. Updated 2026-05-01 (frontend consolidated to Streamlit; Next.js removed).
-
-## System Graph
+# Knowledge Graph (graphify) snapshot — GOAL AI
 
 ```mermaid
-flowchart LR
-    kaggle[Kaggle match + player datasets]
-    env[Root .env credentials]
+flowchart TB
+    subgraph Data
+        raw[data/raw]
+        fetch[fetch_fifa_data.py]
+        sched[build_schedule.py]
+        venuescsv[wc2026_venues.csv]
+        ingest[ingest_jfjelstul]
+        clean[clean]
+        features[features]
+    end
 
-    subgraph ml[ml]
-        ingest[goal_ai.ingest.load_raw]
-        clean[goal_ai.clean]
-        features[goal_ai.features.build_features]
-        train[goal_ai.train.train_all]
-        evaluate[goal_ai.evaluate]
-        explain[goal_ai.explain]
-        hf[hf_insights]
-        pipeline[scripts/run_pipeline.py]
-        push[scripts/push_to_firebase.py]
+    subgraph ML
+        train[train]
         artifacts[ml/artifacts]
+        predict[predict_fixture]
+        venues[venues.py]
+        weather[weather.py]
+        context[match_context.adjust]
     end
 
-    subgraph db[Firebase]
-        teams[(teams)]
-        players[(players)]
-        matches[(matches)]
-        predictions[(predictions)]
-        model_runs[(model_runs)]
-        insights[(insights)]
-    end
-
-    subgraph web[Streamlit app]
+    subgraph Frontend
         appentry[app.py]
-        dashboard[pages/1_Dashboard.py]
-        predict[pages/2_Predict.py]
-        teamsPage[pages/3_Teams.py]
-        playersPage[pages/4_Players.py]
-        modelPage[pages/5_Model.py]
+        shared[pages/_shared.py]
+        p1[1_Player_Analysis]
+        p2[2_Team_Analysis]
+        p3[3_Player_Head_to_Head]
+        p4[4_Team_Head_to_Head]
+        p5[5_Match_Prediction]
     end
 
-    kaggle --> ingest
-    env --> pipeline
-    env --> push
-    pipeline --> ingest --> clean --> features --> train --> evaluate --> explain --> artifacts
-    artifacts --> push
-    hf --> push
+    fetch --> raw
+    raw --> ingest
+    raw --> sched
+    sched --> venues
+    venuescsv --> venues
+    ingest --> clean
+    clean --> features
+    features --> train
+    train --> artifacts
 
-    push --> teams
-    push --> players
-    push --> matches
-    push --> predictions
-    push --> model_runs
-    push --> insights
+    artifacts --> shared
+    shared --> p1
+    shared --> p2
+    shared --> p3
+    shared --> p4
+    shared --> p5
+    appentry --> p1
+    appentry --> p2
+    appentry --> p3
+    appentry --> p4
+    appentry --> p5
 
-    teams --> appentry
-    players --> appentry
-    matches --> appentry
-    predictions --> appentry
-    model_runs --> appentry
-    insights --> appentry
-
-    appentry --> dashboard
-    appentry --> predict
-    appentry --> teamsPage
-    appentry --> playersPage
-    appentry --> modelPage
+    artifacts --> predict
+    predict --> p5
+    venues --> p5
+    weather --> context
+    venues --> context
+    predict --> context
+    context --> p5
 ```
 
-## Directory Map
+## Pages (5)
 
-```text
-.
-|-- README.md
-|-- app.py
-|-- requirements_app.txt
-|-- pages/
-|   |-- 1_Dashboard.py
-|   |-- 2_Predict.py
-|   |-- 3_Teams.py
-|   |-- 4_Players.py
-|   `-- 5_Model.py
-|-- docs/
-|   |-- setup.md
-|   |-- research.md
-|   `-- graphify.md
-|-- firebase/
-|   |-- schema.sql
-|   `-- seed.sql
-`-- ml/
-    |-- config.yaml
-    |-- scripts/
-    |   |-- run_pipeline.py
-    |   `-- push_to_firebase.py
-    |-- src/goal_ai/
-    |   |-- ingest.py
-    |   |-- clean.py
-    |   |-- features.py
-    |   |-- train.py
-    |   |-- evaluate.py
-    |   |-- explain.py
-    |   |-- predict.py
-    |   |-- hf_insights.py
-    |   `-- firebase_io.py
-    `-- artifacts/
-```
+1. **Player Analysis** — single-player attributes, peer percentiles, value, squad rank.
+2. **Team Analysis** — Elo trajectory, recent form, squad strength, match history.
+3. **Player Head-to-Head** — two-player radar overlay, per-attribute winner, verdict.
+4. **Team Head-to-Head** — form/squad comparison + all-time meeting record.
+5. **Match Prediction** — venue-, ground- and weather-aware win probability for a chosen
+   2026 fixture (model baseline + bounded `match_context` adjustment + Open-Meteo weather).
 
-## Notes
+## Key modules
 
-- Training flow is `ingest -> clean -> features -> train -> evaluate -> explain`.
-- `push_to_firebase.py` publishes model outputs, seeded teams/players, predictions, and Hugging Face summaries.
-- The Streamlit app (`app.py` + `pages/`) reads from Firebase directly via `firebase-admin`.
-- Deployment: Streamlit Cloud (frontend) + Render (backend pipeline / cron).
+- `ml/src/goal_ai/predict.py` — trained-model outcome probabilities (neutral).
+- `ml/src/goal_ai/venues.py` — 2026 host venues + schedule loaders.
+- `ml/src/goal_ai/weather.py` — Open-Meteo match-day weather (forecast / climatology).
+- `ml/src/goal_ai/match_context.py` — bounded, explained ground+weather adjustment.
+- `ml/scripts/fetch_fifa_data.py` — pull open FIFA data (no keys).
+- `ml/scripts/build_schedule.py` — openfootball 2026 JSON → `wc2026_schedule.csv`.

@@ -1,6 +1,8 @@
 """Cleaning and normalization."""
 from __future__ import annotations
 
+import math
+
 import pandas as pd
 
 
@@ -65,13 +67,14 @@ def _pos_group(position: str) -> str:
 
 
 def clean_players(df: pd.DataFrame) -> pd.DataFrame:
-    """Normalize detailed player rows from FIFA-style sources."""
+    """Normalize detailed player rows from real roster, match, club, or league sources."""
     if df.empty:
         return pd.DataFrame(columns=[
             "player_name", "short_name", "team", "club_name", "positions", "primary_position", "pos_group",
             "overall", "potential", "age", "height_cm", "weight_kg", "preferred_foot",
             "international_reputation", "value_eur", "wage_eur", "pace", "shooting", "passing",
-            "dribbling", "defending", "physic",
+            "dribbling", "defending", "physic", "appearances", "starts", "goals", "assists",
+            "minutes", "sendings_off",
         ])
 
     df = df.copy()
@@ -88,6 +91,12 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
     out["positions"] = _first_existing(df, ["player_positions", "position", "positions"]).astype(str).str.strip()
     out["primary_position"] = out["positions"].map(_primary_position)
     out["pos_group"] = out["primary_position"].map(_pos_group)
+    out["appearances"] = _numeric(_first_existing(df, ["appearances", "caps", "matches", "apps"]), 0)
+    out["starts"] = _numeric(_first_existing(df, ["starts", "starts_total"]), 0)
+    out["goals"] = _numeric(_first_existing(df, ["goals", "goals_total", "international_goals"]), 0)
+    out["assists"] = _numeric(_first_existing(df, ["assists", "assists_total"]), 0)
+    out["minutes"] = _numeric(_first_existing(df, ["minutes", "minutes_played"]), 0)
+    out["sendings_off"] = _numeric(_first_existing(df, ["sendings_off", "red_cards", "reds"]), 0)
 
     out["pace"] = _numeric(_first_existing(df, ["pace"]), 0)
     out["shooting"] = _numeric(_first_existing(df, ["shooting"]), 0)
@@ -115,7 +124,35 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
         .mean(axis=1)
         .fillna(0)
     )
-    out["overall"] = raw_overall.fillna(derived_overall).astype(float)
+    real_derived = (
+        50.0
+        + out["appearances"].clip(lower=0).apply(lambda value: 4.0 * math.log1p(value))
+        + out["starts"].clip(lower=0).apply(lambda value: 2.0 * math.log1p(value))
+        + out["goals"].clip(lower=0).apply(lambda value: 3.0 * math.log1p(value))
+        + out["assists"].clip(lower=0).apply(lambda value: 2.0 * math.log1p(value))
+        + (out["minutes"].clip(lower=0) / 4500.0).clip(0, 1) * 10.0
+    ).clip(35, 92)
+    out["overall"] = raw_overall.fillna(derived_overall.where(derived_overall > 0, real_derived)).astype(float)
+    missing_profile = pd.concat([out["pace"], out["shooting"], out["passing"], out["dribbling"], out["defending"], out["physic"]], axis=1).sum(axis=1).eq(0)
+    out.loc[missing_profile, "pace"] = (out.loc[missing_profile, "overall"] + 2).clip(35, 92)
+    out.loc[missing_profile, "shooting"] = (
+        out.loc[missing_profile, "overall"]
+        + out.loc[missing_profile, "goals"].clip(0, 10) * 0.7
+        + out.loc[missing_profile, "pos_group"].eq("FW").astype(float) * 3
+        - out.loc[missing_profile, "pos_group"].eq("DF").astype(float) * 3
+    ).clip(35, 92)
+    out.loc[missing_profile, "passing"] = (
+        out.loc[missing_profile, "overall"]
+        + out.loc[missing_profile, "assists"].clip(0, 10) * 0.5
+        + out.loc[missing_profile, "pos_group"].eq("MF").astype(float) * 3
+    ).clip(35, 92)
+    out.loc[missing_profile, "dribbling"] = out.loc[missing_profile, "overall"].clip(35, 92)
+    out.loc[missing_profile, "defending"] = (
+        out.loc[missing_profile, "overall"]
+        + out.loc[missing_profile, "pos_group"].isin(["DF", "GK"]).astype(float) * 4
+        - out.loc[missing_profile, "pos_group"].eq("FW").astype(float) * 4
+    ).clip(35, 92)
+    out.loc[missing_profile, "physic"] = (out.loc[missing_profile, "overall"] + 1).clip(35, 92)
 
     potential_raw = pd.to_numeric(_first_existing(df, ["potential"]), errors="coerce")
     out["potential"] = potential_raw.fillna(out["overall"]).astype(float)
@@ -124,12 +161,8 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
     out["weight_kg"] = _numeric(_first_existing(df, ["weight_kg", "weight"]), 0)
     out["preferred_foot"] = _first_existing(df, ["preferred_foot", "foot"]).astype(str).str.strip()
     out["international_reputation"] = _numeric(_first_existing(df, ["international_reputation"]), 0)
-    out["value_eur"] = _numeric(_first_existing(df, ["value_eur", "value"]), 0)
+    out["value_eur"] = _numeric(_first_existing(df, ["value_eur", "value", "market_value_eur", "market_value_in_eur"]), 0)
     out["wage_eur"] = _numeric(_first_existing(df, ["wage_eur", "wage", "salary"]), 0)
-    for optional in ["appearances", "starts", "goals", "sendings_off"]:
-        if optional in df.columns:
-            out[optional] = _numeric(df[optional], 0)
-
     out = out.dropna(subset=["team", "player_name"])
     out = out[(out["team"].astype(str).str.len() > 0) & (out["player_name"].astype(str).str.len() > 0)]
     out = out[out["overall"] > 0]
@@ -140,7 +173,7 @@ def clean_players(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def aggregate_players(df: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate FIFA player rows into per-nationality squad-strength features."""
+    """Aggregate real player rows into per-nationality squad-strength features."""
     if df.empty:
         return pd.DataFrame(columns=[
             "team", "squad_mean", "top11_mean", "star3_mean", "att_mean", "mid_mean", "def_mean",

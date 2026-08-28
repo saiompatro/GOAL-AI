@@ -3,7 +3,7 @@ data:
   processed_dir: ../data/processed
   matches_csv: results.csv          # from martj42 dataset
   wc_csv: WorldCupMatches.csv       # optional tournament enrichment
-  players_csv: fifa_players.csv     # aggregated FIFA player ratings
+  players_csv: players.csv          # optional real roster/player stats; never EA/SOFIFA
 
 features:
   form_windows: [5, 10]
