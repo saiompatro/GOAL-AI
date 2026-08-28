@@ -1,19 +1,32 @@
-# World Cup 2026 Match Predictor
+# GOAL AI
 
-A match-outcome engine for the 2026 World Cup. It returns win/draw/loss
-probabilities and a full scoreline grid, plus derived goalscorer, match and
-parlay markets, from a feature set built on 150+ years of international results.
+Football intelligence and machine-learning projects for the **2026 FIFA World
+Cup** and the **Premier League**. The browser app keeps each competition's data,
+models, and projects together using a clear **League → Projects** hierarchy.
 
-It also now covers the **Premier League** (the first of several club leagues
-and continental tournaments planned — La Liga, Serie A and UEFA/Copa América
-coverage are the natural next steps) under a **Leagues** tab. The tab is
-organised as **League → Projects**: pick a competition, then a project under
-it. Every league gets the **match predictor** (win/draw/loss + scoreline-grid +
-match-markets, from a domestic Elo model trained on 30+ seasons of real
-results); the Premier League additionally has three player-level machine-learning
-projects — a **transfer-value predictor**, a **match-outcome predictor** and a
-**player-scouting system**. See [Club leagues](#club-leagues) and
-[Premier League projects](#premier-league-projects) below.
+## What you can do
+
+| Competition | Where in the UI | Projects |
+|---|---|---|
+| **FIFA World Cup 2026** | Match · Team · Player | Win/draw/loss prediction, scoreline grid, team and player analysis, venue/weather context, goalscorer and match markets |
+| **Premier League** | Leagues → Premier League | League match predictor, transfer-value predictor, match-outcome predictor, and player-scouting system |
+
+The Premier League lab contains three focused, end-to-end learning projects:
+
+1. **Transfer value predictor** — linear regression from goals, assists,
+   minutes, age, position, and related player statistics.
+2. **Match outcome predictor** — random forest or XGBoost classification from
+   recent form, goals for/against, shots, possession, and home advantage.
+3. **Player scouting system** — nearest-neighbour similarity and K-means style
+   clusters, with searchable results in the main UI and a standalone Streamlit
+   dashboard.
+
+The World Cup engine returns win/draw/loss probabilities and a full scoreline
+grid, plus derived goalscorer, match, and parlay markets from a feature set built
+on more than 150 years of international results. The Premier League match engine
+uses a separate domestic pipeline trained on more than 30 seasons of results.
+See [Club leagues](#club-leagues) and [Premier League projects](#premier-league-projects)
+for implementation and data details.
 
 Team strength fuses an international Elo computed over 48,000+ matches since 1872
 with a club-level squad rating (each player mapped to his club's clubelo.com
@@ -32,36 +45,50 @@ baseline — near the practical ceiling for three-way football prediction.
 ## Quick start
 
 ```powershell
-pip install -r requirements.txt   # from the repo root
-cd src
-python app.py                     # starts the server; leave it running
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python src\app.py
 ```
 
-Then open **http://127.0.0.1:5000** in a browser and predict a match.
+Open **http://127.0.0.1:5000**. The committed models and datasets make the main
+World Cup and Premier League experiences available immediately.
 
 Stop the server with `Ctrl+C` in that terminal (or `Stop-Process -Name python`).
-The port defaults to 5000; override with `$env:PORT=8080; python app.py`.
+The port defaults to 5000; override it with:
+
+```powershell
+$env:PORT=8080
+python src\app.py
+```
 
 The committed `models/fifa_model.joblib` (sklearn-only, ~1 MB) means it runs out
 of the box — no training step needed. Live squad refresh and in-tournament form
 need a free [football-data.org](https://www.football-data.org/client/register)
-token: copy `.env.example` to `.env` and fill in `FOOTBALL_DATA_TOKEN`.
+token. Copy `.env.example` to `.env` and set `FOOTBALL_DATA_TOKEN`; never commit
+the populated `.env` file.
+
+The player-scouting dashboard can also run independently:
+
+```powershell
+streamlit run src\projects\streamlit_scouting.py
+```
 
 The GPU ensemble (`models/fifa_model_ensemble.joblib`) is used automatically when
 its deps (torch, catboost, xgboost, lightgbm) are installed; if they're missing or
 fail to load, `predict.py` falls back to the plain model — so a fresh
 `pip install -r requirements.txt` always runs without extra setup.
 
-Retrain from scratch (in `src/`):
+Retrain the World Cup baseline from the repository root:
 
 ```powershell
-python features.py          # results.csv -> training_table.csv + current_state.json
-python train.py             # -> models/fifa_model.joblib + metrics.json
-python fetch_squads_api.py  # current rosters (needs token; or fetch_squads.py for Wikipedia)
-python squad_strength.py    # -> squad_strength.json
+python src\features.py          # results.csv -> training_table.csv + current_state.json
+python src\train.py             # -> models/fifa_model.joblib + metrics.json
+python src\fetch_squads_api.py  # current rosters; requires the optional token
+python src\squad_strength.py    # -> squad_strength.json
 ```
 
-The GPU ensemble is optional: `python train_ensemble.py` (needs the extra deps
+The GPU ensemble is optional: `python src\train_ensemble.py` (needs the extra deps
 listed in `requirements.txt`). `predict.py` uses it automatically if present and
 otherwise falls back to the single model.
 
