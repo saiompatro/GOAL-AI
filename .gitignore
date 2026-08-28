@@ -16,5 +16,12 @@ models/fifa_model_ensemble.joblib
 # training scratch / logs
 src/catboost_info/
 
+# Premier League project models + plots — trained lazily on first request
+# (transfer_value / match_outcome / player_scouting). Regenerate with each
+# module's `python -m projects.<name>`. The player-stats CSV under
+# data/players/ IS committed so the projects run out of the box.
+models/projects/*.joblib
+models/projects/*.png
+
 # stale snapshot, only used as a fallback by fetch_squads_api.py
 data/squads_wikipedia_backup.csv

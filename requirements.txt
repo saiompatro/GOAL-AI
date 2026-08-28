@@ -8,6 +8,15 @@ requests
 flask
 joblib
 lxml          # Wikipedia squad scraping (fetch_squads.py)
+matplotlib    # project plots (transfer-value fit, confusion matrix, style map)
+
+# Premier League projects (src/projects/) — optional extras.
+# The three projects run on the core stack above; these unlock the parts
+# their briefs call for:
+#   xgboost     # match-outcome project uses it if present, else falls back to
+#               # scikit-learn RandomForest (no code change needed)
+#   streamlit   # standalone player-scouting dashboard:
+#               #   streamlit run projects/streamlit_scouting.py
 
 # Optional — only needed to retrain the GPU ensemble (train_ensemble.py).
 # Install separately; most of these want CUDA. The app runs fine without them,
