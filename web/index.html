@@ -41,6 +41,43 @@
   .tab:hover { color: var(--text); }
   .tab.active { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
 
+  /* league bar + project sub-tabs (League -> Projects) */
+  .leaguebar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+          background: linear-gradient(180deg, var(--card), var(--bg2)); border: 1px solid var(--line);
+          border-radius: var(--radius); padding: 14px 16px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .leaguebar .lb-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.3px;
+          font-weight: 700; color: var(--muted); }
+  .leaguebar select { width: auto; min-width: 260px; }
+  .leaguebar .lb-note { font-size: 12px; color: var(--muted); margin-left: auto; }
+  .subtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  .subtab { border: 1px solid var(--line2); background: var(--card2); color: var(--muted);
+          font-family: inherit; font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 999px;
+          cursor: pointer; transition: all .15s; }
+  .subtab:hover { color: var(--text); border-color: var(--blue); }
+  .subtab.active { background: linear-gradient(90deg, hsl(142 71% 42%), hsl(142 71% 50%));
+          color: var(--primary-fg); border-color: transparent; }
+  .subtab.hidden { display: none; }
+  .proj { display: none; } .proj.active { display: block; }
+  .blurb { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 4px; }
+  .stack { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .stack-chip { font-size: 11px; font-weight: 600; color: var(--blue); background: hsl(217 91% 60% / .12);
+          border: 1px solid hsl(217 91% 60% / .25); border-radius: 999px; padding: 3px 9px; }
+  /* similarity / coefficient rows */
+  .simrow { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .simrow .nm { flex: 1; font-size: 13.5px; } .simrow .nm b { color: var(--text); }
+  .simrow .nm small { color: var(--muted); }
+  .simtrack { flex: 0 0 120px; height: 8px; background: var(--card2); border-radius: 999px; overflow: hidden; }
+  .simfill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--primary)); }
+  .simpct { flex: 0 0 46px; text-align: right; font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--muted); }
+  .cl-chip { display: inline-block; font-size: 11px; font-weight: 700; color: var(--gold);
+          background: hsl(43 96% 56% / .12); border: 1px solid hsl(43 96% 56% / .28);
+          border-radius: 999px; padding: 2px 8px; }
+  .valgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cluster-card { background: var(--card2); border: 1px solid var(--line); border-radius: 11px;
+          padding: 12px 13px; margin-bottom: 10px; }
+  .cluster-card .cc-h { font-weight: 700; margin-bottom: 5px; }
+  .cluster-card .cc-p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
   @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
   .card { background: linear-gradient(180deg, var(--card), var(--bg2)); border: 1px solid var(--line);
@@ -336,21 +373,35 @@
 
   <!-- ===================== LEAGUES ===================== -->
   <div class="panel" id="panel-league">
+  <!-- League selector: choose a competition, then a project under it -->
+  <div class="leaguebar">
+    <span class="lb-label">League</span>
+    <select id="lgComp"></select>
+    <span class="lb-note" id="lgProjNote"></span>
+  </div>
+  <!-- Project sub-tabs (populated per league) -->
+  <div class="subtabs" id="projSubtabs">
+    <button class="subtab active" data-proj="match">⚔ Match predictor</button>
+    <button class="subtab pl-only" data-proj="transfer">💰 Transfer value</button>
+    <button class="subtab pl-only" data-proj="outcome">🎯 Match outcome</button>
+    <button class="subtab pl-only" data-proj="scouting">🔎 Player scouting</button>
+  </div>
+
+  <!-- ---------- PROJECT: match predictor (all leagues) ---------- -->
+  <div class="proj active" id="proj-match">
   <div class="grid">
     <div class="card">
-      <label>Competition</label>
-      <select id="lgComp"></select>
+      <div class="blurb">Club-league match model: domestic Elo (goal-margin K-factor + home-advantage bonus), form, morale, attack/defense split and head-to-head — trained on 30+ seasons of real results, walk-forward with no leakage.</div>
       <label>Home team</label>
       <select id="lgHome"></select>
       <label>Away team</label>
       <select id="lgAway"></select>
       <div class="check"><input type="checkbox" id="lgNeutral"> <span>Neutral venue</span></div>
       <button class="go" id="lgGo">Predict match</button>
-      <div class="check" style="margin-top:12px"><span>Club-league model: domestic Elo (with goal-margin K-factor and a home-advantage bonus), recent form, morale, attack/defense split and head-to-head — trained on 30+ seasons of real results, walk-forward with no leakage.</span></div>
       <div class="err hidden" id="lgErr"></div>
     </div>
     <div class="card">
-      <div id="lgPlaceholder" class="loading">Pick a competition and two teams, then hit <b>Predict</b>.</div>
+      <div id="lgPlaceholder" class="loading">Pick two teams, then hit <b>Predict</b>.</div>
       <div id="lgOut" class="hidden">
         <div class="matchup" id="lgMatchup"></div>
         <div class="score" id="lgXg"></div>
@@ -373,6 +424,89 @@
         </div>
       </div>
     </div>
+  </div>
+  </div>
+
+  <!-- ---------- PROJECT 1: transfer value predictor (Premier League) ---------- -->
+  <div class="proj" id="proj-transfer">
+  <div class="grid">
+    <div class="card">
+      <div class="blurb">Linear model trained on recent Premier League player stats — goals, assists, minutes, age, position — to predict market/transfer value. Pick a player and see what the model thinks they're worth versus their actual value.</div>
+      <div class="stack"><span class="stack-chip">requests</span><span class="stack-chip">pandas</span><span class="stack-chip">scikit-learn</span><span class="stack-chip">matplotlib</span></div>
+      <label>Player</label>
+      <select id="tvPlayer"></select>
+      <button class="go" id="tvGo">Estimate value</button>
+      <div class="err hidden" id="tvErr"></div>
+    </div>
+    <div class="card">
+      <div id="tvPlaceholder" class="loading">Pick a player and hit <b>Estimate</b>.</div>
+      <div id="tvOut" class="hidden">
+        <div class="matchup" id="tvName"></div>
+        <div class="valgrid" style="margin:14px 0">
+          <div class="tile"><div class="k">Model value</div><div class="v" id="tvPred" style="color:var(--primary)"></div><div class="vsub">predicted (€m)</div></div>
+          <div class="tile"><div class="k">Actual value</div><div class="v" id="tvActual" style="color:var(--gold)"></div><div class="vsub">market (€m)</div></div>
+        </div>
+        <div id="tvVerdict" class="check" style="justify-content:center"></div>
+        <div class="section"><div class="section-title">Player stats used</div><div class="stats" id="tvStats"></div></div>
+        <div class="section"><div class="section-title">What the model learned (weight per feature)</div><div id="tvCoef"></div></div>
+        <div class="section"><div class="section-title">Model accuracy (held-out)</div><div class="stats" id="tvMetrics"></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ---------- PROJECT 2: match outcome predictor (Premier League) ---------- -->
+  <div class="proj" id="proj-outcome">
+  <div class="grid">
+    <div class="card">
+      <div class="blurb">Random-forest / XGBoost classifier on match features — recent form, goals scored/conceded, shots, possession, home-field advantage — predicting win, draw or loss. Backtested on a held-out span of seasons.</div>
+      <div class="stack"><span class="stack-chip">pandas</span><span class="stack-chip">scikit-learn</span><span class="stack-chip">XGBoost</span><span class="stack-chip">matplotlib</span></div>
+      <label>Home team</label>
+      <select id="moHome"></select>
+      <label>Away team</label>
+      <select id="moAway"></select>
+      <button class="go" id="moGo">Predict outcome</button>
+      <div class="err hidden" id="moErr"></div>
+    </div>
+    <div class="card">
+      <div id="moPlaceholder" class="loading">Pick two teams and hit <b>Predict</b>.</div>
+      <div id="moOut" class="hidden">
+        <div class="matchup" id="moName"></div>
+        <div class="scoresub" id="moPick" style="margin-top:6px"></div>
+        <div class="probbar">
+          <div class="ph" id="moBh"></div><div class="pd" id="moBd"></div><div class="pa" id="moBa"></div>
+        </div>
+        <div class="legend"><span id="moLh"></span><span id="moLd"></span><span id="moLa"></span></div>
+        <div class="section"><div class="section-title">Pre-match features</div><div class="stats" id="moFeat"></div></div>
+        <div class="section"><div class="section-title">Most important features (model-wide)</div><div id="moImp"></div></div>
+        <div class="section"><div class="section-title">Backtest accuracy</div><div class="stats" id="moMetrics"></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ---------- PROJECT 3: player scouting system (Premier League) ---------- -->
+  <div class="proj" id="proj-scouting">
+  <div class="grid">
+    <div class="card">
+      <div class="blurb">Nearest-neighbour similarity over per-90 stats (goals, assists, passing, shots, dribbles, defensive actions) finds the players closest in style; K-means groups everyone into playing-style clusters. Search a player, see their statistical matches.</div>
+      <div class="stack"><span class="stack-chip">pandas</span><span class="stack-chip">scikit-learn</span><span class="stack-chip">matplotlib</span><span class="stack-chip">streamlit</span></div>
+      <label>Player</label>
+      <select id="scPlayer"></select>
+      <button class="go" id="scGo">Find similar players</button>
+      <div class="check" style="margin-top:10px"><span>💡 A standalone Streamlit dashboard ships too: <code>streamlit run projects/streamlit_scouting.py</code></span></div>
+      <div class="err hidden" id="scErr"></div>
+    </div>
+    <div class="card">
+      <div id="scPlaceholder" class="loading">Pick a player and hit <b>Find similar players</b>.</div>
+      <div id="scOut" class="hidden">
+        <div class="matchup" id="scName"></div>
+        <div style="text-align:center;margin-top:6px" id="scCluster"></div>
+        <div class="section"><div class="section-title">Closest statistical matches</div><div id="scMatches"></div></div>
+        <div class="section"><div class="section-title">Playing-style clusters (K-means)</div><div id="scClusters"></div></div>
+      </div>
+    </div>
+  </div>
   </div>
   </div>
 </div>
@@ -398,6 +532,12 @@ document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
 });
 
 async function init() {
+  // World Cup section and the Leagues section initialise independently, so a
+  // failure loading one (e.g. the WC model) never blanks out the other.
+  await Promise.allSettled([initWorldCup(), initLeagues()]);
+}
+
+async function initWorldCup() {
   const [teams, venues] = await Promise.all([
     fetch('/api/teams').then(r => r.json()),
     fetch('/api/venues').then(r => r.json())
@@ -414,22 +554,70 @@ async function init() {
   $('venue').innerHTML = '<option value="">Generic neutral ground</option>' +
     venues.map(v => `<option value="${esc(v.name)}">${esc(v.name)} — ${v.temp}°C${v.roof ? ' · roof' : ''}${v.altitude > 500 ? ' · ' + v.altitude + 'm' : ''}</option>`).join('');
   $('venue').value = 'Estadio Azteca (Mexico City)';
-
-  LEAGUES = await fetch('/api/leagues').then(r => r.json());
-  $('lgComp').innerHTML = LEAGUES.map(l => `<option value="${esc(l.key)}">${esc(l.name)} (${esc(l.country)}) — ${esc(l.season)}</option>`).join('');
-  loadLeagueTeams();
 }
 
-// ===================== LEAGUES =====================
+async function initLeagues() {
+  LEAGUES = await fetch('/api/leagues').then(r => r.json());
+  $('lgComp').innerHTML = LEAGUES.map(l => `<option value="${esc(l.key)}">${esc(l.name)} (${esc(l.country)}) — ${esc(l.season)}</option>`).join('');
+  onLeagueChange();
+}
+
+// ===================== LEAGUES → PROJECTS =====================
 let LEAGUES = [];
+let PL_LOADED = false;             // lazy one-time load of the PL project data
+const PL_KEY = 'premier_league';
+
+function currentLeague() { return LEAGUES.find(l => l.key === $('lgComp').value) || LEAGUES[0]; }
+
 function loadLeagueTeams() {
-  const lg = LEAGUES.find(l => l.key === $('lgComp').value) || LEAGUES[0];
+  const lg = currentLeague();
   if (!lg) return;
   const opts = lg.teams.map(t => `<option>${esc(t)}</option>`).join('');
   $('lgHome').innerHTML = opts; $('lgAway').innerHTML = opts;
   $('lgHome').value = lg.teams[0]; $('lgAway').value = lg.teams[1] || lg.teams[0];
 }
-$('lgComp').onchange = loadLeagueTeams;
+
+function onLeagueChange() {
+  const isPL = $('lgComp').value === PL_KEY;
+  // player-level projects only exist for the Premier League for now
+  document.querySelectorAll('.subtab.pl-only').forEach(b => b.classList.toggle('hidden', !isPL));
+  $('lgProjNote').textContent = isPL
+    ? '4 projects available'
+    : 'Match predictor only — player projects are Premier League-only for now';
+  if (!isPL) selectProject('match');     // fall back if a PL-only tab was open
+  loadLeagueTeams();
+  if (isPL && !PL_LOADED) loadPLProjects();
+}
+$('lgComp').onchange = onLeagueChange;
+
+// ---- project sub-tab switching ----
+function selectProject(key) {
+  document.querySelectorAll('#projSubtabs .subtab').forEach(b =>
+    b.classList.toggle('active', b.dataset.proj === key));
+  document.querySelectorAll('#panel-league .proj').forEach(p =>
+    p.classList.toggle('active', p.id === 'proj-' + key));
+}
+document.querySelectorAll('#projSubtabs .subtab').forEach(b =>
+  b.onclick = () => selectProject(b.dataset.proj));
+
+// ---- lazy-load Premier League project dropdowns ----
+async function loadPLProjects() {
+  PL_LOADED = true;
+  try {
+    const [tv, mo, sc] = await Promise.all([
+      fetch('/api/pl/transfer/players').then(r => r.json()),
+      fetch('/api/pl/outcome/teams').then(r => r.json()),
+      fetch('/api/pl/scouting/players').then(r => r.json()),
+    ]);
+    $('tvPlayer').innerHTML = tv.map(p => `<option>${esc(p.player)}</option>`).join('');
+    if (tv.find(p => p.player === 'Mohamed Salah')) $('tvPlayer').value = 'Mohamed Salah';
+    const teamOpts = mo.teams.map(t => `<option>${esc(t)}</option>`).join('');
+    $('moHome').innerHTML = teamOpts; $('moAway').innerHTML = teamOpts;
+    if (mo.teams.length > 1) { $('moHome').value = mo.teams[0]; $('moAway').value = mo.teams[1]; }
+    $('scPlayer').innerHTML = sc.map(p => `<option>${esc(p.player)}</option>`).join('');
+    if (sc.find(p => p.player === 'Bukayo Saka')) $('scPlayer').value = 'Bukayo Saka';
+  } catch (e) { PL_LOADED = false; }
+}
 
 $('lgGo').onclick = async () => {
   $('lgErr').classList.add('hidden');
@@ -484,6 +672,101 @@ function renderLeague(d) {
     tile(esc(d.away) + ' form', fsign(d.form.away.gd10), 'goal diff/game, last 10') +
     tile('Avg goal diff (H2H)', fsign(d.h2h.avg_goal_diff), esc(d.home) + '’s perspective');
 }
+
+// ===================== PROJECT 1: TRANSFER VALUE =====================
+const tile = (k, v, sub) => `<div class="tile"><div class="k">${esc(k)}</div><div class="v">${v}</div>${sub ? `<div class="vsub">${esc(sub)}</div>` : ''}</div>`;
+
+$('tvGo').onclick = async () => {
+  $('tvErr').classList.add('hidden');
+  $('tvOut').classList.add('hidden'); $('tvPlaceholder').classList.remove('hidden');
+  $('tvPlaceholder').textContent = 'Predicting…';
+  try {
+    const d = await fetch('/api/pl/transfer/predict?player=' + encodeURIComponent($('tvPlayer').value)).then(r => r.json());
+    if (d.error) throw new Error(d.error);
+    const coef = await fetch('/api/pl/transfer/coefficients').then(r => r.json());
+    $('tvPlaceholder').classList.add('hidden'); $('tvOut').classList.remove('hidden');
+    $('tvName').innerHTML = `<b>${esc(d.player)}</b> · ${esc(d.team)} · ${esc(d.position)} · ${esc(d.season)}`;
+    $('tvPred').textContent = d.predicted_value_eur_m;
+    $('tvActual').textContent = d.actual_value_eur_m;
+    const sign = d.residual_eur_m >= 0 ? '+' : '';
+    $('tvVerdict').innerHTML = `<span>${esc(d.verdict)} — model minus actual: <b>${sign}${d.residual_eur_m} €m</b></span>`;
+    const s = d.stats;
+    $('tvStats').innerHTML = tile('Goals', s.goals) + tile('Assists', s.assists) + tile('Minutes', s.minutes) +
+      tile('Age', s.age) + tile('Shots', s.shots) + tile('Key passes', s.key_passes);
+    const maxw = Math.max(...coef.map(c => Math.abs(c.weight))) || 1;
+    $('tvCoef').innerHTML = coef.slice(0, 8).map(c => `
+      <div class="simrow"><span class="nm">${esc(c.feature)}</span>
+        <span class="simtrack"><span class="simfill" style="width:${Math.round(Math.abs(c.weight) / maxw * 100)}%;${c.weight < 0 ? 'background:var(--red)' : ''}"></span></span>
+        <span class="simpct">${c.weight >= 0 ? '+' : ''}${c.weight}</span></div>`).join('');
+    $('tvMetrics').innerHTML = tile('R²', d.metrics.r2) + tile('MAE', d.metrics.mae_eur_m + ' €m') +
+      tile('Test players', d.metrics.n_test);
+  } catch (e) {
+    $('tvErr').textContent = 'Failed: ' + e.message; $('tvErr').classList.remove('hidden');
+    $('tvPlaceholder').classList.add('hidden');
+  }
+};
+
+// ===================== PROJECT 2: MATCH OUTCOME =====================
+$('moGo').onclick = async () => {
+  $('moErr').classList.add('hidden');
+  $('moOut').classList.add('hidden'); $('moPlaceholder').classList.remove('hidden');
+  $('moPlaceholder').textContent = 'Predicting…';
+  try {
+    const d = await fetch(`/api/pl/outcome/predict?home=${encodeURIComponent($('moHome').value)}&away=${encodeURIComponent($('moAway').value)}`).then(r => r.json());
+    if (d.error) throw new Error(d.error);
+    const imp = await fetch('/api/pl/outcome/importance').then(r => r.json());
+    $('moPlaceholder').classList.add('hidden'); $('moOut').classList.remove('hidden');
+    $('moName').innerHTML = `<b>${esc(d.home)}</b> vs <b>${esc(d.away)}</b>`;
+    const pickLabel = {home_win: d.home + ' win', draw: 'Draw', away_win: d.away + ' win'}[d.pick];
+    $('moPick').textContent = 'model pick: ' + pickLabel + ' (' + d.metrics.backend + ')';
+    const p = d.prob;
+    $('moBh').style.width = (p.home_win * 100) + '%'; $('moBh').textContent = pc(p.home_win);
+    $('moBd').style.width = (p.draw * 100) + '%';     $('moBd').textContent = pc(p.draw);
+    $('moBa').style.width = (p.away_win * 100) + '%'; $('moBa').textContent = pc(p.away_win);
+    $('moLh').textContent = d.home + ' win'; $('moLd').textContent = 'Draw'; $('moLa').textContent = d.away + ' win';
+    const f = d.features;
+    $('moFeat').innerHTML = tile(d.home + ' form (ppg)', f.home_form_ppg) + tile(d.away + ' form (ppg)', f.away_form_ppg) +
+      tile(d.home + ' shots', f.home_shots_avg) + tile(d.away + ' shots', f.away_shots_avg) +
+      tile(d.home + ' poss %', f.home_poss_avg) + tile(d.away + ' poss %', f.away_poss_avg);
+    const maxi = Math.max(...imp.map(c => c.importance)) || 1;
+    $('moImp').innerHTML = imp.slice(0, 8).map(c => `
+      <div class="simrow"><span class="nm">${esc(c.feature)}</span>
+        <span class="simtrack"><span class="simfill" style="width:${Math.round(c.importance / maxi * 100)}%"></span></span>
+        <span class="simpct">${c.importance}</span></div>`).join('');
+    $('moMetrics').innerHTML = tile('Accuracy', pc(d.metrics.accuracy)) +
+      tile('Baseline', pc(d.metrics.home_win_baseline), 'always home') +
+      tile('Log-loss', d.metrics.log_loss);
+  } catch (e) {
+    $('moErr').textContent = 'Failed: ' + e.message; $('moErr').classList.remove('hidden');
+    $('moPlaceholder').classList.add('hidden');
+  }
+};
+
+// ===================== PROJECT 3: PLAYER SCOUTING =====================
+$('scGo').onclick = async () => {
+  $('scErr').classList.add('hidden');
+  $('scOut').classList.add('hidden'); $('scPlaceholder').classList.remove('hidden');
+  $('scPlaceholder').textContent = 'Searching…';
+  try {
+    const d = await fetch('/api/pl/scouting/similar?player=' + encodeURIComponent($('scPlayer').value)).then(r => r.json());
+    if (d.error) throw new Error(d.error);
+    const clusters = await fetch('/api/pl/scouting/clusters').then(r => r.json());
+    $('scPlaceholder').classList.add('hidden'); $('scOut').classList.remove('hidden');
+    $('scName').innerHTML = `<b>${esc(d.player)}</b> · ${esc(d.team)} · ${esc(d.position)}`;
+    $('scCluster').innerHTML = `<span class="cl-chip">${esc(d.cluster)}</span>`;
+    $('scMatches').innerHTML = d.matches.map(m => `
+      <div class="simrow">
+        <span class="nm"><b>${esc(m.player)}</b> <small>${esc(m.team)} · ${esc(m.position)} · <span class="cl-chip">${esc(m.cluster)}</span></small></span>
+        <span class="simtrack"><span class="simfill" style="width:${Math.round(Math.max(0, m.similarity) * 100)}%"></span></span>
+        <span class="simpct">${pc(Math.max(0, m.similarity))}</span></div>`).join('');
+    $('scClusters').innerHTML = clusters.map(c => `
+      <div class="cluster-card"><div class="cc-h">${esc(c.name)} <small style="color:var(--muted)">· ${c.size} players</small></div>
+        <div class="cc-p">${c.players.map(esc).join(', ')}</div></div>`).join('');
+  } catch (e) {
+    $('scErr').textContent = 'Failed: ' + e.message; $('scErr').classList.remove('hidden');
+    $('scPlaceholder').classList.add('hidden');
+  }
+};
 
 // ===================== MATCH =====================
 $('go').onclick = async () => {

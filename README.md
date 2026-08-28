@@ -6,10 +6,14 @@ parlay markets, from a feature set built on 150+ years of international results.
 
 It also now covers the **Premier League** (the first of several club leagues
 and continental tournaments planned — La Liga, Serie A and UEFA/Copa América
-coverage are the natural next steps) under a **Leagues** tab: pick a
-competition and two clubs and get the same win/draw/loss + scoreline-grid +
-match-markets treatment, from a domestic Elo model trained on 30+ seasons of
-real results. See [Club leagues](#club-leagues) below.
+coverage are the natural next steps) under a **Leagues** tab. The tab is
+organised as **League → Projects**: pick a competition, then a project under
+it. Every league gets the **match predictor** (win/draw/loss + scoreline-grid +
+match-markets, from a domestic Elo model trained on 30+ seasons of real
+results); the Premier League additionally has three player-level machine-learning
+projects — a **transfer-value predictor**, a **match-outcome predictor** and a
+**player-scouting system**. See [Club leagues](#club-leagues) and
+[Premier League projects](#premier-league-projects) below.
 
 Team strength fuses an international Elo computed over 48,000+ matches since 1872
 with a club-level squad rating (each player mapped to his club's clubelo.com
@@ -212,10 +216,16 @@ the highest-value, lowest-overfit-risk next step is a **market-odds feature**
 ```
 data/    results.csv (1872–2026 internationals), squads.csv, clubelo_latest.csv,
          training_table.csv, current_state.json, squad_strength.json
+         club/     premier_league_results.csv, ..._state.json (club-league model)
+         players/  premier_league_players.csv (transfer-value / scouting projects)
 src/     features.py (Elo+form+morale+climate), squad_strength.py, train.py,
-         predict.py, sentiment.py, geo.py (venues/climate), app.py (Flask)
-models/  fifa_model.joblib, metrics.json
-web/     index.html (front-end)
+         predict.py, sentiment.py, geo.py (venues/climate), app.py (Flask),
+         predict_league.py (club-league match model)
+         projects/ transfer_value.py, match_outcome.py, player_scouting.py,
+                   fetch_players.py, gen_player_data.py, streamlit_scouting.py
+models/  fifa_model.joblib, metrics.json, premier_league_model.joblib
+         projects/ (transfer/outcome/scouting models, cached lazily; gitignored)
+web/     index.html (front-end — Match / Team / Player / Leagues→Projects tabs)
 ```
 
 ## Club leagues
@@ -257,6 +267,51 @@ training table; `src/predict_league.py` serves predictions via
 Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`)
 plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
 no other code changes.
+
+## Premier League projects
+
+Under the **Leagues → Premier League** section, beyond the match predictor,
+three self-contained machine-learning projects live in `src/projects/`. Each is
+a small end-to-end study with its own model, endpoint set and UI sub-tab, and
+each runs out of the box on the bundled data (no API token needed). The UI is
+organised **League → Projects** so every league carries its own set of projects
+(player-level projects are Premier League-only for now).
+
+| # | Project | What it does | Model | Tech stack |
+|---|---|---|---|---|
+| 1 | **Transfer value predictor** | Predict a player's market/transfer value from their own stats (goals, assists, minutes, age, position …); plug in any player and see model-vs-actual | Linear regression (standardised features + one-hot position) | requests · pandas · scikit-learn · matplotlib |
+| 2 | **Match outcome predictor** | Predict win / draw / loss from match features (form, goals for/against, shots, possession, home advantage); backtested on a held-out season span | Random forest, or **XGBoost** when installed (auto-detected) | pandas · scikit-learn · XGBoost · matplotlib |
+| 3 | **Player scouting system** | Find the players most similar in style to a given player; K-means groups everyone into playing-style clusters; searchable dashboard | Nearest-neighbours similarity + K-means over per-90 stats | pandas · scikit-learn · matplotlib · streamlit |
+
+Run any project standalone from `src/`:
+
+```powershell
+python -m projects.gen_player_data          # (re)build the bundled player table
+python -m projects.transfer_value --plot     # train + report + predicted-vs-actual scatter
+python -m projects.match_outcome  --plot     # train + backtest + confusion matrix
+python -m projects.player_scouting "Bukayo Saka"   # closest statistical matches
+streamlit run projects/streamlit_scouting.py       # project 3's standalone dashboard
+```
+
+Or use them through the app: the **Leagues** tab loads them under the Premier
+League selector, served by `GET /api/pl/projects`, `/api/pl/transfer/*`,
+`/api/pl/outcome/*` and `/api/pl/scouting/*` (see `src/app.py`). Trained models
+are cached lazily in `models/projects/` on first request (gitignored; the RF is
+large) and rebuilt automatically if missing.
+
+### Data
+
+The projects share the match-results table (`data/club/premier_league_results.csv`)
+for project 2 and a **player-season statistics** table
+(`data/players/premier_league_players.csv`) for projects 1 and 3. The player
+table's real-data path is `projects/fetch_players.py`, which pulls current
+Premier League squads (names, positions, ages) from the football-data.org API
+with `requests`. Because the free API tier does not expose per-player season
+stats or market values (those need a paid stats/transfer feed), those columns
+are produced by `projects/gen_player_data.py`, a deterministic generative model
+keyed on each player's position and age — so the pipeline runs with no token
+and any richer feed drops in behind the same schema. The bundled CSV is
+committed; regenerate it any time with `python -m projects.gen_player_data`.
 
 ### Known limitations (club leagues)
 

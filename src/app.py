@@ -48,6 +48,9 @@ ARTIFACTS = [
     {"key": "premier_league_model", "path": "models/premier_league_model.joblib",
      "label": "Premier League model", "producer": "train_league.py",
      "max_age_h": None, "optional": True},
+    {"key": "pl_players", "path": "data/players/premier_league_players.csv",
+     "label": "Premier League player stats (transfer-value / scouting projects)",
+     "producer": "projects/fetch_players.py", "max_age_h": None, "optional": True},
 ]
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
@@ -81,6 +84,18 @@ def league_eng():
         import predict_league
         _league_eng = predict_league
     return _league_eng
+
+
+# --- Premier League projects (transfer value / match outcome / scouting) ---
+_pl_projects = {}
+
+
+def pl_project(name):
+    """Lazy-import a Premier League project module (trains on first use)."""
+    if name not in _pl_projects:
+        mod = __import__(f"projects.{name}", fromlist=["_"])
+        _pl_projects[name] = mod
+    return _pl_projects[name]
 
 
 @app.route("/")
@@ -133,6 +148,78 @@ def api_predict_league():
     if "error" in res:
         return jsonify(res), 400
     return jsonify(res)
+
+
+@app.route("/api/pl/projects")
+def pl_projects_list():
+    """Metadata for the Premier League project sub-tabs."""
+    return jsonify([
+        {"key": "transfer_value", "name": "Transfer value predictor",
+         "blurb": "Linear model: player stats → market value. Plug in a player "
+                  "and see what the model thinks they're worth vs their actual value.",
+         "stack": ["requests", "pandas", "scikit-learn", "matplotlib"]},
+        {"key": "match_outcome", "name": "Match outcome predictor",
+         "blurb": "Random-forest / XGBoost on match features (form, goals, shots, "
+                  "possession, home advantage) → win / draw / loss.",
+         "stack": ["pandas", "scikit-learn", "XGBoost", "matplotlib"]},
+        {"key": "player_scouting", "name": "Player scouting system",
+         "blurb": "Nearest-neighbour similarity + K-means style clusters. Search a "
+                  "player, see their closest statistical matches.",
+         "stack": ["pandas", "scikit-learn", "matplotlib", "streamlit"]},
+    ])
+
+
+@app.route("/api/pl/transfer/players")
+def pl_transfer_players():
+    return jsonify(pl_project("transfer_value").list_players())
+
+
+@app.route("/api/pl/transfer/predict")
+def pl_transfer_predict():
+    return jsonify(pl_project("transfer_value").predict_player(request.args.get("player", "")))
+
+
+@app.route("/api/pl/transfer/coefficients")
+def pl_transfer_coefficients():
+    return jsonify(pl_project("transfer_value").coefficients())
+
+
+@app.route("/api/pl/transfer/custom", methods=["POST"])
+def pl_transfer_custom():
+    return jsonify(pl_project("transfer_value").predict_custom(request.get_json(force=True)))
+
+
+@app.route("/api/pl/outcome/teams")
+def pl_outcome_teams():
+    return jsonify(pl_project("match_outcome").teams())
+
+
+@app.route("/api/pl/outcome/predict")
+def pl_outcome_predict():
+    res = pl_project("match_outcome").predict(request.args.get("home", ""),
+                                              request.args.get("away", ""))
+    return (jsonify(res), 400) if "error" in res else jsonify(res)
+
+
+@app.route("/api/pl/outcome/importance")
+def pl_outcome_importance():
+    return jsonify(pl_project("match_outcome").feature_importance())
+
+
+@app.route("/api/pl/scouting/players")
+def pl_scouting_players():
+    return jsonify(pl_project("player_scouting").list_players())
+
+
+@app.route("/api/pl/scouting/similar")
+def pl_scouting_similar():
+    res = pl_project("player_scouting").similar(request.args.get("player", ""))
+    return (jsonify(res), 400) if "error" in res else jsonify(res)
+
+
+@app.route("/api/pl/scouting/clusters")
+def pl_scouting_clusters():
+    return jsonify(pl_project("player_scouting").clusters())
 
 
 @app.route("/api/sentiment/<team>")
