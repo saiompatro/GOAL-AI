@@ -1,8 +1,9 @@
 # GOAL AI
 
 Football intelligence and machine-learning projects for the **2026 FIFA World
-Cup** and the **Premier League**. The browser app keeps each competition's data,
-models, and projects together using a clear **League → Projects** hierarchy.
+Cup** and top **domestic leagues** (Premier League, La Liga, ...). The browser
+app keeps each competition's data, models, and projects together using a
+clear **League → Projects** hierarchy.
 
 ## What you can do
 
@@ -10,6 +11,7 @@ models, and projects together using a clear **League → Projects** hierarchy.
 |---|---|---|
 | **FIFA World Cup 2026** | Match · Team · Player | Win/draw/loss prediction, scoreline grid, team and player analysis, venue/weather context, goalscorer and match markets |
 | **Premier League** | Leagues → Premier League | League match predictor, transfer-value predictor, match-outcome predictor, and player-scouting system |
+| **La Liga** | Leagues → La Liga | League match predictor (same domestic-Elo engine as Premier League) |
 
 The Premier League lab contains three focused, end-to-end learning projects:
 
@@ -243,7 +245,7 @@ the highest-value, lowest-overfit-risk next step is a **market-odds feature**
 ```
 data/    results.csv (1872–2026 internationals), squads.csv, clubelo_latest.csv,
          training_table.csv, current_state.json, squad_strength.json
-         club/     premier_league_results.csv, ..._state.json (club-league model)
+         club/     premier_league_/la_liga_ results.csv, ..._state.json (club-league models)
          players/  premier_league_players.csv (transfer-value / scouting projects)
 src/     features.py (Elo+form+morale+climate), squad_strength.py, train.py,
          predict.py, sentiment.py, geo.py (venues/climate), app.py (Flask),
@@ -260,13 +262,14 @@ web/     index.html (front-end — Match / Team / Player / Leagues→Projects ta
 The competing prediction sites and repos that inspired this feature (SPI/FiveThirtyEight-
 style club Elo trackers, football-data.co.uk-based Kaggle notebooks, various
 odds-comparison tools) almost all cover club leagues — the World Cup happens
-once every four years, but Premier League fixtures happen every week. This
+once every four years, but domestic league fixtures happen every week. This
 was the biggest gap between this project (100% international, WC-2026-only)
-and the field, so it's the first thing being closed.
+and the field, so it's the first thing being closed, one league at a time.
 
-**Premier League** is live under the **Leagues** tab. Independent pipeline
-from the World Cup model — separate data, features and trained model — using
-the same walk-forward, no-leakage philosophy as the international engine:
+**Premier League** and **La Liga** are live under the **Leagues** tab.
+Independent pipeline from the World Cup model — separate data, features and
+trained model per league — using the same walk-forward, no-leakage
+philosophy as the international engine:
 
 | Signal | Source |
 |---|---|
@@ -277,13 +280,19 @@ the same walk-forward, no-leakage philosophy as the international engine:
 | **Head-to-head** | Win rate and goal diff over the last 10 meetings |
 
 Outcome classifier + twin Poisson goal regressors (`src/train_league.py`),
-same architecture as `train.py`. On a strict 2-season holdout (2022-23 +
-2023-24): **54.9% three-way accuracy / 0.955 log-loss**, against a 55.3%
-Elo-favourite baseline. Club football is far more competitively balanced than
-international football (fewer lopsided squad gaps, deeper benches), so this
-sits close to the accuracy ceiling reported in prediction-market literature
-for the Premier League — there's less signal to extract than a WC where a
-top-10 nation can play a part-timer squad.
+same architecture as `train.py`, trained independently per league on a strict
+2-season holdout (2022-23 + 2023-24):
+
+| League | Accuracy | Log-loss | Elo-favourite baseline |
+|---|---|---|---|
+| Premier League | 54.9% | 0.955 | 55.3% |
+| La Liga | 53.3% | 0.986 | 54.5% |
+
+Club football is far more competitively balanced than international football
+(fewer lopsided squad gaps, deeper benches), so both leagues sit close to the
+accuracy ceiling reported in prediction-market literature for domestic
+football — there's less signal to extract than a WC where a top-10 nation
+can play a part-timer squad.
 
 Data: `src/fetch_club_results.py` pulls season-by-season results (1993-94
 onward) from the [footballcsv/cache.footballdata](https://github.com/footballcsv/cache.footballdata)
@@ -293,7 +302,14 @@ training table; `src/predict_league.py` serves predictions via
 
 Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`)
 plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
-no other code changes.
+no other code changes; the UI's league picker and match predictor are fully
+generic and pick it up automatically. Serie A, Bundesliga and Ligue 1 are the
+next candidates (all available via the same footballcsv codes: `it.1`, `de.1`,
+`fr.1`); continental club competitions (UEFA Champions League, Europa League)
+and international tournaments beyond the World Cup (Copa América, Euros,
+AFCON) don't fit this domestic-league pipeline as-is — they're single-elim /
+group-stage formats, not a round-robin season — and would need their own
+feature set closer to the World Cup engine's.
 
 ## Premier League projects
 
@@ -349,8 +365,10 @@ committed; regenerate it any time with `python -m projects.gen_player_data`.
   pull in yet.
 - No live in-season Elo updates (the WC model's `live_ratings.py` equivalent)
   — ratings are frozen as of the last fetched season until the pipeline reruns.
-- Home-advantage and K-factor are fixed constants tuned by eye, not fit per
-  league; expect them to need retuning once a second league is added.
+- Home-advantage and K-factor are fixed constants tuned by eye and shared
+  across leagues (Premier League and La Liga both use +70 / K=20); not yet
+  fit per league, so accuracy may drift as more leagues with different
+  competitive balance (e.g. Bundesliga) are added.
 
 ## Known limitations
 
