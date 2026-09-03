@@ -1,8 +1,9 @@
 # GOAL AI
 
 Football intelligence and machine-learning projects for the **2026 FIFA World
-Cup** and the **Premier League**. The browser app keeps each competition's data,
-models, and projects together using a clear **League → Projects** hierarchy.
+Cup** and top **club leagues** (Premier League, La Liga, with more to follow).
+The browser app keeps each competition's data, models, and projects together
+using a clear **League → Projects** hierarchy.
 
 ## What you can do
 
@@ -10,6 +11,7 @@ models, and projects together using a clear **League → Projects** hierarchy.
 |---|---|---|
 | **FIFA World Cup 2026** | Match · Team · Player | Win/draw/loss prediction, scoreline grid, team and player analysis, venue/weather context, goalscorer and match markets |
 | **Premier League** | Leagues → Premier League | League match predictor, transfer-value predictor, match-outcome predictor, and player-scouting system |
+| **La Liga** | Leagues → La Liga | League match predictor |
 
 The Premier League lab contains three focused, end-to-end learning projects:
 
@@ -23,8 +25,9 @@ The Premier League lab contains three focused, end-to-end learning projects:
 
 The World Cup engine returns win/draw/loss probabilities and a full scoreline
 grid, plus derived goalscorer, match, and parlay markets from a feature set built
-on more than 150 years of international results. The Premier League match engine
-uses a separate domestic pipeline trained on more than 30 seasons of results.
+on more than 150 years of international results. Each club league shares one
+domestic pipeline (separate per-league Elo/form/model, same architecture)
+trained on more than 30 seasons of results.
 See [Club leagues](#club-leagues) and [Premier League projects](#premier-league-projects)
 for implementation and data details.
 
@@ -264,9 +267,11 @@ once every four years, but Premier League fixtures happen every week. This
 was the biggest gap between this project (100% international, WC-2026-only)
 and the field, so it's the first thing being closed.
 
-**Premier League** is live under the **Leagues** tab. Independent pipeline
-from the World Cup model — separate data, features and trained model — using
-the same walk-forward, no-leakage philosophy as the international engine:
+**Premier League** and **La Liga** are live under the **Leagues** tab, each its
+own entry in a shared `LEAGUES` registry (`src/fetch_club_results.py`).
+Independent pipeline from the World Cup model — separate data, features and
+trained model per league — using the same walk-forward, no-leakage philosophy
+as the international engine:
 
 | Signal | Source |
 |---|---|
@@ -277,23 +282,35 @@ the same walk-forward, no-leakage philosophy as the international engine:
 | **Head-to-head** | Win rate and goal diff over the last 10 meetings |
 
 Outcome classifier + twin Poisson goal regressors (`src/train_league.py`),
-same architecture as `train.py`. On a strict 2-season holdout (2022-23 +
-2023-24): **54.9% three-way accuracy / 0.955 log-loss**, against a 55.3%
-Elo-favourite baseline. Club football is far more competitively balanced than
-international football (fewer lopsided squad gaps, deeper benches), so this
-sits close to the accuracy ceiling reported in prediction-market literature
-for the Premier League — there's less signal to extract than a WC where a
-top-10 nation can play a part-timer squad.
+same architecture as `train.py`, trained once per league. On a strict 2-season
+holdout (2022-23 + 2023-24):
+
+| League | Accuracy | Log-loss | Elo-favourite baseline |
+|---|---|---|---|
+| Premier League | 54.9% | 0.955 | 55.3% |
+| La Liga | 53.3% | 0.986 | 54.5% |
+
+Club football is far more competitively balanced than international football
+(fewer lopsided squad gaps, deeper benches), so both sit close to the accuracy
+ceiling reported in prediction-market literature for domestic leagues — there's
+less signal to extract than a WC where a top-10 nation can play a part-timer
+squad.
 
 Data: `src/fetch_club_results.py` pulls season-by-season results (1993-94
 onward) from the [footballcsv/cache.footballdata](https://github.com/footballcsv/cache.footballdata)
 GitHub mirror of football-data.co.uk. `src/club_features.py` builds the
 training table; `src/predict_league.py` serves predictions via
-`GET /api/leagues`, `GET /api/league_team`, `POST /api/predict_league`.
+`GET /api/leagues`, `GET /api/league_team`, `POST /api/predict_league` — all
+three are league-agnostic, so the front-end's League dropdown, match predictor
+and `/api/status` data-health panel pick up a newly added league with zero
+UI or status-panel code changes.
 
 Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`)
 plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
-no other code changes.
+no other code changes. Next candidates: Serie A, Bundesliga, Ligue 1, and the
+continental tournaments (UEFA Champions League, Copa América) once a
+fixture/knockout data source is wired in (the club pipeline here assumes a
+round-robin domestic season).
 
 ## Premier League projects
 

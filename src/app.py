@@ -42,16 +42,23 @@ ARTIFACTS = [
      "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
     {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (goal-difference)",
      "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
-    {"key": "premier_league_results", "path": "data/club/premier_league_results.csv",
-     "label": "Premier League historical results", "producer": "fetch_club_results.py",
-     "max_age_h": None, "optional": True},
-    {"key": "premier_league_model", "path": "models/premier_league_model.joblib",
-     "label": "Premier League model", "producer": "train_league.py",
-     "max_age_h": None, "optional": True},
     {"key": "pl_players", "path": "data/players/premier_league_players.csv",
      "label": "Premier League player stats (transfer-value / scouting projects)",
      "producer": "projects/fetch_players.py", "max_age_h": None, "optional": True},
 ]
+
+# One results + model artifact per club league (see LEAGUES in
+# fetch_club_results.py) so /api/status and the refresh panel pick up any
+# newly added league with no other code changes.
+from fetch_club_results import LEAGUES as _CLUB_LEAGUES  # noqa: E402
+
+for _key, _info in _CLUB_LEAGUES.items():
+    ARTIFACTS.append({"key": f"{_key}_results", "path": f"data/club/{_key}_results.csv",
+                      "label": f"{_info['name']} historical results", "producer": "fetch_club_results.py",
+                      "max_age_h": None, "optional": True})
+    ARTIFACTS.append({"key": f"{_key}_model", "path": f"models/{_key}_model.joblib",
+                      "label": f"{_info['name']} model", "producer": "train_league.py",
+                      "max_age_h": None, "optional": True})
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
 # the withdrawal scan, once to apply its result).
