@@ -1,6 +1,14 @@
 # secrets — never commit
 .env
 
+# node / frontend build output — never commit (a past Next.js frontend
+# leaked its auto-generated Server Actions encryption key via .next/cache)
+node_modules/
+.next/
+out/
+dist/
+build/
+
 # python
 __pycache__/
 *.pyc
