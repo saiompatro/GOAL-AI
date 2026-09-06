@@ -8,8 +8,9 @@ climate/travel/jet-lag layer here — league fixtures are domestic, so that
 signal international teams need doesn't apply.
 
 One model is trained per league (see LEAGUES in fetch_club_results.py); this
-module is parameterised by league key so a second league (La Liga, Serie A,
-...) is just another data/club/<key>_results.csv away.
+module is parameterised by league key so each additional league (La Liga is
+now live alongside the Premier League; Serie A, Bundesliga, ... next) is just
+another data/club/<key>_results.csv away.
 """
 import os
 import math
