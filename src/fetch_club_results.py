@@ -12,6 +12,7 @@ Bundesliga, fr.1 Ligue 1, ...).
 import os
 import csv
 import datetime
+import time
 import requests
 
 BASE = "https://raw.githubusercontent.com/footballcsv/cache.footballdata/master"
@@ -20,11 +21,27 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "club")
 
 LEAGUES = {
     "premier_league": {"name": "Premier League", "country": "England", "code": "eng.1"},
+    "la_liga": {"name": "La Liga", "country": "Spain", "code": "es.1"},
 }
 
 
 def season_label(start_year):
     return f"{start_year}-{str(start_year + 1)[-2:]}"
+
+
+def _get_with_retries(url, attempts=3, timeout=30):
+    """GET with a few retries — the footballcsv mirror occasionally 404s on a
+    season that exists (transient), so a single failed request shouldn't be
+    treated as "season not in the mirror"."""
+    last = None
+    for i in range(attempts):
+        r = requests.get(url, timeout=timeout)
+        if r.status_code == 200:
+            return r
+        last = r
+        if i < attempts - 1:
+            time.sleep(1.5 * (i + 1))
+    return last
 
 
 def fetch_league(code):
@@ -33,7 +50,7 @@ def fetch_league(code):
     this_year = datetime.date.today().year
     for year in range(FIRST_SEASON, this_year + 1):
         season = season_label(year)
-        r = requests.get(f"{BASE}/{season}/{code}.csv", timeout=30)
+        r = _get_with_retries(f"{BASE}/{season}/{code}.csv")
         if r.status_code != 200:
             continue
         for row in csv.DictReader(r.text.splitlines()):
@@ -60,6 +77,12 @@ def main():
         if not rows:
             print(f"{info['name']}: no data fetched, skipping")
             continue
+        seasons_fetched = {r["season"] for r in rows}
+        first_year = int(rows[0]["season"][:4])
+        expected = {season_label(y) for y in range(first_year, datetime.date.today().year + 1)}
+        gaps = sorted(expected - seasons_fetched)
+        if gaps:
+            print(f"{info['name']}: WARNING missing seasons after retries: {gaps}")
         out = os.path.join(OUT_DIR, f"{key}_results.csv")
         with open(out, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=["date", "season", "home_team", "away_team",
