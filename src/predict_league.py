@@ -11,7 +11,6 @@ import math
 import joblib
 
 from fetch_club_results import LEAGUES
-from club_features import HOME_ADV
 
 BASE = os.path.join(os.path.dirname(__file__), "..")
 DATA = os.path.join(BASE, "data", "club")
@@ -66,7 +65,7 @@ def predict(league_key, home, away, neutral=False):
         return {"error": f"unknown team for league '{league_key}'"}
 
     eh, ea = st["elo"][home], st["elo"][away]
-    home_adv = 0 if neutral else HOME_ADV
+    home_adv = 0 if neutral else st.get("home_adv", 70)
     hist = st["hist"]
 
     def feats(team):

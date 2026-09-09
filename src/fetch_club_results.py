@@ -19,7 +19,10 @@ FIRST_SEASON = 1993
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "club")
 
 LEAGUES = {
-    "premier_league": {"name": "Premier League", "country": "England", "code": "eng.1"},
+    "premier_league": {"name": "Premier League", "country": "England", "code": "eng.1",
+                       "home_adv": 70, "k": 20},
+    "la_liga": {"name": "La Liga", "country": "Spain", "code": "es.1",
+               "home_adv": 60, "k": 20},
 }
 
 
