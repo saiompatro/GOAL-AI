@@ -20,6 +20,7 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "club")
 
 LEAGUES = {
     "premier_league": {"name": "Premier League", "country": "England", "code": "eng.1"},
+    "la_liga": {"name": "La Liga", "country": "Spain", "code": "es.1"},
 }
 
 
