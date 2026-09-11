@@ -1,17 +1,21 @@
 # GOAL AI
 
 Football intelligence and machine-learning projects for the **2026 FIFA World
-Cup** and the **Premier League**. The browser app keeps each competition's data,
-models, and projects together using a clear **League → Projects** hierarchy.
+Cup** and **five major club leagues** — Premier League, La Liga, Serie A,
+Bundesliga and Ligue 1, the domestic competitions that also feed UEFA's
+Champions League and Europa League. The browser app keeps each competition's
+data, models, and projects together using a clear **League → Projects**
+hierarchy.
 
 ## What you can do
 
 | Competition | Where in the UI | Projects |
 |---|---|---|
 | **FIFA World Cup 2026** | Match · Team · Player | Win/draw/loss prediction, scoreline grid, team and player analysis, venue/weather context, goalscorer and match markets |
-| **Premier League** | Leagues → Premier League | League match predictor, transfer-value predictor, match-outcome predictor, and player-scouting system |
+| **Premier League, La Liga, Serie A, Bundesliga, Ligue 1** | Leagues | League match predictor for every league; transfer-value predictor, match-outcome predictor, and player-scouting system for the Premier League |
 
-The Premier League lab contains three focused, end-to-end learning projects:
+The Premier League lab additionally contains three focused, end-to-end
+learning projects:
 
 1. **Transfer value predictor** — linear regression from goals, assists,
    minutes, age, position, and related player statistics.
@@ -23,10 +27,10 @@ The Premier League lab contains three focused, end-to-end learning projects:
 
 The World Cup engine returns win/draw/loss probabilities and a full scoreline
 grid, plus derived goalscorer, match, and parlay markets from a feature set built
-on more than 150 years of international results. The Premier League match engine
-uses a separate domestic pipeline trained on more than 30 seasons of results.
-See [Club leagues](#club-leagues) and [Premier League projects](#premier-league-projects)
-for implementation and data details.
+on more than 150 years of international results. Each club league runs a
+separate domestic pipeline trained on more than 30 seasons of that league's
+own results. See [Club leagues](#club-leagues) and [Premier League
+projects](#premier-league-projects) for implementation and data details.
 
 Team strength fuses an international Elo computed over 48,000+ matches since 1872
 with a club-level squad rating (each player mapped to his club's clubelo.com
@@ -52,7 +56,7 @@ python src\app.py
 ```
 
 Open **http://127.0.0.1:5000**. The committed models and datasets make the main
-World Cup and Premier League experiences available immediately.
+World Cup and all five club-league experiences available immediately.
 
 Stop the server with `Ctrl+C` in that terminal (or `Stop-Process -Name python`).
 The port defaults to 5000; override it with:
@@ -243,14 +247,16 @@ the highest-value, lowest-overfit-risk next step is a **market-odds feature**
 ```
 data/    results.csv (1872–2026 internationals), squads.csv, clubelo_latest.csv,
          training_table.csv, current_state.json, squad_strength.json
-         club/     premier_league_results.csv, ..._state.json (club-league model)
+         club/     <league>_results.csv, ..._state.json per league (premier_league,
+                   la_liga, serie_a, bundesliga, ligue_1 — see fetch_club_results.LEAGUES)
          players/  premier_league_players.csv (transfer-value / scouting projects)
 src/     features.py (Elo+form+morale+climate), squad_strength.py, train.py,
          predict.py, sentiment.py, geo.py (venues/climate), app.py (Flask),
-         predict_league.py (club-league match model)
+         fetch_club_results.py (LEAGUES registry + fetch + fit_home_advantage),
+         club_features.py, train_league.py, predict_league.py (club-league models)
          projects/ transfer_value.py, match_outcome.py, player_scouting.py,
                    fetch_players.py, gen_player_data.py, streamlit_scouting.py
-models/  fifa_model.joblib, metrics.json, premier_league_model.joblib
+models/  fifa_model.joblib, metrics.json, <league>_model.joblib per league
          projects/ (transfer/outcome/scouting models, cached lazily; gitignored)
 web/     index.html (front-end — Match / Team / Player / Leagues→Projects tabs)
 ```
@@ -260,38 +266,74 @@ web/     index.html (front-end — Match / Team / Player / Leagues→Projects ta
 The competing prediction sites and repos that inspired this feature (SPI/FiveThirtyEight-
 style club Elo trackers, football-data.co.uk-based Kaggle notebooks, various
 odds-comparison tools) almost all cover club leagues — the World Cup happens
-once every four years, but Premier League fixtures happen every week. This
-was the biggest gap between this project (100% international, WC-2026-only)
-and the field, so it's the first thing being closed.
+once every four years, but domestic league fixtures happen every week. This
+was the biggest gap between this project (originally 100% international,
+WC-2026-only) and the field, so it's the first thing that got closed.
 
-**Premier League** is live under the **Leagues** tab. Independent pipeline
-from the World Cup model — separate data, features and trained model — using
-the same walk-forward, no-leakage philosophy as the international engine:
+**Five leagues** are live under the **Leagues** tab — the "big five" European
+domestic competitions, which together also supply the bulk of UEFA Champions
+League and Europa League squads: **Premier League** (England), **La Liga**
+(Spain), **Serie A** (Italy), **Bundesliga** (Germany) and **Ligue 1**
+(France). Independent pipeline from the World Cup model — separate data,
+features and trained model per league — using the same walk-forward,
+no-leakage philosophy as the international engine:
 
 | Signal | Source |
 |---|---|
-| **Elo** | K=20, goal-margin multiplier, +70 home-advantage bonus (club football runs a stronger home edge than internationals), computed match-by-match over 30+ seasons |
+| **Elo** | K=20, goal-margin multiplier, per-league home-advantage bonus (see below), computed match-by-match over 30+ seasons |
 | **Form** | Points-per-game (last 5), goal difference (last 10) |
 | **Attack/defense** | Opponent-adjusted EWMA of goals scored/conceded, same split as the WC model |
 | **Morale** | EWMA of result vs Elo expectation |
 | **Head-to-head** | Win rate and goal diff over the last 10 meetings |
 
+The Elo home-advantage bonus is **fit per league**, not a single constant
+copy-pasted onto every competition: `fetch_club_results.fit_home_advantage()`
+converts each league's actual historical home-win rate into an equivalent
+Elo rating bonus (400·log₁₀(s/(1−s)) where `s` is the average home result).
+On the 1993-94→2023-24 results:
+
+| League | Home-advantage (Elo pts) |
+|---|---|
+| Premier League | 70 *(kept at its original tuned value — see below)* |
+| Ligue 1 | 73 |
+| La Liga | 72 |
+| Serie A | 67 |
+| Bundesliga | 64 |
+
+Premier League keeps its original eyeballed 70 rather than the ~61 the fit
+implies for it, since that value is already baked into its shipped, documented
+model — retuning it is bundled with a future Premier League retrain rather
+than changed as a side effect of adding other leagues.
+
 Outcome classifier + twin Poisson goal regressors (`src/train_league.py`),
-same architecture as `train.py`. On a strict 2-season holdout (2022-23 +
-2023-24): **54.9% three-way accuracy / 0.955 log-loss**, against a 55.3%
-Elo-favourite baseline. Club football is far more competitively balanced than
-international football (fewer lopsided squad gaps, deeper benches), so this
-sits close to the accuracy ceiling reported in prediction-market literature
-for the Premier League — there's less signal to extract than a WC where a
-top-10 nation can play a part-timer squad.
+same architecture as `train.py`, one model per league. On each league's own
+strict 2-season holdout (2022-23 + 2023-24):
+
+| League | Accuracy | Log-loss | Elo-favourite baseline |
+|---|---|---|---|
+| Premier League | 54.9% | 0.955 | 55.3% |
+| La Liga | 52.9% | 0.986 | 54.5% |
+| Serie A | 52.5% | 0.992 | 52.4% |
+| Bundesliga | 51.3% | 1.009 | 50.5% |
+| Ligue 1 | 49.6% | 1.031 | 51.7% |
+
+Club football is far more competitively balanced than international football
+(fewer lopsided squad gaps, deeper benches), so these sit close to the
+accuracy ceiling reported in prediction-market literature for domestic
+leagues — there's less signal to extract than a WC where a top-10 nation can
+play a part-timer squad.
 
 Data: `src/fetch_club_results.py` pulls season-by-season results (1993-94
 onward) from the [footballcsv/cache.footballdata](https://github.com/footballcsv/cache.footballdata)
 GitHub mirror of football-data.co.uk. `src/club_features.py` builds the
 training table; `src/predict_league.py` serves predictions via
-`GET /api/leagues`, `GET /api/league_team`, `POST /api/predict_league`.
+`GET /api/leagues`, `GET /api/league_team`, `POST /api/predict_league`. The
+**Leagues** tab UI and the data-status/refresh panel are both driven entirely
+by `fetch_club_results.LEAGUES`, so they pick up every league automatically —
+no front-end changes needed to add one.
 
-Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`)
+Adding another league is one new entry in `LEAGUES` (`src/fetch_club_results.py`,
+with `home_adv` from `fit_home_advantage()` on that league's own results)
 plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
 no other code changes.
 
@@ -349,8 +391,12 @@ committed; regenerate it any time with `python -m projects.gen_player_data`.
   pull in yet.
 - No live in-season Elo updates (the WC model's `live_ratings.py` equivalent)
   — ratings are frozen as of the last fetched season until the pipeline reruns.
-- Home-advantage and K-factor are fixed constants tuned by eye, not fit per
-  league; expect them to need retuning once a second league is added.
+- Home-advantage is now fit per league from historical results
+  (`fit_home_advantage()`), but the goal-margin K-factor is still a single
+  constant (K=20) shared across all five leagues — not yet fit per league.
+- Player-level projects (transfer value, match outcome, scouting) are still
+  Premier League-only; extending them to the other four leagues needs each
+  one's own player-stats data source.
 
 ## Known limitations
 
