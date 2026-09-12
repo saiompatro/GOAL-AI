@@ -51,6 +51,12 @@ ARTIFACTS = [
     {"key": "pl_players", "path": "data/players/premier_league_players.csv",
      "label": "Premier League player stats (transfer-value / scouting projects)",
      "producer": "projects/fetch_players.py", "max_age_h": None, "optional": True},
+    {"key": "la_liga_results", "path": "data/club/la_liga_results.csv",
+     "label": "La Liga historical results", "producer": "fetch_club_results.py",
+     "max_age_h": None, "optional": True},
+    {"key": "la_liga_model", "path": "models/la_liga_model.joblib",
+     "label": "La Liga model", "producer": "train_league.py",
+     "max_age_h": None, "optional": True},
 ]
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
