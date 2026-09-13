@@ -1,0 +1,105 @@
+match_no,date,stage,home,away,venue,kickoff_local
+1,2026-06-11,Group A,Mexico,South Africa,Estadio Azteca,13:00 UTC-6
+2,2026-06-11,Group A,South Korea,Czech Republic,Estadio Akron,20:00 UTC-6
+3,2026-06-18,Group A,Czech Republic,South Africa,Mercedes-Benz Stadium,12:00 UTC-4
+4,2026-06-18,Group A,Mexico,South Korea,Estadio Akron,19:00 UTC-6
+5,2026-06-24,Group A,Czech Republic,Mexico,Estadio Azteca,19:00 UTC-6
+6,2026-06-24,Group A,South Africa,South Korea,Estadio BBVA,19:00 UTC-6
+7,2026-06-12,Group B,Canada,Bosnia & Herzegovina,BMO Field,15:00 UTC-4
+8,2026-06-13,Group B,Qatar,Switzerland,Levi's Stadium,12:00 UTC-7
+9,2026-06-18,Group B,Switzerland,Bosnia & Herzegovina,SoFi Stadium,12:00 UTC-7
+10,2026-06-18,Group B,Canada,Qatar,BC Place,15:00 UTC-7
+11,2026-06-24,Group B,Switzerland,Canada,BC Place,12:00 UTC-7
+12,2026-06-24,Group B,Bosnia & Herzegovina,Qatar,Lumen Field,12:00 UTC-7
+13,2026-06-13,Group C,Brazil,Morocco,MetLife Stadium,18:00 UTC-4
+14,2026-06-13,Group C,Haiti,Scotland,Gillette Stadium,21:00 UTC-4
+15,2026-06-19,Group C,Scotland,Morocco,Gillette Stadium,18:00 UTC-4
+16,2026-06-19,Group C,Brazil,Haiti,Lincoln Financial Field,20:30 UTC-4
+17,2026-06-24,Group C,Scotland,Brazil,Hard Rock Stadium,18:00 UTC-4
+18,2026-06-24,Group C,Morocco,Haiti,Mercedes-Benz Stadium,18:00 UTC-4
+19,2026-06-12,Group D,USA,Paraguay,SoFi Stadium,18:00 UTC-7
+20,2026-06-13,Group D,Australia,Turkey,BC Place,21:00 UTC-7
+21,2026-06-19,Group D,USA,Australia,Lumen Field,12:00 UTC-7
+22,2026-06-19,Group D,Turkey,Paraguay,Levi's Stadium,20:00 UTC-7
+23,2026-06-25,Group D,Turkey,USA,SoFi Stadium,19:00 UTC-7
+24,2026-06-25,Group D,Paraguay,Australia,Levi's Stadium,19:00 UTC-7
+25,2026-06-14,Group E,Germany,Curaçao,NRG Stadium,12:00 UTC-5
+26,2026-06-14,Group E,Ivory Coast,Ecuador,Lincoln Financial Field,19:00 UTC-4
+27,2026-06-20,Group E,Germany,Ivory Coast,BMO Field,16:00 UTC-4
+28,2026-06-20,Group E,Ecuador,Curaçao,Arrowhead Stadium,19:00 UTC-5
+29,2026-06-25,Group E,Curaçao,Ivory Coast,Lincoln Financial Field,16:00 UTC-4
+30,2026-06-25,Group E,Ecuador,Germany,MetLife Stadium,16:00 UTC-4
+31,2026-06-14,Group F,Netherlands,Japan,AT&T Stadium,15:00 UTC-5
+32,2026-06-14,Group F,Sweden,Tunisia,Estadio BBVA,20:00 UTC-6
+33,2026-06-20,Group F,Netherlands,Sweden,NRG Stadium,12:00 UTC-5
+34,2026-06-20,Group F,Tunisia,Japan,Estadio BBVA,22:00 UTC-6
+35,2026-06-25,Group F,Japan,Sweden,AT&T Stadium,18:00 UTC-5
+36,2026-06-25,Group F,Tunisia,Netherlands,Arrowhead Stadium,18:00 UTC-5
+37,2026-06-15,Group G,Belgium,Egypt,Lumen Field,12:00 UTC-7
+38,2026-06-15,Group G,Iran,New Zealand,SoFi Stadium,18:00 UTC-7
+39,2026-06-21,Group G,Belgium,Iran,SoFi Stadium,12:00 UTC-7
+40,2026-06-21,Group G,New Zealand,Egypt,BC Place,18:00 UTC-7
+41,2026-06-26,Group G,Egypt,Iran,Lumen Field,20:00 UTC-7
+42,2026-06-26,Group G,New Zealand,Belgium,BC Place,20:00 UTC-7
+43,2026-06-15,Group H,Spain,Cape Verde,Mercedes-Benz Stadium,12:00 UTC-4
+44,2026-06-15,Group H,Saudi Arabia,Uruguay,Hard Rock Stadium,18:00 UTC-4
+45,2026-06-21,Group H,Spain,Saudi Arabia,Mercedes-Benz Stadium,12:00 UTC-4
+46,2026-06-21,Group H,Uruguay,Cape Verde,Hard Rock Stadium,18:00 UTC-4
+47,2026-06-26,Group H,Cape Verde,Saudi Arabia,NRG Stadium,19:00 UTC-5
+48,2026-06-26,Group H,Uruguay,Spain,Estadio Akron,18:00 UTC-6
+49,2026-06-16,Group I,France,Senegal,MetLife Stadium,15:00 UTC-4
+50,2026-06-16,Group I,Iraq,Norway,Gillette Stadium,18:00 UTC-4
+51,2026-06-22,Group I,France,Iraq,Lincoln Financial Field,17:00 UTC-4
+52,2026-06-22,Group I,Norway,Senegal,MetLife Stadium,20:00 UTC-4
+53,2026-06-26,Group I,Norway,France,Gillette Stadium,15:00 UTC-4
+54,2026-06-26,Group I,Senegal,Iraq,BMO Field,15:00 UTC-4
+55,2026-06-16,Group J,Argentina,Algeria,Arrowhead Stadium,20:00 UTC-5
+56,2026-06-16,Group J,Austria,Jordan,Levi's Stadium,21:00 UTC-7
+57,2026-06-22,Group J,Argentina,Austria,AT&T Stadium,12:00 UTC-5
+58,2026-06-22,Group J,Jordan,Algeria,Levi's Stadium,20:00 UTC-7
+59,2026-06-27,Group J,Algeria,Austria,Arrowhead Stadium,21:00 UTC-5
+60,2026-06-27,Group J,Jordan,Argentina,AT&T Stadium,21:00 UTC-5
+61,2026-06-17,Group K,Portugal,DR Congo,NRG Stadium,12:00 UTC-5
+62,2026-06-17,Group K,Uzbekistan,Colombia,Estadio Azteca,20:00 UTC-6
+63,2026-06-23,Group K,Portugal,Uzbekistan,NRG Stadium,12:00 UTC-5
+64,2026-06-23,Group K,Colombia,DR Congo,Estadio Akron,20:00 UTC-6
+65,2026-06-27,Group K,Colombia,Portugal,Hard Rock Stadium,19:30 UTC-4
+66,2026-06-27,Group K,DR Congo,Uzbekistan,Mercedes-Benz Stadium,19:30 UTC-4
+67,2026-06-17,Group L,England,Croatia,AT&T Stadium,15:00 UTC-5
+68,2026-06-17,Group L,Ghana,Panama,BMO Field,19:00 UTC-4
+69,2026-06-23,Group L,England,Ghana,Gillette Stadium,16:00 UTC-4
+70,2026-06-23,Group L,Panama,Croatia,BMO Field,19:00 UTC-4
+71,2026-06-27,Group L,Panama,England,MetLife Stadium,17:00 UTC-4
+72,2026-06-27,Group L,Croatia,Ghana,Lincoln Financial Field,17:00 UTC-4
+73,2026-06-28,Round of 32,2A,2B,SoFi Stadium,12:00 UTC-7
+74,2026-06-29,Round of 32,1E,3A/B/C/D/F,Gillette Stadium,16:30 UTC-4
+75,2026-06-29,Round of 32,1F,2C,Estadio BBVA,19:00 UTC-6
+76,2026-06-29,Round of 32,1C,2F,NRG Stadium,12:00 UTC-5
+77,2026-06-30,Round of 32,1I,3C/D/F/G/H,MetLife Stadium,17:00 UTC-4
+78,2026-06-30,Round of 32,2E,2I,AT&T Stadium,12:00 UTC-5
+79,2026-06-30,Round of 32,1A,3C/E/F/H/I,Estadio Azteca,19:00 UTC-6
+80,2026-07-01,Round of 32,1L,3E/H/I/J/K,Mercedes-Benz Stadium,12:00 UTC-4
+81,2026-07-01,Round of 32,1D,3B/E/F/I/J,Levi's Stadium,17:00 UTC-7
+82,2026-07-01,Round of 32,1G,3A/E/H/I/J,Lumen Field,13:00 UTC-7
+83,2026-07-02,Round of 32,2K,2L,BMO Field,19:00 UTC-4
+84,2026-07-02,Round of 32,1H,2J,SoFi Stadium,12:00 UTC-7
+85,2026-07-02,Round of 32,1B,3E/F/G/I/J,BC Place,20:00 UTC-7
+86,2026-07-03,Round of 32,1J,2H,Hard Rock Stadium,18:00 UTC-4
+87,2026-07-03,Round of 32,1K,3D/E/I/J/L,Arrowhead Stadium,20:30 UTC-5
+88,2026-07-03,Round of 32,2D,2G,AT&T Stadium,13:00 UTC-5
+89,2026-07-04,Round of 16,W74,W77,Lincoln Financial Field,17:00 UTC-4
+90,2026-07-04,Round of 16,W73,W75,NRG Stadium,12:00 UTC-5
+91,2026-07-05,Round of 16,W76,W78,MetLife Stadium,16:00 UTC-4
+92,2026-07-05,Round of 16,W79,W80,Estadio Azteca,18:00 UTC-6
+93,2026-07-06,Round of 16,W83,W84,AT&T Stadium,14:00 UTC-5
+94,2026-07-06,Round of 16,W81,W82,Lumen Field,17:00 UTC-7
+95,2026-07-07,Round of 16,W86,W88,Mercedes-Benz Stadium,12:00 UTC-4
+96,2026-07-07,Round of 16,W85,W87,BC Place,13:00 UTC-7
+97,2026-07-09,Quarter-final,W89,W90,Gillette Stadium,16:00 UTC-4
+98,2026-07-10,Quarter-final,W93,W94,SoFi Stadium,12:00 UTC-7
+99,2026-07-11,Quarter-final,W91,W92,Hard Rock Stadium,17:00 UTC-4
+100,2026-07-11,Quarter-final,W95,W96,Arrowhead Stadium,20:00 UTC-5
+101,2026-07-14,Semi-final,W97,W98,AT&T Stadium,14:00 UTC-5
+102,2026-07-15,Semi-final,W99,W100,Mercedes-Benz Stadium,15:00 UTC-4
+103,2026-07-18,Match for third place,L101,L102,Hard Rock Stadium,17:00 UTC-4
+104,2026-07-19,Final,W101,W102,MetLife Stadium,15:00 UTC-4
