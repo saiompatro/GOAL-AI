@@ -2,7 +2,11 @@
 # (features.py, train.py, squad_strength.py, predict.py, app.py).
 pandas
 numpy
-scikit-learn
+# Pinned floor: the committed models (models/fifa_model.joblib,
+# premier_league_model.joblib) are pickled with scikit-learn 1.9 — an older
+# version can't unpickle them ("No module named '_loss'"). Retrain with
+# `python train.py` / `python train_league.py` if you bump the major version.
+scikit-learn>=1.9,<2
 scipy
 requests
 flask
