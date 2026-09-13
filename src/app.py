@@ -8,6 +8,7 @@ import subprocess
 from flask import Flask, request, jsonify, send_from_directory
 
 from geo import VENUES
+from fetch_club_results import LEAGUES as CLUB_LEAGUES
 
 SRC = os.path.dirname(__file__)
 ROOT = os.path.join(SRC, "..")
@@ -42,15 +43,18 @@ ARTIFACTS = [
      "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
     {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (goal-difference)",
      "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
-    {"key": "premier_league_results", "path": "data/club/premier_league_results.csv",
-     "label": "Premier League historical results", "producer": "fetch_club_results.py",
-     "max_age_h": None, "optional": True},
-    {"key": "premier_league_model", "path": "models/premier_league_model.joblib",
-     "label": "Premier League model", "producer": "train_league.py",
-     "max_age_h": None, "optional": True},
     {"key": "pl_players", "path": "data/players/premier_league_players.csv",
      "label": "Premier League player stats (transfer-value / scouting projects)",
      "producer": "projects/fetch_players.py", "max_age_h": None, "optional": True},
+] + [
+    a for key, info in CLUB_LEAGUES.items() for a in (
+        {"key": f"{key}_results", "path": f"data/club/{key}_results.csv",
+         "label": f"{info['name']} historical results", "producer": "fetch_club_results.py",
+         "max_age_h": None, "optional": True},
+        {"key": f"{key}_model", "path": f"models/{key}_model.joblib",
+         "label": f"{info['name']} model", "producer": "train_league.py",
+         "max_age_h": None, "optional": True},
+    )
 ]
 
 # Tournament-refresh sequence (ordered; squad_strength runs twice — once to feed
