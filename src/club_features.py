@@ -9,7 +9,9 @@ signal international teams need doesn't apply.
 
 One model is trained per league (see LEAGUES in fetch_club_results.py); this
 module is parameterised by league key so a second league (La Liga, Serie A,
-...) is just another data/club/<key>_results.csv away.
+...) is just another data/club/<key>_results.csv away. Home-advantage is
+also read per league from LEAGUES (falling back to the value below) since
+different leagues carry different home-field strength.
 """
 import os
 import math
@@ -18,8 +20,15 @@ import numpy as np
 
 DATA = os.path.join(os.path.dirname(__file__), "..", "data", "club")
 
-HOME_ADV = 70   # Elo home-advantage bonus; club football runs stronger than internationals'
-K = 20
+HOME_ADV = 70   # fallback Elo home-advantage bonus; club football runs stronger than internationals'
+K = 20          # fallback goal-margin K-factor
+
+
+def league_constants(league_key):
+    """(home_adv, k) for a league, from fetch_club_results.LEAGUES with a fallback."""
+    from fetch_club_results import LEAGUES
+    info = LEAGUES.get(league_key, {})
+    return info.get("home_adv", HOME_ADV), info.get("k", K)
 
 
 def expected(ra, rb):
@@ -27,6 +36,7 @@ def expected(ra, rb):
 
 
 def build_match_table(league_key):
+    home_adv, k_factor = league_constants(league_key)
     path = os.path.join(DATA, f"{league_key}_results.csv")
     df = pd.read_csv(path)
     df["date"] = pd.to_datetime(df["date"])
@@ -42,7 +52,7 @@ def build_match_table(league_key):
         h, a = m.home_team, m.away_team
         eh, ea = elo.get(h, 1500.0), elo.get(a, 1500.0)
 
-        we = expected(eh + HOME_ADV, ea)
+        we = expected(eh + home_adv, ea)
         gh, ga = int(m.home_score), int(m.away_score)
         res = 1.0 if gh > ga else (0.0 if gh < ga else 0.5)
 
@@ -67,7 +77,7 @@ def build_match_table(league_key):
 
         rows.append({
             "date": m.date, "season": m.season, "home_team": h, "away_team": a,
-            "elo_diff": (eh + HOME_ADV) - ea,
+            "elo_diff": (eh + home_adv) - ea,
             "ppg5_diff": fh["ppg5"] - fa["ppg5"], "gd10_diff": fh["gd10"] - fa["gd10"],
             "morale_diff": fh["morale"] - fa["morale"],
             "att_vs_def": fh["att"] - fa["dfn"], "def_vs_att": fh["dfn"] - fa["att"],
@@ -79,7 +89,7 @@ def build_match_table(league_key):
 
         # ---- update state (after recording, so features are pre-match) ----
         margin = math.log(abs(gh - ga) + 1) + 1
-        delta = K * margin * (res - we)
+        delta = k_factor * margin * (res - we)
         elo[h], elo[a] = eh + delta, ea - delta
         hist.setdefault(h, []).append((res, gh - ga))
         hist.setdefault(a, []).append((1 - res, ga - gh))
@@ -101,7 +111,8 @@ def build_match_table(league_key):
     state = {"elo": elo, "hist": {k: v[-10:] for k, v in hist.items()},
              "morale": morale, "att": att, "dfn": dfn, "streak": streak,
              "h2h": {k: v[-10:] for k, v in h2h.items()},
-             "current_teams": current_teams, "current_season": df["season"].iloc[-1]}
+             "current_teams": current_teams, "current_season": df["season"].iloc[-1],
+             "home_adv": home_adv}
     return out, state
 
 
