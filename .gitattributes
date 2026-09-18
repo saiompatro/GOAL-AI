@@ -2,3 +2,5 @@
 *.csv text
 *.py text
 *.joblib binary
+*.mp4 binary
+*.jpg binary
