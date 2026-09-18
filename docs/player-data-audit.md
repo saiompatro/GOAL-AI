@@ -2,6 +2,12 @@
 
 Checked 18 September 2026. Public files were downloaded and inspected, rather than relying only on dataset descriptions. See `player-source-manifest.json` for download URLs, file sizes, SHA-256 checksums, actual CSV schemas and row counts.
 
+## Current implementation
+
+This audit now describes the installed competition-workspace data, rather than the earlier player-data prototype. GOAL AI serves separate Premier League, La Liga, Champions League, Serie A, Bundesliga, and Ligue 1 workspaces, each with independent match, valuation, and scouting datasets. Prepared CSVs and metadata are committed in `data/analytics/`; versioned models and the current evaluation report are committed in `models/workspaces/`.
+
+The three workspace datasets are deliberately not joined into a single "complete" player table. Valuation coverage is driven by date-aligned historical market values, while scouting coverage is driven by observed performance fields. This prevents a player from disappearing from scouting simply because they lack a valid valuation target. Details of the routes, validation, and artifact lifecycle are in [workspaces.md](workspaces.md).
+
 ## Integration status: resolved
 
 The original demo notice was accurate: player models fell back to generated
