@@ -32,5 +32,13 @@ src/catboost_info/
 models/projects/*.joblib
 models/projects/*.png
 
+# Local development previews and server logs
+server.out.log
+server.err.log
+*-preview.png
+
+# Downloaded research snapshots; provenance and checksums live in docs/.
+data/raw/player_sources/
+
 # stale snapshot, only used as a fallback by fetch_squads_api.py
 data/squads_wikipedia_backup.csv

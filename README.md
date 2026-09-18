@@ -1,29 +1,170 @@
 # GOAL AI
 
-Football intelligence and machine-learning projects for the **2026 FIFA World
-Cup** and **five major club leagues** — Premier League, La Liga, Serie A,
-Bundesliga and Ligue 1, the domestic competitions that also feed UEFA's
-Champions League and Europa League. The browser app keeps each competition's
-data, models, and projects together using a clear **League → Projects**
-hierarchy.
+Football intelligence for the **Premier League, La Liga, UEFA Champions League,
+Serie A, Bundesliga, Ligue 1, and 2026 FIFA World Cup**. The app opens to a
+competition hub with distinct workspaces, persistent navigation, competition
+colours, and responsive desktop/mobile layouts.
 
 ## What you can do
 
 | Competition | Where in the UI | Projects |
 |---|---|---|
-| **FIFA World Cup 2026** | Match · Team · Player | Win/draw/loss prediction, scoreline grid, team and player analysis, venue/weather context, goalscorer and match markets |
-| **Premier League, La Liga, Serie A, Bundesliga, Ligue 1** | Leagues | League match predictor for every league; transfer-value predictor, match-outcome predictor, and player-scouting system for the Premier League |
+| **FIFA World Cup 2026** | `/world-cup` | Existing match, team, and player analysis |
+| **Premier League, La Liga, Champions League, Serie A, Bundesliga, Ligue 1** | `/competitions/<competition>/overview` | Dedicated Overview, Match Predictor, Transfer Values, and Player Scouting pages |
 
-The Premier League lab additionally contains three focused, end-to-end
-learning projects:
+Every competition workspace contains three focused learning projects:
 
 1. **Transfer value predictor** — linear regression from goals, assists,
    minutes, age, position, and related player statistics.
-2. **Match outcome predictor** — random forest or XGBoost classification from
-   recent form, goals for/against, shots, possession, and home advantage.
+2. **Match outcome predictor** — random forest classification from recent
+   form, goals for/against, home advantage and observed shots. Possession is
+   included only if an imported match dataset supplies it.
 3. **Player scouting system** — nearest-neighbour similarity and K-means style
    clusters, with searchable results in the main UI and a standalone Streamlit
-   dashboard.
+   dashboard, per-90 profile comparison, position filters, CSV exports, and
+   downloadable matplotlib charts.
+
+### Competition workspaces
+
+Use slugs `premier-league`, `la-liga`, `champions-league`, `serie-a`,
+`bundesliga`, and `ligue-1`. Every workspace supports these deep links:
+
+```text
+/competitions/premier-league/overview
+/competitions/premier-league/matches
+/competitions/premier-league/transfers
+/competitions/premier-league/scouting
+```
+
+The new workspace engine is in `src/projects/analytics.py`, the competition
+registry in `competitions.py`, and the API in `workspace_api.py`. Each
+competition has separate models and cached results. Updating an imported CSV
+invalidates its model cache. The old World Cup interface and `/api/pl/*`
+tutorial endpoints are retained for compatibility; the new pages use
+`/api/workspaces/*`.
+
+**Observed player data is installed.** The valuation model uses 14,695 player-season
+records from Transfermarkt-derived appearances and dated market valuations, with
+four or five complete seasons per competition. Premier League, La Liga, Serie A
+and Bundesliga run through 2025–26; UCL and Ligue 1 run through 2024–25 because
+the downloaded 2025–26 appearance tables omit matches. Targets are the first
+recorded valuation strictly after the final match, within 90 days. Rows without
+such a target are excluded and counted in the provenance JSON. Market valuations
+are estimates, not completed transfer fees. Historical positions come from the
+source player profiles, not reconstructed season-by-season roles.
+
+Scouting has its own dataset, independent of valuation coverage. The five domestic
+leagues use observed 2024–25 FBref-derived goals, assists, shots, key passes,
+successful take-ons, tackles and interceptions. UCL uses observed 2024–25 goals
+and assists per 90 only, explicitly labelled a basic attacking comparison.
+Multiple-club rows are combined within a competition; the club with most minutes
+is shown. Directories show the most recent installed season, not current squads.
+There is no generated-player fallback in the competition workspaces.
+
+Source links, dates, excluded rows and feature coverage are in
+`data/analytics/*_players.json` and `*_scouting.json`. The complete research audit
+is in [docs/player-data-audit.md](docs/player-data-audit.md), with pinned input
+URLs and checksums in [docs/player-source-manifest.json](docs/player-source-manifest.json).
+
+Rebuild from the audited downloads and retrain all 18 models:
+
+```powershell
+python src/projects/prepare_player_data.py --download
+python src/projects/train_workspaces.py
+```
+
+Prepared CSVs and trained artifacts under `models/workspaces/` are committed, so
+running the app needs no provider key or download. Artifacts are checked against
+input data, implementation and dependency versions before loading. If they are
+stale or incompatible, the app trains from the bundled observed CSVs instead.
+`models/workspaces/training_report.json` records the held-out metrics, baseline
+errors, source coverage and scouting features for each competition. Raw research
+archives are ignored by Git; the build command verifies their pinned checksums
+and refuses changed upstream snapshots until they are audited.
+
+The bundled match workspaces cover 2021–22 through 2025–26 (source timestamps
+and URLs are in `data/analytics/*_matches.json`). Domestic results and shots
+come from [football-data.co.uk](https://www.football-data.co.uk/data.php);
+753 Champions League matches come from
+[OpenFootball](https://github.com/openfootball/champions-league). UCL targets
+use regulation-time results, not penalty winners or extra-time scores. Finals
+are marked neutral. Source data licensing/terms apply when redistributing it.
+
+The match model holds out the newest season, trains strictly on earlier
+seasons, and shows accuracy, home-win baseline, log loss, a confusion matrix,
+and an audit of held-out predictions. The serving model is then refitted on
+all recorded matches. Its latest-form features include the last recorded game.
+Shot/possession fields are omitted when absent, never reconstructed from goals.
+Transfer regression evaluates on the latest complete season. Named-player
+comparisons use that held-out model, so the displayed reference target was not
+used to train its estimate. Custom profiles use the model refitted on all
+observations. The UI displays both model MAE and a training-median baseline.
+
+Refresh the public match snapshots with `requests` and `pandas`:
+
+```powershell
+python src/projects/refresh_data.py all
+# Or choose one competition and seasons by their starting year:
+python src/projects/refresh_data.py champions-league --years 2023 2024 2025
+```
+
+Import a player-season table (use one row per player per season, position
+`GK`/`DF`/`MF`/`FW`, season `YYYY-YY`, and values in EUR millions):
+
+```text
+player,team,season,position,age,minutes,goals,assists,market_value_eur_m
+```
+
+```powershell
+python src/projects/refresh_data.py la-liga --players path/to/observed_players.csv --source "Provider / dataset name and date"
+```
+
+You can also download observed rosters and scorers using `requests` and
+football-data.org, subject to your token's historical-season access:
+
+```powershell
+python src/projects/fetch_players.py premier-league --years 2022 2023 2024
+python src/projects/fetch_players.py la-liga --years 2022 2023 2024
+python src/projects/fetch_players.py champions-league --years 2022 2023 2024
+```
+
+These raw provider snapshots are saved in `data/analytics/provider_snapshots`.
+They do not overwrite the player training table or invent missing minutes,
+scouting statistics, or values. Join them with a complete observed source
+before using the validated player import above.
+
+Imports must include at least two seasons, 30 rows, eight outfield players
+with 270+ minutes, 20 training rows, and five final-season holdout rows.
+Missing, duplicate, nonfinite, and negative observations are rejected before
+replacing existing data. Imports work identically for all six competitions.
+Imports update valuation data and attribution; they do not replace the independent scouting table.
+
+Upcoming fixtures are optional and never fabricated. Set `FOOTBALL_DATA_TOKEN`
+in `.env`, then refresh them through the
+[football-data.org v4 API](https://docs.football-data.org/general/v4/competition.html):
+
+```powershell
+python src/projects/refresh_data.py premier-league --fixtures
+```
+
+The match page displays the fetched fixture list and refresh date. Its
+hypothetical match-up controls use provider-specific historical team names;
+select the equivalent teams to analyse an upcoming fixture. Predictions use
+the latest *loaded* history, not live form. Past fixtures are hidden.
+
+Run the standalone multi-competition Streamlit dashboard:
+
+```powershell
+pip install -r requirements-scouting.txt
+streamlit run src/projects/streamlit_scouting.py
+```
+
+Verify competition isolation, chronological features, 90-minute UCL parsing,
+import validation, model outputs and chart downloads:
+
+```powershell
+python -m unittest discover -s tests -v
+```
 
 The World Cup engine returns win/draw/loss probabilities and a full scoreline
 grid, plus derived goalscorer, match, and parlay markets from a feature set built
@@ -55,8 +196,9 @@ pip install -r requirements.txt
 python src\app.py
 ```
 
-Open **http://127.0.0.1:5000**. The committed models and datasets make the main
-World Cup and all five club-league experiences available immediately.
+Open **http://127.0.0.1:5000** for the competition hub. The six competition
+workspaces train their lightweight models on first use from bundled datasets.
+The original World Cup tools remain at **http://127.0.0.1:5000/world-cup**.
 
 Stop the server with `Ctrl+C` in that terminal (or `Stop-Process -Name python`).
 The port defaults to 5000; override it with:
@@ -337,66 +479,19 @@ with `home_adv` from `fit_home_advantage()` on that league's own results)
 plus a re-run of `fetch_club_results.py` → `club_features.py` → `train_league.py` —
 no other code changes.
 
-## Premier League projects
+## Legacy Premier League tutorials
 
-Under the **Leagues → Premier League** section, beyond the match predictor,
-three self-contained machine-learning projects live in `src/projects/`. Each is
-a small end-to-end study with its own model, endpoint set and UI sub-tab, and
-each runs out of the box on the bundled data (no API token needed). The UI is
-organised **League → Projects** so every league carries its own set of projects
-(player-level projects are Premier League-only for now).
+The competition workspaces supersede the original standalone tutorial modules.
+The World Cup interface now sends its player-project buttons to the observed-data
+workspaces for the selected league. Legacy `/api/pl/*` player routes also use the
+observed engine; prediction routes redirect to the corresponding workspace API
+and return its response schema. Original standalone tutorial modules and their
+sample CSV remain available as offline examples, but the app does not use their
+generated player models or reconstructed match-statistic proxies.
 
-| # | Project | What it does | Model | Tech stack |
-|---|---|---|---|---|
-| 1 | **Transfer value predictor** | Predict a player's market/transfer value from their own stats (goals, assists, minutes, age, position …); plug in any player and see model-vs-actual | Linear regression (standardised features + one-hot position) | requests · pandas · scikit-learn · matplotlib |
-| 2 | **Match outcome predictor** | Predict win / draw / loss from match features (form, goals for/against, shots, possession, home advantage); backtested on a held-out season span | Random forest, or **XGBoost** when installed (auto-detected) | pandas · scikit-learn · XGBoost · matplotlib |
-| 3 | **Player scouting system** | Find the players most similar in style to a given player; K-means groups everyone into playing-style clusters; searchable dashboard | Nearest-neighbours similarity + K-means over per-90 stats | pandas · scikit-learn · matplotlib · streamlit |
-
-Run any project standalone from `src/`:
-
-```powershell
-python -m projects.gen_player_data          # (re)build the bundled player table
-python -m projects.transfer_value --plot     # train + report + predicted-vs-actual scatter
-python -m projects.match_outcome  --plot     # train + backtest + confusion matrix
-python -m projects.player_scouting "Bukayo Saka"   # closest statistical matches
-streamlit run projects/streamlit_scouting.py       # project 3's standalone dashboard
-```
-
-Or use them through the app: the **Leagues** tab loads them under the Premier
-League selector, served by `GET /api/pl/projects`, `/api/pl/transfer/*`,
-`/api/pl/outcome/*` and `/api/pl/scouting/*` (see `src/app.py`). Trained models
-are cached lazily in `models/projects/` on first request (gitignored; the RF is
-large) and rebuilt automatically if missing.
-
-### Data
-
-The projects share the match-results table (`data/club/premier_league_results.csv`)
-for project 2 and a **player-season statistics** table
-(`data/players/premier_league_players.csv`) for projects 1 and 3. The player
-table's real-data path is `projects/fetch_players.py`, which pulls current
-Premier League squads (names, positions, ages) from the football-data.org API
-with `requests`. Because the free API tier does not expose per-player season
-stats or market values (those need a paid stats/transfer feed), those columns
-are produced by `projects/gen_player_data.py`, a deterministic generative model
-keyed on each player's position and age — so the pipeline runs with no token
-and any richer feed drops in behind the same schema. The bundled CSV is
-committed; regenerate it any time with `python -m projects.gen_player_data`.
-
-### Known limitations (club leagues)
-
-- Results run through the 2023-24 season only — the cache mirror hadn't
-  picked up 2024-25 at fetch time; re-run `fetch_club_results.py` periodically.
-- No player-level markets (goalscorer/assist/parlays) yet — those need a
-  squad + per-player goals dataset, which the club-league pipeline doesn't
-  pull in yet.
-- No live in-season Elo updates (the WC model's `live_ratings.py` equivalent)
-  — ratings are frozen as of the last fetched season until the pipeline reruns.
-- Home-advantage is now fit per league from historical results
-  (`fit_home_advantage()`), but the goal-margin K-factor is still a single
-  constant (K=20) shared across all five leagues — not yet fit per league.
-- Player-level projects (transfer value, match outcome, scouting) are still
-  Premier League-only; extending them to the other four leagues needs each
-  one's own player-stats data source.
+The original domestic Elo pipeline still uses its older 2023–24 snapshots;
+the new random-forest workspaces have separate 2025–26 snapshots. The standalone
+Streamlit scouting dashboard uses the same observed engine as the web app.
 
 ## Known limitations
 

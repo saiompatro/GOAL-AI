@@ -1,0 +1,13 @@
+{
+  "kind": "historical",
+  "source": "football-data.co.uk",
+  "urls": [
+    "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
+    "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
+    "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
+    "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
+    "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+  ],
+  "target": "90-minute result, excluding extra time and penalties",
+  "retrieved_at": "2026-09-18T14:20:12.293828+00:00"
+}

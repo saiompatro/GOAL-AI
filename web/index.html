@@ -248,6 +248,7 @@
 </head>
 <body>
 <div class="wrap">
+  <a href="/" style="display:inline-block;color:#b7f66b;margin-bottom:20px;text-decoration:none">← GOAL AI · Competition hub</a>
   <h1>⚽ World Cup 2026 <span>Match Predictor</span></h1>
   <div class="sub">Real-results model: 150 years of internationals · player club strength · stadium altitude, heat, humidity &amp; travel · morale from form and live news. Predict a match, or dive into a single team or player.</div>
 
@@ -578,20 +579,21 @@ function loadLeagueTeams() {
 }
 
 function onLeagueChange() {
-  const isPL = $('lgComp').value === PL_KEY;
-  // player-level projects only exist for the Premier League for now
-  document.querySelectorAll('.subtab.pl-only').forEach(b => b.classList.toggle('hidden', !isPL));
-  $('lgProjNote').textContent = isPL
-    ? '4 projects available'
-    : 'Match predictor only — player projects are Premier League-only for now';
-  if (!isPL) selectProject('match');     // fall back if a PL-only tab was open
+  document.querySelectorAll('.subtab.pl-only').forEach(b => b.classList.remove('hidden'));
+  $('lgProjNote').textContent = 'Observed player data and match models available in each competition workspace';
+  selectProject('match');
   loadLeagueTeams();
-  if (isPL && !PL_LOADED) loadPLProjects();
 }
 $('lgComp').onchange = onLeagueChange;
 
 // ---- project sub-tab switching ----
 function selectProject(key) {
+  if (key !== 'match') {
+    const slug = $('lgComp').value.replaceAll('_', '-');
+    const page = {transfer: 'transfers', outcome: 'matches', scouting: 'scouting'}[key];
+    window.location.href = `/competitions/${slug}/${page}`;
+    return;
+  }
   document.querySelectorAll('#projSubtabs .subtab').forEach(b =>
     b.classList.toggle('active', b.dataset.proj === key));
   document.querySelectorAll('#panel-league .proj').forEach(p =>

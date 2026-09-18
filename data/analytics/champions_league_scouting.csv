@@ -1,0 +1,823 @@
+player,team,season,position,age,minutes,goals,assists
+Abdallah Sima,Stade Brestois 29,2024-25,FW,23,508,3,0
+Abdoulaye Ndiaye,Stade Brestois 29,2024-25,DF,23,180,0,0
+Abdu Conté,BSC Young Boys,2024-25,DF,27,27,0,0
+Abdukodir Khusanov,Manchester City,2024-25,DF,21,90,0,0
+Abel Ruiz,Girona FC,2024-25,FW,25,146,0,0
+Achraf Hakimi,Paris Saint-Germain,2024-25,DF,26,1540,4,5
+Adam Aznou,Bayern Munich,2024-25,DF,18,2,0,0
+Adam Daghim,Fußballclub Red Bull Salzburg,2024-25,FW,19,393,1,0
+Adam Idah,Celtic FC,2024-25,FW,24,338,3,0
+Adam Sevinsky,AC Sparta Prague,2024-25,DF,20,90,0,0
+Adamo Nagalo,PSV Eindhoven,2024-25,DF,22,145,0,0
+Ademola Lookman,Atalanta BC,2024-25,FW,27,482,5,2
+Afonso Moreira,Sporting CP,2024-25,FW,20,34,0,0
+Alaa Ghram,FC Shakhtar Donetsk,2024-25,DF,23,135,0,0
+Alan Virginius,BSC Young Boys,2024-25,MF,22,298,0,1
+Albion Rrahmani,AC Sparta Prague,2024-25,FW,24,327,1,0
+Aleix García,Bayer 04 Leverkusen,2024-25,MF,27,363,1,0
+Alejandro Balde,FC Barcelona,2024-25,DF,21,804,0,4
+Alejandro Francés,Girona FC,2024-25,DF,22,435,0,0
+Alejandro Grimaldo,Bayer 04 Leverkusen,2024-25,DF,29,871,2,1
+Aleksa Terzic,Fußballclub Red Bull Salzburg,2024-25,DF,25,402,0,0
+Aleksandar Katai,Red Star Belgrade,2024-25,MF,34,24,0,0
+Aleksandar Pavlovic,Bayern Munich,2024-25,MF,21,291,0,1
+Aleksandr Golovin,AS Monaco,2024-25,MF,29,577,0,1
+Alessandro Bastoni,Inter Milan,2024-25,DF,26,1079,0,1
+Alexander Bah,SL Benfica,2024-25,DF,27,500,1,1
+Alexander Meyer,Borussia Dortmund,2024-25,GK,34,90,0,0
+Alexander Nübel,VfB Stuttgart,2024-25,GK,28,630,0,0
+Alexander Schlager,Fußballclub Red Bull Salzburg,2024-25,GK,29,336,0,1
+Alexander Sørloth,Atlético de Madrid,2024-25,FW,29,290,0,0
+Alexandre Brito,Sporting CP,2024-25,MF,19,45,0,0
+Alexis Mac Allister,Liverpool FC,2024-25,MF,26,676,2,0
+Alexsandro,LOSC Lille,2024-25,DF,25,900,0,1
+Alisson,Liverpool FC,2024-25,GK,32,570,0,0
+Alistair Johnston,Celtic FC,2024-25,DF,26,838,0,1
+Alphonso Davies,Bayern Munich,2024-25,DF,24,701,2,1
+Amadou Haidara,RB Leipzig,2024-25,MF,27,592,0,0
+Amadou Onana,Aston Villa,2024-25,MF,23,272,1,0
+Amady Camara,Sportklub Puntigamer Sturm Graz,2024-25,FW,20,131,0,0
+Amar Dedić,Fußballclub Red Bull Salzburg,2024-25,DF,22,630,0,1
+Amara Nallo,Liverpool FC,2024-25,DF,18,4,0,0
+Ameen Al-Dakhil,VfB Stuttgart,2024-25,DF,23,93,0,0
+Amine Adli,Bayer 04 Leverkusen,2024-25,FW,25,212,0,0
+Anatoliy Trubin,SL Benfica,2024-25,GK,23,1080,0,0
+Andrea Belotti,SL Benfica,2024-25,FW,31,55,0,0
+Andrea Cambiaso,Juventus FC,2024-25,DF,25,564,0,1
+Andreas Christensen,FC Barcelona,2024-25,DF,29,7,0,0
+Andreas Schjelderup,SL Benfica,2024-25,FW,20,407,0,2
+Andreas Skov Olsen,Club Brugge KV,2024-25,FW,25,367,0,0
+Andrew Robertson,Liverpool FC,2024-25,DF,31,550,0,1
+Andrija Maksimovic,Red Star Belgrade,2024-25,MF,17,418,0,0
+Andriy Lunin,Real Madrid,2024-25,GK,26,180,0,0
+André Gomes,LOSC Lille,2024-25,MF,31,20,0,0
+André Silva,RB Leipzig,2024-25,FW,29,85,0,0
+Andrés Cuenca,FC Barcelona,2024-25,DF,17,6,0,0
+Angel Gomes,LOSC Lille,2024-25,MF,24,160,1,0
+Angelo Preciado,AC Sparta Prague,2024-25,DF,27,270,0,0
+Angelo Stiller,VfB Stuttgart,2024-25,MF,24,695,1,0
+Anis Hadj Moussa,Feyenoord Rotterdam,2024-25,FW,23,785,3,1
+Anrie Chase,VfB Stuttgart,2024-25,DF,21,155,0,0
+Ansu Fati,FC Barcelona,2024-25,FW,22,38,0,0
+Antal Yaakobishvili,Girona FC,2024-25,DF,20,90,0,0
+Anthony Ralston,Celtic FC,2024-25,DF,26,62,0,0
+Anthony Rouault,VfB Stuttgart,2024-25,DF,24,621,0,0
+Antoine Griezmann,Atlético de Madrid,2024-25,FW,34,733,6,2
+Antoni Milambo,Feyenoord Rotterdam,2024-25,MF,20,764,3,1
+Antonio Nusa,RB Leipzig,2024-25,FW,20,517,0,0
+Antonio Rüdiger,Real Madrid,2024-25,DF,32,1188,2,0
+António Silva,SL Benfica,2024-25,DF,21,724,0,0
+Arbër Hoxha,GNK Dinamo Zagreb,2024-25,FW,26,60,0,0
+Arda Güler,Real Madrid,2024-25,MF,20,142,0,0
+Ardon Jashari,Club Brugge KV,2024-25,MF,22,951,0,0
+Arijan Ademi,GNK Dinamo Zagreb,2024-25,MF,34,289,0,0
+Arijon Ibrahimovic,Bayern Munich,2024-25,MF,19,2,0,0
+Arjan Malic,Sportklub Puntigamer Sturm Graz,2024-25,DF,19,183,1,0
+Armando Obispo,PSV Eindhoven,2024-25,DF,26,260,0,0
+Arnau Martínez,Girona FC,2024-25,DF,22,415,0,0
+Arnaut Danjuma,Girona FC,2024-25,FW,28,385,1,2
+Arne Engels,Celtic FC,2024-25,MF,21,728,1,3
+Artem Bondarenko,FC Shakhtar Donetsk,2024-25,MF,24,462,0,0
+Artem Stepanov,Bayer 04 Leverkusen,2024-25,FW,17,18,0,0
+Arthur,Bayer 04 Leverkusen,2024-25,DF,22,107,0,0
+Arthur Cabral,SL Benfica,2024-25,FW,27,74,1,0
+Arthur Vermeeren,RB Leipzig,2024-25,MF,20,337,0,0
+Asger Sörensen,AC Sparta Prague,2024-25,DF,28,360,0,0
+Assan Ouédraogo,RB Leipzig,2024-25,MF,19,23,0,0
+Atakan Karazor,VfB Stuttgart,2024-25,MF,28,555,0,0
+Aurélien Tchouaméni,Real Madrid,2024-25,MF,25,800,0,0
+Auston Trusty,Celtic FC,2024-25,DF,26,816,0,0
+Axel Disasi,Aston Villa,2024-25,DF,27,126,0,0
+Axel Witsel,Atlético de Madrid,2024-25,MF,36,271,0,0
+Ayase Ueda,Feyenoord Rotterdam,2024-25,FW,26,383,2,0
+Ayman Azhil,Borussia Dortmund,2024-25,MF,24,1,0,0
+Aymen Sliti,Feyenoord Rotterdam,2024-25,FW,19,63,0,0
+Ayyoub Bouaddi,LOSC Lille,2024-25,MF,17,622,0,1
+Aïssa Mandi,LOSC Lille,2024-25,DF,33,320,0,0
+Bafodé Diakité,LOSC Lille,2024-25,DF,24,855,0,0
+Bart Nieuwkoop,Feyenoord Rotterdam,2024-25,DF,29,353,0,1
+Bartol Franjic,FC Shakhtar Donetsk,2024-25,DF,25,20,0,0
+Ben Godfrey,Atalanta BC,2024-25,DF,27,17,0,0
+Ben White,Arsenal FC,2024-25,DF,27,333,0,0
+Benjamin André,LOSC Lille,2024-25,MF,34,810,0,0
+Benjamin Boakye,VfB Stuttgart,2024-25,FW,20,6,0,0
+Benjamin Henrichs,RB Leipzig,2024-25,DF,28,474,0,0
+Benjamin Pavard,Inter Milan,2024-25,DF,29,908,1,0
+Benjamin Sesko,RB Leipzig,2024-25,FW,22,521,4,0
+Benjamín Rollheiser,SL Benfica,2024-25,FW,25,91,0,0
+Berat Djimsiti,Atalanta BC,2024-25,DF,32,679,1,0
+Bernardo Silva,Manchester City,2024-25,MF,30,766,0,0
+Biel,Sporting CP,2024-25,FW,24,73,0,0
+Bjorn Meijer,Club Brugge KV,2024-25,DF,22,16,0,0
+Bobby Clark,Fußballclub Red Bull Salzburg,2024-25,MF,20,326,0,0
+Bojan Miovski,Girona FC,2024-25,FW,25,275,0,0
+Boubacar Kamara,Aston Villa,2024-25,MF,25,701,0,0
+Bradley Barcola,Paris Saint-Germain,2024-25,FW,22,1096,3,4
+Brahim Díaz,Real Madrid,2024-25,FW,25,478,2,1
+Brandon Mechele,Club Brugge KV,2024-25,DF,32,1080,0,0
+Branko Pavic,GNK Dinamo Zagreb,2024-25,MF,18,73,0,0
+Breel Embolo,AS Monaco,2024-25,FW,28,750,1,3
+Bremer,Juventus FC,2024-25,DF,28,96,0,0
+Brendan Chardonnet,Stade Brestois 29,2024-25,DF,30,810,0,0
+Bruno Duarte,Red Star Belgrade,2024-25,FW,29,152,0,0
+Bruno Petkovic,GNK Dinamo Zagreb,2024-25,FW,30,193,2,0
+Bryan Gil,Girona FC,2024-25,FW,24,453,0,0
+Bukayo Saka,Arsenal FC,2024-25,FW,23,764,6,2
+Caio Henrique,AS Monaco,2024-25,DF,27,488,0,0
+Callum McGregor,Celtic FC,2024-25,MF,31,900,0,0
+Calvin Stengs,Feyenoord Rotterdam,2024-25,MF,26,80,0,1
+Cameron Carter-Vickers,Celtic FC,2024-25,DF,27,607,0,0
+Caoimhín Kelleher,Liverpool FC,2024-25,GK,26,360,0,0
+Carlos Augusto,Inter Milan,2024-25,DF,26,660,0,2
+Carney Chukwuemeka,Borussia Dortmund,2024-25,MF,21,76,0,0
+Casper Nielsen,Club Brugge KV,2024-25,MF,31,139,1,0
+Castello Lukeba,RB Leipzig,2024-25,DF,22,378,0,0
+Cedric Itten,BSC Young Boys,2024-25,FW,28,231,0,0
+Charalampos Lykogiannis,Bologna Football Club 1909,2024-25,DF,31,371,0,1
+Charles De Ketelaere,Atalanta BC,2024-25,MF,24,703,4,5
+Cheikh Niasse,BSC Young Boys,2024-25,MF,25,341,0,1
+Chemsdine Talbi,Club Brugge KV,2024-25,FW,20,552,2,1
+Cherif Ndiaye,Red Star Belgrade,2024-25,FW,29,570,2,1
+Chris Führich,VfB Stuttgart,2024-25,FW,27,506,1,0
+Chris-Kévin Nadje,Feyenoord Rotterdam,2024-25,MF,23,91,0,0
+Christian Mawissa,AS Monaco,2024-25,DF,20,295,0,0
+Christian Pulisic,AC Milan,2024-25,FW,26,633,4,1
+Christoph Baumgartner,RB Leipzig,2024-25,MF,25,482,2,0
+Christos Tzolis,Club Brugge KV,2024-25,FW,23,940,1,3
+Chuba Akpom,LOSC Lille,2024-25,FW,29,23,0,0
+Clément Lenglet,Atlético de Madrid,2024-25,DF,29,631,0,0
+Cody Gakpo,Liverpool FC,2024-25,FW,26,369,3,1
+Cole Campbell,Borussia Dortmund,2024-25,FW,19,13,0,0
+Conor Bradley,Liverpool FC,2024-25,DF,21,277,0,1
+Conor Gallagher,Atlético de Madrid,2024-25,MF,25,468,1,1
+Conrad Harder,Sporting CP,2024-25,FW,20,323,1,0
+Couhaib Driouech,PSV Eindhoven,2024-25,FW,23,151,1,0
+Cristhian Stuani,Girona FC,2024-25,FW,38,279,0,0
+Curtis Jones,Liverpool FC,2024-25,MF,24,351,0,2
+César Azpilicueta,Atlético de Madrid,2024-25,DF,35,112,0,0
+Daizen Maeda,Celtic FC,2024-25,FW,27,762,4,1
+Daley Blind,Girona FC,2024-25,DF,35,323,0,0
+Dan Ndoye,Bologna Football Club 1909,2024-25,FW,24,619,0,0
+Dan-Axel Zagadou,VfB Stuttgart,2024-25,DF,25,1,0,0
+Dane Murray,Celtic FC,2024-25,DF,21,8,0,0
+Dani Ceballos,Real Madrid,2024-25,MF,28,406,0,1
+Dani Olmo,FC Barcelona,2024-25,MF,27,438,2,1
+Daniel Bragança,Sporting CP,2024-25,MF,26,315,1,2
+Daniel Carvajal,Real Madrid,2024-25,DF,33,180,0,1
+Daniel Cummings,Celtic FC,2024-25,FW,19,11,0,0
+Daniel Peretz,Bayern Munich,2024-25,GK,24,90,0,0
+Daniel Svensson,Borussia Dortmund,2024-25,DF,23,353,0,0
+Daniil Khudyakov,Sportklub Puntigamer Sturm Graz,2024-25,GK,21,180,0,0
+Danijel Zagorac,GNK Dinamo Zagreb,2024-25,GK,38,270,0,0
+Danilo,Juventus FC,2024-25,DF,33,231,0,0
+Danylo Sikan,FC Shakhtar Donetsk,2024-25,FW,24,221,1,0
+Darian Males,BSC Young Boys,2024-25,MF,24,282,0,0
+Dario Špikić,GNK Dinamo Zagreb,2024-25,FW,26,184,1,0
+Darwin Núñez,Liverpool FC,2024-25,FW,25,464,1,1
+David Alaba,Real Madrid,2024-25,DF,32,175,0,0
+David López,Girona FC,2024-25,DF,35,367,1,0
+David Pavelka,AC Sparta Prague,2024-25,MF,34,11,0,0
+David Raum,RB Leipzig,2024-25,DF,27,266,0,1
+David Raya,Arsenal FC,2024-25,GK,29,1170,0,0
+Davide Bartesaghi,AC Milan,2024-25,DF,19,27,0,0
+Davide Calabria,AC Milan,2024-25,DF,28,314,0,0
+Davide Frattesi,Inter Milan,2024-25,MF,25,491,2,0
+Davide Zappacosta,Atalanta BC,2024-25,MF,32,697,0,5
+Dayot Upamecano,Bayern Munich,2024-25,DF,26,990,0,1
+Declan Rice,Arsenal FC,2024-25,MF,26,1006,4,2
+Denis Zakaria,AS Monaco,2024-25,MF,28,614,1,0
+Deniz Undav,VfB Stuttgart,2024-25,FW,28,425,1,1
+Denzel Dumfries,Inter Milan,2024-25,DF,29,973,2,3
+Diego Carlos,Aston Villa,2024-25,DF,32,485,0,0
+Dimitri Lavalée,Sportklub Puntigamer Sturm Graz,2024-25,DF,28,629,0,0
+Diogo Jota,Liverpool FC,2024-25,FW,28,237,0,0
+Dmytro Kryskiv,FC Shakhtar Donetsk,2024-25,MF,24,674,0,0
+Dmytro Riznyk,FC Shakhtar Donetsk,2024-25,GK,26,720,0,0
+Dominik Szoboszlai,Liverpool FC,2024-25,MF,24,637,1,1
+Donny van de Beek,Girona FC,2024-25,MF,28,454,1,0
+Donyell Malen,Borussia Dortmund,2024-25,FW,26,237,2,1
+Douglas Luiz,Juventus FC,2024-25,MF,27,305,0,0
+Dušan Vlahović,Juventus FC,2024-25,FW,25,548,4,1
+Dálcio,Red Star Belgrade,2024-25,MF,29,179,0,0
+Dávid Hancko,Feyenoord Rotterdam,2024-25,DF,27,1080,1,1
+Désiré Doué,Paris Saint-Germain,2024-25,FW,19,740,5,4
+Ederson,Manchester City,2024-25,GK,31,720,0,0
+Edimilson Fernandes,Stade Brestois 29,2024-25,MF,29,650,1,0
+Edmond Tapsoba,Bayer 04 Leverkusen,2024-25,DF,26,670,0,1
+Edon Zhegrova,LOSC Lille,2024-25,FW,26,361,1,1
+Eduardo Camavinga,Real Madrid,2024-25,MF,22,496,0,0
+Eduardo Quaresma,Sporting CP,2024-25,DF,23,215,0,0
+Egor Prutsev,Red Star Belgrade,2024-25,MF,22,8,0,0
+Eguinaldo,FC Shakhtar Donetsk,2024-25,FW,20,408,0,1
+El Bilal Touré,VfB Stuttgart,2024-25,FW,23,136,1,0
+El Chadaille Bitshiabu,RB Leipzig,2024-25,DF,20,268,0,0
+Elias Cobbaut,AC Sparta Prague,2024-25,DF,27,159,0,0
+Eliesse Ben Seghir,AS Monaco,2024-25,FW,20,544,2,0
+Eliot Matazo,AS Monaco,2024-25,MF,23,25,0,0
+Eljif Elmas,RB Leipzig,2024-25,MF,25,33,0,0
+Emanuel Aiwu,Sportklub Puntigamer Sturm Graz,2024-25,DF,24,540,0,0
+Emerson Royal,AC Milan,2024-25,DF,26,317,0,0
+Emil Holm,Bologna Football Club 1909,2024-25,DF,25,230,0,0
+Emiliano Buendía,Aston Villa,2024-25,FW,28,122,0,0
+Emiliano Martínez,Aston Villa,2024-25,GK,32,1080,0,0
+Emre Can,Borussia Dortmund,2024-25,DF,31,940,2,1
+Endrick,Real Madrid,2024-25,FW,18,135,1,0
+Enzo Millot,VfB Stuttgart,2024-25,MF,22,691,2,3
+Erencan Yardımcı,Sportklub Puntigamer Sturm Graz,2024-25,FW,23,96,0,0
+Eric Dier,Bayern Munich,2024-25,DF,31,295,1,0
+Eric García,FC Barcelona,2024-25,DF,24,275,2,0
+Erling Haaland,Manchester City,2024-25,FW,24,771,8,0
+Ermal Krasniqi,AC Sparta Prague,2024-25,FW,26,157,0,0
+Ermedin Demirovic,VfB Stuttgart,2024-25,FW,27,404,1,0
+Esmir Bajraktarevic,PSV Eindhoven,2024-25,FW,20,10,0,0
+Ethan Mbappé,LOSC Lille,2024-25,FW,18,78,0,0
+Ethan Nwaneri,Arsenal FC,2024-25,MF,18,221,2,0
+Exequiel Palacios,Bayer 04 Leverkusen,2024-25,MF,26,664,0,0
+Ezri Konsa,Aston Villa,2024-25,DF,27,990,1,0
+Fabian Bredlow,VfB Stuttgart,2024-25,GK,30,90,0,0
+Fabian Rieder,VfB Stuttgart,2024-25,MF,23,239,1,3
+Fabián Ruiz,Paris Saint-Germain,2024-25,MF,29,1152,1,4
+Facundo González,Feyenoord Rotterdam,2024-25,DF,21,9,0,0
+Federico Chiesa,Liverpool FC,2024-25,FW,27,107,0,1
+Federico Dimarco,Inter Milan,2024-25,DF,27,569,0,2
+Federico Gatti,Juventus FC,2024-25,DF,26,801,0,1
+Federico Ravaglia,Bologna Football Club 1909,2024-25,GK,25,90,0,0
+Federico Valverde,Real Madrid,2024-25,MF,26,1237,0,3
+Felix Nmecha,Borussia Dortmund,2024-25,MF,24,618,1,1
+Ferland Mendy,Real Madrid,2024-25,DF,29,888,0,1
+Fermín López,FC Barcelona,2024-25,MF,22,451,1,4
+Ferran Jutglà,Club Brugge KV,2024-25,FW,26,857,2,2
+Ferran Torres,FC Barcelona,2024-25,FW,25,419,3,1
+Fikayo Tomori,AC Milan,2024-25,DF,27,564,0,1
+Filip Panák,AC Sparta Prague,2024-25,DF,29,561,0,1
+Filip Ugrinic,BSC Young Boys,2024-25,MF,26,598,0,1
+Filippo Terracciano,AC Milan,2024-25,DF,22,60,0,0
+Florentino,SL Benfica,2024-25,MF,25,717,0,0
+Florian Wirtz,Bayer 04 Leverkusen,2024-25,MF,22,766,6,1
+Folarin Balogun,AS Monaco,2024-25,FW,23,93,0,1
+Fran García,Real Madrid,2024-25,DF,25,263,0,0
+Francesco Acerbi,Inter Milan,2024-25,DF,37,770,1,1
+Francesco Camarda,AC Milan,2024-25,FW,17,35,0,0
+Francis Onyeka,Bayer 04 Leverkusen,2024-25,MF,18,14,0,0
+Francisco Conceição,Juventus FC,2024-25,FW,22,605,1,2
+Francisco Trincão,Sporting CP,2024-25,MF,25,791,0,2
+Franco Israel,Sporting CP,2024-25,GK,25,720,0,0
+Fredrik Aursnes,SL Benfica,2024-25,MF,29,990,0,2
+Fredrik Oppegård,PSV Eindhoven,2024-25,DF,22,19,0,0
+Frenkie de Jong,FC Barcelona,2024-25,MF,28,800,0,0
+Gabriel,Arsenal FC,2024-25,DF,27,804,1,0
+Gabriel Gudmundsson,LOSC Lille,2024-25,DF,26,485,0,1
+Gabriel Jesus,Arsenal FC,2024-25,FW,28,260,0,1
+Gabriel Martinelli,Arsenal FC,2024-25,FW,23,937,2,2
+Gavi,FC Barcelona,2024-25,MF,20,298,0,0
+Geny Catamo,Sporting CP,2024-25,FW,24,504,1,2
+George Ilenikhena,AS Monaco,2024-25,FW,18,109,2,0
+Georgiy Sudakov,FC Shakhtar Donetsk,2024-25,MF,22,701,2,1
+Geovany Quenda,Sporting CP,2024-25,FW,18,723,0,1
+Gerard Martín,FC Barcelona,2024-25,DF,23,445,0,3
+Gernot Trauner,Feyenoord Rotterdam,2024-25,DF,33,657,1,1
+Giacomo De Pieri,Inter Milan,2024-25,FW,18,14,0,0
+Gianluigi Donnarumma,Paris Saint-Germain,2024-25,GK,26,1380,0,0
+Gijs Smal,Feyenoord Rotterdam,2024-25,DF,27,715,0,2
+Giorgio Scalvini,Atalanta BC,2024-25,DF,21,35,0,0
+Giovanni Fabbian,Bologna Football Club 1909,2024-25,MF,22,493,0,0
+Giovanni Reyna,Borussia Dortmund,2024-25,MF,22,274,0,1
+Giuliano Simeone,Atlético de Madrid,2024-25,FW,22,571,1,2
+Givairo Read,Feyenoord Rotterdam,2024-25,DF,18,244,0,0
+Gjivai Zechiël,Feyenoord Rotterdam,2024-25,MF,20,46,0,0
+Gonçalo Inácio,Sporting CP,2024-25,DF,23,488,1,0
+Gonçalo Ramos,Paris Saint-Germain,2024-25,FW,23,205,3,1
+Granit Xhaka,Bayer 04 Leverkusen,2024-25,MF,32,818,0,0
+Greg Taylor,Celtic FC,2024-25,DF,27,575,0,1
+Gregor Kobel,Borussia Dortmund,2024-25,GK,27,1170,0,0
+Grégoire Coudert,Stade Brestois 29,2024-25,GK,26,90,0,0
+Gustaf Nilsson,Club Brugge KV,2024-25,FW,28,172,1,0
+Guus Til,PSV Eindhoven,2024-25,MF,27,769,0,2
+Guélor Kanga,Red Star Belgrade,2024-25,MF,34,141,1,0
+Hakan Çalhanoğlu,Inter Milan,2024-25,MF,31,834,4,2
+Hans Vanaken,Club Brugge KV,2024-25,MF,32,1080,1,1
+Harry Kane,Bayern Munich,2024-25,FW,31,1119,11,2
+Harvey Elliott,Liverpool FC,2024-25,MF,22,167,3,0
+Hendry Blank,Fußballclub Red Bull Salzburg,2024-25,DF,20,283,0,0
+Henrikh Mkhitaryan,Inter Milan,2024-25,MF,36,856,0,0
+Hidemasa Morita,Sporting CP,2024-25,MF,30,371,0,0
+Hiroki Ito,Bayern Munich,2024-25,DF,26,33,0,0
+Hirving Lozano,PSV Eindhoven,2024-25,FW,29,33,0,0
+Hugo Bueno,Feyenoord Rotterdam,2024-25,DF,22,546,0,1
+Hugo Magnetti,Stade Brestois 29,2024-25,MF,27,697,1,1
+Hugo Siquet,Club Brugge KV,2024-25,DF,22,68,0,0
+Hugo Vetlesen,Club Brugge KV,2024-25,MF,25,182,0,1
+Hyun-jun Yang,Celtic FC,2024-25,FW,23,154,0,1
+Hákon Arnar Haraldsson,LOSC Lille,2024-25,MF,22,304,2,0
+Héctor Fort,FC Barcelona,2024-25,DF,18,49,0,0
+Ian Maatsen,Aston Villa,2024-25,DF,23,373,1,0
+Ibrahim Osman,Feyenoord Rotterdam,2024-25,FW,20,315,0,0
+Ibrahim Salah,Stade Brestois 29,2024-25,FW,23,66,0,0
+Ibrahima Konaté,Liverpool FC,2024-25,DF,26,649,1,0
+Idjessi Metsoko,Slovan Bratislava,2024-25,FW,23,153,1,0
+Igor Paixão,Feyenoord Rotterdam,2024-25,FW,24,921,2,5
+In-beom Hwang,Feyenoord Rotterdam,2024-25,MF,28,570,0,0
+Indrit Tuci,AC Sparta Prague,2024-25,FW,24,42,0,0
+Irakli Azarovi,FC Shakhtar Donetsk,2024-25,DF,23,162,0,1
+Isaac Babadi,PSV Eindhoven,2024-25,MF,20,102,0,1
+Isak Hien,Atalanta BC,2024-25,DF,26,710,0,1
+Ismael Saibari,PSV Eindhoven,2024-25,MF,24,726,3,1
+Ismaily,LOSC Lille,2024-25,DF,35,228,0,1
+Ismaël Bennacer,AC Milan,2024-25,MF,27,75,0,1
+Issa Kaboré,SL Benfica,2024-25,DF,24,98,0,0
+Ivan Gutesa,Red Star Belgrade,2024-25,GK,23,270,0,0
+Ivan Nevistic,GNK Dinamo Zagreb,2024-25,GK,26,450,0,0
+Ivan Perišić,PSV Eindhoven,2024-25,FW,36,333,3,0
+Iván Fresneda,Sporting CP,2024-25,DF,20,239,0,0
+Iván Martín,Girona FC,2024-25,MF,26,332,0,0
+Iñaki Peña,FC Barcelona,2024-25,GK,26,450,0,0
+Iñigo Martínez,FC Barcelona,2024-25,DF,34,958,2,1
+Jack Grealish,Manchester City,2024-25,FW,29,354,1,0
+Jacob Ramsey,Aston Villa,2024-25,MF,24,391,1,2
+Jacobo Ramón,Real Madrid,2024-25,DF,20,12,0,0
+Jaden Philogene,Aston Villa,2024-25,FW,23,118,0,0
+Jahmai Simpson-Pusey,Manchester City,2024-25,DF,19,112,0,0
+Jakub Kiwior,Arsenal FC,2024-25,DF,25,771,0,0
+Jakub Moder,Feyenoord Rotterdam,2024-25,MF,26,360,1,0
+Jakub Pesek,AC Sparta Prague,2024-25,FW,31,130,0,0
+Jamal Musiala,Bayern Munich,2024-25,MF,22,868,3,4
+James Forrest,Celtic FC,2024-25,FW,33,60,0,1
+James McAtee,Manchester City,2024-25,MF,22,106,1,0
+James McConnell,Liverpool FC,2024-25,MF,20,90,0,0
+Jamie Gittens,Borussia Dortmund,2024-25,FW,20,848,4,1
+Jamie Leweling,VfB Stuttgart,2024-25,FW,24,412,2,1
+Jan Oblak,Atlético de Madrid,2024-25,GK,32,930,0,0
+Janis Blaswich,Fußballclub Red Bull Salzburg,2024-25,GK,34,381,0,0
+Jaouen Hadjam,BSC Young Boys,2024-25,DF,22,481,0,0
+Jarell Quansah,Liverpool FC,2024-25,DF,22,229,0,0
+Jaroslav Zelený,AC Sparta Prague,2024-25,DF,32,297,0,0
+Jarzinho Malanga,VfB Stuttgart,2024-25,FW,18,37,0,0
+Jastin Garcia,Girona FC,2024-25,FW,21,11,0,0
+Javi Galán,Atlético de Madrid,2024-25,DF,30,452,0,1
+Javi Serrano,Atlético de Madrid,2024-25,MF,22,45,0,0
+Jayden Danns,Liverpool FC,2024-25,FW,19,83,0,0
+Jeanuël Belocian,Bayer 04 Leverkusen,2024-25,DF,20,11,0,0
+Jeff Chabot,VfB Stuttgart,2024-25,DF,27,646,0,0
+Jeffrey Schlupp,Celtic FC,2024-25,MF,32,115,0,0
+Jens Odgaard,Bologna Football Club 1909,2024-25,MF,26,128,0,1
+Jerdy Schouten,PSV Eindhoven,2024-25,MF,28,567,1,0
+Jeremiah St. Juste,Sporting CP,2024-25,DF,28,289,0,0
+Jeremie Frimpong,Bayer 04 Leverkusen,2024-25,DF,24,796,0,5
+Jeyland Mitchell,Feyenoord Rotterdam,2024-25,DF,20,179,0,0
+Jhon Durán,Aston Villa,2024-25,FW,21,240,3,0
+Jhon Lucumí,Bologna Football Club 1909,2024-25,DF,26,530,1,0
+Jhon Solís,Girona FC,2024-25,MF,20,96,0,0
+Joaquin Seys,Club Brugge KV,2024-25,DF,20,768,0,0
+Joe Gomez,Liverpool FC,2024-25,DF,28,119,0,0
+Joel Ordóñez,Club Brugge KV,2024-25,DF,21,1048,0,0
+Joey Veerman,PSV Eindhoven,2024-25,MF,26,545,0,3
+Johan Bakayoko,PSV Eindhoven,2024-25,FW,22,861,2,1
+John McGinn,Aston Villa,2024-25,MF,30,739,3,2
+John Mellberg,Fußballclub Red Bull Salzburg,2024-25,DF,18,45,0,0
+John Stones,Manchester City,2024-25,DF,31,364,1,2
+Jonas Hofmann,Bayer 04 Leverkusen,2024-25,MF,32,130,0,1
+Jonas Martin,Stade Brestois 29,2024-25,MF,35,76,0,0
+Jonas Rouhi,Juventus FC,2024-25,DF,21,1,0,0
+Jonas Urbig,Bayern Munich,2024-25,GK,21,302,0,0
+Jonathan David,LOSC Lille,2024-25,FW,25,746,7,2
+Jonathan Tah,Bayer 04 Leverkusen,2024-25,DF,29,900,0,0
+Jordan Amavi,Stade Brestois 29,2024-25,DF,31,84,0,0
+Jordan Lotomba,Feyenoord Rotterdam,2024-25,DF,26,281,0,1
+Jordan Teze,AS Monaco,2024-25,DF,25,66,0,0
+Jorginho,Arsenal FC,2024-25,MF,33,323,1,0
+Josep Martínez,Inter Milan,2024-25,GK,27,90,0,0
+Josha Vagnoman,VfB Stuttgart,2024-25,DF,24,546,1,1
+Joshua Kimmich,Bayern Munich,2024-25,MF,30,1260,0,5
+Josip Misic,GNK Dinamo Zagreb,2024-25,MF,30,481,0,1
+Josip Stanisic,Bayern Munich,2024-25,DF,25,421,0,0
+Josko Gvardiol,Manchester City,2024-25,DF,23,814,0,2
+José María Giménez,Atlético de Madrid,2024-25,DF,30,750,1,0
+Jota,Celtic FC,2024-25,FW,26,85,0,0
+João Félix,AC Milan,2024-25,FW,25,180,0,0
+João Neves,Paris Saint-Germain,2024-25,MF,20,1436,1,1
+João Palhinha,Bayern Munich,2024-25,MF,29,171,0,0
+João Rego,SL Benfica,2024-25,MF,19,30,0,0
+João Simões,Sporting CP,2024-25,MF,18,234,0,1
+Joël Drommel,PSV Eindhoven,2024-25,GK,28,90,0,0
+Juan Cabal,Juventus FC,2024-25,DF,24,158,0,0
+Juan Cuadrado,Atalanta BC,2024-25,MF,37,317,0,1
+Juan Córdoba,GNK Dinamo Zagreb,2024-25,FW,21,16,0,0
+Juan Miranda,Bologna Football Club 1909,2024-25,DF,25,304,0,0
+Juanpe,Girona FC,2024-25,DF,34,389,1,1
+Jude Bellingham,Real Madrid,2024-25,MF,21,1137,3,3
+Jules Koundé,FC Barcelona,2024-25,DF,26,1106,0,3
+Julian Brandt,Borussia Dortmund,2024-25,MF,29,881,0,5
+Julian Ryerson,Borussia Dortmund,2024-25,DF,27,957,0,0
+Julien Duranville,Borussia Dortmund,2024-25,FW,19,297,0,0
+Julien Le Cardinal,Stade Brestois 29,2024-25,DF,27,256,1,0
+Julián Alvarez,Atlético de Madrid,2024-25,FW,25,791,7,1
+Julián Carranza,Feyenoord Rotterdam,2024-25,FW,25,263,1,0
+Jurriën Timber,Arsenal FC,2024-25,DF,23,854,1,1
+Justin Bijlow,Feyenoord Rotterdam,2024-25,GK,27,125,0,0
+Jérémy Doku,Manchester City,2024-25,FW,23,191,0,1
+Kaan Kairinen,AC Sparta Prague,2024-25,MF,26,713,2,0
+Kacper Urbański,Bologna Football Club 1909,2024-25,MF,20,213,0,0
+Kai Havertz,Arsenal FC,2024-25,FW,25,561,4,2
+Kamil Piątkowski,Fußballclub Red Bull Salzburg,2024-25,DF,24,477,0,1
+Kamory Doumbia,Stade Brestois 29,2024-25,MF,22,439,0,0
+Kang-in Lee,Paris Saint-Germain,2024-25,MF,24,462,0,0
+Karim Adeyemi,Borussia Dortmund,2024-25,FW,23,691,5,2
+Kasper Schmeichel,Celtic FC,2024-25,GK,38,900,0,0
+Kassoum Ouattara,AS Monaco,2024-25,DF,20,20,0,0
+Kenan Yıldız,Juventus FC,2024-25,FW,20,669,1,1
+Kenny Lala,Stade Brestois 29,2024-25,DF,33,720,0,0
+Kerem Aktürkoğlu,SL Benfica,2024-25,FW,26,852,4,1
+Kevin,FC Shakhtar Donetsk,2024-25,FW,22,460,2,0
+Kevin De Bruyne,Manchester City,2024-25,MF,33,397,0,0
+Kevin Kampl,RB Leipzig,2024-25,MF,34,262,0,0
+Khvicha Kvaratskhelia,Paris Saint-Germain,2024-25,FW,24,736,3,2
+Khéphren Thuram,Juventus FC,2024-25,MF,24,486,0,0
+Kieran Tierney,Arsenal FC,2024-25,DF,27,119,0,0
+Kingsley Coman,Bayern Munich,2024-25,FW,28,459,1,0
+Koke,Atlético de Madrid,2024-25,MF,33,402,0,1
+Konrad Laimer,Bayern Munich,2024-25,DF,28,780,1,1
+Konstantinos Tsimikas,Liverpool FC,2024-25,DF,29,444,0,1
+Kosta Nedeljkovic,Aston Villa,2024-25,DF,19,29,0,0
+Kristjan Asllani,Inter Milan,2024-25,MF,23,354,0,0
+Krystof Danek,AC Sparta Prague,2024-25,MF,22,48,0,0
+Krépin Diatta,AS Monaco,2024-25,MF,26,211,0,0
+Kyle Walker,AC Milan,2024-25,DF,35,282,0,0
+Kylian Mbappé,Real Madrid,2024-25,FW,26,1133,7,1
+Kyogo Furuhashi,Celtic FC,2024-25,FW,30,466,1,0
+Kyriani Sabbe,Club Brugge KV,2024-25,DF,20,240,1,0
+Ladislav Krejci,Girona FC,2024-25,DF,26,630,0,0
+Lamare Bogarde,Aston Villa,2024-25,MF,21,140,0,0
+Lamine Camara,AS Monaco,2024-25,MF,21,610,0,0
+Lamine Yamal,FC Barcelona,2024-25,FW,17,1103,5,4
+Lassina Traoré,FC Shakhtar Donetsk,2024-25,FW,24,143,0,0
+Lautaro Martínez,Inter Milan,2024-25,FW,27,856,9,2
+Lazar Samardžić,Atalanta BC,2024-25,MF,23,288,1,1
+Leandro Barreiro,SL Benfica,2024-25,MF,25,261,0,0
+Leandro Trossard,Arsenal FC,2024-25,FW,30,663,2,2
+Leon Bailey,Aston Villa,2024-25,FW,27,530,1,1
+Leon Goretzka,Bayern Munich,2024-25,MF,30,839,1,1
+Leon Jakirović,GNK Dinamo Zagreb,2024-25,DF,17,1,0,0
+Leonidas Stergiou,VfB Stuttgart,2024-25,DF,23,53,0,0
+Leroy Sané,Bayern Munich,2024-25,FW,29,633,1,0
+Lewis Ferguson,Bologna Football Club 1909,2024-25,MF,25,289,0,0
+Liam Scales,Celtic FC,2024-25,DF,26,370,1,0
+Lloyd Kelly,Juventus FC,2024-25,DF,26,210,0,0
+Lorenzo Torriani,AC Milan,2024-25,GK,20,39,0,0
+Loris Benito,BSC Young Boys,2024-25,DF,33,326,0,0
+Loïs Openda,RB Leipzig,2024-25,FW,25,682,1,2
+Lucas Anjos,Sporting CP,2024-25,FW,20,6,0,0
+Lucas Beraldo,Paris Saint-Germain,2024-25,DF,21,141,0,0
+Lucas Chevalier,LOSC Lille,2024-25,GK,23,900,0,0
+Lucas Digne,Aston Villa,2024-25,DF,31,747,0,0
+Lucas Gourna-Douath,Fußballclub Red Bull Salzburg,2024-25,MF,21,301,0,0
+Lucas Hernández,Paris Saint-Germain,2024-25,DF,29,114,0,0
+Lucas Michal,AS Monaco,2024-25,FW,19,37,0,0
+Lucas Vázquez,Real Madrid,2024-25,DF,33,574,1,1
+Luck Zogbé,Stade Brestois 29,2024-25,DF,20,90,0,0
+Ludovic Ajorque,Stade Brestois 29,2024-25,FW,31,642,0,3
+Luis Díaz,Liverpool FC,2024-25,FW,28,631,3,1
+Luis Palma,Celtic FC,2024-25,FW,25,31,0,0
+Luka Ilic,Red Star Belgrade,2024-25,MF,25,84,0,0
+Luka Ivanušec,Feyenoord Rotterdam,2024-25,MF,26,178,0,0
+Luka Modrić,Real Madrid,2024-25,MF,39,646,0,3
+Lukas Haraslin,AC Sparta Prague,2024-25,FW,29,264,0,1
+Lukas Hradecky,Bayer 04 Leverkusen,2024-25,GK,35,360,0,0
+Lukas Klostermann,RB Leipzig,2024-25,DF,28,41,0,0
+Lukas Penxa,AC Sparta Prague,2024-25,MF,20,1,0,0
+Lukas Sadilek,AC Sparta Prague,2024-25,MF,29,301,0,1
+Lukasz Lakomy,BSC Young Boys,2024-25,MF,24,444,1,0
+Lukasz Skorupski,Bologna Football Club 1909,2024-25,GK,34,630,0,0
+Luke McCowan,Celtic FC,2024-25,MF,27,47,0,0
+Lutsharel Geertruida,RB Leipzig,2024-25,DF,24,621,0,0
+Luuk de Jong,PSV Eindhoven,2024-25,FW,34,905,2,2
+Maarten Vandevoordt,RB Leipzig,2024-25,GK,23,180,0,0
+Maghnes Akliouche,AS Monaco,2024-25,FW,23,807,2,2
+Mahdi Camara,Stade Brestois 29,2024-25,MF,26,711,1,1
+Malick Thiaw,AC Milan,2024-25,DF,23,337,1,1
+Malick Yalcouyé,Sportklub Puntigamer Sturm Graz,2024-25,MF,19,622,0,0
+Malik Tillman,PSV Eindhoven,2024-25,MF,23,534,3,2
+Mama Baldé,Stade Brestois 29,2024-25,FW,29,452,0,1
+Manuel Akanji,Manchester City,2024-25,DF,29,645,0,1
+Manuel Locatelli,Juventus FC,2024-25,MF,27,671,0,0
+Manuel Neuer,Bayern Munich,2024-25,GK,39,823,0,0
+Marc Casadó,FC Barcelona,2024-25,MF,21,632,0,2
+Marc-André ter Stegen,FC Barcelona,2024-25,GK,33,90,0,0
+Marcel Sabitzer,Borussia Dortmund,2024-25,MF,31,845,0,0
+Marco Asensio,Paris Saint-Germain,2024-25,MF,29,261,3,0
+Marco Bizot,Stade Brestois 29,2024-25,GK,34,810,0,0
+Marco Brescianini,Atalanta BC,2024-25,MF,25,124,1,0
+Marco Carnesecchi,Atalanta BC,2024-25,GK,24,810,0,0
+Marco Palestra,Atalanta BC,2024-25,DF,20,64,0,0
+Marcos Llorente,Atlético de Madrid,2024-25,DF,30,693,2,4
+Marcus Edwards,Sporting CP,2024-25,FW,26,68,0,0
+Marcus Rashford,Aston Villa,2024-25,FW,27,309,0,2
+Marcus Thuram,Inter Milan,2024-25,FW,27,953,4,2
+Mario Hermoso,Bayer 04 Leverkusen,2024-25,DF,29,128,0,0
+Mario Pašalić,Atalanta BC,2024-25,MF,30,605,3,1
+Marko Arnautovic,Inter Milan,2024-25,FW,36,202,1,0
+Marko Ilic,Red Star Belgrade,2024-25,GK,27,180,0,0
+Marko Pjaca,GNK Dinamo Zagreb,2024-25,FW,30,344,1,3
+Marko Rog,GNK Dinamo Zagreb,2024-25,MF,29,362,0,1
+Markus Solbakken,AC Sparta Prague,2024-25,MF,24,87,0,0
+Marlon Gomes,FC Shakhtar Donetsk,2024-25,MF,21,289,1,0
+Marquinhos,Paris Saint-Germain,2024-25,DF,31,1440,0,0
+Marten de Roon,Atalanta BC,2024-25,MF,34,874,0,1
+Martin Baturina,GNK Dinamo Zagreb,2024-25,MF,22,626,2,1
+Martin Erlić,Bologna Football Club 1909,2024-25,DF,27,45,0,0
+Martin Suchomel,AC Sparta Prague,2024-25,MF,22,20,0,0
+Martin Terrier,Bayer 04 Leverkusen,2024-25,FW,28,102,0,1
+Martin Vitík,AC Sparta Prague,2024-25,DF,22,720,0,0
+Martin Ødegaard,Arsenal FC,2024-25,MF,26,799,3,2
+Marvin Keller,BSC Young Boys,2024-25,GK,22,360,0,0
+Massadio Haïdara,Stade Brestois 29,2024-25,DF,32,616,0,0
+Matej Kovar,Bayer 04 Leverkusen,2024-25,GK,25,540,0,0
+Matej Rynes,AC Sparta Prague,2024-25,MF,24,525,0,1
+Mateo Kovacic,Manchester City,2024-25,MF,31,308,1,0
+Mateo Retegui,Atalanta BC,2024-25,FW,26,573,3,0
+Matheus Nunes,Manchester City,2024-25,DF,26,531,1,3
+Matheus Reis,Sporting CP,2024-25,DF,30,433,0,0
+Mathias Pereira Lage,Stade Brestois 29,2024-25,FW,28,370,1,0
+Mathias Ross,AC Sparta Prague,2024-25,DF,24,90,0,0
+Mathys Tel,Bayern Munich,2024-25,FW,20,91,0,0
+Matias Fernandez-Pardo,LOSC Lille,2024-25,FW,20,260,0,1
+Matteo Cocchi,Inter Milan,2024-25,DF,18,6,0,0
+Matteo Dams,PSV Eindhoven,2024-25,DF,21,417,0,0
+Matteo Darmian,Inter Milan,2024-25,DF,35,551,0,0
+Matteo Gabbia,AC Milan,2024-25,DF,25,404,0,0
+Matteo Ruggeri,Atalanta BC,2024-25,DF,22,298,0,0
+Mattia Perin,Juventus FC,2024-25,GK,32,210,0,0
+Matty Cash,Aston Villa,2024-25,DF,27,515,0,1
+Matvey Safonov,Paris Saint-Germain,2024-25,GK,26,180,0,0
+Maurits Kjærgaard,Fußballclub Red Bull Salzburg,2024-25,MF,21,90,0,0
+Mauro Júnior,PSV Eindhoven,2024-25,DF,26,829,0,0
+Maxi Araújo,Sporting CP,2024-25,DF,25,625,1,2
+Maxim De Cuyper,Club Brugge KV,2024-25,DF,24,1080,1,0
+Maxime Bernauer,GNK Dinamo Zagreb,2024-25,DF,26,465,0,0
+Maximilian Beier,Borussia Dortmund,2024-25,FW,22,616,1,0
+Maximilian Mittelstädt,VfB Stuttgart,2024-25,DF,28,707,0,3
+Mehdi Taremi,Inter Milan,2024-25,FW,32,714,1,4
+Meschack Elia,BSC Young Boys,2024-25,FW,27,138,0,0
+Michael Olise,Bayern Munich,2024-25,FW,23,1032,5,2
+Michal Skoras,Club Brugge KV,2024-25,FW,25,118,0,0
+Michel Aebischer,Bologna Football Club 1909,2024-25,MF,28,28,0,0
+Michele Di Gregorio,Juventus FC,2024-25,GK,27,719,0,0
+Miguel Gutiérrez,Girona FC,2024-25,DF,23,540,1,0
+Mika Biereth,Sportklub Puntigamer Sturm Graz,2024-25,FW,22,557,2,0
+Mike Maignan,AC Milan,2024-25,GK,29,861,0,0
+Mikel Merino,Arsenal FC,2024-25,MF,28,817,2,3
+Milan Rodic,Red Star Belgrade,2024-25,DF,34,90,0,0
+Milson,Red Star Belgrade,2024-25,FW,25,169,2,0
+Min-jae Kim,Bayern Munich,2024-25,DF,28,1072,1,0
+Min-su Kim,Girona FC,2024-25,FW,19,11,0,0
+Mirko Ivanic,Red Star Belgrade,2024-25,MF,31,346,1,1
+Mitchel Bakker,LOSC Lille,2024-25,MF,24,422,1,1
+Moatasem Al-Musrati,AS Monaco,2024-25,MF,29,52,0,0
+Mohamed Bayo,LOSC Lille,2024-25,FW,26,138,0,0
+Mohamed Salah,Liverpool FC,2024-25,FW,32,809,3,4
+Mohammed Salisu,AS Monaco,2024-25,DF,26,477,1,0
+Morgan Rogers,Aston Villa,2024-25,MF,22,1025,4,3
+Morten Hjulmand,Sporting CP,2024-25,MF,25,765,0,0
+Mykola Matvienko,FC Shakhtar Donetsk,2024-25,DF,29,720,0,0
+Myles Lewis-Skelly,Arsenal FC,2024-25,DF,18,566,0,2
+Nahuel Molina,Atlético de Madrid,2024-25,DF,27,425,1,0
+Nasser Djiga,Red Star Belgrade,2024-25,DF,22,720,1,1
+Nathan Aké,Manchester City,2024-25,DF,30,285,0,0
+Nathan Butler-Oyedeji,Arsenal FC,2024-25,FW,22,1,0,0
+Nathan Tella,Bayer 04 Leverkusen,2024-25,FW,25,329,1,0
+Nemanja Radonjic,Red Star Belgrade,2024-25,FW,29,157,3,0
+Neto,Arsenal FC,2024-25,GK,35,90,0,0
+Newerton,FC Shakhtar Donetsk,2024-25,FW,19,84,0,0
+Ngal'ayel Mukau,LOSC Lille,2024-25,MF,20,567,2,0
+Nico González (466805),Manchester City,2024-25,MF,23,90,1,0
+Nico González (486031),Juventus FC,2024-25,FW,27,364,1,1
+Nico O'Reilly,Manchester City,2024-25,DF,20,9,0,0
+Nico Schlotterbeck,Borussia Dortmund,2024-25,DF,25,1080,0,2
+Nicola Zalewski,Inter Milan,2024-25,MF,23,38,0,0
+Nicolas Kühn,Celtic FC,2024-25,FW,25,792,3,1
+Nicolas Seiwald,RB Leipzig,2024-25,MF,24,405,0,1
+Nicolás Otamendi,SL Benfica,2024-25,DF,37,1080,1,0
+Nicolò Barella,Inter Milan,2024-25,MF,28,994,0,2
+Nicolò Casale,Bologna Football Club 1909,2024-25,DF,27,218,0,0
+Nicolò Fagioli,Juventus FC,2024-25,MF,24,205,0,1
+Nicolò Savona,Juventus FC,2024-25,DF,22,427,0,0
+Nicolò Zaniolo,Atalanta BC,2024-25,FW,25,127,1,0
+Niklas Beste,SL Benfica,2024-25,FW,26,109,0,1
+Niklas Süle,Borussia Dortmund,2024-25,DF,29,283,0,0
+Nikola Moro,Bologna Football Club 1909,2024-25,MF,27,379,0,0
+Noa Lang,PSV Eindhoven,2024-25,FW,25,686,2,2
+Noah Okafor,AC Milan,2024-25,FW,25,102,0,1
+Nordi Mukiele,Bayer 04 Leverkusen,2024-25,DF,27,359,1,1
+Nuno Mendes,Paris Saint-Germain,2024-25,DF,22,1449,4,2
+Nuno Santos,Sporting CP,2024-25,DF,30,164,1,0
+Odilon Kossounou,Atalanta BC,2024-25,DF,24,265,0,2
+Ognjen Mimović,Red Star Belgrade,2024-25,DF,20,371,0,0
+Oleksandr Zinchenko,Arsenal FC,2024-25,DF,28,193,1,0
+Oleksandr Zubkov,FC Shakhtar Donetsk,2024-25,FW,28,535,2,1
+Olivier Boscagli,PSV Eindhoven,2024-25,DF,27,914,0,0
+Ollie Watkins,Aston Villa,2024-25,FW,29,697,1,4
+Omar Marmoush,Manchester City,2024-25,FW,26,96,0,0
+Omri Glazer,Red Star Belgrade,2024-25,GK,29,270,0,0
+Oriol Romeu,Girona FC,2024-25,MF,33,446,0,0
+Orkun Kökçü,SL Benfica,2024-25,MF,24,996,4,0
+Osame Sahraoui,LOSC Lille,2024-25,FW,23,455,2,3
+Oscar Gloukh,Fußballclub Red Bull Salzburg,2024-25,MF,21,681,0,2
+Otar Kiteishvili,Sportklub Puntigamer Sturm Graz,2024-25,MF,29,618,1,0
+Ousmane Dembélé,Paris Saint-Germain,2024-25,FW,28,1166,8,6
+Ousmane Diomande,Sporting CP,2024-25,DF,21,752,0,0
+Ousmane Touré,LOSC Lille,2024-25,DF,20,45,0,0
+Pablo Barrios,Atlético de Madrid,2024-25,MF,21,431,0,0
+Pablo Torre,FC Barcelona,2024-25,MF,22,19,0,0
+Pascal Groß,Borussia Dortmund,2024-25,MF,33,917,1,3
+Pascal Stenzel,VfB Stuttgart,2024-25,DF,29,131,0,0
+Patric Pfeiffer,BSC Young Boys,2024-25,DF,25,20,0,0
+Patrik Schick,Bayer 04 Leverkusen,2024-25,FW,29,407,1,0
+Pau Cubarsí,FC Barcelona,2024-25,DF,18,982,0,1
+Pau López,Girona FC,2024-25,GK,30,90,0,0
+Pau Torres,Aston Villa,2024-25,DF,28,678,0,2
+Pau Víctor,FC Barcelona,2024-25,FW,23,48,0,0
+Paulo Bernardo,Celtic FC,2024-25,MF,23,237,0,0
+Paulo Gazzaniga,Girona FC,2024-25,GK,33,630,0,0
+Pedri,FC Barcelona,2024-25,MF,22,1118,0,2
+Pedrinho,FC Shakhtar Donetsk,2024-25,FW,27,205,0,0
+Pedro Gonçalves,Sporting CP,2024-25,FW,26,200,0,2
+Pedro Henrique,FC Shakhtar Donetsk,2024-25,DF,22,447,0,0
+Petar Sučić,GNK Dinamo Zagreb,2024-25,MF,21,265,2,0
+Peter Olayinka,Red Star Belgrade,2024-25,FW,29,251,0,0
+Peter Vindahl,AC Sparta Prague,2024-25,GK,27,720,0,0
+Phil Foden,Manchester City,2024-25,MF,25,688,3,2
+Philipp Köhn,AS Monaco,2024-25,GK,27,180,0,0
+Piero Hincapié,Bayer 04 Leverkusen,2024-25,DF,23,773,1,0
+Pierre Kalulu,Juventus FC,2024-25,DF,24,646,0,0
+Pierre Lees-Melou,Stade Brestois 29,2024-25,MF,32,374,1,0
+Piotr Zielinski,Inter Milan,2024-25,MF,31,586,0,1
+Portu,Girona FC,2024-25,FW,33,94,0,0
+Presnel Kimpembe,Paris Saint-Germain,2024-25,DF,29,18,0,0
+Péter Gulácsi,RB Leipzig,2024-25,GK,35,540,0,0
+Qazim Laci,AC Sparta Prague,2024-25,MF,29,604,1,0
+Quinten Timber,Feyenoord Rotterdam,2024-25,MF,23,597,0,1
+Rade Krunic,Red Star Belgrade,2024-25,MF,31,668,1,2
+Radoslaw Majecki,AS Monaco,2024-25,GK,25,720,0,0
+Rafael Leão,AC Milan,2024-25,FW,25,797,3,1
+Rafael Tolói,Atalanta BC,2024-25,DF,34,211,0,0
+Raheem Sterling,Arsenal FC,2024-25,FW,30,297,0,2
+Ramiz Zerrouki,Feyenoord Rotterdam,2024-25,MF,27,111,0,0
+Ramy Bensebaini,Borussia Dortmund,2024-25,DF,30,743,2,1
+Randal Kolo Muani,Juventus FC,2024-25,FW,26,270,0,0
+Raoul Bellanova,Atalanta BC,2024-25,MF,25,466,1,0
+Raphael Onyedika,Club Brugge KV,2024-25,MF,24,940,1,1
+Raphaël Guerreiro,Bayern Munich,2024-25,DF,31,523,1,0
+Raphinha,FC Barcelona,2024-25,FW,28,1224,13,9
+Raúl Asencio,Real Madrid,2024-25,DF,22,748,0,1
+Raúl Torrente,GNK Dinamo Zagreb,2024-25,DF,23,540,0,0
+Reinildo Mandava,Atlético de Madrid,2024-25,DF,31,366,0,0
+Remo Freuler,Bologna Football Club 1909,2024-25,MF,33,506,0,0
+Renato Sanches,SL Benfica,2024-25,MF,27,144,0,0
+Renato Veiga,Juventus FC,2024-25,DF,21,102,0,0
+Reo Hatate,Celtic FC,2024-25,MF,27,788,1,2
+Ricardo Esgaio,Sporting CP,2024-25,DF,32,169,0,0
+Ricardo Pepi,PSV Eindhoven,2024-25,FW,22,162,2,1
+Riccardo Calafiori,Arsenal FC,2024-25,DF,23,430,1,1
+Riccardo Orsolini,Bologna Football Club 1909,2024-25,FW,28,325,0,0
+Richard Ledezma,PSV Eindhoven,2024-25,DF,24,575,0,0
+Rick Karsdorp,PSV Eindhoven,2024-25,DF,30,334,0,0
+Rico Lewis,Manchester City,2024-25,DF,20,639,0,1
+Robert Andrich,Bayer 04 Leverkusen,2024-25,MF,30,272,0,1
+Robert Lewandowski,FC Barcelona,2024-25,FW,36,984,11,0
+Robin Le Normand,Atlético de Madrid,2024-25,DF,28,229,0,0
+Rodri,Manchester City,2024-25,MF,28,90,0,0
+Rodrigo De Paul,Atlético de Madrid,2024-25,MF,31,748,0,2
+Rodrigo Riquelme,Atlético de Madrid,2024-25,FW,25,144,0,0
+Rodrygo,Real Madrid,2024-25,FW,24,880,5,2
+Romain Del Castillo,Stade Brestois 29,2024-25,FW,29,316,0,0
+Romain Faivre,Stade Brestois 29,2024-25,MF,26,308,0,0
+Romeo Vermant,Club Brugge KV,2024-25,FW,21,52,0,0
+Ronald Araujo,FC Barcelona,2024-25,DF,26,520,1,0
+Ross Barkley,Aston Villa,2024-25,MF,31,99,1,0
+Ruben Loftus-Cheek,AC Milan,2024-25,MF,29,282,0,0
+Rui Patrício,Atalanta BC,2024-25,GK,37,90,0,0
+Rui Silva,Sporting CP,2024-25,GK,31,180,0,0
+Ryan Flamingo,PSV Eindhoven,2024-25,DF,22,858,3,1
+Ryan Gravenberch,Liverpool FC,2024-25,MF,23,784,0,0
+Rémy Cabella,LOSC Lille,2024-25,MF,35,388,1,1
+Rúben Dias,Manchester City,2024-25,DF,28,451,0,0
+Sacha Boey,Bayern Munich,2024-25,DF,24,103,0,1
+Salih Özcan,Borussia Dortmund,2024-25,MF,27,29,0,0
+Sam Beukema,Bologna Football Club 1909,2024-25,DF,26,647,0,1
+Samuel Chukwueze,AC Milan,2024-25,FW,26,274,0,1
+Samuel Dahl,SL Benfica,2024-25,DF,22,155,0,0
+Samuel Iling-Junior,Bologna Football Club 1909,2024-25,MF,21,346,1,0
+Samuel Lino,Atlético de Madrid,2024-25,FW,25,410,0,3
+Samuel Mbangula,Juventus FC,2024-25,FW,21,223,1,0
+Sandro Kulenović,GNK Dinamo Zagreb,2024-25,FW,25,493,3,0
+Sandro Lauper,BSC Young Boys,2024-25,DF,28,518,0,0
+Santiago Castro,Bologna Football Club 1909,2024-25,FW,20,336,0,0
+Santiago Gimenez,Feyenoord Rotterdam,2024-25,FW,24,448,6,1
+Savinho,Manchester City,2024-25,FW,21,578,1,1
+Sead Kolasinac,Atalanta BC,2024-25,DF,31,639,1,2
+Seedy Jatta,Sportklub Puntigamer Sturm Graz,2024-25,FW,22,383,0,1
+Selvi Clua,Girona FC,2024-25,MF,20,79,0,0
+Senny Mayulu,Paris Saint-Germain,2024-25,MF,19,45,2,0
+Serge Gnabry,Bayern Munich,2024-25,FW,29,548,0,2
+Sergi Domínguez,FC Barcelona,2024-25,DF,20,33,0,0
+Serhou Guirassy,Borussia Dortmund,2024-25,FW,29,1084,13,5
+Silas,Red Star Belgrade,2024-25,FW,26,622,2,0
+Silvere Ganvoula,BSC Young Boys,2024-25,FW,28,489,1,0
+Simon Mignolet,Club Brugge KV,2024-25,GK,37,1080,0,0
+Soumaïla Coulibaly,Stade Brestois 29,2024-25,DF,21,635,0,0
+Soungoutou Magassa,AS Monaco,2024-25,MF,21,284,1,0
+Stefan Bajcetic,Fußballclub Red Bull Salzburg,2024-25,MF,20,202,0,0
+Stefan Hierländer,Sportklub Puntigamer Sturm Graz,2024-25,MF,34,32,0,0
+Stefan Ortega,Manchester City,2024-25,GK,32,180,0,0
+Stefan Posch,Bologna Football Club 1909,2024-25,DF,28,618,0,0
+Stefan Ristovski,GNK Dinamo Zagreb,2024-25,DF,33,650,0,2
+Stefan de Vrij,Inter Milan,2024-25,DF,33,688,0,0
+Strahinja Pavlović,AC Milan,2024-25,DF,24,541,0,0
+Sven Ulreich,Bayern Munich,2024-25,GK,36,45,0,0
+Takumi Minamino,AS Monaco,2024-25,FW,30,568,3,1
+Takumu Kawamura,Fußballclub Red Bull Salzburg,2024-25,MF,25,50,0,0
+Tammy Abraham,AC Milan,2024-25,FW,27,297,2,1
+Tanguy Zoukrou,BSC Young Boys,2024-25,DF,22,270,0,0
+Taras Stepanenko,FC Shakhtar Donetsk,2024-25,MF,35,120,0,0
+Teun Koopmeiners,Juventus FC,2024-25,MF,27,654,0,0
+Theo Hernández,AC Milan,2024-25,DF,27,861,0,0
+Thibaut Courtois,Real Madrid,2024-25,GK,33,1110,0,0
+Thijs Dallinga,Bologna Football Club 1909,2024-25,FW,24,410,1,0
+Thilo Kehrer,AS Monaco,2024-25,DF,28,855,1,1
+Thomas Beelen,Feyenoord Rotterdam,2024-25,DF,23,827,0,0
+Thomas Berenbruch,Inter Milan,2024-25,MF,20,6,0,0
+Thomas Lemar,Atlético de Madrid,2024-25,MF,29,9,0,0
+Thomas Meunier,LOSC Lille,2024-25,DF,33,616,0,1
+Thomas Müller,Bayern Munich,2024-25,FW,35,369,3,1
+Thomas Partey,Arsenal FC,2024-25,MF,31,899,0,1
+Tiago Santos,LOSC Lille,2024-25,DF,22,116,0,0
+Tijjani Reijnders,AC Milan,2024-25,MF,26,870,3,0
+Timi Max Elsnik,Red Star Belgrade,2024-25,MF,27,720,0,2
+Timon Wellenreuther,Feyenoord Rotterdam,2024-25,GK,29,955,0,0
+Timothy Weah,Juventus FC,2024-25,MF,25,555,1,1
+Tochi Chukwuani,Sportklub Puntigamer Sturm Graz,2024-25,MF,22,607,0,1
+Tomas Wiesner,AC Sparta Prague,2024-25,MF,27,508,0,0
+Tomi Horvat,Sportklub Puntigamer Sturm Graz,2024-25,MF,26,190,0,0
+Tommaso Corazza,Bologna Football Club 1909,2024-25,MF,20,1,0,0
+Tommaso Pobega,Bologna Football Club 1909,2024-25,MF,25,249,1,0
+Tomás Araújo,SL Benfica,2024-25,DF,23,928,0,0
+Trent Alexander-Arnold,Liverpool FC,2024-25,DF,26,577,0,1
+Trey Nyoni,Liverpool FC,2024-25,MF,17,26,0,0
+Tygo Land,PSV Eindhoven,2024-25,MF,19,90,0,0
+Tyler Morton,Liverpool FC,2024-25,MF,22,39,0,0
+Tyrell Malacia,PSV Eindhoven,2024-25,DF,25,222,0,0
+Tyrone Mings,Aston Villa,2024-25,DF,32,312,0,1
+Uros Spajic,Red Star Belgrade,2024-25,DF,32,630,0,0
+Valeriy Bondar,FC Shakhtar Donetsk,2024-25,DF,26,720,0,0
+Vanderson,AS Monaco,2024-25,DF,23,781,0,2
+Vangelis Pavlidis,SL Benfica,2024-25,FW,26,905,7,3
+Vanja Drkusic,Red Star Belgrade,2024-25,DF,25,179,0,0
+Vasilije Adžić,Juventus FC,2024-25,MF,19,22,0,0
+Veljko Birmancevic,AC Sparta Prague,2024-25,FW,27,494,0,0
+Victor Boniface,Bayer 04 Leverkusen,2024-25,FW,24,243,1,0
+Victor Olatunji,AC Sparta Prague,2024-25,FW,25,423,2,1
+Viggo Gebel,RB Leipzig,2024-25,MF,17,5,0,0
+Viktor Gyökeres,Sporting CP,2024-25,FW,26,606,6,0
+Viktor Tsygankov,Girona FC,2024-25,FW,27,330,0,0
+Vinicius Junior,Real Madrid,2024-25,FW,24,1105,8,3
+Vinícius Tobias,FC Shakhtar Donetsk,2024-25,DF,21,210,0,0
+Virgil van Dijk,Liverpool FC,2024-25,DF,33,840,1,0
+Vitinha,Paris Saint-Germain,2024-25,MF,25,1448,2,2
+Waldemar Anton,Borussia Dortmund,2024-25,DF,28,590,0,1
+Walter Benítez,PSV Eindhoven,2024-25,GK,32,1020,0,0
+Warren Zaïre-Emery,Paris Saint-Germain,2024-25,MF,19,603,1,0
+Wataru Endo,Liverpool FC,2024-25,MF,32,140,0,0
+Wessel Kuhn,PSV Eindhoven,2024-25,DF,18,16,0,0
+Weston McKennie,Juventus FC,2024-25,MF,26,555,3,0
+Wilfried Singo,AS Monaco,2024-25,DF,24,508,2,1
+Willi Orbán,RB Leipzig,2024-25,DF,32,720,0,0
+William Bøving,Sportklub Puntigamer Sturm Graz,2024-25,FW,22,671,0,2
+William Saliba,Arsenal FC,2024-25,DF,24,990,0,0
+Willian Pacho,Paris Saint-Germain,2024-25,DF,23,1542,0,0
+Wojciech Szczesny,FC Barcelona,2024-25,GK,35,750,0,0
+Xavi Simons,RB Leipzig,2024-25,MF,22,337,0,0
+Yan Couto,Borussia Dortmund,2024-25,DF,22,229,0,0
+Yangel Herrera,Girona FC,2024-25,MF,27,343,0,0
+Yann Bisseck,Inter Milan,2024-25,DF,24,698,0,0
+Yann Sommer,Inter Milan,2024-25,GK,36,1290,0,0
+Yannik Keitel,VfB Stuttgart,2024-25,MF,25,144,1,0
+Younes Lachaab,LOSC Lille,2024-25,FW,20,1,0,0
+Young-woo Seol,Red Star Belgrade,2024-25,DF,26,701,0,3
+Youri Tielemans,Aston Villa,2024-25,MF,28,1046,2,3
+Youssouf Fofana,AC Milan,2024-25,MF,26,799,0,2
+Yukhym Konoplya,FC Shakhtar Donetsk,2024-25,DF,25,465,0,2
+Yunus Musah,AC Milan,2024-25,MF,22,415,0,0
+Yussuf Poulsen,RB Leipzig,2024-25,FW,30,152,1,0
+Yáser Asprilla,Girona FC,2024-25,FW,21,242,0,0
+Zaid Romero,Club Brugge KV,2024-25,DF,25,32,0,0
+Zeki Amdouni,SL Benfica,2024-25,FW,24,239,1,1
+Zeno Debast,Sporting CP,2024-25,DF,21,568,1,1
+Zepiqueno Redmond,Feyenoord Rotterdam,2024-25,FW,18,79,0,0
+Álex Valle,Celtic FC,2024-25,DF,21,210,0,1
+Álvaro Carreras,SL Benfica,2024-25,DF,22,900,0,2
+Álvaro Morata,AC Milan,2024-25,FW,32,395,1,1
+Ángel Correa,Atlético de Madrid,2024-25,FW,30,264,3,1
+Ángel Di María,SL Benfica,2024-25,FW,37,548,1,2
+Éder Militão,Real Madrid,2024-25,DF,27,282,0,0
+Éderson,Atalanta BC,2024-25,MF,25,739,1,0
+İlkay Gündoğan,Manchester City,2024-25,MF,34,523,2,0

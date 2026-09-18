@@ -1,0 +1,13 @@
+{
+  "kind": "historical",
+  "source": "OpenFootball",
+  "urls": [
+    "https://raw.githubusercontent.com/openfootball/champions-league/master/2021-22/cl.txt",
+    "https://raw.githubusercontent.com/openfootball/champions-league/master/2022-23/cl.txt",
+    "https://raw.githubusercontent.com/openfootball/champions-league/master/2023-24/cl.txt",
+    "https://raw.githubusercontent.com/openfootball/champions-league/master/2024-25/cl.txt",
+    "https://raw.githubusercontent.com/openfootball/champions-league/master/2025-26/cl.txt"
+  ],
+  "target": "90-minute result, excluding extra time and penalties",
+  "retrieved_at": "2026-09-18T14:38:41.260599+00:00"
+}

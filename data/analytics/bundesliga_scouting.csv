@@ -1,0 +1,479 @@
+player,team,season,position,age,minutes,goals,assists,shots,key_passes,dribbles,tackles,interceptions
+Abdoulie Ceesay,St. Pauli,2024-25,FW,20.0,60,0,0,0,1,0,3,0
+Adam Aznou,Bayern Munich,2024-25,DF,18.0,17,0,0,0,0,0,0,0
+Adam Dźwigała,St. Pauli,2024-25,DF,28.0,373,0,0,6,0,1,20,4
+Adam Hložek,Hoffenheim,2024-25,FW,22.0,1871,8,4,59,20,33,22,4
+Adrian Beck,Heidenheim,2024-25,MF,27.0,1598,4,1,39,21,40,36,9
+Alassane Pléa,Gladbach,2024-25,MF,31.0,1902,11,4,41,25,17,7,2
+Aleix García,Leverkusen,2024-25,MF,27.0,1455,3,4,15,32,4,13,11
+Aleksandar Pavlovic,Bayern Munich,2024-25,MF,20.0,1451,1,0,9,7,5,38,5
+Alexander Bernhardsson,Holstein Kiel,2024-25,FW,25.0,1263,7,2,27,17,22,29,5
+Alexander Meyer,Dortmund,2024-25,GK,33.0,180,0,0,0,1,0,0,0
+Alexander Nübel,Stuttgart,2024-25,GK,27.0,3060,0,1,0,3,1,0,0
+Alexander Prass,Hoffenheim,2024-25,DF,23.0,1566,0,1,12,18,20,42,9
+Alexander Schwolow,Union Berlin,2024-25,GK,32.0,540,0,0,0,0,0,0,0
+Alexis Claude-Maurice,Augsburg,2024-25,MF,26.0,2109,9,2,59,21,42,41,15
+Aliou Badara Baldé,Bochum,2024-25,MF,21.0,91,0,0,4,2,2,1,0
+Aljoscha Kemlein,Union Berlin,2024-25,MF,19.0,922,1,0,11,10,6,10,6
+Almugera Kabar,Dortmund,2024-25,DF,18.0,137,0,0,0,3,1,5,1
+Alphonso Davies,Bayern Munich,2024-25,DF,23.0,1560,1,2,17,27,31,30,13
+Amadou Haidara,RB Leipzig,2024-25,MF,26.0,1320,0,1,18,5,7,30,18
+Ameen Al-Dakhil,Stuttgart,2024-25,DF,22.0,432,0,0,1,2,0,6,9
+Amine Adli,Leverkusen,2024-25,MF,24.0,766,2,0,20,11,15,15,0
+Amos Pieper,Werder Bremen,2024-25,DF,26.0,1498,0,0,7,4,2,32,24
+Andreas Albers,St. Pauli,2024-25,FW,34.0,62,1,0,3,2,2,1,0
+Andreas Hanche-Olsen,Mainz 05,2024-25,DF,27.0,1284,1,1,12,3,1,21,12
+Andreas Skov Olsen,Wolfsburg,2024-25,FW,24.0,535,1,1,7,18,4,8,2
+Andrej Ilic,Union Berlin,2024-25,FW,24.0,937,7,0,27,6,1,2,5
+Andrej Kramarić,Hoffenheim,2024-25,MF,33.0,2767,11,8,66,49,20,15,7
+András Schäfer,Union Berlin,2024-25,MF,25.0,1534,1,1,12,10,13,52,22
+André Silva,Werder Bremen,2024-25,FW,28.0,507,2,2,19,8,1,3,1
+Andu Kelati,Holstein Kiel,2024-25,MF,21.0,288,1,1,6,4,3,7,3
+Angelo Stiller,Stuttgart,2024-25,MF,23.0,2741,1,8,21,59,20,49,26
+Anrie Chase,Stuttgart,2024-25,DF,20.0,734,0,0,5,0,2,10,9
+Ansgar Knauff,Eint Frankfurt,2024-25,MF,22.0,1597,4,5,30,27,26,41,12
+Anthony Caci,Mainz 05,2024-25,DF,27.0,2684,1,7,32,50,29,60,27
+Anthony Jung,Werder Bremen,2024-25,DF,32.0,1898,0,0,1,2,7,34,25
+Anthony Losilla,Bochum,2024-25,MF,38.0,1137,0,0,5,7,1,30,18
+Anthony Rouault,Stuttgart,2024-25,DF,23.0,1212,1,0,5,6,2,15,19
+Anton Stach,Hoffenheim,2024-25,MF,25.0,2585,1,2,35,26,15,66,46
+Antonio Nusa,RB Leipzig,2024-25,MF,19.0,1558,3,3,24,20,39,30,8
+Arijon Ibrahimović,Bayern Munich,2024-25,FW,18.0,1,0,0,0,0,1,0,0
+Armin Gigovic,Holstein Kiel,2024-25,MF,22.0,1895,5,1,26,16,20,25,21
+Armindo Sieb,Mainz 05,2024-25,FW,21.0,762,2,2,29,8,11,10,1
+Arnaud Nordin,Mainz 05,2024-25,DF,26.0,80,0,0,1,3,1,2,0
+Arne Engels,Augsburg,2024-25,MF,20.0,79,0,0,3,0,0,0,0
+Arne Maier,Augsburg,2024-25,MF,25.0,938,0,0,18,25,7,13,6
+Arthur,Leverkusen,2024-25,DF,21.0,752,0,1,1,2,5,14,9
+Arthur Chaves,Hoffenheim,2024-25,DF,23.0,2185,1,0,10,5,3,51,37
+Arthur Theate,Eint Frankfurt,2024-25,DF,24.0,2704,0,0,36,13,10,36,39
+Arthur Vermeeren,RB Leipzig,2024-25,MF,19.0,1572,0,2,4,12,6,32,23
+Assan Ouedraogo,RB Leipzig,2024-25,MF,18.0,50,0,0,1,0,0,0,0
+Aster Vranckx,Wolfsburg,2024-25,MF,21.0,556,0,0,0,1,5,11,10
+Aurele Amenda,Eint Frankfurt,2024-25,DF,21.0,96,0,0,0,1,1,1,2
+Ayman Azhil,Dortmund,2024-25,MF,23.0,24,0,0,0,0,0,1,0
+Aymen Barkok,Mainz 05,2024-25,MF,26.0,73,0,0,0,1,0,2,2
+Bazoumana Touré,Hoffenheim,2024-25,FW,18.0,609,0,3,19,13,12,12,3
+Ben Alexander Voll,St. Pauli,2024-25,GK,23.0,91,0,0,0,1,0,0,0
+Bence Dárdai,Wolfsburg,2024-25,MF,18.0,1304,1,1,11,11,3,24,12
+Benedict Hollerbach,Union Berlin,2024-25,FW,23.0,2540,9,1,76,26,42,43,2
+Benedikt Gimber,Heidenheim,2024-25,DF,27.0,2671,0,0,14,3,8,72,31
+Benedikt Pichler,Holstein Kiel,2024-25,FW,27.0,785,1,2,20,12,8,5,2
+Benjamin Henrichs,RB Leipzig,2024-25,DF,27.0,935,0,2,11,11,9,32,15
+Benjamin Šeško,RB Leipzig,2024-25,FW,21.0,2380,13,5,66,19,39,7,5
+Bernardo,Bochum,2024-25,DF,29.0,1782,0,0,8,4,3,46,26
+Budu Zivzivadze,Heidenheim,2024-25,FW,30.0,958,2,3,22,12,9,17,3
+Can Uzun,Eint Frankfurt,2024-25,MF,18.0,675,4,1,27,14,11,10,1
+Carl Johansson,Holstein Kiel,2024-25,DF,30.0,568,0,0,1,6,0,4,10
+Carlo Boukhalfa,St. Pauli,2024-25,MF,25.0,1646,2,0,21,11,12,26,12
+Carney Chukwuemeka,Dortmund,2024-25,MF,20.0,253,1,0,8,7,7,7,1
+Castello Lukeba,RB Leipzig,2024-25,DF,21.0,1577,0,0,4,4,20,31,17
+Cedric Zesiger,Augsburg,2024-25,DF,26.0,1743,0,2,12,8,4,26,24
+Chris Führich,Stuttgart,2024-25,MF,26.0,1981,2,3,36,32,40,15,6
+Chrislain Matsima,Augsburg,2024-25,DF,22.0,2551,1,1,14,5,7,31,52
+Christian Günter,Freiburg,2024-25,DF,31.0,2314,2,2,21,28,3,23,8
+Christoph Baumgartner,RB Leipzig,2024-25,MF,24.0,1610,2,1,39,20,17,44,12
+Christopher Trimmel,Union Berlin,2024-25,DF,37.0,1740,0,3,9,35,2,38,18
+Cole Campbell,Dortmund,2024-25,MF,18.0,22,0,0,0,0,0,0,0
+Connor Metcalfe,St. Pauli,2024-25,MF,24.0,358,0,0,6,3,3,2,3
+Cristian Gamboa,Bochum,2024-25,DF,34.0,226,1,0,4,3,0,8,2
+Dan-Axel Zagadou,Stuttgart,2024-25,DF,25.0,29,0,0,0,0,0,0,1
+Danel Sinani,St. Pauli,2024-25,FW,27.0,1250,2,2,35,24,10,14,1
+Dani de Wit,Bochum,2024-25,MF,26.0,1153,2,1,20,10,1,29,12
+Daniel Peretz,Bayern Munich,2024-25,GK,24.0,270,0,0,0,0,0,0,0
+Daniel Svensson,Dortmund,2024-25,DF,22.0,781,1,3,6,10,1,15,5
+Danilho Doekhi,Union Berlin,2024-25,DF,26.0,3060,1,1,32,13,3,37,44
+Danny da Costa,Mainz 05,2024-25,DF,31.0,2006,0,1,5,10,8,42,27
+David Jurásek,Hoffenheim,2024-25,DF,23.0,619,0,1,5,7,3,6,6
+David Mokwa,Hoffenheim,2024-25,DF,20.0,22,0,0,2,0,1,1,0
+David Nemeth,St. Pauli,2024-25,DF,23.0,2137,0,1,5,3,4,43,18
+David Odogu,Wolfsburg,2024-25,DF,18.0,195,0,0,2,0,0,6,2
+David Preu,Union Berlin,2024-25,MF,19.0,121,0,0,2,0,2,1,0
+David Raum,RB Leipzig,2024-25,DF,26.0,1783,1,5,9,48,11,38,9
+David Zec,Holstein Kiel,2024-25,DF,24.0,1541,2,0,11,8,5,23,17
+Dayot Upamecano,Bayern Munich,2024-25,DF,25.0,1759,2,0,13,7,3,36,34
+Denis Thomalla,Heidenheim,2024-25,MF,31.0,4,0,0,0,0,0,0,0
+Denis Vavro,Wolfsburg,2024-25,DF,28.0,2461,2,0,25,7,3,21,37
+Deniz Undav,Stuttgart,2024-25,FW,28.0,1726,9,3,75,26,10,11,3
+Dennis Geiger,Hoffenheim,2024-25,MF,26.0,734,0,0,5,11,4,24,7
+Derrick Köhn,Werder Bremen,2024-25,DF,25.0,1343,2,2,13,16,15,20,10
+Diadie Samassékou,Hoffenheim,2024-25,MF,28.0,290,0,0,3,0,4,5,5
+Dimitris Giannoulis,Augsburg,2024-25,DF,28.0,2650,1,4,13,42,29,47,47
+Diogo Leite,Union Berlin,2024-25,DF,25.0,2546,1,2,18,13,10,64,57
+Dominik Javorček,Holstein Kiel,2024-25,DF,21.0,386,0,2,1,4,4,3,5
+Dominik Kohr,Mainz 05,2024-25,DF,30.0,2295,2,0,13,11,5,62,42
+Donyell Malen,Dortmund,2024-25,FW,25.0,614,3,0,19,1,11,0,3
+Edmond Tapsoba,Leverkusen,2024-25,DF,25.0,2507,0,0,21,4,11,39,24
+El Bilal Touré,Stuttgart,2024-25,FW,22.0,356,2,1,14,7,3,4,0
+El Chadaille Bitshiabu,RB Leipzig,2024-25,DF,19.0,1130,0,0,5,5,2,27,13
+Elias Saad,St. Pauli,2024-25,FW,24.0,900,3,2,26,14,16,20,3
+Elif Elmas,RB Leipzig,2024-25,MF,24.0,44,0,0,2,0,1,3,0
+Ellyes Skhiri,Eint Frankfurt,2024-25,MF,29.0,2231,1,2,13,22,11,40,31
+Elvis Rexhbeçaj,Augsburg,2024-25,MF,26.0,1785,1,1,29,16,10,27,16
+Elye Wahi,Eint Frankfurt,2024-25,FW,21.0,196,0,0,9,1,6,0,0
+Emi Buendía,Leverkusen,2024-25,MF,27.0,257,2,0,7,6,6,6,0
+Emre Can,Dortmund,2024-25,DF,30.0,2105,3,0,7,8,15,50,20
+Enzo Millot,Stuttgart,2024-25,MF,22.0,1843,6,5,43,23,31,30,13
+Eren Dinkçi,Freiburg,2024-25,MF,22.0,1196,0,3,14,23,16,21,7
+Erencan Yardimci,Hoffenheim,2024-25,FW,22.0,313,0,0,6,0,0,4,1
+Erhan Mašović,Bochum,2024-25,DF,25.0,910,1,1,7,3,0,14,12
+Eric Dier,Bayern Munich,2024-25,DF,30.0,1463,2,1,9,3,2,19,20
+Eric Smith,St. Pauli,2024-25,DF,27.0,2827,1,1,24,28,3,46,37
+Erik Ahlstrand,St. Pauli,2024-25,FW,22.0,43,0,0,0,0,0,0,1
+Ermedin Demirović,Stuttgart,2024-25,FW,26.0,1855,15,1,64,18,5,12,3
+Exequiel Palacios,Leverkusen,2024-25,MF,25.0,1155,1,6,13,28,8,22,13
+Fabian Rieder,Stuttgart,2024-25,MF,22.0,867,1,3,20,12,9,17,10
+Fabio Chiarodia,Gladbach,2024-25,DF,19.0,379,1,0,4,1,0,10,9
+Faik Sakar,RB Leipzig,2024-25,MF,16.0,1,0,0,0,0,0,0,0
+Fares Chaïbi,Eint Frankfurt,2024-25,MF,21.0,1013,1,3,25,24,7,13,10
+Felix Agu,Werder Bremen,2024-25,DF,24.0,1751,3,0,9,20,9,30,21
+Felix Nmecha,Dortmund,2024-25,MF,23.0,1509,4,1,18,14,17,34,23
+Felix Passlack,Bochum,2024-25,DF,26.0,2334,1,6,26,25,12,53,18
+Finley Stevens,St. Pauli,2024-25,DF,21.0,1,0,0,0,0,0,0,0
+Finn Dahmen,Augsburg,2024-25,GK,26.0,1710,0,0,0,0,0,1,0
+Finn Jeltsch,Stuttgart,2024-25,DF,18.0,780,0,0,2,2,2,18,13
+Finn Ole Becker,Hoffenheim,2024-25,MF,24.0,670,0,1,4,8,6,11,10
+Finn Porath,Holstein Kiel,2024-25,DF,27.0,1970,2,3,29,22,16,45,21
+Florent Muslija,Freiburg,2024-25,FW,26.0,168,0,0,3,3,4,5,1
+Florian Grillitsch,Hoffenheim,2024-25,MF,28.0,601,0,0,6,5,5,15,8
+Florian Micheler,Hoffenheim,2024-25,MF,19.0,32,0,0,0,0,1,0,0
+Florian Müller,Freiburg,2024-25,GK,26.0,753,0,0,0,0,0,0,0
+Florian Neuhaus,Gladbach,2024-25,MF,27.0,382,0,1,9,6,5,10,6
+Florian Wirtz,Leverkusen,2024-25,MF,21.0,2351,10,12,74,57,82,32,10
+Franck Honorat,Gladbach,2024-25,FW,27.0,1439,4,7,31,50,12,17,5
+Frank Feller,Heidenheim,2024-25,GK,20.0,121,0,0,0,0,0,0,0
+Frank Onyeka,Augsburg,2024-25,MF,26.0,2586,0,1,24,17,18,58,36
+Frans Krätzig,Heidenheim,2024-25,DF,21.0,1273,1,2,9,28,9,34,17
+Frederik Rønnow,Union Berlin,2024-25,GK,31.0,2520,0,0,1,0,1,0,0
+Fredrik Jensen,Augsburg,2024-25,MF,26.0,763,0,0,11,11,7,7,4
+Gabriel Vidovic,Bayern Munich,2024-25,MF,20.0,28,0,0,2,0,0,0,0
+Gerrit Holtmann,Bochum,2024-25,DF,29.0,1136,2,1,31,20,6,24,16
+Gift Orban,Hoffenheim,2024-25,FW,22.0,687,4,0,11,2,4,3,0
+Gio Reyna,Dortmund,2024-25,MF,21.0,350,2,0,3,2,4,7,0
+Giorgos Masouras,Bochum,2024-25,FW,30.0,1055,2,1,30,10,5,18,4
+Granit Xhaka,Leverkusen,2024-25,MF,31.0,2888,2,7,21,50,7,48,12
+Grant Ranos,Gladbach,2024-25,FW,21.0,20,0,0,0,0,0,1,0
+Gregor Kobel,Dortmund,2024-25,GK,26.0,2880,0,0,0,1,2,0,1
+Grischa Prömel,Hoffenheim,2024-25,MF,29.0,174,0,0,0,0,0,0,2
+Haris Tabakovic,Hoffenheim,2024-25,FW,30.0,821,3,1,30,9,4,3,1
+Harry Kane,Bayern Munich,2024-25,FW,31.0,2381,26,9,105,35,23,13,2
+Hauke Wahl,St. Pauli,2024-25,DF,30.0,2970,0,0,11,9,8,36,31
+Henri Koudossou,Augsburg,2024-25,DF,24.0,748,0,0,2,10,8,18,15
+Hiroki Ito,Bayern Munich,2024-25,DF,25.0,250,1,0,1,3,1,2,6
+Hong Hyunseok,Mainz 05,2024-25,MF,25.0,530,0,1,5,9,4,8,7
+Hugo Ekitike,Eint Frankfurt,2024-25,FW,22.0,2563,15,8,114,44,52,16,7
+Hugo Larsson,Eint Frankfurt,2024-25,MF,20.0,2393,3,1,21,21,12,47,30
+Ibrahima Sissoko,Bochum,2024-25,MF,26.0,2610,2,1,25,27,32,66,36
+Ifechukwu Ogbus,Freiburg,2024-25,DF,18.0,19,0,0,0,0,0,1,1
+Igor Matanovic,Eint Frankfurt,2024-25,FW,21.0,312,1,0,12,1,3,2,1
+Ihlas Bebou,Hoffenheim,2024-25,MF,30.0,9,0,0,0,0,0,0,0
+Issa Kaboré,Werder Bremen,2024-25,DF,23.0,308,0,0,7,7,7,8,2
+Ivan Nekić,Holstein Kiel,2024-25,DF,23.0,71,0,0,0,0,0,1,3
+Ivan Ordets,Bochum,2024-25,DF,32.0,1861,0,0,11,7,1,18,41
+Ivan Prtajin,Union Berlin,2024-25,FW,28.0,161,0,0,8,1,1,3,0
+Jackson Irvine,St. Pauli,2024-25,MF,31.0,2610,0,6,41,32,9,56,36
+Jacob Bruun Larsen,Stuttgart,2024-25,MF,25.0,814,3,2,20,19,17,5,2
+Jakov Medić,Bochum,2024-25,DF,25.0,1603,1,0,14,3,2,13,22
+Jakub Kamiński,Wolfsburg,2024-25,DF,22.0,1130,0,2,15,24,8,17,13
+Jamal Musiala,Bayern Munich,2024-25,MF,21.0,1798,12,2,68,41,72,36,8
+James Sands,St. Pauli,2024-25,MF,24.0,453,0,0,1,1,1,15,5
+Jamie Gittens,Dortmund,2024-25,FW,19.0,1776,8,3,52,21,77,31,10
+Jamie Leweling,Stuttgart,2024-25,MF,23.0,1663,2,2,29,25,41,16,11
+Jan Schöppner,Heidenheim,2024-25,MF,25.0,2681,4,3,41,25,14,56,43
+Jan-Niklas Beste,Freiburg,2024-25,FW,25.0,212,0,1,6,3,2,2,1
+Janik Haberer,Union Berlin,2024-25,MF,30.0,1696,0,0,15,7,2,39,17
+Jann-Fiete Arp,Holstein Kiel,2024-25,FW,24.0,713,2,0,20,11,14,13,3
+Jarzinho Malanga,Stuttgart,2024-25,DF,18.0,2,0,0,0,0,0,0,0
+Jean Mattéo Bahoya,Eint Frankfurt,2024-25,MF,19.0,921,2,3,10,18,17,29,4
+Jeanuël Belocian,Leverkusen,2024-25,DF,19.0,68,0,0,0,0,1,1,0
+Jeffrey Gouweleeuw,Augsburg,2024-25,DF,33.0,2944,1,4,17,14,7,50,35
+Jens Stage,Werder Bremen,2024-25,MF,27.0,2204,10,5,44,23,8,49,18
+Jeong Woo-yeong,Union Berlin,2024-25,MF,24.0,1263,3,2,25,18,12,10,11
+Jeremie Frimpong,Leverkusen,2024-25,DF,23.0,2314,5,5,34,30,25,33,8
+Joakim Mæhle,Wolfsburg,2024-25,DF,27.0,2188,3,4,18,20,19,34,25
+Joe Scally,Gladbach,2024-25,DF,21.0,2578,0,0,6,11,31,45,16
+Johan Manzambi,Freiburg,2024-25,FW,18.0,335,2,1,11,3,6,8,4
+Johannes Eggestein,St. Pauli,2024-25,FW,26.0,1853,3,4,34,24,7,5,0
+John Tolkin,Holstein Kiel,2024-25,DF,22.0,737,0,2,3,11,5,18,8
+Jonah Kusi-Asare,Bayern Munich,2024-25,FW,17.0,3,0,0,1,0,0,1,0
+Jonas Föhrenbach,Heidenheim,2024-25,DF,28.0,1832,0,1,8,14,7,45,16
+Jonas Hofmann,Leverkusen,2024-25,MF,32.0,356,2,1,9,7,2,2,0
+Jonas Omlin,Gladbach,2024-25,GK,30.0,978,0,0,0,0,1,0,0
+Jonas Urbig,Bayern Munich,2024-25,GK,20.0,720,0,0,0,0,0,0,0
+Jonas Wind,Wolfsburg,2024-25,FW,25.0,1966,9,3,38,34,6,10,6
+Jonathan Burkardt,Mainz 05,2024-25,FW,24.0,2109,18,2,70,20,16,15,1
+Jonathan Tah,Leverkusen,2024-25,DF,28.0,2970,3,0,24,4,3,19,36
+Jordan Pefok,Union Berlin,2024-25,FW,28.0,908,0,1,23,14,7,11,4
+Jordy Makengo,Freiburg,2024-25,DF,22.0,745,0,0,0,2,4,16,7
+Josha Vagnoman,Stuttgart,2024-25,DF,23.0,1834,1,1,15,22,8,26,14
+Joshua Kimmich,Bayern Munich,2024-25,MF,29.0,2847,3,7,34,83,12,47,25
+Josip Juranović,Union Berlin,2024-25,DF,28.0,1159,0,1,6,27,11,21,7
+Josip Stanišić,Bayern Munich,2024-25,DF,24.0,876,0,2,2,14,5,13,6
+João Palhinha,Bayern Munich,2024-25,MF,29.0,673,0,0,10,4,2,20,4
+Julian Brandt,Dortmund,2024-25,MF,28.0,2303,5,10,45,61,19,26,14
+Julian Chabot,Stuttgart,2024-25,DF,26.0,2269,3,1,19,6,3,37,38
+Julian Niehues,Heidenheim,2024-25,MF,23.0,154,0,0,2,3,1,3,0
+Julian Ryerson,Dortmund,2024-25,DF,26.0,2259,2,3,18,36,36,46,22
+Julian Weigl,Gladbach,2024-25,MF,28.0,2881,0,2,19,11,7,53,48
+Julien Duranville,Dortmund,2024-25,FW,18.0,283,0,0,5,1,12,3,0
+Julián Malatini,Werder Bremen,2024-25,DF,23.0,454,1,1,3,2,2,11,7
+Junior Adamu,Freiburg,2024-25,FW,23.0,1545,2,2,36,17,10,9,12
+Junior Dina Ebimbe,Eint Frankfurt,2024-25,MF,23.0,293,0,1,8,3,5,3,7
+Justin Diehl,Stuttgart,2024-25,FW,19.0,104,1,0,7,1,3,1,0
+Justin Njinmah,Werder Bremen,2024-25,FW,23.0,952,3,2,31,12,11,6,3
+Jérôme Roussillon,Union Berlin,2024-25,DF,31.0,136,0,0,2,0,1,0,2
+Kacper Koscierski,Bochum,2024-25,DF,17.0,7,0,0,0,0,0,0,0
+Kaishu Sano,Mainz 05,2024-25,MF,23.0,3043,0,0,20,19,32,61,65
+Kamil Grabara,Wolfsburg,2024-25,GK,25.0,2585,0,0,0,2,2,0,0
+Karim Adeyemi,Dortmund,2024-25,FW,22.0,1433,7,6,46,28,40,20,7
+Karim Onisiwo,Mainz 05,2024-25,MF,32.0,110,0,0,3,1,1,1,0
+Karol Mets,St. Pauli,2024-25,DF,31.0,900,0,0,3,3,0,13,12
+Kauã Santos,Eint Frankfurt,2024-25,GK,21.0,765,0,0,0,1,0,0,0
+Keke Maximilian Topp,Werder Bremen,2024-25,FW,20.0,252,2,2,7,10,3,3,1
+Keven Schlotterbeck,Augsburg,2024-25,DF,27.0,1297,3,1,12,7,3,19,15
+Kevin Akpoguma,Hoffenheim,2024-25,DF,29.0,2220,0,0,5,7,8,54,29
+Kevin Behrens,Wolfsburg,2024-25,FW,33.0,170,1,0,9,2,0,1,1
+Kevin Kampl,RB Leipzig,2024-25,MF,33.0,1593,1,0,7,16,13,27,24
+Kevin Müller,Heidenheim,2024-25,GK,33.0,2939,0,0,0,0,0,3,0
+Kevin Paredes,Wolfsburg,2024-25,DF,21.0,123,0,1,4,2,0,3,1
+Kevin Stöger,Gladbach,2024-25,MF,30.0,1551,3,3,24,54,17,37,16
+Kevin Trapp,Eint Frankfurt,2024-25,GK,34.0,2295,0,0,0,0,0,0,0
+Kevin Vogt,Union Berlin,2024-25,DF,32.0,1367,1,0,0,2,4,12,9
+Kevin Volland,Union Berlin,2024-25,FW,32.0,61,0,0,0,1,0,0,0
+Kilian Fischer,Wolfsburg,2024-25,DF,23.0,2297,1,0,6,12,10,64,19
+Kiliann Sildillia,Freiburg,2024-25,DF,22.0,801,2,0,7,7,6,17,11
+Kim Min-jae,Bayern Munich,2024-25,DF,27.0,2283,2,0,7,6,3,35,37
+Kingsley Coman,Bayern Munich,2024-25,FW,28.0,1282,5,4,44,32,39,17,8
+Kjell-Arik Wätjen,Dortmund,2024-25,MF,18.0,16,0,0,0,0,0,0,0
+Ko Itakura,Gladbach,2024-25,DF,27.0,2790,3,0,21,7,12,40,28
+Koji Miyoshi,Bochum,2024-25,FW,27.0,464,1,0,12,5,5,8,2
+Konrad Laimer,Bayern Munich,2024-25,DF,27.0,1699,2,2,18,20,17,49,8
+Konstantinos Koulierakis,Wolfsburg,2024-25,DF,20.0,2468,0,2,22,10,7,40,33
+Kosta Nedeljković,RB Leipzig,2024-25,DF,18.0,479,0,0,4,3,1,11,2
+Kristijan Jakić,Augsburg,2024-25,MF,27.0,2306,0,1,18,16,14,46,28
+Lars Ritzka,St. Pauli,2024-25,DF,26.0,922,1,0,8,5,0,49,11
+Lasse Rieß,Mainz 05,2024-25,GK,23.0,180,0,0,0,0,0,0,0
+Lasse Rosenboom,Holstein Kiel,2024-25,DF,22.0,1734,2,2,12,14,7,47,19
+Lee Jae-sung,Mainz 05,2024-25,MF,31.0,2650,7,6,40,34,11,42,35
+Lennard Maloney,Heidenheim,2024-25,MF,24.0,786,0,0,3,1,1,22,14
+Leo Skiri Østigård,Hoffenheim,2024-25,DF,24.0,927,0,0,5,3,2,9,9
+Leon Goretzka,Bayern Munich,2024-25,MF,29.0,1325,4,1,32,12,7,21,20
+Leonardo Bittencourt,Werder Bremen,2024-25,MF,30.0,982,2,1,27,14,1,25,15
+Leonidas Stergiou,Stuttgart,2024-25,DF,22.0,852,1,2,3,4,4,24,14
+Leopold Querfeld,Union Berlin,2024-25,DF,20.0,1747,2,2,16,10,3,25,19
+Leroy Sané,Bayern Munich,2024-25,FW,28.0,1637,11,5,67,36,39,23,7
+Lewis Holtby,Holstein Kiel,2024-25,MF,33.0,1238,0,1,7,21,7,34,21
+Lovro Majer,Wolfsburg,2024-25,MF,26.0,304,2,1,6,8,5,2,1
+Loïs Openda,RB Leipzig,2024-25,FW,24.0,2453,9,5,77,28,22,9,5
+Luca Jaquez,Stuttgart,2024-25,DF,21.0,253,0,0,1,0,0,3,3
+Luca Kerber,Heidenheim,2024-25,MF,22.0,783,2,0,7,6,1,26,5
+Luca Netz,Gladbach,2024-25,DF,21.0,969,0,2,3,16,6,24,10
+Luca Philipp,Hoffenheim,2024-25,GK,23.0,540,0,0,0,0,0,1,0
+Lucas Höler,Freiburg,2024-25,FW,30.0,1867,6,4,34,22,18,37,7
+Lucas Tousart,Union Berlin,2024-25,MF,27.0,561,0,1,9,3,5,17,7
+Lukas Daschner,Bochum,2024-25,MF,25.0,412,1,1,8,6,5,4,0
+Lukas Klostermann,RB Leipzig,2024-25,DF,28.0,1838,1,0,4,2,4,27,24
+Lukas Kübler,Freiburg,2024-25,DF,31.0,1842,5,1,18,11,0,40,53
+Lukas Nmecha,Wolfsburg,2024-25,FW,25.0,467,3,0,20,3,4,2,2
+Lukas Ullrich,Gladbach,2024-25,DF,20.0,1903,1,2,8,8,8,25,23
+Lukáš Hrádecký,Leverkusen,2024-25,GK,34.0,2610,0,0,0,0,0,0,0
+Lutsharel Geertruida,RB Leipzig,2024-25,DF,24.0,1557,1,0,8,10,7,35,16
+László Bénes,Union Berlin,2024-25,MF,26.0,589,2,1,19,19,1,2,3
+Léo Scienza,Heidenheim,2024-25,FW,25.0,1153,3,3,38,34,37,17,5
+Maarten Vandevoordt,RB Leipzig,2024-25,GK,22.0,429,0,0,0,0,0,1,0
+Mads Pedersen,Augsburg,2024-25,DF,27.0,235,0,0,2,0,2,8,2
+Mads Roerslev,Wolfsburg,2024-25,DF,25.0,298,0,0,0,1,2,10,5
+Magnus Knudsen,Holstein Kiel,2024-25,MF,23.0,1850,0,1,12,8,9,48,12
+Mahmoud Dahoud,Eint Frankfurt,2024-25,MF,28.0,364,1,1,7,8,1,9,2
+Manolis Saliakas,St. Pauli,2024-25,MF,27.0,2314,2,1,29,26,3,46,20
+Manuel Neuer,Bayern Munich,2024-25,GK,38.0,1980,0,0,0,1,1,1,0
+Marcel Sabitzer,Dortmund,2024-25,MF,30.0,1616,1,0,21,12,6,29,10
+Marco Friedl,Werder Bremen,2024-25,DF,26.0,2161,0,0,4,3,6,62,34
+Marco Grüll,Werder Bremen,2024-25,FW,26.0,1181,6,1,25,11,13,12,3
+Marco Komenda,Holstein Kiel,2024-25,DF,27.0,1307,0,0,3,9,1,26,6
+Marin Ljubicic,Union Berlin,2024-25,FW,22.0,281,1,1,2,2,1,2,0
+Mario Götze,Eint Frankfurt,2024-25,MF,32.0,1542,3,2,8,34,9,41,7
+Mario Hermoso,Leverkusen,2024-25,DF,29.0,293,0,0,4,2,3,0,9
+Marius Bülter,Hoffenheim,2024-25,FW,31.0,1729,7,2,37,22,24,13,4
+Marius Müller,Wolfsburg,2024-25,GK,31.0,475,0,0,0,0,0,0,0
+Marius Wolf,Augsburg,2024-25,DF,29.0,2144,1,3,12,45,19,27,24
+Marko Ivezić,Holstein Kiel,2024-25,DF,22.0,1657,0,0,7,4,4,29,27
+Marnon Busch,Heidenheim,2024-25,DF,29.0,1396,0,1,13,12,3,26,13
+Martin Terrier,Leverkusen,2024-25,MF,27.0,584,2,1,16,8,2,4,1
+Marvin Ducksch,Werder Bremen,2024-25,FW,30.0,2418,8,8,70,61,7,10,8
+Marvin Friedrich,Gladbach,2024-25,DF,28.0,989,0,1,7,3,2,15,5
+Marvin Pieringer,Heidenheim,2024-25,FW,24.0,2206,7,4,57,30,16,23,8
+Marvin Schulz,Holstein Kiel,2024-25,MF,29.0,306,0,0,3,4,1,6,0
+Matej Kovar,Leverkusen,2024-25,GK,24.0,450,0,0,0,0,0,0,0
+Mathias Honsak,Heidenheim,2024-25,FW,27.0,1181,5,1,29,14,9,15,10
+Mathys Tel,Bayern Munich,2024-25,FW,19.0,256,0,1,10,1,6,2,1
+Mats Pannewig,Bochum,2024-25,MF,19.0,267,0,0,9,1,1,10,2
+Matthias Ginter,Freiburg,2024-25,DF,30.0,2561,2,1,24,9,4,30,19
+Mattias Svanberg,Wolfsburg,2024-25,MF,25.0,1219,3,1,21,13,10,20,15
+Matúš Bero,Bochum,2024-25,MF,28.0,2565,5,2,31,54,19,65,17
+Maurides,St. Pauli,2024-25,FW,30.0,2,0,0,0,0,0,0,0
+Max Geschwill,Holstein Kiel,2024-25,DF,23.0,1282,1,2,9,10,2,26,30
+Max Rosenfelder,Freiburg,2024-25,DF,21.0,1249,1,0,5,5,14,27,7
+Maxim Leitsch,Mainz 05,2024-25,DF,26.0,674,1,0,6,2,0,12,10
+Maximilian Arnold,Wolfsburg,2024-25,MF,30.0,2356,3,5,27,45,1,34,24
+Maximilian Bauer,Augsburg,2024-25,DF,24.0,658,0,0,1,2,0,14,6
+Maximilian Beier,Dortmund,2024-25,FW,21.0,1591,8,5,42,24,22,25,7
+Maximilian Breunig,Heidenheim,2024-25,FW,23.0,350,2,0,10,4,3,4,1
+Maximilian Eggestein,Freiburg,2024-25,MF,27.0,2845,2,0,36,19,11,57,39
+Maximilian Mittelstädt,Stuttgart,2024-25,DF,27.0,2469,1,7,21,47,21,79,47
+Maximilian Philipp,Freiburg,2024-25,MF,30.0,17,0,0,1,0,0,0,0
+Maximilian Wittek,Bochum,2024-25,DF,28.0,2706,0,0,41,46,12,65,27
+Mergim Berisha,Hoffenheim,2024-25,FW,26.0,373,1,1,14,3,3,4,0
+Merlin Röhl,Freiburg,2024-25,MF,22.0,965,0,1,12,9,12,16,6
+Mert Kömür,Augsburg,2024-25,MF,19.0,654,2,1,13,13,12,3,3
+Michael Gregoritsch,Freiburg,2024-25,FW,30.0,639,2,1,16,5,4,4,1
+Michael Olise,Bayern Munich,2024-25,FW,22.0,2334,12,15,86,90,72,36,8
+Michael Zetterer,Werder Bremen,2024-25,GK,29.0,3060,0,0,0,0,1,0,1
+Michy Batshuayi,Eint Frankfurt,2024-25,FW,30.0,300,3,0,5,1,2,1,1
+Mikkel Kaufmann,Heidenheim,2024-25,FW,23.0,372,0,0,3,3,2,6,2
+Miloš Veljković,Werder Bremen,2024-25,DF,28.0,1029,0,1,2,3,0,10,2
+Mitchell Weiser,Werder Bremen,2024-25,DF,30.0,2868,5,9,43,42,35,61,22
+Mohamed Amoura,Wolfsburg,2024-25,FW,24.0,2467,10,9,73,35,37,29,9
+Mohamed Simakan,RB Leipzig,2024-25,DF,24.0,54,0,0,0,3,0,0,2
+Morgan Guilavogui,St. Pauli,2024-25,FW,26.0,1807,6,2,41,27,21,32,13
+Moritz Broschinski,Bochum,2024-25,FW,23.0,1390,1,3,38,13,14,19,1
+Moritz Jenz,Mainz 05,2024-25,DF,25.0,1600,0,0,10,3,2,36,30
+Moritz Nicolas,Gladbach,2024-25,GK,26.0,1639,0,0,0,0,0,0,1
+Moritz-Broni Kwarteng,Bochum,2024-25,MF,26.0,172,0,0,6,4,6,4,0
+Myron Boadu,Bochum,2024-25,FW,23.0,1042,9,1,27,11,11,2,1
+Nadiem Amiri,Mainz 05,2024-25,MF,27.0,2473,7,5,60,63,32,50,16
+Nathan N'Goumou,Gladbach,2024-25,FW,24.0,828,2,1,24,6,9,17,4
+Nathan Tella,Leverkusen,2024-25,MF,25.0,1359,2,4,28,18,19,16,4
+Nathaniel Brown,Eint Frankfurt,2024-25,DF,21.0,1947,3,6,13,39,11,71,15
+Nediljko Labrović,Augsburg,2024-25,GK,24.0,1350,0,0,0,0,0,0,0
+Nelson Weiper,Mainz 05,2024-25,FW,19.0,704,3,2,22,10,10,5,2
+Nick Woltemade,Stuttgart,2024-25,FW,22.0,1622,12,2,46,37,31,10,1
+Nico Elvedi,Gladbach,2024-25,DF,27.0,2135,1,1,12,5,0,38,30
+Nico Schlotterbeck,Dortmund,2024-25,DF,24.0,1982,0,4,17,18,14,38,22
+Nicolai Remberg,Holstein Kiel,2024-25,MF,24.0,2417,0,1,24,9,7,45,29
+Nicolas Höfler,Freiburg,2024-25,MF,34.0,794,0,0,4,3,4,33,14
+Nicolas Seiwald,RB Leipzig,2024-25,MF,23.0,2084,0,0,5,20,4,53,31
+Niels Nkounkou,Eint Frankfurt,2024-25,DF,23.0,382,0,0,4,9,7,13,7
+Niklas Dorsch,Heidenheim,2024-25,MF,26.0,1367,2,2,9,13,7,27,17
+Niklas Stark,Werder Bremen,2024-25,DF,29.0,2106,0,1,12,1,1,33,36
+Niklas Süle,Dortmund,2024-25,DF,28.0,1053,0,0,9,3,3,14,4
+Nikola Vasilj,St. Pauli,2024-25,GK,28.0,2969,0,0,0,1,1,0,0
+Nikolas Nartey,Stuttgart,2024-25,MF,24.0,22,0,0,0,0,0,0,0
+Nikolas Veratschnig,Mainz 05,2024-25,DF,21.0,364,0,0,7,5,2,9,5
+Nnamdi Collins,Eint Frankfurt,2024-25,DF,20.0,1489,1,1,5,2,12,33,16
+Noah Atubolu,Freiburg,2024-25,GK,22.0,2307,0,0,0,0,0,0,0
+Noah Pesch,Gladbach,2024-25,FW,19.0,6,0,0,0,0,0,1,0
+Noah Weißhaupt,St. Pauli,2024-25,FW,22.0,1240,1,0,19,18,14,6,2
+Noahkai Banks,Augsburg,2024-25,DF,17.0,278,0,0,1,0,0,11,5
+Nordi Mukiele,Leverkusen,2024-25,DF,26.0,899,1,0,7,9,9,20,16
+Norman Theuerkauf,Heidenheim,2024-25,MF,37.0,22,0,0,1,0,0,0,0
+Oladapo Afolayan,St. Pauli,2024-25,FW,26.0,1639,3,1,38,21,48,17,8
+Oliver Baumann,Hoffenheim,2024-25,GK,34.0,2520,0,0,0,3,1,2,0
+Oliver Burke,Werder Bremen,2024-25,FW,27.0,908,5,0,35,14,7,11,2
+Olivier Deman,Werder Bremen,2024-25,DF,24.0,67,0,0,0,1,0,6,3
+Omar Marmoush,Eint Frankfurt,2024-25,FW,25.0,1448,15,9,75,34,46,12,2
+Omar Traoré,Heidenheim,2024-25,DF,26.0,2616,0,1,16,20,25,50,21
+Oscar Højlund,Eint Frankfurt,2024-25,MF,19.0,722,1,0,6,6,8,21,5
+Pascal Groß,Dortmund,2024-25,MF,33.0,2327,0,9,27,57,3,44,9
+Pascal Stenzel,Stuttgart,2024-25,DF,28.0,290,0,0,8,5,0,3,2
+Patrick Drewes,Bochum,2024-25,GK,31.0,1890,0,0,0,0,0,0,0
+Patrick Erras,Holstein Kiel,2024-25,DF,29.0,832,1,0,8,3,0,8,9
+Patrick Mainka,Heidenheim,2024-25,DF,29.0,3060,1,1,25,7,6,58,68
+Patrick Osterhage,Freiburg,2024-25,MF,24.0,2267,1,0,21,16,11,45,18
+Patrick Wimmer,Wolfsburg,2024-25,MF,23.0,1770,3,4,41,24,37,47,32
+Patrik Schick,Leverkusen,2024-25,FW,28.0,1684,21,0,68,11,10,6,4
+Paul Hennrich,Hoffenheim,2024-25,MF,19.0,12,0,0,0,0,0,0,0
+Paul Nebel,Mainz 05,2024-25,MF,21.0,2345,10,4,44,35,25,38,13
+Paul Wanner,Heidenheim,2024-25,MF,18.0,1771,3,2,24,20,25,40,4
+Pavel Kadeřábek,Hoffenheim,2024-25,DF,32.0,1576,2,0,14,21,5,25,20
+Phil Harres,Holstein Kiel,2024-25,FW,22.0,1544,8,1,37,10,5,10,5
+Philipp Hofmann,Bochum,2024-25,FW,31.0,2277,3,3,54,26,10,17,4
+Philipp Lienhart,Freiburg,2024-25,DF,28.0,2770,1,0,8,6,4,22,36
+Philipp Sander,Gladbach,2024-25,MF,26.0,1400,1,0,18,13,11,33,23
+Philipp Treu,St. Pauli,2024-25,MF,23.0,2881,0,2,19,22,13,61,19
+Phillip Tietz,Augsburg,2024-25,FW,27.0,1686,7,2,51,22,15,11,5
+Phillipp Mwene,Mainz 05,2024-25,DF,30.0,2607,1,4,21,22,22,51,24
+Piero Hincapié,Leverkusen,2024-25,DF,22.0,2670,2,2,22,16,5,52,32
+Péter Gulácsi,RB Leipzig,2024-25,GK,34.0,2631,0,0,0,0,0,1,0
+Ramon Hendriks,Stuttgart,2024-25,DF,23.0,1154,0,1,5,6,5,20,19
+Ramy Bensebaini,Dortmund,2024-25,DF,29.0,2022,1,6,20,15,5,51,33
+Rani Khedira,Union Berlin,2024-25,MF,30.0,2723,1,1,14,12,5,68,44
+Raphaël Guerreiro,Bayern Munich,2024-25,DF,30.0,1572,4,4,21,27,10,19,10
+Rasmus Kristensen,Eint Frankfurt,2024-25,DF,27.0,2513,5,3,24,20,22,59,20
+Ridle Baku,RB Leipzig,2024-25,DF,26.0,2445,4,4,35,27,25,47,24
+Ritsu Doan,Freiburg,2024-25,FW,26.0,2862,10,7,61,27,56,66,14
+Robert Andrich,Leverkusen,2024-25,MF,29.0,1598,2,2,21,9,2,24,29
+Robert Gumny,Augsburg,2024-25,DF,26.0,271,0,0,4,3,2,3,1
+Robert Skov,Union Berlin,2024-25,DF,28.0,852,2,2,16,19,5,15,8
+Robert Wagner,St. Pauli,2024-25,MF,21.0,407,0,0,2,0,1,8,2
+Robin Gosens,Union Berlin,2024-25,DF,30.0,90,0,0,1,1,0,0,1
+Robin Hack,Gladbach,2024-25,FW,25.0,2172,4,7,59,32,25,22,9
+Robin Hranáč,Hoffenheim,2024-25,DF,24.0,219,0,0,0,0,0,0,5
+Robin Koch,Eint Frankfurt,2024-25,DF,28.0,2586,3,0,15,7,1,24,25
+Robin Zentner,Mainz 05,2024-25,GK,29.0,2880,0,0,1,3,0,2,0
+Rocco Reitz,Gladbach,2024-25,MF,22.0,1830,2,1,23,16,17,52,53
+Roland Sallai,Freiburg,2024-25,FW,27.0,46,0,0,3,1,0,2,1
+Romano Schmid,Werder Bremen,2024-25,MF,24.0,2834,5,4,47,68,45,43,11
+Ruben Vargas,Augsburg,2024-25,MF,25.0,305,0,0,9,6,6,2,2
+Sacha Boey,Bayern Munich,2024-25,DF,23.0,593,0,2,3,3,6,20,2
+Salih Özcan,Dortmund,2024-25,MF,26.0,744,0,0,6,10,6,13,18
+Samuel Bamba,Bochum,2024-25,FW,20.0,27,0,0,2,1,1,1,0
+Samuel Essende,Augsburg,2024-25,FW,26.0,1636,7,2,44,11,14,7,0
+Scott Banks,St. Pauli,2024-25,FW,22.0,116,0,0,3,0,2,1,2
+Sebastiaan Bornauw,Wolfsburg,2024-25,DF,25.0,788,2,1,8,1,0,9,12
+Senne Lynen,Werder Bremen,2024-25,MF,25.0,2733,0,1,24,8,12,72,65
+Serge Gnabry,Bayern Munich,2024-25,FW,29.0,1242,7,5,48,24,18,20,6
+Serhou Guirassy,Dortmund,2024-25,FW,28.0,2598,21,4,86,25,11,7,4
+Shiō Fukuda,Gladbach,2024-25,FW,20.0,60,1,0,3,0,1,0,0
+Shuto Machino,Holstein Kiel,2024-25,FW,24.0,1953,11,2,49,27,10,8,7
+Siebe Van Der Heyden,St. Pauli,2024-25,DF,26.0,872,1,0,3,2,1,17,17
+Silvan Widmer,Mainz 05,2024-25,DF,31.0,504,0,1,3,2,0,11,5
+Sirlord Conteh,Heidenheim,2024-25,FW,28.0,892,1,1,13,14,6,9,1
+Skelly Alvero,Werder Bremen,2024-25,MF,22.0,236,0,0,1,0,2,11,2
+Stanley N'Soki,Hoffenheim,2024-25,DF,25.0,1308,0,0,3,7,11,22,26
+Stefan Bell,Mainz 05,2024-25,DF,32.0,1436,0,1,12,5,2,22,28
+Stefan Lainer,Gladbach,2024-25,DF,31.0,757,1,0,4,9,5,22,12
+Stefan Schimmer,Heidenheim,2024-25,FW,30.0,247,0,0,10,4,0,2,0
+Steve Mounié,Augsburg,2024-25,FW,29.0,347,1,0,22,1,1,4,1
+Steven Skrzybski,Holstein Kiel,2024-25,MF,31.0,1323,6,3,32,22,13,19,11
+Sven Ulreich,Bayern Munich,2024-25,GK,35.0,90,0,0,0,0,0,0,0
+Thomas Dähne,Holstein Kiel,2024-25,GK,30.0,810,0,0,0,0,0,0,0
+Thomas Keller,Heidenheim,2024-25,DF,24.0,148,0,0,1,0,0,6,4
+Thomas Müller,Bayern Munich,2024-25,MF,34.0,1225,1,4,30,35,8,8,2
+Tiago Cardoso,Gladbach,2024-25,GK,18.0,380,0,0,0,0,0,1,0
+Tiago Tomás,Wolfsburg,2024-25,FW,22.0,1884,6,1,42,20,29,33,9
+Tidiam Gomis,RB Leipzig,2024-25,MF,17.0,152,0,1,5,3,5,0,1
+Tim Breithaupt,Augsburg,2024-25,MF,22.0,120,0,1,1,1,2,1,2
+Tim Drexler,Hoffenheim,2024-25,DF,19.0,357,0,0,2,1,0,17,1
+Tim Kleindienst,Gladbach,2024-25,FW,28.0,2737,16,7,73,29,14,30,12
+Tim Oermann,Bochum,2024-25,DF,20.0,2213,0,2,9,7,6,50,22
+Tim Siersleben,Heidenheim,2024-25,DF,24.0,1182,0,0,4,6,3,21,20
+Tim Skarke,Union Berlin,2024-25,FW,27.0,1164,0,2,20,16,10,14,5
+Timo Becker,Holstein Kiel,2024-25,DF,27.0,2445,0,2,17,6,12,53,17
+Timo Horn,Bochum,2024-25,GK,31.0,1170,0,0,0,1,0,0,0
+Timon Weiner,Holstein Kiel,2024-25,GK,25.0,2250,0,0,0,0,0,0,0
+Timothy Chandler,Eint Frankfurt,2024-25,DF,34.0,24,0,0,0,0,0,0,3
+Tobias Sippel,Gladbach,2024-25,GK,36.0,59,0,0,0,0,0,0,0
+Tom Bischof,Hoffenheim,2024-25,MF,19.0,2559,5,2,51,50,29,95,30
+Tom Krauß,Bochum,2024-25,MF,23.0,1077,0,0,11,12,12,35,11
+Tom Rothe,Union Berlin,2024-25,DF,19.0,1670,3,3,23,12,5,45,18
+Tomáš Čvančara,Gladbach,2024-25,FW,23.0,831,2,0,24,6,6,4,5
+Tuta,Eint Frankfurt,2024-25,DF,25.0,2274,2,1,13,4,13,44,40
+Tymoteusz Puchacz,Holstein Kiel,2024-25,DF,25.0,396,0,1,4,8,9,9,3
+Umut Tohumcu,Hoffenheim,2024-25,MF,19.0,375,0,1,3,3,4,9,3
+Valentin Gendrey,Hoffenheim,2024-25,DF,24.0,1414,1,1,10,16,3,30,15
+Victor Boniface,Leverkusen,2024-25,FW,23.0,1008,8,1,50,10,15,5,0
+Viggo Gebel,RB Leipzig,2024-25,MF,16.0,14,0,0,0,0,0,0,0
+Vincenzo Grifo,Freiburg,2024-25,FW,31.0,2432,8,11,63,66,25,30,9
+Waldemar Anton,Dortmund,2024-25,DF,28.0,1949,2,2,19,6,20,34,30
+Willi Orban,RB Leipzig,2024-25,DF,31.0,2222,5,0,22,8,3,38,21
+Xaver Schlager,RB Leipzig,2024-25,MF,26.0,181,0,0,1,1,1,4,0
+Xavi Simons,RB Leipzig,2024-25,MF,21.0,2150,10,6,50,51,33,28,12
+Yan Couto,Dortmund,2024-25,DF,22.0,895,0,0,6,12,13,24,10
+Yannick Gerhardt,Wolfsburg,2024-25,MF,30.0,1518,1,1,15,4,1,28,17
+Yannik Keitel,Stuttgart,2024-25,MF,24.0,270,0,0,5,1,1,9,4
+Yannik Lührs,Dortmund,2024-25,DF,20.0,127,0,0,0,1,0,1,2
+Yorbe Vertessen,Union Berlin,2024-25,MF,23.0,718,1,0,27,15,19,6,3
+Yussuf Poulsen,RB Leipzig,2024-25,FW,30.0,378,2,0,15,7,1,10,0
+Yusuf Kabadayı,Augsburg,2024-25,FW,20.0,71,1,0,4,1,2,1,0
+Álex Grimaldo,Leverkusen,2024-25,DF,28.0,2636,2,7,44,73,20,24,16

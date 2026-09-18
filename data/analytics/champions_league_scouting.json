@@ -1,0 +1,15 @@
+{
+  "kind": "observed",
+  "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+  "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+  "note": "Observed 2024\u201325 UCL performances. Basic comparison uses goals and assists per 90 only; advanced scouting metrics are unavailable. Historical clubs, not current squads.",
+  "scope": "basic",
+  "features": [
+    "goals",
+    "assists"
+  ],
+  "seasons": [
+    "2024-25"
+  ],
+  "retrieved_at": "2026-09-18T15:30:08.668976+00:00"
+}

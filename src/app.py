@@ -5,7 +5,7 @@ import json
 import time
 import threading
 import subprocess
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, redirect, url_for
 
 from geo import VENUES
 
@@ -13,6 +13,9 @@ SRC = os.path.dirname(__file__)
 ROOT = os.path.join(SRC, "..")
 WEB = os.path.join(ROOT, "web")
 app = Flask(__name__, static_folder=None)
+from projects.workspace_api import workspace
+from projects import analytics as workspace_analytics
+app.register_blueprint(workspace)
 
 _eng = None
 _league_eng = None
@@ -42,9 +45,9 @@ ARTIFACTS = [
      "producer": "fifa_rankings.py", "max_age_h": None, "optional": True},
     {"key": "recent_stats", "path": "data/recent_stats.json", "label": "Recent WC 2026 form (goal-difference)",
      "producer": "recent_stats.py", "max_age_h": 12, "optional": True},
-    {"key": "pl_players", "path": "data/players/premier_league_players.csv",
+    {"key": "pl_players", "path": "data/analytics/premier_league_players.csv",
      "label": "Premier League player stats (transfer-value / scouting projects)",
-     "producer": "projects/fetch_players.py", "max_age_h": None, "optional": True},
+     "producer": "projects/prepare_player_data.py", "max_age_h": None, "optional": True},
 ]
 
 # One results-csv + model artifact pair per club league (fetch_club_results.LEAGUES),
@@ -105,6 +108,11 @@ def pl_project(name):
 
 @app.route("/")
 def index():
+    return send_from_directory(WEB, "workspace.html")
+
+
+@app.route("/world-cup")
+def world_cup():
     return send_from_directory(WEB, "index.html")
 
 
@@ -176,55 +184,60 @@ def pl_projects_list():
 
 @app.route("/api/pl/transfer/players")
 def pl_transfer_players():
-    return jsonify(pl_project("transfer_value").list_players())
+    return jsonify(workspace_analytics.player_model("premier-league")["latest"].to_dict("records"))
 
 
 @app.route("/api/pl/transfer/predict")
 def pl_transfer_predict():
-    return jsonify(pl_project("transfer_value").predict_player(request.args.get("player", "")))
+    return redirect(url_for("workspace.transfer", slug="premier-league", player=request.args.get("player", "")), code=307)
 
 
 @app.route("/api/pl/transfer/coefficients")
 def pl_transfer_coefficients():
-    return jsonify(pl_project("transfer_value").coefficients())
+    b = workspace_analytics.player_model("premier-league")
+    model = b["holdout_model"]
+    return jsonify(features=[{"feature": str(f), "coefficient": float(w)} for f, w in
+        zip(model[0].get_feature_names_out(), model[-1].coef_)], provenance=b["provenance"])
 
 
 @app.route("/api/pl/transfer/custom", methods=["POST"])
 def pl_transfer_custom():
-    return jsonify(pl_project("transfer_value").predict_custom(request.get_json(force=True)))
+    return redirect(url_for("workspace.transfer", slug="premier-league"), code=307)
 
 
 @app.route("/api/pl/outcome/teams")
 def pl_outcome_teams():
-    return jsonify(pl_project("match_outcome").teams())
+    return jsonify(teams=sorted(workspace_analytics.match_model("premier-league")["state"]))
 
 
 @app.route("/api/pl/outcome/predict")
 def pl_outcome_predict():
-    res = pl_project("match_outcome").predict(request.args.get("home", ""),
-                                              request.args.get("away", ""))
-    return (jsonify(res), 400) if "error" in res else jsonify(res)
+    try:
+        return jsonify(workspace_analytics.outcome("premier-league", request.args.get("home", ""), request.args.get("away", "")))
+    except ValueError as error:
+        return jsonify(error=str(error)), 400
 
 
 @app.route("/api/pl/outcome/importance")
 def pl_outcome_importance():
-    return jsonify(pl_project("match_outcome").feature_importance())
+    return jsonify(workspace_analytics.match_model("premier-league")["importance"])
 
 
 @app.route("/api/pl/scouting/players")
 def pl_scouting_players():
-    return jsonify(pl_project("player_scouting").list_players())
+    return jsonify(workspace_analytics.scout_model("premier-league")["outfield"].to_dict("records"))
 
 
 @app.route("/api/pl/scouting/similar")
 def pl_scouting_similar():
-    res = pl_project("player_scouting").similar(request.args.get("player", ""))
-    return (jsonify(res), 400) if "error" in res else jsonify(res)
+    return redirect(url_for("workspace.scouting", slug="premier-league", **request.args.to_dict()), code=307)
 
 
 @app.route("/api/pl/scouting/clusters")
 def pl_scouting_clusters():
-    return jsonify(pl_project("player_scouting").clusters())
+    b = workspace_analytics.scout_model("premier-league")
+    return jsonify([{"name": name, "players": b["outfield"].loc[b["cluster"].labels_ == i, "player"].tolist()}
+                    for i, name in b["names"].items()])
 
 
 @app.route("/api/sentiment/<team>")

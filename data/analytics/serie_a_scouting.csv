@@ -1,0 +1,600 @@
+player,team,season,position,age,minutes,goals,assists,shots,key_passes,dribbles,tackles,interceptions
+Aaron Ciammaglichella,Torino,2024-25,MF,19.0,1,0,0,0,0,0,0,0
+Aarón Martín,Genoa,2024-25,DF,27.0,3085,0,8,16,65,12,71,19
+Abdou Harroui,Hellas Verona,2024-25,MF,26.0,463,1,2,15,4,6,9,2
+Adam Marušić,Lazio,2024-25,DF,31.0,2337,4,0,23,13,10,32,16
+Adam Masina,Torino,2024-25,DF,30.0,1919,1,2,8,4,6,33,27
+Adam Obert,Cagliari,2024-25,DF,21.0,1077,1,1,9,10,5,31,23
+Ademola Lookman,Atalanta,2024-25,MF,26.0,2247,15,5,81,61,37,32,3
+Adrian Benedyczak,Parma,2024-25,FW,23.0,214,0,0,3,2,0,0,0
+Adrian Bernabe,Parma,2024-25,MF,23.0,1453,1,1,27,22,15,29,7
+Adrien Tameze,Torino,2024-25,MF,30.0,649,0,0,7,6,4,5,10
+Alan Matturro,Genoa,2024-25,DF,19.0,900,0,0,4,3,3,11,14
+Albert Guðmundsson,Fiorentina,2024-25,FW,27.0,1273,6,1,25,15,15,9,6
+Alberto Cerri,Como,2024-25,FW,28.0,87,0,0,4,0,0,0,0
+Alberto Dossena,Como,2024-25,DF,25.0,1825,0,2,12,5,4,33,22
+Alberto Grassi,Empoli,2024-25,MF,29.0,2203,1,0,11,7,5,39,33
+Alberto Manzoni,Atalanta,2024-25,MF,19.0,6,0,0,1,0,0,0,0
+Alberto Moreno,Como,2024-25,DF,32.0,1727,0,0,14,19,3,25,14
+Alberto Paleari,Torino,2024-25,GK,31.0,90,0,0,0,0,0,0,0
+Alberto costa,Juventus,2024-25,DF,20.0,357,0,1,7,2,4,14,4
+Alejandro Jiménez,Milan,2024-25,DF,19.0,1266,0,1,15,12,26,24,15
+Alen Sherri,Cagliari,2024-25,GK,26.0,621,0,0,0,1,0,1,1
+Alessandro Bastoni,Inter,2024-25,DF,25.0,2333,1,5,12,27,7,46,21
+Alessandro Bianco,Monza,2024-25,MF,21.0,2618,1,0,26,18,17,51,22
+Alessandro Buongiorno,Napoli,2024-25,DF,25.0,1924,1,0,8,5,1,39,35
+Alessandro Circati,Parma,2024-25,DF,20.0,540,0,0,2,1,0,7,3
+Alessandro Deiola,Cagliari,2024-25,MF,28.0,1432,2,1,18,6,3,31,13
+Alessandro Florenzi,Milan,2024-25,FW,33.0,5,0,0,0,0,0,0,0
+Alessandro Gabrielloni,Como,2024-25,FW,30.0,142,1,1,5,4,0,0,0
+Alessandro Marcandalli,Venezia,2024-25,DF,21.0,400,0,0,2,0,0,9,2
+Alessandro Vogliacco,Parma,2024-25,DF,25.0,1487,2,0,6,4,1,20,12
+Alessandro Zanoli,Genoa,2024-25,FW,23.0,1711,1,0,11,19,20,29,12
+Alessio Cacciamani,Torino,2024-25,MF,17.0,31,0,0,0,0,1,0,1
+Alessio Iovine,Como,2024-25,DF,33.0,387,0,0,1,3,1,5,3
+Alessio Romagnoli,Lazio,2024-25,DF,29.0,2672,2,0,20,9,1,48,26
+Alessio Zerbin,Venezia,2024-25,DF,25.0,1520,1,1,16,24,21,53,15
+Alex Meret,Napoli,2024-25,GK,27.0,3005,0,0,0,0,0,0,0
+Alexis Saelemaekers,Roma,2024-25,DF,25.0,1479,7,3,25,26,22,34,10
+Alexis Sánchez,Udinese,2024-25,FW,35.0,437,0,0,7,3,4,3,4
+Alfred Duncan,Venezia,2024-25,MF,31.0,957,0,0,15,11,13,17,8
+Ali Dembélé,Torino,2024-25,DF,20.0,388,1,0,5,3,2,9,1
+Ali Jasim,Como,2024-25,FW,20.0,10,0,0,0,0,0,1,0
+Alieu Fadera,Como,2024-25,FW,22.0,1644,1,3,28,23,26,64,12
+Alphadjo Cissè,Hellas Verona,2024-25,FW,17.0,9,0,0,2,0,0,0,0
+Amin Sarr,Hellas Verona,2024-25,FW,23.0,1907,4,1,23,22,14,22,3
+Amir Richardson,Fiorentina,2024-25,MF,22.0,1024,1,1,11,8,11,30,6
+Amir Rrahmani,Napoli,2024-25,DF,30.0,3406,1,3,28,11,4,39,27
+Anass Salah-Eddine,Roma,2024-25,DF,22.0,152,0,1,2,2,0,1,1
+Anastasios Douvikas,Como,2024-25,FW,24.0,580,2,2,14,9,5,3,1
+Andre-Frank Zambo Anguissa,Napoli,2024-25,MF,28.0,2852,6,4,44,26,25,42,35
+Andrea Belotti,Como,2024-25,FW,30.0,593,2,0,19,7,2,7,1
+Andrea Cambiaso,Juventus,2024-25,DF,24.0,2221,2,3,17,34,27,46,16
+Andrea Carboni,Monza,2024-25,DF,23.0,2191,0,1,8,4,5,60,27
+Andrea Colpani,Fiorentina,2024-25,FW,25.0,1432,2,1,35,17,12,15,8
+Andrea Mazza,Monza,2024-25,GK,20.0,8,0,0,0,0,0,0,0
+Andrea Petagna,Monza,2024-25,FW,29.0,335,0,0,4,1,2,2,1
+Andrea Pinamonti,Genoa,2024-25,FW,25.0,2850,10,1,78,15,11,10,1
+Andy Pelmard,Lecce,2024-25,DF,24.0,129,0,0,0,0,1,6,0
+Ange-Yoan Bonny,Parma,2024-25,FW,20.0,2529,6,4,61,30,33,34,3
+Angeliño,Roma,2024-25,DF,27.0,3177,2,1,24,50,11,46,28
+Ante Rebić,Lecce,2024-25,FW,30.0,788,1,0,13,18,8,12,2
+Antoine Bernede,Hellas Verona,2024-25,MF,25.0,594,1,0,4,10,2,15,5
+Antoine Hainaut,Parma,2024-25,DF,22.0,1206,2,0,6,9,13,26,15
+Antoine Makoumbou,Cagliari,2024-25,MF,26.0,2150,0,3,7,8,10,42,17
+Antonino Gallo,Lecce,2024-25,DF,24.0,2609,0,2,9,44,13,65,20
+Antonio Candela,Venezia,2024-25,DF,24.0,1008,0,1,5,9,6,31,8
+Antonio Raimondo,Venezia,2024-25,FW,20.0,94,0,0,1,1,0,2,0
+Antonio Sanabria,Torino,2024-25,FW,28.0,1318,2,1,18,9,6,3,1
+Antonín Barák,Fiorentina,2024-25,MF,29.0,54,0,0,2,3,0,2,0
+Ardian Ismajli,Empoli,2024-25,DF,27.0,2508,0,0,5,2,0,30,56
+Arijon Ibrahimović,Lazio,2024-25,MF,18.0,8,0,0,2,0,0,0,0
+Armando Izzo,Monza,2024-25,DF,32.0,2435,1,1,6,11,6,40,45
+Artem Dovbyk,Roma,2024-25,FW,27.0,2418,12,2,61,25,7,4,2
+Arthur Atta,Udinese,2024-25,MF,21.0,1251,0,1,26,18,27,20,7
+Arvid Brorsson,Monza,2024-25,DF,25.0,362,0,0,0,0,1,4,2
+Assane Diao,Como,2024-25,FW,18.0,1252,8,1,28,8,19,25,3
+Balthazar Pierret,Lecce,2024-25,MF,24.0,1723,0,0,6,10,13,51,19
+Ben Godfrey,Atalanta,2024-25,DF,26.0,23,0,0,0,0,0,0,0
+Ben Lhassine Kone,Como,2024-25,MF,24.0,51,0,0,1,0,1,2,1
+Benjamin Pavard,Inter,2024-25,DF,28.0,1584,0,1,8,8,0,29,16
+Benjamin Siegrist,Genoa,2024-25,GK,32.0,152,0,0,0,0,0,0,1
+Benjamín Domínguez,Bologna,2024-25,FW,20.0,1281,3,2,30,10,28,18,4
+Berat Djimsiti,Atalanta,2024-25,DF,31.0,2640,1,2,20,11,1,53,40
+Billy Gilmour,Napoli,2024-25,MF,23.0,1177,0,1,9,21,5,24,9
+Bjarki Bjarkason,Venezia,2024-25,DF,24.0,165,0,0,0,1,1,3,2
+Bob Murphy Omoregbe,Milan,2024-25,MF,20.0,3,0,0,0,0,0,0,0
+Borna Sosa,Torino,2024-25,DF,26.0,1181,0,0,4,11,3,26,14
+Botond Balogh,Parma,2024-25,DF,22.0,2053,0,1,3,2,0,36,25
+Boulaye Dia,Lazio,2024-25,MF,27.0,2177,9,3,39,26,17,22,6
+Brenner,Udinese,2024-25,MF,24.0,386,1,2,7,5,3,6,1
+Brooke Norton-Cuffy,Genoa,2024-25,DF,20.0,719,0,0,5,2,7,12,3
+Bryan Cristante,Roma,2024-25,MF,29.0,2045,4,2,30,18,6,48,19
+Caleb Ekuban,Genoa,2024-25,FW,30.0,555,1,3,18,8,3,3,1
+Carlos Augusto,Inter,2024-25,DF,25.0,1625,3,2,24,9,7,29,9
+Casper Tengstedt,Hellas Verona,2024-25,FW,24.0,1517,6,1,37,12,9,7,4
+Cesare Casadei,Torino,2024-25,MF,21.0,1017,1,1,14,7,7,12,5
+Charalambos Lykogiannis,Bologna,2024-25,DF,30.0,1048,0,4,6,19,4,23,11
+Charles De Ketelaere,Atalanta,2024-25,MF,23.0,2070,7,7,48,39,43,13,3
+Che Adams,Torino,2024-25,FW,28.0,2652,9,3,63,26,11,12,2
+Cheick Oumar Conde,Venezia,2024-25,MF,24.0,151,0,0,1,1,2,6,4
+Cheikh Tidiane Niasse,Hellas Verona,2024-25,MF,24.0,755,0,0,3,4,1,18,17
+Cher Ndour,Fiorentina,2024-25,MF,20.0,406,0,0,4,1,2,4,2
+Christian Gytkjær,Venezia,2024-25,FW,34.0,754,2,1,16,7,1,6,0
+Christian Kabasele,Udinese,2024-25,DF,33.0,1161,2,0,15,6,1,17,14
+Christian Kouamé,Fiorentina,2024-25,FW,26.0,1129,1,1,27,17,12,18,2
+Christian Pulisic,Milan,2024-25,FW,25.0,2478,11,9,53,69,39,43,5
+Christos Mandas,Lazio,2024-25,GK,22.0,810,0,0,0,0,0,0,0
+Cristiano Biraghi,Torino,2024-25,DF,31.0,1591,1,0,15,31,1,20,12
+Cyril Ngonge,Napoli,2024-25,FW,24.0,216,0,0,13,3,7,8,2
+Dailon Livramento,Hellas Verona,2024-25,FW,23.0,940,1,1,13,8,6,15,3
+Damián Pizarro,Udinese,2024-25,FW,19.0,16,0,0,0,0,0,0,0
+Dan Ndoye,Bologna,2024-25,FW,23.0,2143,8,4,50,27,37,26,9
+Daniel Bandeira,Hellas Verona,2024-25,MF,24.0,407,0,0,2,3,1,4,6
+Daniel Fila,Venezia,2024-25,FW,21.0,492,2,0,8,6,2,2,0
+Daniel Maldini,Monza,2024-25,MF,22.0,1564,6,0,49,15,36,16,6
+Daniel Mosquera,Hellas Verona,2024-25,FW,24.0,1375,5,1,57,12,16,11,2
+Daniel Oyegoke,Hellas Verona,2024-25,DF,21.0,103,0,0,1,0,2,2,1
+Daniele Baselli,Como,2024-25,MF,32.0,22,0,0,0,0,0,0,1
+Daniele Ghilardi,Hellas Verona,2024-25,DF,21.0,2029,0,0,12,6,2,44,30
+Daniele Padelli,Udinese,2024-25,GK,38.0,90,0,0,0,0,0,0,0
+Daniele Sommariva,Genoa,2024-25,GK,27.0,28,0,0,0,0,0,0,0
+Danilo,Juventus,2024-25,DF,33.0,581,0,1,1,3,0,10,9
+Danilo Cataldi,Fiorentina,2024-25,MF,29.0,1712,3,0,13,15,3,25,22
+Danilo D'Ambrosio,Monza,2024-25,DF,35.0,1095,0,1,9,5,2,28,15
+Danilo Veiga,Lecce,2024-25,DF,21.0,374,0,0,5,6,6,8,4
+Dany Mota,Monza,2024-25,FW,26.0,2104,5,2,42,22,13,13,9
+Darko Lazović,Hellas Verona,2024-25,DF,33.0,1459,2,3,19,18,7,21,11
+David Akpan Ankeye,Genoa,2024-25,FW,22.0,45,0,0,0,0,1,0,0
+David Neres,Napoli,2024-25,FW,27.0,1283,2,4,29,26,33,21,7
+David de Gea,Fiorentina,2024-25,GK,33.0,3060,0,1,0,3,0,1,0
+Davide Bartesaghi,Milan,2024-25,DF,18.0,118,0,0,1,2,0,4,3
+Davide Calabria,Bologna,2024-25,DF,27.0,948,0,1,5,14,3,22,11
+Davide Faraoni,Hellas Verona,2024-25,DF,32.0,260,0,0,1,2,0,10,2
+Davide Frattesi,Inter,2024-25,MF,24.0,1158,5,1,26,7,7,17,5
+Davide Zappacosta,Atalanta,2024-25,DF,32.0,2067,4,2,39,23,12,26,11
+Dele Alli,Como,2024-25,MF,28.0,9,0,0,0,0,0,0,0
+Dennis Man,Parma,2024-25,FW,25.0,1995,4,4,49,45,25,13,8
+Denzel Dumfries,Inter,2024-25,DF,28.0,1865,7,2,36,21,13,25,6
+Devis Vásquez,Empoli,2024-25,GK,26.0,2880,0,0,0,0,1,0,0
+Devyne Rensch,Roma,2024-25,DF,21.0,469,0,1,3,2,0,17,7
+Diego Coppola,Hellas Verona,2024-25,DF,20.0,2927,2,0,10,3,1,66,72
+Diego Pugno,Juventus,2024-25,FW,18.0,7,0,0,0,1,0,0,0
+Dodô,Fiorentina,2024-25,DF,25.0,3025,0,4,25,36,52,44,34
+Domagoj Bradarić,Hellas Verona,2024-25,DF,24.0,1933,1,0,9,25,15,36,15
+Domen Črnigoj,Venezia,2024-25,MF,28.0,136,0,0,1,0,0,4,4
+Douglas Luiz,Juventus,2024-25,MF,26.0,529,0,0,8,15,11,13,4
+Drissa Camara,Parma,2024-25,MF,22.0,447,0,0,15,5,17,9,3
+Duván Zapata,Torino,2024-25,FW,33.0,587,3,0,21,9,1,7,2
+Dušan Vlahović,Juventus,2024-25,FW,24.0,1784,10,4,73,15,9,4,1
+Edoardo Bove,Fiorentina,2024-25,MF,22.0,836,1,2,7,11,7,24,6
+Edoardo Goldaniga,Como,2024-25,DF,30.0,2532,1,0,12,4,3,34,33
+Eldor Shomurodov,Roma,2024-25,FW,29.0,1097,4,4,29,17,8,14,3
+Elia Caprile,Cagliari,2024-25,GK,22.0,1945,0,0,0,0,0,1,0
+Elif Elmas,Torino,2024-25,FW,24.0,1021,4,0,19,9,13,10,6
+Elseid Hysaj,Lazio,2024-25,DF,30.0,424,0,3,2,6,3,11,5
+Emanuele Valeri,Parma,2024-25,DF,25.0,2873,2,6,26,36,12,51,29
+Emerson,Milan,2024-25,DF,25.0,1377,0,0,10,15,7,45,14
+Emil Audero,Como,2024-25,GK,27.0,720,0,0,0,0,0,0,0
+Emil Bohinen,Genoa,2024-25,MF,25.0,166,0,0,2,3,0,4,1
+Emil Holm,Bologna,2024-25,DF,24.0,1137,1,1,10,10,10,34,10
+Emmanuel Ekong,Empoli,2024-25,MF,22.0,186,0,0,4,2,7,4,1
+Emmanuel Gyasi,Empoli,2024-25,DF,30.0,3217,2,1,22,17,20,52,11
+Enrico Del Prato,Parma,2024-25,DF,24.0,2947,4,0,12,14,2,33,19
+Enzo Ebosse,Udinese,2024-25,DF,25.0,90,0,0,0,1,1,0,1
+Enzo Le Fée,Roma,2024-25,MF,24.0,318,0,0,4,3,4,7,5
+Estanis,Bologna,2024-25,FW,20.0,9,0,0,2,2,2,0,0
+Eybi Nije,Torino,2024-25,FW,19.0,394,1,0,9,4,7,5,0
+Fabiano Parisi,Fiorentina,2024-25,DF,23.0,1049,2,0,8,4,10,27,17
+Fabio Miretti,Genoa,2024-25,MF,20.0,1677,3,3,24,22,25,28,7
+Fali Candé,Venezia,2024-25,DF,26.0,1530,1,1,5,4,9,25,15
+Faride Alidou,Hellas Verona,2024-25,FW,23.0,71,0,0,1,1,2,0,1
+Faustino Anjorin,Empoli,2024-25,MF,22.0,1114,2,3,23,17,16,29,13
+Federico Accornero,Genoa,2024-25,MF,20.0,5,0,0,0,0,0,0,0
+Federico Barba,Como,2024-25,DF,30.0,431,0,0,2,0,0,2,4
+Federico Baschirotto,Lecce,2024-25,DF,27.0,3420,2,0,22,4,4,37,23
+Federico Cassa,Atalanta,2024-25,MF,18.0,14,0,0,0,0,0,0,0
+Federico Dimarco,Inter,2024-25,DF,26.0,2140,4,7,55,48,4,25,14
+Federico Gatti,Juventus,2024-25,DF,26.0,2195,1,0,25,6,7,28,18
+Federico Ravaglia,Bologna,2024-25,GK,24.0,1056,0,0,0,1,2,0,0
+Fellipe Jack,Como,2024-25,DF,18.0,171,0,0,0,1,0,9,4
+Fikayo Tomori,Milan,2024-25,DF,26.0,1593,0,1,2,8,2,40,20
+Filip Marchwiński,Lecce,2024-25,MF,22.0,15,0,0,0,0,0,0,0
+Filip Stankovic,Venezia,2024-25,GK,22.0,1367,0,0,0,0,0,0,0
+Filippo Melegoni,Genoa,2024-25,MF,25.0,89,0,1,1,1,1,1,0
+Filippo Terracciano,Milan,2024-25,DF,21.0,539,0,0,3,2,0,9,6
+Fisayo Dele-Bashiru,Lazio,2024-25,MF,23.0,947,3,1,16,10,14,10,4
+Flavius Daniliuc,Hellas Verona,2024-25,DF,23.0,1004,0,0,3,2,4,26,7
+Florian Thauvin,Udinese,2024-25,FW,31.0,1956,8,3,51,39,39,20,7
+Florinel Coman,Cagliari,2024-25,FW,26.0,263,1,0,4,1,2,5,1
+Francesco Acerbi,Inter,2024-25,DF,36.0,1710,0,1,5,9,3,23,26
+Francesco Camarda,Milan,2024-25,FW,16.0,206,0,0,8,5,2,5,0
+Francesco Caputo,Empoli,2024-25,FW,36.0,6,0,0,0,0,0,0,0
+Francesco Zampano,Venezia,2024-25,DF,30.0,1639,1,2,7,12,8,31,6
+Francisco Conceição,Juventus,2024-25,FW,21.0,1340,3,3,40,28,35,23,6
+Franco Carboni,Venezia,2024-25,DF,21.0,226,0,0,1,2,2,5,0
+Frederic Guilbert,Lecce,2024-25,DF,29.0,2435,0,1,11,19,18,65,47
+Gabriel Charpentier,Parma,2024-25,FW,25.0,271,1,2,9,7,2,4,0
+Gabriel Strefezza,Como,2024-25,FW,27.0,2619,6,4,58,57,36,57,13
+Gabriele Zappa,Cagliari,2024-25,DF,24.0,3060,2,0,11,28,13,40,23
+Gaby Jean,Lecce,2024-25,DF,24.0,1388,0,0,1,1,2,14,9
+Gaetano Castrovilli,Monza,2024-25,MF,27.0,744,0,0,8,9,6,17,5
+Gaetano Oristanio,Venezia,2024-25,FW,21.0,2315,3,3,44,33,55,17,6
+Gastón Pereiro,Genoa,2024-25,MF,29.0,31,0,0,0,0,0,1,0
+Giacomo Raspadori,Napoli,2024-25,FW,24.0,1103,6,1,42,28,9,18,3
+Giangiacomo Magnani,Hellas Verona,2024-25,DF,28.0,1065,1,0,11,1,1,20,17
+Gianluca Busio,Venezia,2024-25,MF,22.0,2518,2,0,36,28,15,46,19
+Gianluca Caprari,Monza,2024-25,MF,31.0,1651,3,2,28,30,10,19,8
+Gianluca Gaetano,Cagliari,2024-25,MF,24.0,1009,2,4,30,22,14,11,6
+Gianluca Lapadula,Cagliari,2024-25,FW,34.0,310,0,0,15,3,2,2,0
+Gianluca Mancini,Roma,2024-25,DF,28.0,3143,2,0,22,14,1,42,35
+Gianluca Scamacca,Atalanta,2024-25,FW,25.0,6,0,0,1,0,0,0,0
+Giorgio Altare,Venezia,2024-25,DF,25.0,753,0,0,3,1,5,13,17
+Giorgio Scalvini,Atalanta,2024-25,DF,20.0,272,0,0,4,0,5,8,4
+Giorgos Kyriakopoulos,Monza,2024-25,DF,28.0,2845,2,4,27,41,16,43,23
+Giovanni Di Lorenzo,Napoli,2024-25,DF,30.0,3330,3,2,21,37,4,66,31
+Giovanni Fabbian,Bologna,2024-25,MF,21.0,1023,3,1,21,9,2,10,2
+Giovanni Leoni,Parma,2024-25,DF,17.0,1199,1,0,2,1,3,14,15
+Giovanni Simeone,Napoli,2024-25,FW,29.0,419,1,1,13,8,6,2,1
+Giuseppe Ciocci,Cagliari,2024-25,GK,22.0,9,0,0,0,0,0,0,0
+Giuseppe Pezzella,Empoli,2024-25,DF,26.0,2878,0,3,15,36,17,55,15
+Gleison Bremer,Juventus,2024-25,DF,27.0,540,0,0,3,0,3,15,6
+Grigoris Kastanos,Hellas Verona,2024-25,MF,26.0,872,1,1,22,12,0,23,7
+Guillermo Maripán,Torino,2024-25,DF,30.0,2340,1,1,12,5,2,40,41
+Gustav Isaksen,Lazio,2024-25,FW,23.0,2210,4,2,54,35,44,16,10
+Gvidas Gineitis,Torino,2024-25,MF,20.0,1430,3,1,29,21,8,25,18
+Hakan Çalhanoğlu,Inter,2024-25,MF,30.0,1879,5,6,41,49,3,43,17
+Hamza Rafia,Lecce,2024-25,MF,25.0,1058,0,0,10,16,10,44,4
+Hans Nicolussi Caviglia,Venezia,2024-25,MF,24.0,2861,4,2,53,29,17,47,28
+Hassane Kamara,Udinese,2024-25,DF,30.0,2001,1,4,17,24,18,35,26
+Henrikh Mkhitaryan,Inter,2024-25,MF,35.0,2328,1,4,23,29,7,43,16
+Hernani,Parma,2024-25,MF,30.0,1327,3,3,17,25,8,47,19
+Honest Ahanor,Genoa,2024-25,DF,16.0,270,0,0,3,2,0,7,1
+Ibrahim Sulemana,Atalanta,2024-25,MF,21.0,283,2,0,5,1,1,9,0
+Ignace Van Der Brempt,Como,2024-25,DF,22.0,1257,0,1,7,10,13,40,17
+Iker Bravo,Udinese,2024-25,FW,19.0,682,2,1,13,7,11,10,1
+Ionuț Radu,Venezia,2024-25,GK,27.0,1350,0,0,0,0,1,0,0
+Isak Hien,Atalanta,2024-25,DF,25.0,2327,0,0,8,2,6,48,31
+Ismael Konate,Empoli,2024-25,FW,18.0,116,0,1,3,2,2,4,0
+Ismaël Bennacer,Milan,2024-25,MF,26.0,300,0,0,3,4,9,5,3
+Issa Doumbia,Venezia,2024-25,MF,20.0,939,0,0,16,3,11,14,9
+Ivan Ilić,Torino,2024-25,MF,23.0,920,1,0,11,9,6,5,5
+Ivan Provedel,Lazio,2024-25,GK,30.0,2610,0,0,0,3,0,0,1
+Ivan Smolčić,Como,2024-25,DF,23.0,630,0,0,7,2,0,16,10
+Jackson Tchatchoua,Hellas Verona,2024-25,DF,22.0,3167,2,3,18,34,21,50,14
+Jacob Ondrejka,Parma,2024-25,MF,21.0,422,5,0,14,7,6,12,7
+Jacopo Bacci,Empoli,2024-25,MF,19.0,31,0,0,0,0,0,1,1
+Jacopo Fazzini,Empoli,2024-25,MF,21.0,1383,4,1,27,12,23,32,6
+Jacopo Seghetti,Empoli,2024-25,GK,19.0,90,0,0,0,0,0,0,0
+Jaka Bijol,Udinese,2024-25,DF,25.0,2963,1,0,19,12,2,43,38
+James Abankwah,Udinese,2024-25,DF,20.0,88,0,0,1,0,0,4,1
+Jay Idzes,Venezia,2024-25,DF,24.0,3127,1,0,15,8,1,45,32
+Jean Butez,Como,2024-25,GK,29.0,1666,0,0,0,1,0,0,0
+Jean Onana,Genoa,2024-25,MF,24.0,304,0,0,1,2,2,12,4
+Jean-Daniel Akpa-Akpro,Monza,2024-25,MF,31.0,966,0,0,4,3,12,30,13
+Jeff Ekhator,Genoa,2024-25,FW,17.0,769,1,1,10,11,4,7,2
+Jens Odgaard,Bologna,2024-25,MF,25.0,1952,6,1,49,16,15,20,9
+Jesper Karlsson,Lecce,2024-25,FW,26.0,793,2,0,15,12,8,4,0
+Jesper Karlström,Udinese,2024-25,MF,29.0,3186,0,3,13,21,6,61,35
+Jesse Joronen,Venezia,2024-25,GK,31.0,703,0,0,0,0,0,0,0
+Jhon Lucumí,Bologna,2024-25,DF,26.0,2614,0,1,13,8,10,53,26
+Joaquín Correa,Inter,2024-25,FW,29.0,731,2,2,14,10,6,11,0
+Joel Pohjanpalo,Venezia,2024-25,FW,29.0,1603,6,0,34,15,3,3,4
+Johan Vásquez,Genoa,2024-25,DF,25.0,3041,3,0,36,7,5,56,50
+John Yeboah,Venezia,2024-25,FW,24.0,1226,1,1,30,20,24,6,4
+Jonas Rouhi,Juventus,2024-25,DF,20.0,210,0,0,0,0,2,4,3
+Jonathan Ikone,Como,2024-25,FW,26.0,874,2,0,25,4,15,20,1
+Jordan Zemura,Udinese,2024-25,DF,24.0,1415,1,2,14,11,20,31,16
+Josep Martinez,Inter,2024-25,GK,26.0,450,0,0,0,1,0,0,0
+José Luis Palomino,Cagliari,2024-25,DF,34.0,1081,1,0,2,1,0,27,22
+João Félix,Milan,2024-25,MF,24.0,760,2,0,29,10,15,6,1
+Joël Schingtienne,Venezia,2024-25,DF,21.0,1122,0,0,0,3,5,27,14
+Juan Cuadrado,Atalanta,2024-25,DF,36.0,832,0,2,16,19,17,19,7
+Juan David Cabal,Juventus,2024-25,DF,23.0,460,0,0,5,1,4,10,2
+Juan Jesus,Napoli,2024-25,DF,33.0,1074,0,1,3,1,0,25,9
+Juan Miranda,Bologna,2024-25,DF,24.0,2277,0,6,22,57,7,32,23
+Juan Musso,Atalanta,2024-25,GK,30.0,90,0,0,0,0,0,0,0
+Junior Ajayi,Hellas Verona,2024-25,FW,19.0,13,0,0,0,0,0,0,0
+Junior Messias,Genoa,2024-25,MF,33.0,847,1,1,17,8,10,13,6
+Junior Sambia,Empoli,2024-25,DF,27.0,387,0,0,10,6,7,14,2
+Jurgen Ekkelenkamp,Udinese,2024-25,MF,24.0,1892,3,2,27,15,10,36,12
+Kacper Urbanski,Monza,2024-25,MF,19.0,747,1,0,9,13,6,10,4
+Karol Linetty,Torino,2024-25,MF,29.0,1540,1,0,17,10,7,39,12
+Keinan Davis,Udinese,2024-25,FW,26.0,1066,2,1,29,20,17,9,1
+Keita Baldé,Monza,2024-25,FW,29.0,638,2,0,14,4,5,1,2
+Kenan Yıldız,Juventus,2024-25,FW,19.0,2402,7,4,61,57,59,54,5
+Kevin Bonifazi,Lecce,2024-25,DF,28.0,65,0,0,0,0,1,1,2
+Kevin Martins,Monza,2024-25,MF,19.0,183,0,1,0,2,4,5,1
+Kevin Zeroli,Monza,2024-25,MF,19.0,407,0,1,6,2,0,7,2
+Khvicha Kvaratskhelia,Napoli,2024-25,FW,23.0,1178,5,3,49,28,19,15,4
+Khéphren Thuram,Juventus,2024-25,MF,23.0,2326,4,5,36,25,39,44,14
+Kialonda,Lecce,2024-25,DF,26.0,2144,0,1,16,6,8,34,32
+Kike Pérez,Venezia,2024-25,MF,27.0,1114,1,0,13,16,13,41,10
+Kingsley Ehizibue,Udinese,2024-25,DF,29.0,2498,0,1,14,22,12,55,23
+Kingstone Mutandwa,Cagliari,2024-25,FW,21.0,127,0,0,4,0,1,0,0
+Konan N'dri,Lecce,2024-25,FW,23.0,306,0,0,9,6,7,3,1
+Koni De Winter,Genoa,2024-25,DF,22.0,2135,3,0,13,3,6,33,25
+Kristjan Asllani,Inter,2024-25,MF,22.0,980,2,2,14,15,1,14,9
+Kyle Walker,Milan,2024-25,DF,34.0,659,0,0,2,6,5,17,9
+Lameck Banda,Lecce,2024-25,FW,23.0,610,0,1,17,11,10,8,2
+Lassana Coulibaly,Lecce,2024-25,MF,28.0,2667,1,0,9,12,18,48,18
+Lautaro Gianetti,Udinese,2024-25,DF,30.0,878,1,0,2,2,0,22,15
+Lautaro Martínez,Inter,2024-25,FW,26.0,2474,12,3,99,36,17,30,10
+Lautaro Valenti,Parma,2024-25,DF,25.0,1556,1,0,7,4,0,17,13
+Lazar Samardzic,Atalanta,2024-25,MF,22.0,1169,2,1,33,35,27,21,2
+Leandro Chichizola,Parma,2024-25,GK,34.0,90,0,0,0,0,0,0,0
+Leandro Paredes,Roma,2024-25,MF,30.0,1373,3,1,24,21,3,26,19
+Leonardo Pavoletti,Cagliari,2024-25,FW,35.0,445,2,0,18,9,0,1,0
+Leonardo Spinazzola,Napoli,2024-25,DF,31.0,1517,1,1,12,26,28,17,9
+Lewis Ferguson,Bologna,2024-25,MF,24.0,983,1,1,5,14,5,24,5
+Liam Henderson,Empoli,2024-25,MF,28.0,2337,0,4,22,33,6,42,15
+Liberato Cacace,Empoli,2024-25,MF,23.0,2230,2,4,29,25,14,37,22
+Lior Kasa,Genoa,2024-25,MF,18.0,230,0,0,5,2,1,4,3
+Lloyd Kelly,Juventus,2024-25,DF,25.0,1013,0,0,7,3,0,15,2
+Lorenzo Anghelè,Juventus,2024-25,FW,19.0,6,0,0,0,0,1,0,0
+Lorenzo Colombo,Empoli,2024-25,FW,22.0,2233,6,2,55,21,24,31,2
+Lorenzo De Silvestri,Bologna,2024-25,DF,36.0,1060,1,0,9,5,1,11,10
+Lorenzo Lucca,Udinese,2024-25,FW,23.0,2353,12,1,64,14,12,10,7
+Lorenzo Montipò,Hellas Verona,2024-25,GK,28.0,3240,0,0,0,0,0,1,0
+Lorenzo Pellegrini,Roma,2024-25,MF,28.0,1626,2,1,41,27,11,24,6
+Lorenzo Tosto,Empoli,2024-25,DF,18.0,1,0,0,0,0,0,0,0
+Lorenzo Venturino,Genoa,2024-25,FW,18.0,167,2,0,4,3,4,5,0
+Loum Tchaouna,Lazio,2024-25,FW,20.0,660,1,0,23,10,5,8,4
+Luca Caldirola,Monza,2024-25,DF,33.0,876,0,0,4,2,1,11,11
+Luca Marianucci,Empoli,2024-25,DF,20.0,1069,0,0,8,3,5,28,19
+Luca Mazzitelli,Como,2024-25,MF,28.0,335,1,1,7,6,4,9,3
+Luca Pellegrini,Lazio,2024-25,DF,25.0,1067,0,4,13,20,11,23,19
+Luca Ranieri,Fiorentina,2024-25,DF,25.0,2981,0,3,10,16,9,42,27
+Lucas Beltrán,Fiorentina,2024-25,FW,23.0,1864,5,4,26,29,15,23,5
+Lucas Da Cunha,Como,2024-25,MF,23.0,2613,3,2,37,55,12,45,17
+Lucas Gourna-Douath,Roma,2024-25,MF,20.0,229,0,0,3,2,2,9,0
+Lucas Martínez Quarta,Fiorentina,2024-25,DF,28.0,351,1,0,3,1,2,12,3
+Luka Jović,Milan,2024-25,FW,26.0,557,2,0,11,12,4,0,1
+Luka Topalović,Inter,2024-25,MF,18.0,11,0,0,0,0,0,1,0
+Maat Daniel Caprini,Fiorentina,2024-25,FW,18.0,7,0,0,0,0,0,0,0
+Maduka Okoye,Udinese,2024-25,GK,24.0,2250,0,0,0,0,0,0,0
+Magnus Kofod Andersen,Venezia,2024-25,MF,25.0,695,1,1,8,9,2,13,6
+Malick Thiaw,Milan,2024-25,DF,22.0,1806,0,0,7,4,3,24,15
+Mandela Keita,Parma,2024-25,MF,22.0,1826,0,2,5,15,17,44,21
+Manu Koné,Roma,2024-25,MF,23.0,2572,2,1,34,19,30,41,24
+Manuel Lazzari,Lazio,2024-25,DF,30.0,1406,0,1,6,20,15,26,10
+Manuel Locatelli,Juventus,2024-25,MF,26.0,2822,2,2,24,29,8,72,23
+Marc-Oliver Kempf,Como,2024-25,DF,29.0,2615,0,0,20,10,4,30,33
+Marco Brescianini,Atalanta,2024-25,MF,24.0,991,4,2,20,7,8,18,2
+Marco Carnesecchi,Atalanta,2024-25,GK,24.0,3060,0,0,0,1,0,0,0
+Marco Palestra,Atalanta,2024-25,DF,19.0,222,0,0,0,3,4,6,2
+Marco Sala,Como,2024-25,DF,25.0,333,0,0,0,2,1,10,1
+Marco Silvestri,Empoli,2024-25,GK,33.0,450,0,0,0,0,0,0,0
+Marco Sportiello,Milan,2024-25,GK,32.0,126,0,0,0,0,0,0,0
+Marcus Pedersen,Torino,2024-25,DF,24.0,1362,0,0,8,7,7,13,13
+Marcus Thuram,Inter,2024-25,FW,26.0,2200,14,4,64,39,24,18,3
+Marin Pongračić,Fiorentina,2024-25,DF,26.0,1292,0,0,2,5,9,18,12
+Marin Šverko,Venezia,2024-25,DF,26.0,1117,1,0,3,2,6,20,16
+Mario Balotelli,Genoa,2024-25,FW,33.0,62,0,0,2,0,0,0,0
+Mario Gila,Lazio,2024-25,DF,23.0,2741,1,0,15,15,4,55,28
+Mario Hermoso,Roma,2024-25,DF,29.0,251,0,0,1,0,2,2,4
+Mario Pašalić,Atalanta,2024-25,MF,29.0,1967,3,4,45,32,5,26,12
+Marko Arnautović,Inter,2024-25,FW,35.0,527,4,2,13,7,2,7,1
+Marten de Roon,Atalanta,2024-25,MF,33.0,3058,4,4,14,25,6,74,47
+Martin Erlic,Bologna,2024-25,DF,26.0,334,0,0,6,0,0,2,2
+Martin Frese,Hellas Verona,2024-25,DF,26.0,549,0,0,2,5,0,18,8
+Martín Payero,Udinese,2024-25,MF,25.0,1381,1,1,31,15,30,24,13
+Mateo Pellegrino,Parma,2024-25,FW,23.0,737,3,1,22,5,3,3,1
+Mateo Retegui,Atalanta,2024-25,FW,25.0,2383,25,8,99,38,12,14,4
+Mateusz Kowalski,Parma,2024-25,MF,19.0,56,0,0,1,0,0,0,0
+Mateusz Wieteska,Cagliari,2024-25,DF,27.0,184,0,0,1,1,0,1,7
+Mathias Løvik,Parma,2024-25,DF,20.0,92,0,0,1,1,2,1,2
+Mathis Lambourde,Hellas Verona,2024-25,FW,18.0,89,1,0,2,1,1,3,0
+Mathías Olivera,Napoli,2024-25,DF,26.0,2370,0,2,16,25,5,63,28
+Matias Moreno,Fiorentina,2024-25,DF,20.0,144,0,0,0,1,3,8,1
+Mats Hummels,Roma,2024-25,DF,35.0,915,0,0,8,2,4,30,26
+Matteo Cancellieri,Parma,2024-25,FW,22.0,1424,3,0,22,11,28,26,13
+Matteo Darmian,Inter,2024-25,DF,34.0,1781,3,2,11,15,4,28,10
+Matteo Gabbia,Milan,2024-25,DF,24.0,2152,2,0,14,2,1,21,15
+Matteo Palma,Udinese,2024-25,DF,16.0,5,0,0,0,0,0,0,0
+Matteo Pessina,Monza,2024-25,MF,27.0,854,0,0,3,4,5,15,12
+Matteo Politano,Napoli,2024-25,FW,30.0,2804,3,4,56,56,32,29,13
+Matteo Prati,Cagliari,2024-25,MF,20.0,570,0,0,4,6,3,10,7
+Matteo Ruggeri,Atalanta,2024-25,DF,22.0,1751,0,3,3,24,6,39,22
+Matthias Braunöder,Como,2024-25,MF,22.0,268,0,0,2,0,1,10,2
+Mattia Bani,Genoa,2024-25,DF,30.0,1507,0,0,8,2,2,19,22
+Mattia De Sciglio,Empoli,2024-25,DF,31.0,769,1,0,5,3,1,18,8
+Mattia Felici,Cagliari,2024-25,MF,23.0,925,0,3,10,10,19,17,7
+Mattia Liberali,Milan,2024-25,MF,17.0,61,0,0,2,1,0,2,0
+Mattia Perin,Juventus,2024-25,GK,31.0,450,0,0,0,0,0,0,0
+Mattia Valoti,Monza,2024-25,MF,30.0,40,0,0,0,0,0,3,0
+Mattia Viti,Empoli,2024-25,DF,22.0,2572,1,0,11,5,6,65,48
+Mattia Zaccagni,Lazio,2024-25,FW,29.0,2686,8,6,46,55,44,38,29
+Mattéo Guendouzi,Lazio,2024-25,MF,25.0,3270,1,3,27,43,15,37,32
+Matìas Soulé,Roma,2024-25,MF,21.0,1781,5,5,42,51,35,26,9
+Matías Vecino,Lazio,2024-25,MF,32.0,877,2,3,16,11,1,13,5
+Maxence Caqueret,Como,2024-25,MF,24.0,1087,2,3,8,19,14,36,7
+Maxwel Cornet,Genoa,2024-25,FW,27.0,246,2,1,5,5,3,2,2
+Medon Berisha,Lecce,2024-25,MF,20.0,716,0,1,24,11,3,12,11
+Mehdi Taremi,Inter,2024-25,FW,32.0,807,1,2,13,15,6,7,0
+Michael Folorunsho,Fiorentina,2024-25,FW,26.0,685,0,0,10,3,9,22,5
+Michael Kayode,Fiorentina,2024-25,DF,20.0,127,0,0,1,1,3,1,2
+Michael Svoboda,Venezia,2024-25,DF,25.0,1314,1,0,4,5,2,26,22
+Michel Aebischer,Bologna,2024-25,MF,27.0,724,0,0,10,8,3,18,7
+Michel Ndary Adopo,Cagliari,2024-25,MF,24.0,2409,1,1,20,19,19,55,27
+Michele Di Gregorio,Juventus,2024-25,GK,27.0,2970,0,0,0,1,0,0,1
+Mikael Ellertsson,Venezia,2024-25,DF,22.0,2470,2,2,21,20,16,58,17
+Mike Maignan,Milan,2024-25,GK,29.0,3294,0,0,0,5,1,0,0
+Milan Badelj,Genoa,2024-25,MF,35.0,1472,1,0,14,12,9,29,20
+Milan Đurić,Monza,2024-25,FW,34.0,1538,5,1,28,5,6,1,2
+Mile Svilar,Roma,2024-25,GK,24.0,3420,0,0,1,0,0,0,0
+Mirko Marić,Venezia,2024-25,FW,29.0,462,0,0,7,3,3,7,2
+Mitchel Bakker,Atalanta,2024-25,MF,24.0,22,0,0,0,0,0,1,0
+Mohamed Haj,Parma,2024-25,MF,19.0,453,1,2,7,9,4,3,4
+Mohamed Kaba,Lecce,2024-25,MF,22.0,452,0,0,4,1,2,13,4
+Moise Kean,Fiorentina,2024-25,FW,24.0,2615,17,3,98,19,44,7,5
+Morten Frendrup,Genoa,2024-25,MF,23.0,3103,2,0,30,14,10,102,47
+Morten Thorsby,Genoa,2024-25,MF,28.0,1898,0,1,15,27,9,49,5
+Máximo Perrone,Como,2024-25,MF,21.0,1857,0,3,10,30,3,38,20
+Mërgim Vojvoda,Torino,2024-25,DF,29.0,1822,1,2,9,23,9,27,10
+Nadir Zortea,Cagliari,2024-25,DF,25.0,2713,6,2,33,28,38,30,19
+Nahuel Estévez,Parma,2024-25,MF,28.0,657,0,0,5,6,3,16,3
+Nehuén Pérez,Udinese,2024-25,DF,24.0,180,0,0,0,0,1,1,1
+Niccolò Pisilli,Roma,2024-25,MF,19.0,1227,2,1,27,10,5,24,11
+Nicholas Pierini,Venezia,2024-25,MF,25.0,83,0,0,1,2,0,0,0
+Nicola Leali,Genoa,2024-25,GK,31.0,2610,0,0,0,0,0,0,0
+Nicola Pintus,Cagliari,2024-25,DF,19.0,4,0,0,0,0,0,0,0
+Nicola Sansone,Lecce,2024-25,MF,32.0,65,0,0,3,1,0,0,0
+Nicola Zalewski,Roma,2024-25,DF,22.0,968,1,1,10,21,11,15,6
+Nicolas Haas,Empoli,2024-25,MF,28.0,287,0,0,1,2,0,11,4
+Nicolas Viola,Cagliari,2024-25,FW,34.0,1267,3,1,31,28,11,14,3
+Nicolás González,Juventus,2024-25,FW,26.0,1750,3,2,45,19,17,24,9
+Nicolás Paz,Como,2024-25,MF,19.0,2687,6,8,109,54,69,51,21
+Nicolás Valentini,Hellas Verona,2024-25,DF,23.0,1129,0,0,8,6,2,35,15
+Nicolò Barella,Inter,2024-25,MF,27.0,2456,3,6,42,55,23,50,12
+Nicolò Cambiaghi,Bologna,2024-25,FW,23.0,620,1,3,14,12,11,16,2
+Nicolò Casale,Bologna,2024-25,DF,26.0,1035,0,1,5,3,3,16,18
+Nicolò Fagioli,Fiorentina,2024-25,MF,23.0,1533,1,2,22,27,12,33,7
+Nicolò Rovella,Lazio,2024-25,MF,22.0,2718,0,3,28,31,18,84,47
+Nicolò Savona,Juventus,2024-25,DF,21.0,1724,2,1,6,16,6,29,11
+Nicolò Zaniolo,Atalanta,2024-25,FW,25.0,699,2,2,20,12,12,3,1
+Nikola Krstović,Lecce,2024-25,FW,24.0,3057,11,5,134,30,17,18,7
+Nikola Moro,Bologna,2024-25,MF,26.0,1208,0,2,14,20,7,35,13
+Nikola Vlašić,Torino,2024-25,MF,26.0,2117,5,4,30,32,24,37,9
+Noah Okafor,Milan,2024-25,FW,24.0,454,1,0,14,7,14,5,2
+Nuno Tavares,Lazio,2024-25,DF,24.0,1686,0,8,28,33,49,28,21
+Nunzio Lella,Venezia,2024-25,MF,24.0,5,0,0,0,0,0,0,0
+Obite N'Dicka,Roma,2024-25,DF,24.0,3420,0,1,18,8,0,32,33
+Odilon Kossounou,Atalanta,2024-25,DF,23.0,1125,0,0,6,1,5,16,13
+Oier Zarraga,Udinese,2024-25,MF,25.0,896,1,0,6,6,2,19,2
+Ola Solbakken,Empoli,2024-25,MF,25.0,760,0,0,4,9,7,7,2
+Oliver Abildgaard,Como,2024-25,MF,28.0,7,0,0,0,0,0,0,0
+Oliver Nielsen,Lazio,2024-25,DF,21.0,35,0,0,0,0,0,0,1
+Omari Forson,Monza,2024-25,MF,20.0,223,0,0,5,8,6,3,1
+Ondrej Duda,Hellas Verona,2024-25,MF,29.0,2395,1,3,25,32,25,46,31
+Oumar Solet,Udinese,2024-25,DF,24.0,1672,1,2,12,17,25,33,17
+Oussama El Azzouzi,Bologna,2024-25,MF,23.0,19,0,0,0,0,0,0,2
+Pablo Marí,Monza,2024-25,DF,30.0,2726,0,0,7,3,6,40,62
+Pasquale Mazzocchi,Napoli,2024-25,DF,29.0,702,0,0,3,5,10,15,5
+Patric,Lazio,2024-25,DF,31.0,607,1,0,2,1,0,9,3
+Patrick Ciurria,Monza,2024-25,MF,29.0,1111,1,1,11,13,5,22,6
+Patrick Cutrone,Como,2024-25,FW,26.0,2047,7,4,69,19,9,16,5
+Patrick Dorgu,Lecce,2024-25,DF,19.0,1840,3,1,36,19,13,45,18
+Patrizio Masini,Genoa,2024-25,MF,23.0,1538,1,0,8,6,10,54,15
+Paulo Azzi,Cagliari,2024-25,DF,30.0,426,0,0,8,5,8,11,5
+Paulo Dybala,Roma,2024-25,FW,30.0,1417,6,3,47,40,11,17,2
+Paweł Dawidowicz,Hellas Verona,2024-25,DF,29.0,1845,0,0,4,0,2,45,20
+Pedro,Lazio,2024-25,FW,37.0,1102,10,1,37,22,16,19,3
+Pedro Pereira,Monza,2024-25,DF,26.0,2665,1,3,13,14,14,53,21
+Pepe Reina,Como,2024-25,GK,41.0,1034,0,0,0,0,0,0,0
+Petar Stojanović,Empoli,2024-25,MF,28.0,3,0,0,0,0,0,0,0
+Philip Billing,Napoli,2024-25,MF,28.0,197,1,0,6,3,1,9,4
+Pierluigi Gollini,Genoa,2024-25,GK,29.0,630,0,0,0,0,0,0,0
+Pierre Kalulu,Juventus,2024-25,DF,24.0,2337,1,0,7,11,4,41,17
+Pietro Comuzzo,Fiorentina,2024-25,DF,19.0,2110,1,0,5,7,0,43,29
+Pietro Pellegri,Empoli,2024-25,FW,23.0,414,3,0,8,7,5,7,0
+Pietro Terracciano,Fiorentina,2024-25,GK,34.0,270,0,0,0,0,0,0,0
+Piotr Zieliński,Inter,2024-25,MF,30.0,980,2,2,15,14,6,14,6
+Pontus Almqvist,Parma,2024-25,FW,25.0,1112,1,1,26,10,20,17,19
+Rafa Marín,Napoli,2024-25,DF,22.0,142,0,0,2,0,0,1,1
+Rafael Leão,Milan,2024-25,FW,25.0,2323,8,8,66,58,59,16,6
+Rafael Tolói,Atalanta,2024-25,DF,33.0,468,0,0,3,3,2,10,8
+Randal Kolo Muani,Juventus,2024-25,FW,25.0,1160,8,1,25,17,18,11,4
+Raoul Bellanova,Atalanta,2024-25,DF,24.0,2489,0,9,19,35,21,24,18
+Rareș-Cătălin Burnete,Lecce,2024-25,FW,20.0,28,0,0,1,0,1,0,0
+Razvan Sava,Udinese,2024-25,GK,22.0,1080,0,0,0,0,0,0,0
+Reda Belahyane,Hellas Verona,2024-25,MF,20.0,1856,0,2,6,16,36,44,11
+Remi Oudin,Lecce,2024-25,MF,27.0,299,0,0,3,6,3,3,2
+Remo Freuler,Bologna,2024-25,MF,32.0,3204,1,2,17,36,5,79,38
+Renato Veiga,Juventus,2024-25,DF,21.0,1093,0,1,12,2,1,17,19
+Riccardo Orsolini,Bologna,2024-25,FW,27.0,1878,15,4,72,30,33,16,8
+Riccardo Sottil,Fiorentina,2024-25,FW,25.0,956,1,1,24,15,12,6,4
+Richie Sagrado,Venezia,2024-25,DF,20.0,140,0,0,1,0,0,2,3
+Ridgeciano Haps,Venezia,2024-25,DF,31.0,1369,1,1,15,7,5,30,7
+Roberto Gagliardini,Monza,2024-25,MF,30.0,180,0,0,0,1,1,3,2
+Roberto Piccoli,Cagliari,2024-25,FW,23.0,3127,10,1,97,13,14,13,3
+Robin Gosens,Fiorentina,2024-25,DF,30.0,2434,5,5,23,27,4,56,18
+Rolando Mandragora,Fiorentina,2024-25,MF,27.0,1856,4,2,37,31,7,23,15
+Romelu Lukaku,Napoli,2024-25,FW,31.0,2843,14,10,60,35,6,4,1
+Ruben Loftus-Cheek,Milan,2024-25,MF,28.0,1037,0,0,9,16,11,19,3
+Rui Modesto,Udinese,2024-25,DF,24.0,608,0,1,3,14,3,16,8
+Rui Patrício,Atalanta,2024-25,GK,36.0,270,0,0,0,0,0,0,0
+Ruslan Malinovskyi,Genoa,2024-25,MF,31.0,383,0,2,9,8,3,12,1
+Răzvan Marin,Cagliari,2024-25,MF,28.0,1406,3,2,21,34,13,22,2
+Saad El Haddad,Venezia,2024-25,MF,19.0,30,0,0,0,1,0,0,0
+Saba Goglichidze,Empoli,2024-25,DF,20.0,2539,0,1,6,3,4,64,33
+Saba Sazonov,Torino,2024-25,DF,22.0,3,0,0,0,0,0,0,0
+Sam Beukema,Bologna,2024-25,DF,25.0,3012,0,1,15,10,1,54,30
+Samuel Chukwueze,Milan,2024-25,FW,25.0,925,3,2,32,27,26,17,2
+Samuel Dahl,Roma,2024-25,DF,24.0,43,0,0,0,0,0,2,0
+Samuel Gigot,Lazio,2024-25,DF,30.0,683,2,0,4,0,1,4,13
+Samuel Iling-Junior,Bologna,2024-25,FW,20.0,118,1,0,4,1,3,3,2
+Samuel Mbangula,Juventus,2024-25,FW,20.0,709,3,3,9,15,9,15,3
+Samuele Birindelli,Monza,2024-25,DF,25.0,1468,3,0,16,18,5,22,10
+Samuele Ricci,Torino,2024-25,MF,22.0,2825,1,1,22,15,6,35,25
+Samuele Vignato,Monza,2024-25,MF,20.0,470,0,0,4,1,4,6,0
+Sandi Lovrić,Udinese,2024-25,MF,26.0,2308,2,3,49,32,21,46,22
+Santiago Castro,Bologna,2024-25,FW,19.0,2294,8,4,62,28,18,18,3
+Santiago Giménez,Milan,2024-25,FW,23.0,669,5,2,22,6,7,5,1
+Santiago Pierotti,Lecce,2024-25,FW,23.0,1937,4,2,32,25,22,46,14
+Saud Abdulhamid,Roma,2024-25,DF,25.0,205,0,1,1,2,3,3,2
+Saúl Coco,Torino,2024-25,DF,25.0,2845,2,0,20,1,7,46,38
+Scott McTominay,Napoli,2024-25,MF,27.0,2938,12,4,76,26,39,43,24
+Sead Kolašinac,Atalanta,2024-25,DF,31.0,1903,0,2,10,17,3,41,25
+Sebastian Otoa,Genoa,2024-25,DF,20.0,179,0,0,0,0,0,1,3
+Sebastian Walukiewicz,Torino,2024-25,DF,24.0,1841,0,0,6,5,6,39,19
+Sebastiano Esposito,Empoli,2024-25,FW,22.0,2331,8,0,59,36,29,57,12
+Sebastiano Luperto,Cagliari,2024-25,DF,27.0,3240,1,3,21,8,1,48,33
+Semuel Pizzignacco,Monza,2024-25,GK,22.0,736,0,0,0,0,0,0,0
+Sergi Roberto,Como,2024-25,MF,32.0,696,0,1,6,15,3,14,9
+Sergiu Perciun,Torino,2024-25,FW,18.0,152,0,0,2,2,2,2,1
+Silvère Ganvoula M'Boussy,Monza,2024-25,FW,28.0,326,0,0,4,1,2,0,1
+Simon Sohm,Parma,2024-25,MF,23.0,2989,4,0,34,20,15,28,26
+Simone Pafundi,Udinese,2024-25,MF,18.0,116,0,0,2,3,1,3,0
+Simone Perilli,Hellas Verona,2024-25,GK,29.0,180,0,0,0,0,0,0,0
+Simone Scuffet,Cagliari,2024-25,GK,28.0,1260,0,0,0,0,0,0,0
+Simone Verdi,Como,2024-25,MF,32.0,115,0,0,2,6,2,2,0
+Sofyan Amrabat,Fiorentina,2024-25,MF,27.0,180,0,0,0,2,0,3,0
+Souleymane Touré,Udinese,2024-25,DF,21.0,733,1,0,4,2,5,7,9
+Stanislav Lobotka,Napoli,2024-25,MF,29.0,2636,0,1,7,17,8,47,21
+Stefan Lekovic,Monza,2024-25,DF,20.0,367,0,0,3,0,2,9,7
+Stefan Posch,Bologna,2024-25,DF,27.0,1101,0,0,5,10,4,44,9
+Stefan de Vrij,Inter,2024-25,DF,32.0,1636,3,0,13,1,3,18,22
+Stefano Sabelli,Genoa,2024-25,DF,31.0,2058,0,2,6,18,4,58,22
+Stefano Sensi,Monza,2024-25,MF,28.0,274,1,0,6,3,5,8,3
+Stefano Turati,Monza,2024-25,GK,22.0,2676,0,0,0,0,0,0,0
+Stephan El Shaarawy,Roma,2024-25,DF,31.0,1098,3,4,28,15,17,16,10
+Strahinja Pavlović,Milan,2024-25,DF,23.0,1864,2,1,17,6,4,52,16
+Suat Serdar,Hellas Verona,2024-25,MF,27.0,1376,2,1,30,10,19,35,8
+Szymon Żurkowski,Empoli,2024-25,MF,26.0,106,0,0,2,0,2,6,1
+Tajon Buchanan,Inter,2024-25,DF,25.0,95,0,0,0,1,3,3,0
+Tammy Abraham,Milan,2024-25,FW,26.0,1184,3,4,26,14,4,17,2
+Tete Morente,Lecce,2024-25,FW,27.0,2021,3,2,41,25,30,27,14
+Teun Koopmeiners,Juventus,2024-25,MF,26.0,1994,3,3,42,38,10,32,8
+Theo Hernández,Milan,2024-25,DF,26.0,2696,4,3,43,47,24,36,17
+Thijs Dallinga,Bologna,2024-25,FW,23.0,1154,3,2,31,12,2,10,1
+Thomas Campaniello,Empoli,2024-25,FW,16.0,25,0,0,1,0,0,0,0
+Thomas Kristensen,Udinese,2024-25,DF,22.0,1754,1,0,4,4,10,31,21
+Tiago Gabriel,Lecce,2024-25,DF,19.0,96,0,0,0,0,0,0,0
+Tijjani Noslin,Lazio,2024-25,FW,25.0,861,2,2,19,12,8,6,1
+Tijjani Reijnders,Milan,2024-25,MF,26.0,3128,10,4,77,47,36,26,38
+Timothy Weah,Juventus,2024-25,DF,24.0,1638,5,2,21,19,13,36,14
+Tommaso Augello,Cagliari,2024-25,DF,29.0,2713,0,7,8,39,24,49,16
+Tommaso Baldanzi,Roma,2024-25,MF,21.0,832,1,1,20,10,17,12,6
+Tommaso Gabellini,Torino,2024-25,FW,17.0,10,0,0,1,0,0,0,0
+Tommaso Pobega,Bologna,2024-25,MF,25.0,1178,2,2,24,12,3,33,14
+Tommaso Rubino,Fiorentina,2024-25,MF,17.0,8,0,0,0,1,0,0,0
+Tomás Palacios,Monza,2024-25,DF,21.0,457,0,0,1,0,8,11,9
+Tomáš Suslov,Hellas Verona,2024-25,MF,22.0,2080,0,1,32,27,36,54,18
+Tyronne Ebuehi,Empoli,2024-25,DF,28.0,74,0,0,0,0,1,3,2
+Valentin Gendrey,Lecce,2024-25,DF,24.0,180,0,0,2,2,0,2,2
+Valentin Mihaila,Parma,2024-25,FW,24.0,1288,0,3,31,17,10,29,8
+Valentino Lazaro,Torino,2024-25,DF,28.0,2307,0,6,16,33,14,26,11
+Valentín Castellanos,Lazio,2024-25,FW,25.0,2384,10,3,105,26,16,13,6
+Vanja Milinković-Savić,Torino,2024-25,GK,27.0,3330,0,0,0,3,0,1,0
+Vanja Vlahović,Atalanta,2024-25,FW,20.0,60,0,0,1,2,0,1,0
+Vasilije Adžić,Juventus,2024-25,MF,18.0,42,0,0,1,0,0,2,0
+Victor Nelsson,Roma,2024-25,DF,25.0,187,0,0,1,0,1,5,2
+Viktor Kovalenko,Empoli,2024-25,MF,28.0,77,0,0,3,0,1,2,0
+Vitinha,Genoa,2024-25,FW,24.0,1328,2,3,33,16,22,23,12
+Walid Cheddira,Napoli,2024-25,FW,26.0,12,0,0,0,1,0,0,0
+Warren Bondo,Monza,2024-25,MF,20.0,1780,0,0,14,6,21,40,5
+Weston McKennie,Juventus,2024-25,MF,25.0,2310,2,4,22,32,20,33,14
+Wladimiro Falcone,Lecce,2024-25,GK,29.0,3420,0,0,0,0,0,0,0
+Woyo Coulibaly,Parma,2024-25,DF,25.0,1084,0,1,3,8,8,13,8
+Wylan Cyprien,Parma,2024-25,MF,29.0,28,0,0,1,0,0,0,1
+Yacine Adli,Fiorentina,2024-25,MF,24.0,1219,4,6,14,23,12,32,6
+Yann Aurel Bisseck,Inter,2024-25,DF,23.0,1553,3,2,21,7,3,17,17
+Yann Karamoh,Torino,2024-25,MF,26.0,1046,0,1,25,9,12,5,3
+Yann Sommer,Inter,2024-25,GK,35.0,2880,0,0,0,0,0,0,0
+Yannik Engelhardt,Como,2024-25,MF,23.0,1164,1,1,8,12,9,30,11
+Yerry Mina,Cagliari,2024-25,DF,29.0,2569,1,0,26,4,3,66,37
+Ylber Ramadani,Lecce,2024-25,MF,28.0,1807,1,1,17,16,13,51,24
+Yllan Okou,Hellas Verona,2024-25,DF,21.0,2,0,0,0,0,0,0,0
+Yordan Osorio,Parma,2024-25,DF,30.0,172,0,0,1,1,0,5,4
+Youssef Maleh,Empoli,2024-25,MF,25.0,1510,0,1,17,12,4,45,16
+Youssouf Fofana,Milan,2024-25,MF,25.0,2504,1,6,36,23,14,56,19
+Yunus Musah,Milan,2024-25,MF,21.0,1571,0,2,22,23,21,27,7
+Zeki Çelik,Roma,2024-25,DF,27.0,2256,0,2,13,19,8,62,15
+Zion Suzuki,Parma,2024-25,GK,21.0,3314,0,0,0,0,0,1,0
+Zito Luvumbo,Cagliari,2024-25,FW,22.0,1606,2,2,23,17,25,10,4
+Álex Valle,Como,2024-25,DF,20.0,1030,0,0,9,11,9,26,8
+Álvaro Morata,Milan,2024-25,FW,31.0,1099,5,0,27,7,6,16,5
+Éderson,Atalanta,2024-25,MF,25.0,2881,4,1,39,37,23,52,35
+Þórir Jóhann Helgason,Lecce,2024-25,MF,23.0,1156,0,4,16,22,8,10,6
+Łukasz Skorupski,Bologna,2024-25,GK,33.0,2364,0,0,0,0,1,1,0

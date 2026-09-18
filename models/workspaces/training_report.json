@@ -1,0 +1,615 @@
+{
+  "trained_at": "2026-09-18T15:31:06.086445+00:00",
+  "competitions": {
+    "premier-league": {
+      "valuation": {
+        "mae_eur_m": 11.17,
+        "r2": 0.454,
+        "n_train": 2095,
+        "n_test": 504,
+        "test_season": "2025-26",
+        "train_end": "2024-25",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 16.07,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25",
+          "2025-26"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 132,
+        "excluded_incomplete_seasons": {},
+        "note": "Observed 2021-22\u20132025-26 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.143513+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 403,
+        "features": [
+          "goals",
+          "assists",
+          "shots",
+          "key_passes",
+          "dribbles",
+          "tackles",
+          "interceptions"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "FBref via Hubert Sidorowicz \u00b7 2024\u201325 Big Five snapshot",
+          "source_url": "https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2024-2025",
+          "scope": "advanced",
+          "note": "Observed 2024\u201325 season statistics. Seven per-90 scouting measures; historical clubs, not current squads. Multiple clubs are combined within this competition; the primary club is shown.",
+          "features": [
+            "goals",
+            "assists",
+            "shots",
+            "key_passes",
+            "dribbles",
+            "tackles",
+            "interceptions"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.642942+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.459,
+        "baseline": 0.422,
+        "log_loss": 1.058,
+        "n_train": 1472,
+        "n_test": 377,
+        "test_season": "2025-26",
+        "train_end": "2025-05-25",
+        "test_start": "2025-08-15",
+        "method": "Random forest",
+        "confusion": [
+          [
+            123,
+            2,
+            34
+          ],
+          [
+            70,
+            0,
+            34
+          ],
+          [
+            63,
+            1,
+            50
+          ]
+        ]
+      }
+    },
+    "la-liga": {
+      "valuation": {
+        "mae_eur_m": 8.74,
+        "r2": 0.36,
+        "n_train": 2182,
+        "n_test": 521,
+        "test_season": "2025-26",
+        "train_end": "2024-25",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 9.0,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25",
+          "2025-26"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 175,
+        "excluded_incomplete_seasons": {},
+        "note": "Observed 2021-22\u20132025-26 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.232059+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 431,
+        "features": [
+          "goals",
+          "assists",
+          "shots",
+          "key_passes",
+          "dribbles",
+          "tackles",
+          "interceptions"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "FBref via Hubert Sidorowicz \u00b7 2024\u201325 Big Five snapshot",
+          "source_url": "https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2024-2025",
+          "scope": "advanced",
+          "note": "Observed 2024\u201325 season statistics. Seven per-90 scouting measures; historical clubs, not current squads. Multiple clubs are combined within this competition; the primary club is shown.",
+          "features": [
+            "goals",
+            "assists",
+            "shots",
+            "key_passes",
+            "dribbles",
+            "tackles",
+            "interceptions"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.663455+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.496,
+        "baseline": 0.488,
+        "log_loss": 1.003,
+        "n_train": 1475,
+        "n_test": 377,
+        "test_season": "2025-26",
+        "train_end": "2025-05-25",
+        "test_start": "2025-08-15",
+        "method": "Random forest",
+        "confusion": [
+          [
+            138,
+            5,
+            41
+          ],
+          [
+            59,
+            6,
+            28
+          ],
+          [
+            53,
+            4,
+            43
+          ]
+        ]
+      }
+    },
+    "champions-league": {
+      "valuation": {
+        "mae_eur_m": 15.16,
+        "r2": 0.374,
+        "n_train": 1568,
+        "n_test": 589,
+        "test_season": "2024-25",
+        "train_end": "2023-24",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 14.64,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 587,
+        "excluded_incomplete_seasons": {
+          "2025": 188
+        },
+        "note": "Observed 2021-22\u20132024-25 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.312619+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 479,
+        "features": [
+          "goals",
+          "assists"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+          "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+          "note": "Observed 2024\u201325 UCL performances. Basic comparison uses goals and assists per 90 only; advanced scouting metrics are unavailable. Historical clubs, not current squads.",
+          "scope": "basic",
+          "features": [
+            "goals",
+            "assists"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.668976+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.518,
+        "baseline": 0.5,
+        "log_loss": 1.008,
+        "n_train": 419,
+        "n_test": 164,
+        "test_season": "2025-26",
+        "train_end": "2025-05-31",
+        "test_start": "2025-09-16",
+        "method": "Random forest",
+        "confusion": [
+          [
+            58,
+            0,
+            24
+          ],
+          [
+            14,
+            0,
+            14
+          ],
+          [
+            27,
+            0,
+            27
+          ]
+        ]
+      }
+    },
+    "serie-a": {
+      "valuation": {
+        "mae_eur_m": 6.1,
+        "r2": 0.438,
+        "n_train": 2222,
+        "n_test": 529,
+        "test_season": "2025-26",
+        "train_end": "2024-25",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 7.88,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25",
+          "2025-26"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 142,
+        "excluded_incomplete_seasons": {},
+        "note": "Observed 2021-22\u20132025-26 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.399245+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 436,
+        "features": [
+          "goals",
+          "assists",
+          "shots",
+          "key_passes",
+          "dribbles",
+          "tackles",
+          "interceptions"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "FBref via Hubert Sidorowicz \u00b7 2024\u201325 Big Five snapshot",
+          "source_url": "https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2024-2025",
+          "scope": "advanced",
+          "note": "Observed 2024\u201325 season statistics. Seven per-90 scouting measures; historical clubs, not current squads. Multiple clubs are combined within this competition; the primary club is shown.",
+          "features": [
+            "goals",
+            "assists",
+            "shots",
+            "key_passes",
+            "dribbles",
+            "tackles",
+            "interceptions"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.688463+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.496,
+        "baseline": 0.393,
+        "log_loss": 1.041,
+        "n_train": 1472,
+        "n_test": 377,
+        "test_season": "2025-26",
+        "train_end": "2025-05-25",
+        "test_start": "2025-08-23",
+        "method": "Random forest",
+        "confusion": [
+          [
+            105,
+            13,
+            30
+          ],
+          [
+            55,
+            9,
+            34
+          ],
+          [
+            48,
+            10,
+            73
+          ]
+        ]
+      }
+    },
+    "bundesliga": {
+      "valuation": {
+        "mae_eur_m": 6.78,
+        "r2": 0.417,
+        "n_train": 1929,
+        "n_test": 470,
+        "test_season": "2025-26",
+        "train_end": "2024-25",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 8.93,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25",
+          "2025-26"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 54,
+        "excluded_incomplete_seasons": {},
+        "note": "Observed 2021-22\u20132025-26 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.480392+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 361,
+        "features": [
+          "goals",
+          "assists",
+          "shots",
+          "key_passes",
+          "dribbles",
+          "tackles",
+          "interceptions"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "FBref via Hubert Sidorowicz \u00b7 2024\u201325 Big Five snapshot",
+          "source_url": "https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2024-2025",
+          "scope": "advanced",
+          "note": "Observed 2024\u201325 season statistics. Seven per-90 scouting measures; historical clubs, not current squads. Multiple clubs are combined within this competition; the primary club is shown.",
+          "features": [
+            "goals",
+            "assists",
+            "shots",
+            "key_passes",
+            "dribbles",
+            "tackles",
+            "interceptions"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.707657+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.531,
+        "baseline": 0.439,
+        "log_loss": 1.013,
+        "n_train": 1179,
+        "n_test": 303,
+        "test_season": "2025-26",
+        "train_end": "2025-05-17",
+        "test_start": "2025-08-22",
+        "method": "Random forest",
+        "confusion": [
+          [
+            112,
+            3,
+            18
+          ],
+          [
+            48,
+            3,
+            23
+          ],
+          [
+            47,
+            3,
+            46
+          ]
+        ]
+      }
+    },
+    "ligue-1": {
+      "valuation": {
+        "mae_eur_m": 5.84,
+        "r2": 0.319,
+        "n_train": 1605,
+        "n_test": 481,
+        "test_season": "2024-25",
+        "train_end": "2023-24",
+        "method": "Linear regression",
+        "baseline_mae_eur_m": 7.09,
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists",
+          "position"
+        ]
+      },
+      "valuation_source": {
+        "kind": "observed",
+        "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+        "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+        "features": [
+          "age",
+          "minutes",
+          "goals",
+          "assists"
+        ],
+        "seasons": [
+          "2021-22",
+          "2022-23",
+          "2023-24",
+          "2024-25"
+        ],
+        "target": "First recorded market valuation within 90 days after the season's final match",
+        "excluded_without_target": 86,
+        "excluded_incomplete_seasons": {
+          "2025": 305
+        },
+        "note": "Observed 2021-22\u20132024-25 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+        "retrieved_at": "2026-09-18T15:30:08.568005+00:00"
+      },
+      "scouting": {
+        "season": "2024-25",
+        "profiles": 377,
+        "features": [
+          "goals",
+          "assists",
+          "shots",
+          "key_passes",
+          "dribbles",
+          "tackles",
+          "interceptions"
+        ],
+        "source": {
+          "kind": "observed",
+          "source": "FBref via Hubert Sidorowicz \u00b7 2024\u201325 Big Five snapshot",
+          "source_url": "https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2024-2025",
+          "scope": "advanced",
+          "note": "Observed 2024\u201325 season statistics. Seven per-90 scouting measures; historical clubs, not current squads. Multiple clubs are combined within this competition; the primary club is shown.",
+          "features": [
+            "goals",
+            "assists",
+            "shots",
+            "key_passes",
+            "dribbles",
+            "tackles",
+            "interceptions"
+          ],
+          "seasons": [
+            "2024-25"
+          ],
+          "retrieved_at": "2026-09-18T15:30:08.726547+00:00"
+        }
+      },
+      "match": {
+        "accuracy": 0.482,
+        "baseline": 0.455,
+        "log_loss": 1.034,
+        "n_train": 1329,
+        "n_test": 303,
+        "test_season": "2025-26",
+        "train_end": "2025-05-17",
+        "test_start": "2025-08-15",
+        "method": "Random forest",
+        "confusion": [
+          [
+            96,
+            1,
+            41
+          ],
+          [
+            44,
+            1,
+            30
+          ],
+          [
+            40,
+            1,
+            49
+          ]
+        ]
+      }
+    }
+  }
+}

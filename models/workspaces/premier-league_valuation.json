@@ -1,0 +1,20 @@
+{
+  "signature": {
+    "inputs": {
+      "data/analytics/premier_league_players.csv": "296eb30b73600c2e843433a61861c1695e2e37e7e8cc2567b965768ed6f921f8",
+      "data/analytics/premier_league_players.json": "88aaf5cc66be5dffc800b2da2124fa1d4ad257a46a6eda775e7098224c6ad142",
+      "src/projects/analytics.py": "78db6dab4b8161936b425fb9ee5a0748d6905aa13e68e51fb64e97d900430402",
+      "src/projects/competitions.py": "2b59f24904187f04595b2e381d10ee1dc94c68442523a53d3406b1eb09094a82",
+      "src/projects/common.py": "3047d058b604e3d82f5b91bdf6a66520c6789fd78596344a2583fa172691fd11",
+      "src/projects/player_scouting.py": "4ba1c1c48e44f162004820032e5bce954e76b1e5d7a8b95aa9ea56804086f113",
+      "src/projects/model_store.py": "1a6c10bbb1344acc3f0fa23cefceb4b7508bbaf5bd9843c293b0db30f5289198"
+    },
+    "versions": {
+      "python": "3.14.3",
+      "sklearn": "1.9.1",
+      "numpy": "2.4.4",
+      "pandas": "3.0.2"
+    }
+  },
+  "sha256": "d2afee62cd070f04cb6656f177e0e89e7b412a709bd89d638b8d07612fa17c59"
+}

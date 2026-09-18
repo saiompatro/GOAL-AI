@@ -7,9 +7,9 @@ per-player PL stats *plus* transfer values ships in this repo, so this script
 synthesises a realistic, deterministic one (real player + club names, plausible
 correlated stats) that lets every project run out of the box.
 
-`fetch_players.py` is the real-data path: it pulls live rosters from
-football-data.org and is what you would use in production. This generator is
-the offline fallback so a fresh clone works with no API token.
+`fetch_players.py` saves observed football-data.org snapshots separately.
+Use refresh_data.py --players to import complete observed player statistics
+and values. This generator is explicitly synthetic tutorial data only.
 
 Run:  python -m projects.gen_player_data      (writes data/players/premier_league_players.csv)
 """
@@ -135,10 +135,10 @@ def _quality(rng):
     return max(0.35, rng.gauss(1.0, 0.35))
 
 
-def generate(seed=42):
+def generate(seed=42, squads=None):
     rng = random.Random(seed)
     rows = []
-    for team, squad in SQUADS.items():
+    for team, squad in (SQUADS if squads is None else squads).items():
         for name, pos, base_age in squad:
             quality = _quality(rng)
             for i, season in enumerate(SEASONS):

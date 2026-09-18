@@ -1,0 +1,20 @@
+{
+  "signature": {
+    "inputs": {
+      "data/analytics/champions_league_players.csv": "2b3f8d56afd3b042b9899abcb1a1733d3cda533cb0c481c2c46ff4bd05e996d8",
+      "data/analytics/champions_league_players.json": "c4ad29291aa93ab09858a48db0acb8e3096fd1ff98a1710b9a4a06816f4ddfdc",
+      "src/projects/analytics.py": "78db6dab4b8161936b425fb9ee5a0748d6905aa13e68e51fb64e97d900430402",
+      "src/projects/competitions.py": "2b59f24904187f04595b2e381d10ee1dc94c68442523a53d3406b1eb09094a82",
+      "src/projects/common.py": "3047d058b604e3d82f5b91bdf6a66520c6789fd78596344a2583fa172691fd11",
+      "src/projects/player_scouting.py": "4ba1c1c48e44f162004820032e5bce954e76b1e5d7a8b95aa9ea56804086f113",
+      "src/projects/model_store.py": "1a6c10bbb1344acc3f0fa23cefceb4b7508bbaf5bd9843c293b0db30f5289198"
+    },
+    "versions": {
+      "python": "3.14.3",
+      "sklearn": "1.9.1",
+      "numpy": "2.4.4",
+      "pandas": "3.0.2"
+    }
+  },
+  "sha256": "3a49899ba5f2a83441102381d6e409d18dbf740290654875a06b70d19c519b9a"
+}

@@ -1,0 +1,754 @@
+date,season,home_team,away_team,home_score,away_score,neutral
+2021-09-14,2021-22,FC Barcelona,FC Bayern München,0,3,0
+2021-09-14,2021-22,FK Dynamo Kyiv,SL Benfica,0,0,0
+2021-09-14,2021-22,BSC Young Boys,Manchester United FC,2,1,0
+2021-09-14,2021-22,Villarreal CF,Atalanta BC,2,2,0
+2021-09-14,2021-22,Sevilla FC,RB Salzburg,1,1,0
+2021-09-14,2021-22,Lille OSC,VfL Wolfsburg,0,0,0
+2021-09-14,2021-22,Chelsea FC,Zenit St. Petersburg,1,0,0
+2021-09-14,2021-22,Malmö FF,Juventus,0,3,0
+2021-09-15,2021-22,Manchester City FC,RB Leipzig,6,3,0
+2021-09-15,2021-22,Club Brugge KV,Paris Saint-Germain FC,1,1,0
+2021-09-15,2021-22,Atlético Madrid,FC Porto,0,0,0
+2021-09-15,2021-22,Liverpool FC,AC Milan,3,2,0
+2021-09-15,2021-22,Beşiktaş,Borussia Dortmund,1,2,0
+2021-09-15,2021-22,Sporting CP,AFC Ajax,1,5,0
+2021-09-15,2021-22,FC Sheriff,Shakhtar Donetsk,2,0,0
+2021-09-15,2021-22,Inter,Real Madrid CF,0,1,0
+2021-09-28,2021-22,Paris Saint-Germain FC,Manchester City FC,2,0,0
+2021-09-28,2021-22,RB Leipzig,Club Brugge KV,1,2,0
+2021-09-28,2021-22,FC Porto,Liverpool FC,1,5,0
+2021-09-28,2021-22,AC Milan,Atlético Madrid,1,2,0
+2021-09-28,2021-22,AFC Ajax,Beşiktaş,2,0,0
+2021-09-28,2021-22,Borussia Dortmund,Sporting CP,1,0,0
+2021-09-28,2021-22,Shakhtar Donetsk,Inter,0,0,0
+2021-09-28,2021-22,Real Madrid CF,FC Sheriff,1,2,0
+2021-09-29,2021-22,SL Benfica,FC Barcelona,3,0,0
+2021-09-29,2021-22,FC Bayern München,FK Dynamo Kyiv,5,0,0
+2021-09-29,2021-22,Atalanta BC,BSC Young Boys,1,0,0
+2021-09-29,2021-22,Manchester United FC,Villarreal CF,2,1,0
+2021-09-29,2021-22,RB Salzburg,Lille OSC,2,1,0
+2021-09-29,2021-22,VfL Wolfsburg,Sevilla FC,1,1,0
+2021-09-29,2021-22,Zenit St. Petersburg,Malmö FF,4,0,0
+2021-09-29,2021-22,Juventus,Chelsea FC,1,0,0
+2021-10-19,2021-22,Club Brugge KV,Manchester City FC,1,5,0
+2021-10-19,2021-22,Paris Saint-Germain FC,RB Leipzig,3,2,0
+2021-10-19,2021-22,Atlético Madrid,Liverpool FC,2,3,0
+2021-10-19,2021-22,FC Porto,AC Milan,1,0,0
+2021-10-19,2021-22,Beşiktaş,Sporting CP,1,4,0
+2021-10-19,2021-22,AFC Ajax,Borussia Dortmund,4,0,0
+2021-10-19,2021-22,Shakhtar Donetsk,Real Madrid CF,0,5,0
+2021-10-19,2021-22,Inter,FC Sheriff,3,1,0
+2021-10-20,2021-22,FC Barcelona,FK Dynamo Kyiv,1,0,0
+2021-10-20,2021-22,SL Benfica,FC Bayern München,0,4,0
+2021-10-20,2021-22,Manchester United FC,Atalanta BC,3,2,0
+2021-10-20,2021-22,BSC Young Boys,Villarreal CF,1,4,0
+2021-10-20,2021-22,RB Salzburg,VfL Wolfsburg,3,1,0
+2021-10-20,2021-22,Lille OSC,Sevilla FC,0,0,0
+2021-10-20,2021-22,Zenit St. Petersburg,Juventus,0,1,0
+2021-10-20,2021-22,Chelsea FC,Malmö FF,4,0,0
+2021-11-02,2021-22,FC Bayern München,SL Benfica,5,2,0
+2021-11-02,2021-22,FK Dynamo Kyiv,FC Barcelona,0,1,0
+2021-11-02,2021-22,Atalanta BC,Manchester United FC,2,2,0
+2021-11-02,2021-22,Villarreal CF,BSC Young Boys,2,0,0
+2021-11-02,2021-22,VfL Wolfsburg,RB Salzburg,2,1,0
+2021-11-02,2021-22,Sevilla FC,Lille OSC,1,2,0
+2021-11-02,2021-22,Malmö FF,Chelsea FC,0,1,0
+2021-11-02,2021-22,Juventus,Zenit St. Petersburg,4,2,0
+2021-11-03,2021-22,RB Leipzig,Paris Saint-Germain FC,2,2,0
+2021-11-03,2021-22,Manchester City FC,Club Brugge KV,4,1,0
+2021-11-03,2021-22,AC Milan,FC Porto,1,1,0
+2021-11-03,2021-22,Liverpool FC,Atlético Madrid,2,0,0
+2021-11-03,2021-22,Borussia Dortmund,AFC Ajax,1,3,0
+2021-11-03,2021-22,Sporting CP,Beşiktaş,4,0,0
+2021-11-03,2021-22,Real Madrid CF,Shakhtar Donetsk,2,1,0
+2021-11-03,2021-22,FC Sheriff,Inter,1,3,0
+2021-11-23,2021-22,FK Dynamo Kyiv,FC Bayern München,1,2,0
+2021-11-23,2021-22,FC Barcelona,SL Benfica,0,0,0
+2021-11-23,2021-22,Villarreal CF,Manchester United FC,0,2,0
+2021-11-23,2021-22,BSC Young Boys,Atalanta BC,3,3,0
+2021-11-23,2021-22,Lille OSC,RB Salzburg,1,0,0
+2021-11-23,2021-22,Sevilla FC,VfL Wolfsburg,2,0,0
+2021-11-23,2021-22,Chelsea FC,Juventus,4,0,0
+2021-11-23,2021-22,Malmö FF,Zenit St. Petersburg,1,1,0
+2021-11-24,2021-22,Manchester City FC,Paris Saint-Germain FC,2,1,0
+2021-11-24,2021-22,Club Brugge KV,RB Leipzig,0,5,0
+2021-11-24,2021-22,Liverpool FC,FC Porto,2,0,0
+2021-11-24,2021-22,Atlético Madrid,AC Milan,0,1,0
+2021-11-24,2021-22,Beşiktaş,AFC Ajax,1,2,0
+2021-11-24,2021-22,Sporting CP,Borussia Dortmund,3,1,0
+2021-11-24,2021-22,Inter,Shakhtar Donetsk,2,0,0
+2021-11-24,2021-22,FC Sheriff,Real Madrid CF,0,3,0
+2021-12-07,2021-22,RB Leipzig,Manchester City FC,2,1,0
+2021-12-07,2021-22,Paris Saint-Germain FC,Club Brugge KV,4,1,0
+2021-12-07,2021-22,FC Porto,Atlético Madrid,1,3,0
+2021-12-07,2021-22,AC Milan,Liverpool FC,1,2,0
+2021-12-07,2021-22,AFC Ajax,Sporting CP,4,2,0
+2021-12-07,2021-22,Borussia Dortmund,Beşiktaş,5,0,0
+2021-12-07,2021-22,Real Madrid CF,Inter,2,0,0
+2021-12-07,2021-22,Shakhtar Donetsk,FC Sheriff,1,1,0
+2021-12-08,2021-22,FC Bayern München,FC Barcelona,3,0,0
+2021-12-08,2021-22,SL Benfica,FK Dynamo Kyiv,2,0,0
+2021-12-08,2021-22,Manchester United FC,BSC Young Boys,1,1,0
+2021-12-08,2021-22,RB Salzburg,Sevilla FC,1,0,0
+2021-12-08,2021-22,VfL Wolfsburg,Lille OSC,1,3,0
+2021-12-08,2021-22,Zenit St. Petersburg,Chelsea FC,3,3,0
+2021-12-08,2021-22,Juventus,Malmö FF,1,0,0
+2021-12-09,2021-22,Atalanta BC,Villarreal CF,2,3,0
+2022-02-15,2021-22,Sporting CP,Manchester City FC,0,5,0
+2022-02-15,2021-22,Paris Saint-Germain FC,Real Madrid CF,1,0,0
+2022-02-16,2021-22,RB Salzburg,FC Bayern München,1,1,0
+2022-02-16,2021-22,Inter,Liverpool FC,0,2,0
+2022-02-22,2021-22,Chelsea FC,Lille OSC,2,0,0
+2022-02-22,2021-22,Villarreal CF,Juventus,1,1,0
+2022-02-23,2021-22,SL Benfica,AFC Ajax,2,2,0
+2022-02-23,2021-22,Atlético Madrid,Manchester United FC,1,1,0
+2022-03-08,2021-22,FC Bayern München,RB Salzburg,7,1,0
+2022-03-08,2021-22,Liverpool FC,Inter,0,1,0
+2022-03-09,2021-22,Manchester City FC,Sporting CP,0,0,0
+2022-03-09,2021-22,Real Madrid CF,Paris Saint-Germain FC,3,1,0
+2022-03-15,2021-22,AFC Ajax,SL Benfica,0,1,0
+2022-03-15,2021-22,Manchester United FC,Atlético Madrid,0,1,0
+2022-03-16,2021-22,Lille OSC,Chelsea FC,1,2,0
+2022-03-16,2021-22,Juventus,Villarreal CF,0,3,0
+2022-04-05,2021-22,Manchester City FC,Atlético Madrid,1,0,0
+2022-04-05,2021-22,SL Benfica,Liverpool FC,1,3,0
+2022-04-06,2021-22,Chelsea FC,Real Madrid CF,1,3,0
+2022-04-06,2021-22,Villarreal CF,FC Bayern München,1,0,0
+2022-04-12,2021-22,Real Madrid CF,Chelsea FC,1,3,0
+2022-04-12,2021-22,FC Bayern München,Villarreal CF,1,1,0
+2022-04-13,2021-22,Atlético Madrid,Manchester City FC,0,0,0
+2022-04-13,2021-22,Liverpool FC,SL Benfica,3,3,0
+2022-04-26,2021-22,Manchester City FC,Real Madrid CF,4,3,0
+2022-04-27,2021-22,Liverpool FC,Villarreal CF,2,0,0
+2022-05-03,2021-22,Villarreal CF,Liverpool FC,2,3,0
+2022-05-04,2021-22,Real Madrid CF,Manchester City FC,2,1,0
+2022-05-28,2021-22,Liverpool FC,Real Madrid CF,0,1,1
+2022-09-06,2022-23,Dinamo Zagreb,Chelsea FC,1,0,0
+2022-09-06,2022-23,RB Salzburg,AC Milan,1,1,0
+2022-09-06,2022-23,Celtic FC,Real Madrid CF,0,3,0
+2022-09-06,2022-23,RB Leipzig,Shakhtar Donetsk,1,4,0
+2022-09-06,2022-23,Borussia Dortmund,FC København,3,0,0
+2022-09-06,2022-23,Sevilla FC,Manchester City FC,0,4,0
+2022-09-06,2022-23,Paris Saint-Germain FC,Juventus,2,1,0
+2022-09-06,2022-23,SL Benfica,Maccabi Haifa,2,0,0
+2022-09-07,2022-23,AFC Ajax,Rangers FC,4,0,0
+2022-09-07,2022-23,SSC Napoli,Liverpool FC,4,1,0
+2022-09-07,2022-23,Atlético Madrid,FC Porto,2,1,0
+2022-09-07,2022-23,Club Brugge KV,Bayer Leverkusen,1,0,0
+2022-09-07,2022-23,Inter,FC Bayern München,0,2,0
+2022-09-07,2022-23,FC Barcelona,Viktoria Plzeň,5,1,0
+2022-09-07,2022-23,Eintracht Frankfurt,Sporting CP,0,3,0
+2022-09-07,2022-23,Tottenham Hotspur,Olympique Marseille,2,0,0
+2022-09-13,2022-23,Liverpool FC,AFC Ajax,2,1,0
+2022-09-13,2022-23,Bayer Leverkusen,Atlético Madrid,2,0,0
+2022-09-13,2022-23,FC Porto,Club Brugge KV,0,4,0
+2022-09-13,2022-23,Viktoria Plzeň,Inter,0,2,0
+2022-09-13,2022-23,FC Bayern München,FC Barcelona,2,0,0
+2022-09-13,2022-23,Sporting CP,Tottenham Hotspur,2,0,0
+2022-09-13,2022-23,Olympique Marseille,Eintracht Frankfurt,0,1,0
+2022-09-14,2022-23,Rangers FC,SSC Napoli,0,3,0
+2022-09-14,2022-23,AC Milan,Dinamo Zagreb,3,1,0
+2022-09-14,2022-23,Chelsea FC,RB Salzburg,1,1,0
+2022-09-14,2022-23,Shakhtar Donetsk,Celtic FC,1,1,0
+2022-09-14,2022-23,Real Madrid CF,RB Leipzig,2,0,0
+2022-09-14,2022-23,Manchester City FC,Borussia Dortmund,2,1,0
+2022-09-14,2022-23,FC København,Sevilla FC,0,0,0
+2022-09-14,2022-23,Juventus,SL Benfica,1,2,0
+2022-09-14,2022-23,Maccabi Haifa,Paris Saint-Germain FC,1,3,0
+2022-10-04,2022-23,AFC Ajax,SSC Napoli,1,6,0
+2022-10-04,2022-23,Liverpool FC,Rangers FC,2,0,0
+2022-10-04,2022-23,Club Brugge KV,Atlético Madrid,2,0,0
+2022-10-04,2022-23,FC Porto,Bayer Leverkusen,2,0,0
+2022-10-04,2022-23,FC Bayern München,Viktoria Plzeň,5,0,0
+2022-10-04,2022-23,Inter,FC Barcelona,1,0,0
+2022-10-04,2022-23,Olympique Marseille,Sporting CP,4,1,0
+2022-10-04,2022-23,Eintracht Frankfurt,Tottenham Hotspur,0,0,0
+2022-10-05,2022-23,RB Salzburg,Dinamo Zagreb,1,0,0
+2022-10-05,2022-23,Chelsea FC,AC Milan,3,0,0
+2022-10-05,2022-23,RB Leipzig,Celtic FC,3,1,0
+2022-10-05,2022-23,Real Madrid CF,Shakhtar Donetsk,2,1,0
+2022-10-05,2022-23,Sevilla FC,Borussia Dortmund,1,4,0
+2022-10-05,2022-23,Manchester City FC,FC København,5,0,0
+2022-10-05,2022-23,Juventus,Maccabi Haifa,3,1,0
+2022-10-05,2022-23,SL Benfica,Paris Saint-Germain FC,1,1,0
+2022-10-11,2022-23,AC Milan,Chelsea FC,0,2,0
+2022-10-11,2022-23,Dinamo Zagreb,RB Salzburg,1,1,0
+2022-10-11,2022-23,Celtic FC,RB Leipzig,0,2,0
+2022-10-11,2022-23,Shakhtar Donetsk,Real Madrid CF,1,1,0
+2022-10-11,2022-23,FC København,Manchester City FC,0,0,0
+2022-10-11,2022-23,Borussia Dortmund,Sevilla FC,1,1,0
+2022-10-11,2022-23,Maccabi Haifa,Juventus,2,0,0
+2022-10-11,2022-23,Paris Saint-Germain FC,SL Benfica,1,1,0
+2022-10-12,2022-23,SSC Napoli,AFC Ajax,4,2,0
+2022-10-12,2022-23,Rangers FC,Liverpool FC,1,7,0
+2022-10-12,2022-23,Atlético Madrid,Club Brugge KV,0,0,0
+2022-10-12,2022-23,Bayer Leverkusen,FC Porto,0,3,0
+2022-10-12,2022-23,Viktoria Plzeň,FC Bayern München,2,4,0
+2022-10-12,2022-23,FC Barcelona,Inter,3,3,0
+2022-10-12,2022-23,Tottenham Hotspur,Eintracht Frankfurt,3,2,0
+2022-10-12,2022-23,Sporting CP,Olympique Marseille,0,2,0
+2022-10-25,2022-23,RB Salzburg,Chelsea FC,1,2,0
+2022-10-25,2022-23,Dinamo Zagreb,AC Milan,0,4,0
+2022-10-25,2022-23,Celtic FC,Shakhtar Donetsk,1,1,0
+2022-10-25,2022-23,RB Leipzig,Real Madrid CF,3,2,0
+2022-10-25,2022-23,Sevilla FC,FC København,3,0,0
+2022-10-25,2022-23,Borussia Dortmund,Manchester City FC,0,0,0
+2022-10-25,2022-23,SL Benfica,Juventus,4,3,0
+2022-10-25,2022-23,Paris Saint-Germain FC,Maccabi Haifa,7,2,0
+2022-10-26,2022-23,AFC Ajax,Liverpool FC,0,3,0
+2022-10-26,2022-23,SSC Napoli,Rangers FC,3,0,0
+2022-10-26,2022-23,Club Brugge KV,FC Porto,0,4,0
+2022-10-26,2022-23,Atlético Madrid,Bayer Leverkusen,2,2,0
+2022-10-26,2022-23,Inter,Viktoria Plzeň,4,0,0
+2022-10-26,2022-23,FC Barcelona,FC Bayern München,0,3,0
+2022-10-26,2022-23,Eintracht Frankfurt,Olympique Marseille,2,1,0
+2022-10-26,2022-23,Tottenham Hotspur,Sporting CP,1,1,0
+2022-11-01,2022-23,Rangers FC,AFC Ajax,1,3,0
+2022-11-01,2022-23,Liverpool FC,SSC Napoli,2,0,0
+2022-11-01,2022-23,FC Porto,Atlético Madrid,2,1,0
+2022-11-01,2022-23,Bayer Leverkusen,Club Brugge KV,0,0,0
+2022-11-01,2022-23,FC Bayern München,Inter,2,0,0
+2022-11-01,2022-23,Viktoria Plzeň,FC Barcelona,2,4,0
+2022-11-01,2022-23,Sporting CP,Eintracht Frankfurt,1,2,0
+2022-11-01,2022-23,Olympique Marseille,Tottenham Hotspur,1,2,0
+2022-11-02,2022-23,AC Milan,RB Salzburg,4,0,0
+2022-11-02,2022-23,Chelsea FC,Dinamo Zagreb,2,1,0
+2022-11-02,2022-23,Real Madrid CF,Celtic FC,5,1,0
+2022-11-02,2022-23,Shakhtar Donetsk,RB Leipzig,0,4,0
+2022-11-02,2022-23,FC København,Borussia Dortmund,1,1,0
+2022-11-02,2022-23,Manchester City FC,Sevilla FC,3,1,0
+2022-11-02,2022-23,Juventus,Paris Saint-Germain FC,1,2,0
+2022-11-02,2022-23,Maccabi Haifa,SL Benfica,1,6,0
+2023-02-14,2022-23,AC Milan,Tottenham Hotspur,1,0,0
+2023-02-14,2022-23,Paris Saint-Germain FC,FC Bayern München,0,1,0
+2023-02-15,2022-23,Club Brugge KV,SL Benfica,0,2,0
+2023-02-15,2022-23,Borussia Dortmund,Chelsea FC,1,0,0
+2023-02-21,2022-23,Liverpool FC,Real Madrid CF,2,5,0
+2023-02-21,2022-23,Eintracht Frankfurt,SSC Napoli,0,2,0
+2023-02-22,2022-23,RB Leipzig,Manchester City FC,1,1,0
+2023-02-22,2022-23,Inter,FC Porto,1,0,0
+2023-03-07,2022-23,SL Benfica,Club Brugge KV,5,1,0
+2023-03-07,2022-23,Chelsea FC,Borussia Dortmund,2,0,0
+2023-03-08,2022-23,FC Bayern München,Paris Saint-Germain FC,2,0,0
+2023-03-08,2022-23,Tottenham Hotspur,AC Milan,0,0,0
+2023-03-14,2022-23,Manchester City FC,RB Leipzig,7,0,0
+2023-03-14,2022-23,FC Porto,Inter,0,0,0
+2023-03-15,2022-23,Real Madrid CF,Liverpool FC,1,0,0
+2023-03-15,2022-23,SSC Napoli,Eintracht Frankfurt,3,0,0
+2023-04-11,2022-23,SL Benfica,Inter,0,2,0
+2023-04-11,2022-23,Manchester City FC,FC Bayern München,3,0,0
+2023-04-12,2022-23,Real Madrid CF,Chelsea FC,2,0,0
+2023-04-12,2022-23,AC Milan,SSC Napoli,1,0,0
+2023-04-18,2022-23,Chelsea FC,Real Madrid CF,0,2,0
+2023-04-18,2022-23,SSC Napoli,AC Milan,1,1,0
+2023-04-19,2022-23,Inter,SL Benfica,3,3,0
+2023-04-19,2022-23,FC Bayern München,Manchester City FC,1,1,0
+2023-05-09,2022-23,Real Madrid CF,Manchester City FC,1,1,0
+2023-05-10,2022-23,AC Milan,Inter,0,2,0
+2023-05-16,2022-23,Inter,AC Milan,1,0,0
+2023-05-17,2022-23,Manchester City FC,Real Madrid CF,4,0,0
+2023-06-10,2022-23,Manchester City FC,Inter,1,0,1
+2023-09-19,2023-24,AC Milan,Newcastle United FC,0,0,0
+2023-09-19,2023-24,BSC Young Boys,RB Leipzig,1,3,0
+2023-09-19,2023-24,SS Lazio,Club Atlético de Madrid,1,1,0
+2023-09-19,2023-24,Feyenoord Rotterdam,Celtic FC,2,0,0
+2023-09-19,2023-24,Paris Saint-Germain FC,Borussia Dortmund,2,0,0
+2023-09-19,2023-24,Manchester City FC,FK Crvena Zvezda,3,1,0
+2023-09-19,2023-24,FC Barcelona,Royal Antwerp FC,5,0,0
+2023-09-19,2023-24,FK Shakhtar Donetsk,FC Porto,1,3,0
+2023-09-20,2023-24,Real Madrid CF,1. FC Union Berlin,1,0,0
+2023-09-20,2023-24,Galatasaray SK,FC København,2,2,0
+2023-09-20,2023-24,Sevilla FC,Racing Club de Lens,1,1,0
+2023-09-20,2023-24,Sporting Clube de Braga,SSC Napoli,1,2,0
+2023-09-20,2023-24,Real Sociedad de Fútbol,FC Internazionale Milano,1,1,0
+2023-09-20,2023-24,Sport Lisboa e Benfica,FC Red Bull Salzburg,0,2,0
+2023-09-20,2023-24,FC Bayern München,Manchester United FC,4,3,0
+2023-09-20,2023-24,Arsenal FC,PSV,4,0,0
+2023-10-03,2023-24,1. FC Union Berlin,Sporting Clube de Braga,2,3,0
+2023-10-03,2023-24,FC Red Bull Salzburg,Real Sociedad de Fútbol,0,2,0
+2023-10-03,2023-24,SSC Napoli,Real Madrid CF,2,3,0
+2023-10-03,2023-24,FC Internazionale Milano,Sport Lisboa e Benfica,1,0,0
+2023-10-03,2023-24,FC København,FC Bayern München,1,2,0
+2023-10-03,2023-24,Manchester United FC,Galatasaray SK,2,3,0
+2023-10-03,2023-24,Racing Club de Lens,Arsenal FC,2,1,0
+2023-10-03,2023-24,PSV,Sevilla FC,2,2,0
+2023-10-04,2023-24,Club Atlético de Madrid,Feyenoord Rotterdam,3,2,0
+2023-10-04,2023-24,Royal Antwerp FC,FK Shakhtar Donetsk,2,3,0
+2023-10-04,2023-24,Celtic FC,SS Lazio,1,2,0
+2023-10-04,2023-24,Borussia Dortmund,AC Milan,0,0,0
+2023-10-04,2023-24,Newcastle United FC,Paris Saint-Germain FC,4,1,0
+2023-10-04,2023-24,FK Crvena Zvezda,BSC Young Boys,2,2,0
+2023-10-04,2023-24,RB Leipzig,Manchester City FC,1,3,0
+2023-10-04,2023-24,FC Porto,FC Barcelona,0,1,0
+2023-10-24,2023-24,FC Internazionale Milano,FC Red Bull Salzburg,2,1,0
+2023-10-24,2023-24,Galatasaray SK,FC Bayern München,1,3,0
+2023-10-24,2023-24,1. FC Union Berlin,SSC Napoli,0,1,0
+2023-10-24,2023-24,Sporting Clube de Braga,Real Madrid CF,1,2,0
+2023-10-24,2023-24,Sport Lisboa e Benfica,Real Sociedad de Fútbol,0,1,0
+2023-10-24,2023-24,Manchester United FC,FC København,1,0,0
+2023-10-24,2023-24,Sevilla FC,Arsenal FC,1,2,0
+2023-10-24,2023-24,Racing Club de Lens,PSV,1,1,0
+2023-10-25,2023-24,Feyenoord Rotterdam,SS Lazio,3,1,0
+2023-10-25,2023-24,FC Barcelona,FK Shakhtar Donetsk,2,1,0
+2023-10-25,2023-24,Celtic FC,Club Atlético de Madrid,2,2,0
+2023-10-25,2023-24,Paris Saint-Germain FC,AC Milan,3,0,0
+2023-10-25,2023-24,Newcastle United FC,Borussia Dortmund,0,1,0
+2023-10-25,2023-24,BSC Young Boys,Manchester City FC,1,3,0
+2023-10-25,2023-24,RB Leipzig,FK Crvena Zvezda,3,1,0
+2023-10-25,2023-24,Royal Antwerp FC,FC Porto,1,4,0
+2023-11-07,2023-24,Borussia Dortmund,Newcastle United FC,2,0,0
+2023-11-07,2023-24,FK Shakhtar Donetsk,FC Barcelona,1,0,0
+2023-11-07,2023-24,Club Atlético de Madrid,Celtic FC,6,0,0
+2023-11-07,2023-24,SS Lazio,Feyenoord Rotterdam,1,0,0
+2023-11-07,2023-24,AC Milan,Paris Saint-Germain FC,2,1,0
+2023-11-07,2023-24,Manchester City FC,BSC Young Boys,3,0,0
+2023-11-07,2023-24,FK Crvena Zvezda,RB Leipzig,1,2,0
+2023-11-07,2023-24,FC Porto,Royal Antwerp FC,2,0,0
+2023-11-08,2023-24,SSC Napoli,1. FC Union Berlin,1,1,0
+2023-11-08,2023-24,Real Sociedad de Fútbol,Sport Lisboa e Benfica,3,1,0
+2023-11-08,2023-24,Real Madrid CF,Sporting Clube de Braga,3,0,0
+2023-11-08,2023-24,FC Red Bull Salzburg,FC Internazionale Milano,0,1,0
+2023-11-08,2023-24,FC Bayern München,Galatasaray SK,2,1,0
+2023-11-08,2023-24,FC København,Manchester United FC,4,3,0
+2023-11-08,2023-24,Arsenal FC,Sevilla FC,2,0,0
+2023-11-08,2023-24,PSV,Racing Club de Lens,1,0,0
+2023-11-28,2023-24,SS Lazio,Celtic FC,2,0,0
+2023-11-28,2023-24,FK Shakhtar Donetsk,Royal Antwerp FC,1,0,0
+2023-11-28,2023-24,Feyenoord Rotterdam,Club Atlético de Madrid,1,3,0
+2023-11-28,2023-24,AC Milan,Borussia Dortmund,1,3,0
+2023-11-28,2023-24,Paris Saint-Germain FC,Newcastle United FC,1,1,0
+2023-11-28,2023-24,BSC Young Boys,FK Crvena Zvezda,2,0,0
+2023-11-28,2023-24,Manchester City FC,RB Leipzig,3,2,0
+2023-11-28,2023-24,FC Barcelona,FC Porto,2,1,0
+2023-11-29,2023-24,Galatasaray SK,Manchester United FC,3,3,0
+2023-11-29,2023-24,Sevilla FC,PSV,2,3,0
+2023-11-29,2023-24,Sporting Clube de Braga,1. FC Union Berlin,1,1,0
+2023-11-29,2023-24,Real Madrid CF,SSC Napoli,4,2,0
+2023-11-29,2023-24,Sport Lisboa e Benfica,FC Internazionale Milano,3,3,0
+2023-11-29,2023-24,Real Sociedad de Fútbol,FC Red Bull Salzburg,0,0,0
+2023-11-29,2023-24,FC Bayern München,FC København,0,0,0
+2023-11-29,2023-24,Arsenal FC,Racing Club de Lens,6,0,0
+2023-12-12,2023-24,PSV,Arsenal FC,1,1,0
+2023-12-12,2023-24,Racing Club de Lens,Sevilla FC,2,1,0
+2023-12-12,2023-24,1. FC Union Berlin,Real Madrid CF,2,3,0
+2023-12-12,2023-24,SSC Napoli,Sporting Clube de Braga,2,0,0
+2023-12-12,2023-24,FC Internazionale Milano,Real Sociedad de Fútbol,0,0,0
+2023-12-12,2023-24,FC Red Bull Salzburg,Sport Lisboa e Benfica,1,3,0
+2023-12-12,2023-24,Manchester United FC,FC Bayern München,0,1,0
+2023-12-12,2023-24,FC København,Galatasaray SK,1,0,0
+2023-12-13,2023-24,RB Leipzig,BSC Young Boys,2,1,0
+2023-12-13,2023-24,FK Crvena Zvezda,Manchester City FC,2,3,0
+2023-12-13,2023-24,Club Atlético de Madrid,SS Lazio,2,0,0
+2023-12-13,2023-24,Celtic FC,Feyenoord Rotterdam,2,1,0
+2023-12-13,2023-24,Newcastle United FC,AC Milan,1,2,0
+2023-12-13,2023-24,Borussia Dortmund,Paris Saint-Germain FC,1,1,0
+2023-12-13,2023-24,Royal Antwerp FC,FC Barcelona,3,2,0
+2023-12-13,2023-24,FC Porto,FK Shakhtar Donetsk,5,3,0
+2024-02-13,2023-24,FC København,Manchester City FC,1,3,0
+2024-02-13,2023-24,RB Leipzig,Real Madrid CF,0,1,0
+2024-02-14,2023-24,Paris Saint-Germain FC,Real Sociedad de Fútbol,2,0,0
+2024-02-14,2023-24,SS Lazio,FC Bayern München,1,0,0
+2024-02-20,2023-24,FC Internazionale Milano,Club Atlético de Madrid,1,0,0
+2024-02-20,2023-24,PSV,Borussia Dortmund,1,1,0
+2024-02-21,2023-24,FC Porto,Arsenal FC,1,0,0
+2024-02-21,2023-24,SSC Napoli,FC Barcelona,1,1,0
+2024-03-05,2023-24,Real Sociedad de Fútbol,Paris Saint-Germain FC,1,2,0
+2024-03-05,2023-24,FC Bayern München,SS Lazio,3,0,0
+2024-03-06,2023-24,Manchester City FC,FC København,3,1,0
+2024-03-06,2023-24,Real Madrid CF,RB Leipzig,1,1,0
+2024-03-12,2023-24,Arsenal FC,FC Porto,1,0,0
+2024-03-12,2023-24,FC Barcelona,SSC Napoli,3,1,0
+2024-03-13,2023-24,Club Atlético de Madrid,FC Internazionale Milano,2,1,0
+2024-03-13,2023-24,Borussia Dortmund,PSV,2,0,0
+2024-04-09,2023-24,Arsenal FC,FC Bayern München,2,2,0
+2024-04-09,2023-24,Real Madrid CF,Manchester City FC,3,3,0
+2024-04-10,2023-24,Club Atlético de Madrid,Borussia Dortmund,2,1,0
+2024-04-10,2023-24,Paris Saint-Germain FC,FC Barcelona,2,3,0
+2024-04-16,2023-24,Borussia Dortmund,Club Atlético de Madrid,4,2,0
+2024-04-16,2023-24,FC Barcelona,Paris Saint-Germain FC,1,4,0
+2024-04-17,2023-24,FC Bayern München,Arsenal FC,1,0,0
+2024-04-17,2023-24,Manchester City FC,Real Madrid CF,1,1,0
+2024-04-30,2023-24,FC Bayern München,Real Madrid CF,2,2,0
+2024-05-01,2023-24,Borussia Dortmund,Paris Saint-Germain FC,1,0,0
+2024-05-07,2023-24,Paris Saint-Germain FC,Borussia Dortmund,0,1,0
+2024-05-08,2023-24,Real Madrid CF,FC Bayern München,2,1,0
+2024-06-01,2023-24,Borussia Dortmund,Real Madrid CF,0,2,1
+2024-09-17,2024-25,BSC Young Boys,Aston Villa FC,0,3,0
+2024-09-17,2024-25,Juventus FC,PSV,3,1,0
+2024-09-17,2024-25,Sporting Clube de Portugal,Lille OSC,2,0,0
+2024-09-17,2024-25,FC Bayern München,GNK Dinamo Zagreb,9,2,0
+2024-09-17,2024-25,Real Madrid CF,VfB Stuttgart,3,1,0
+2024-09-17,2024-25,AC Milan,Liverpool FC,1,3,0
+2024-09-18,2024-25,Bologna FC 1909,FK Shakhtar Donetsk,0,0,0
+2024-09-18,2024-25,AC Sparta Praha,FC Red Bull Salzburg,3,0,0
+2024-09-18,2024-25,Manchester City FC,FC Internazionale Milano,0,0,0
+2024-09-18,2024-25,Paris Saint-Germain FC,Girona FC,1,0,0
+2024-09-18,2024-25,Club Brugge KV,Borussia Dortmund,0,3,0
+2024-09-18,2024-25,Celtic FC,ŠK Slovan Bratislava,5,1,0
+2024-09-19,2024-25,Feyenoord Rotterdam,Bayer 04 Leverkusen,0,4,0
+2024-09-19,2024-25,FK Crvena Zvezda,Sport Lisboa e Benfica,1,2,0
+2024-09-19,2024-25,AS Monaco FC,FC Barcelona,2,1,0
+2024-09-19,2024-25,Stade Brestois 29,SK Sturm Graz,2,1,0
+2024-09-19,2024-25,Atalanta BC,Arsenal FC,0,0,0
+2024-09-19,2024-25,Club Atlético de Madrid,RB Leipzig,2,1,0
+2024-10-01,2024-25,VfB Stuttgart,AC Sparta Praha,1,1,0
+2024-10-01,2024-25,FC Red Bull Salzburg,Stade Brestois 29,0,4,0
+2024-10-01,2024-25,ŠK Slovan Bratislava,Manchester City FC,0,4,0
+2024-10-01,2024-25,Borussia Dortmund,Celtic FC,7,1,0
+2024-10-01,2024-25,FC Barcelona,BSC Young Boys,5,0,0
+2024-10-01,2024-25,FC Internazionale Milano,FK Crvena Zvezda,4,0,0
+2024-10-01,2024-25,Bayer 04 Leverkusen,AC Milan,1,0,0
+2024-10-01,2024-25,Arsenal FC,Paris Saint-Germain FC,2,0,0
+2024-10-01,2024-25,PSV,Sporting Clube de Portugal,1,1,0
+2024-10-02,2024-25,Girona FC,Feyenoord Rotterdam,2,3,0
+2024-10-02,2024-25,FK Shakhtar Donetsk,Atalanta BC,0,3,0
+2024-10-02,2024-25,Aston Villa FC,FC Bayern München,1,0,0
+2024-10-02,2024-25,SK Sturm Graz,Club Brugge KV,0,1,0
+2024-10-02,2024-25,Liverpool FC,Bologna FC 1909,2,0,0
+2024-10-02,2024-25,RB Leipzig,Juventus FC,2,3,0
+2024-10-02,2024-25,Sport Lisboa e Benfica,Club Atlético de Madrid,4,0,0
+2024-10-02,2024-25,GNK Dinamo Zagreb,AS Monaco FC,2,2,0
+2024-10-02,2024-25,Lille OSC,Real Madrid CF,1,0,0
+2024-10-22,2024-25,AS Monaco FC,FK Crvena Zvezda,5,1,0
+2024-10-22,2024-25,AC Milan,Club Brugge KV,3,1,0
+2024-10-22,2024-25,Aston Villa FC,Bologna FC 1909,2,0,0
+2024-10-22,2024-25,Girona FC,ŠK Slovan Bratislava,2,0,0
+2024-10-22,2024-25,SK Sturm Graz,Sporting Clube de Portugal,0,2,0
+2024-10-22,2024-25,Paris Saint-Germain FC,PSV,1,1,0
+2024-10-22,2024-25,Real Madrid CF,Borussia Dortmund,5,2,0
+2024-10-22,2024-25,Arsenal FC,FK Shakhtar Donetsk,1,0,0
+2024-10-22,2024-25,Juventus FC,VfB Stuttgart,0,1,0
+2024-10-23,2024-25,Stade Brestois 29,Bayer 04 Leverkusen,1,1,0
+2024-10-23,2024-25,Atalanta BC,Celtic FC,0,0,0
+2024-10-23,2024-25,BSC Young Boys,FC Internazionale Milano,0,1,0
+2024-10-23,2024-25,FC Barcelona,FC Bayern München,4,1,0
+2024-10-23,2024-25,Manchester City FC,AC Sparta Praha,5,0,0
+2024-10-23,2024-25,RB Leipzig,Liverpool FC,0,1,0
+2024-10-23,2024-25,Club Atlético de Madrid,Lille OSC,1,3,0
+2024-10-23,2024-25,Sport Lisboa e Benfica,Feyenoord Rotterdam,1,3,0
+2024-10-23,2024-25,FC Red Bull Salzburg,GNK Dinamo Zagreb,0,2,0
+2024-11-05,2024-25,ŠK Slovan Bratislava,GNK Dinamo Zagreb,1,4,0
+2024-11-05,2024-25,PSV,Girona FC,4,0,0
+2024-11-05,2024-25,Sporting Clube de Portugal,Manchester City FC,4,1,0
+2024-11-05,2024-25,Bologna FC 1909,AS Monaco FC,0,1,0
+2024-11-05,2024-25,Borussia Dortmund,SK Sturm Graz,1,0,0
+2024-11-05,2024-25,Liverpool FC,Bayer 04 Leverkusen,4,0,0
+2024-11-05,2024-25,Real Madrid CF,AC Milan,1,3,0
+2024-11-05,2024-25,Celtic FC,RB Leipzig,3,1,0
+2024-11-05,2024-25,Lille OSC,Juventus FC,1,1,0
+2024-11-06,2024-25,Club Brugge KV,Aston Villa FC,1,0,0
+2024-11-06,2024-25,FK Shakhtar Donetsk,BSC Young Boys,2,1,0
+2024-11-06,2024-25,AC Sparta Praha,Stade Brestois 29,1,2,0
+2024-11-06,2024-25,VfB Stuttgart,Atalanta BC,0,2,0
+2024-11-06,2024-25,FC Internazionale Milano,Arsenal FC,1,0,0
+2024-11-06,2024-25,Paris Saint-Germain FC,Club Atlético de Madrid,1,2,0
+2024-11-06,2024-25,Feyenoord Rotterdam,FC Red Bull Salzburg,1,3,0
+2024-11-06,2024-25,FK Crvena Zvezda,FC Barcelona,2,5,0
+2024-11-06,2024-25,FC Bayern München,Sport Lisboa e Benfica,1,0,0
+2024-11-26,2024-25,ŠK Slovan Bratislava,AC Milan,2,3,0
+2024-11-26,2024-25,AC Sparta Praha,Club Atlético de Madrid,0,6,0
+2024-11-26,2024-25,Sporting Clube de Portugal,Arsenal FC,1,5,0
+2024-11-26,2024-25,BSC Young Boys,Atalanta BC,1,6,0
+2024-11-26,2024-25,FC Bayern München,Paris Saint-Germain FC,1,0,0
+2024-11-26,2024-25,FC Barcelona,Stade Brestois 29,3,0,0
+2024-11-26,2024-25,FC Internazionale Milano,RB Leipzig,1,0,0
+2024-11-26,2024-25,Manchester City FC,Feyenoord Rotterdam,3,3,0
+2024-11-26,2024-25,Bayer 04 Leverkusen,FC Red Bull Salzburg,5,0,0
+2024-11-27,2024-25,SK Sturm Graz,Girona FC,1,0,0
+2024-11-27,2024-25,FK Crvena Zvezda,VfB Stuttgart,5,1,0
+2024-11-27,2024-25,AS Monaco FC,Sport Lisboa e Benfica,2,3,0
+2024-11-27,2024-25,Aston Villa FC,Juventus FC,0,0,0
+2024-11-27,2024-25,Bologna FC 1909,Lille OSC,1,2,0
+2024-11-27,2024-25,Liverpool FC,Real Madrid CF,2,0,0
+2024-11-27,2024-25,Celtic FC,Club Brugge KV,1,1,0
+2024-11-27,2024-25,GNK Dinamo Zagreb,Borussia Dortmund,0,3,0
+2024-11-27,2024-25,PSV,FK Shakhtar Donetsk,3,2,0
+2024-12-10,2024-25,Girona FC,Liverpool FC,0,1,0
+2024-12-10,2024-25,GNK Dinamo Zagreb,Celtic FC,0,0,0
+2024-12-10,2024-25,Stade Brestois 29,PSV,1,0,0
+2024-12-10,2024-25,RB Leipzig,Aston Villa FC,2,3,0
+2024-12-10,2024-25,Atalanta BC,Real Madrid CF,2,3,0
+2024-12-10,2024-25,Bayer 04 Leverkusen,FC Internazionale Milano,1,0,0
+2024-12-10,2024-25,Club Brugge KV,Sporting Clube de Portugal,2,1,0
+2024-12-10,2024-25,FK Shakhtar Donetsk,FC Bayern München,1,5,0
+2024-12-10,2024-25,FC Red Bull Salzburg,Paris Saint-Germain FC,0,3,0
+2024-12-11,2024-25,Club Atlético de Madrid,ŠK Slovan Bratislava,3,1,0
+2024-12-11,2024-25,Lille OSC,SK Sturm Graz,3,2,0
+2024-12-11,2024-25,VfB Stuttgart,BSC Young Boys,5,1,0
+2024-12-11,2024-25,Borussia Dortmund,FC Barcelona,2,3,0
+2024-12-11,2024-25,AC Milan,FK Crvena Zvezda,2,1,0
+2024-12-11,2024-25,Sport Lisboa e Benfica,Bologna FC 1909,0,0,0
+2024-12-11,2024-25,Arsenal FC,AS Monaco FC,3,0,0
+2024-12-11,2024-25,Juventus FC,Manchester City FC,2,0,0
+2024-12-11,2024-25,Feyenoord Rotterdam,AC Sparta Praha,4,2,0
+2025-01-21,2024-25,AS Monaco FC,Aston Villa FC,1,0,0
+2025-01-21,2024-25,Atalanta BC,SK Sturm Graz,5,0,0
+2025-01-21,2024-25,Bologna FC 1909,Borussia Dortmund,2,1,0
+2025-01-21,2024-25,ŠK Slovan Bratislava,VfB Stuttgart,1,3,0
+2025-01-21,2024-25,Liverpool FC,Lille OSC,2,1,0
+2025-01-21,2024-25,Club Atlético de Madrid,Bayer 04 Leverkusen,2,1,0
+2025-01-21,2024-25,Sport Lisboa e Benfica,FC Barcelona,4,5,0
+2025-01-21,2024-25,Club Brugge KV,Juventus FC,0,0,0
+2025-01-21,2024-25,FK Crvena Zvezda,PSV,2,3,0
+2025-01-22,2024-25,RB Leipzig,Sporting Clube de Portugal,2,1,0
+2025-01-22,2024-25,FK Shakhtar Donetsk,Stade Brestois 29,2,0,0
+2025-01-22,2024-25,AC Sparta Praha,FC Internazionale Milano,0,1,0
+2025-01-22,2024-25,Paris Saint-Germain FC,Manchester City FC,4,2,0
+2025-01-22,2024-25,Real Madrid CF,FC Red Bull Salzburg,5,1,0
+2025-01-22,2024-25,AC Milan,Girona FC,1,0,0
+2025-01-22,2024-25,Arsenal FC,GNK Dinamo Zagreb,3,0,0
+2025-01-22,2024-25,Celtic FC,BSC Young Boys,1,0,0
+2025-01-22,2024-25,Feyenoord Rotterdam,FC Bayern München,3,0,0
+2025-01-29,2024-25,Sporting Clube de Portugal,Bologna FC 1909,1,1,0
+2025-01-29,2024-25,BSC Young Boys,FK Crvena Zvezda,0,1,0
+2025-01-29,2024-25,Aston Villa FC,Celtic FC,4,2,0
+2025-01-29,2024-25,Girona FC,Arsenal FC,1,2,0
+2025-01-29,2024-25,Stade Brestois 29,Real Madrid CF,0,3,0
+2025-01-29,2024-25,SK Sturm Graz,RB Leipzig,1,0,0
+2025-01-29,2024-25,VfB Stuttgart,Paris Saint-Germain FC,1,4,0
+2025-01-29,2024-25,FC Bayern München,ŠK Slovan Bratislava,3,1,0
+2025-01-29,2024-25,Borussia Dortmund,FK Shakhtar Donetsk,3,1,0
+2025-01-29,2024-25,FC Barcelona,Atalanta BC,2,2,0
+2025-01-29,2024-25,FC Internazionale Milano,AS Monaco FC,3,0,0
+2025-01-29,2024-25,Manchester City FC,Club Brugge KV,3,1,0
+2025-01-29,2024-25,Bayer 04 Leverkusen,AC Sparta Praha,2,0,0
+2025-01-29,2024-25,Juventus FC,Sport Lisboa e Benfica,0,2,0
+2025-01-29,2024-25,GNK Dinamo Zagreb,AC Milan,2,1,0
+2025-01-29,2024-25,Lille OSC,Feyenoord Rotterdam,6,1,0
+2025-01-29,2024-25,PSV,Liverpool FC,3,2,0
+2025-01-29,2024-25,FC Red Bull Salzburg,Club Atlético de Madrid,1,4,0
+2025-02-11,2024-25,Stade Brestois 29,Paris Saint-Germain FC,0,3,0
+2025-02-11,2024-25,Manchester City FC,Real Madrid CF,2,3,0
+2025-02-11,2024-25,Juventus FC,PSV,2,1,0
+2025-02-11,2024-25,Sporting Clube de Portugal,Borussia Dortmund,0,3,0
+2025-02-12,2024-25,Club Brugge KV,Atalanta BC,2,1,0
+2025-02-12,2024-25,AS Monaco FC,Sport Lisboa e Benfica,0,1,0
+2025-02-12,2024-25,Celtic FC,FC Bayern München,1,2,0
+2025-02-12,2024-25,Feyenoord Rotterdam,AC Milan,1,0,0
+2025-02-18,2024-25,AC Milan,Feyenoord Rotterdam,1,1,0
+2025-02-18,2024-25,Sport Lisboa e Benfica,AS Monaco FC,3,3,0
+2025-02-18,2024-25,FC Bayern München,Celtic FC,1,1,0
+2025-02-18,2024-25,Atalanta BC,Club Brugge KV,1,3,0
+2025-02-19,2024-25,Borussia Dortmund,Sporting Clube de Portugal,0,0,0
+2025-02-19,2024-25,Paris Saint-Germain FC,Stade Brestois 29,7,0,0
+2025-02-19,2024-25,Real Madrid CF,Manchester City FC,3,1,0
+2025-02-19,2024-25,PSV,Juventus FC,3,1,0
+2025-03-04,2024-25,Club Brugge KV,Aston Villa FC,1,3,0
+2025-03-04,2024-25,Real Madrid CF,Club Atlético de Madrid,2,1,0
+2025-03-04,2024-25,PSV,Arsenal FC,1,7,0
+2025-03-04,2024-25,Borussia Dortmund,Lille OSC,1,1,0
+2025-03-05,2024-25,Feyenoord Rotterdam,FC Internazionale Milano,0,2,0
+2025-03-05,2024-25,Paris Saint-Germain FC,Liverpool FC,0,1,0
+2025-03-05,2024-25,FC Bayern München,Bayer 04 Leverkusen,3,0,0
+2025-03-05,2024-25,Sport Lisboa e Benfica,FC Barcelona,0,1,0
+2025-03-11,2024-25,FC Barcelona,Sport Lisboa e Benfica,3,1,0
+2025-03-11,2024-25,Liverpool FC,Paris Saint-Germain FC,0,1,0
+2025-03-11,2024-25,FC Internazionale Milano,Feyenoord Rotterdam,2,1,0
+2025-03-11,2024-25,Bayer 04 Leverkusen,FC Bayern München,0,2,0
+2025-03-12,2024-25,Lille OSC,Borussia Dortmund,1,2,0
+2025-03-12,2024-25,Aston Villa FC,Club Brugge KV,3,0,0
+2025-03-12,2024-25,Club Atlético de Madrid,Real Madrid CF,1,0,0
+2025-03-12,2024-25,Arsenal FC,PSV,2,2,0
+2025-04-08,2024-25,Arsenal FC,Real Madrid CF,3,0,0
+2025-04-08,2024-25,FC Bayern München,FC Internazionale Milano,1,2,0
+2025-04-09,2024-25,Paris Saint-Germain FC,Aston Villa FC,3,1,0
+2025-04-09,2024-25,FC Barcelona,Borussia Dortmund,4,0,0
+2025-04-15,2024-25,Aston Villa FC,Paris Saint-Germain FC,3,2,0
+2025-04-15,2024-25,Borussia Dortmund,FC Barcelona,3,1,0
+2025-04-16,2024-25,Real Madrid CF,Arsenal FC,1,2,0
+2025-04-16,2024-25,FC Internazionale Milano,FC Bayern München,2,2,0
+2025-04-29,2024-25,Arsenal FC,Paris Saint-Germain FC,0,1,0
+2025-04-30,2024-25,FC Barcelona,FC Internazionale Milano,3,3,0
+2025-05-06,2024-25,FC Internazionale Milano,FC Barcelona,4,3,0
+2025-05-07,2024-25,Paris Saint-Germain FC,Arsenal FC,2,1,0
+2025-05-31,2024-25,Paris Saint-Germain FC,FC Internazionale Milano,5,0,1
+2025-09-16,2025-26,Athletic Club,Arsenal FC,0,2,0
+2025-09-16,2025-26,PSV,Royale Union Saint-Gilloise,1,3,0
+2025-09-16,2025-26,Juventus FC,Borussia Dortmund,4,4,0
+2025-09-16,2025-26,Sport Lisboa e Benfica,Qarabağ Ağdam FK,2,3,0
+2025-09-16,2025-26,Tottenham Hotspur FC,Villarreal CF,1,0,0
+2025-09-16,2025-26,Real Madrid CF,Olympique de Marseille,2,1,0
+2025-09-17,2025-26,SK Slavia Praha,FK Bodø/Glimt,2,2,0
+2025-09-17,2025-26,PAE Olympiakos SFP,Paphos FC,0,0,0
+2025-09-17,2025-26,AFC Ajax,FC Internazionale Milano,0,2,0
+2025-09-17,2025-26,Liverpool FC,Club Atlético de Madrid,3,2,0
+2025-09-17,2025-26,Paris Saint-Germain FC,Atalanta BC,4,0,0
+2025-09-17,2025-26,FC Bayern München,Chelsea FC,3,1,0
+2025-09-18,2025-26,FC København,Bayer 04 Leverkusen,2,2,0
+2025-09-18,2025-26,Club Brugge KV,AS Monaco FC,4,1,0
+2025-09-18,2025-26,Newcastle United FC,FC Barcelona,1,2,0
+2025-09-18,2025-26,Manchester City FC,SSC Napoli,2,0,0
+2025-09-18,2025-26,Eintracht Frankfurt,Galatasaray SK,5,1,0
+2025-09-18,2025-26,Sporting Clube de Portugal,FK Kairat,4,1,0
+2025-09-30,2025-26,Atalanta BC,Club Brugge KV,2,1,0
+2025-09-30,2025-26,FK Kairat,Real Madrid CF,0,5,0
+2025-09-30,2025-26,Galatasaray SK,Liverpool FC,1,0,0
+2025-09-30,2025-26,Club Atlético de Madrid,Eintracht Frankfurt,5,1,0
+2025-09-30,2025-26,Olympique de Marseille,AFC Ajax,4,0,0
+2025-09-30,2025-26,FK Bodø/Glimt,Tottenham Hotspur FC,2,2,0
+2025-09-30,2025-26,Paphos FC,FC Bayern München,1,5,0
+2025-09-30,2025-26,Chelsea FC,Sport Lisboa e Benfica,1,0,0
+2025-09-30,2025-26,FC Internazionale Milano,SK Slavia Praha,3,0,0
+2025-10-01,2025-26,Qarabağ Ağdam FK,FC København,2,0,0
+2025-10-01,2025-26,Royale Union Saint-Gilloise,Newcastle United FC,0,4,0
+2025-10-01,2025-26,Borussia Dortmund,Athletic Club,4,1,0
+2025-10-01,2025-26,FC Barcelona,Paris Saint-Germain FC,1,2,0
+2025-10-01,2025-26,AS Monaco FC,Manchester City FC,2,2,0
+2025-10-01,2025-26,Bayer 04 Leverkusen,PSV,1,1,0
+2025-10-01,2025-26,Arsenal FC,PAE Olympiakos SFP,2,0,0
+2025-10-01,2025-26,Villarreal CF,Juventus FC,2,2,0
+2025-10-01,2025-26,SSC Napoli,Sporting Clube de Portugal,2,1,0
+2025-10-21,2025-26,FC Barcelona,PAE Olympiakos SFP,6,1,0
+2025-10-21,2025-26,FK Kairat,Paphos FC,0,0,0
+2025-10-21,2025-26,Royale Union Saint-Gilloise,FC Internazionale Milano,0,4,0
+2025-10-21,2025-26,FC København,Borussia Dortmund,2,4,0
+2025-10-21,2025-26,Bayer 04 Leverkusen,Paris Saint-Germain FC,2,7,0
+2025-10-21,2025-26,Villarreal CF,Manchester City FC,0,2,0
+2025-10-21,2025-26,Arsenal FC,Club Atlético de Madrid,4,0,0
+2025-10-21,2025-26,Newcastle United FC,Sport Lisboa e Benfica,3,0,0
+2025-10-21,2025-26,PSV,SSC Napoli,6,2,0
+2025-10-22,2025-26,Galatasaray SK,FK Bodø/Glimt,3,1,0
+2025-10-22,2025-26,Athletic Club,Qarabağ Ağdam FK,3,1,0
+2025-10-22,2025-26,Eintracht Frankfurt,Liverpool FC,1,5,0
+2025-10-22,2025-26,Atalanta BC,SK Slavia Praha,0,0,0
+2025-10-22,2025-26,Sporting Clube de Portugal,Olympique de Marseille,2,1,0
+2025-10-22,2025-26,AS Monaco FC,Tottenham Hotspur FC,0,0,0
+2025-10-22,2025-26,FC Bayern München,Club Brugge KV,4,0,0
+2025-10-22,2025-26,Chelsea FC,AFC Ajax,5,1,0
+2025-10-22,2025-26,Real Madrid CF,Juventus FC,1,0,0
+2025-11-04,2025-26,SK Slavia Praha,Arsenal FC,0,3,0
+2025-11-04,2025-26,SSC Napoli,Eintracht Frankfurt,0,0,0
+2025-11-04,2025-26,Juventus FC,Sporting Clube de Portugal,1,1,0
+2025-11-04,2025-26,Club Atlético de Madrid,Royale Union Saint-Gilloise,3,1,0
+2025-11-04,2025-26,Tottenham Hotspur FC,FC København,4,0,0
+2025-11-04,2025-26,FK Bodø/Glimt,AS Monaco FC,0,1,0
+2025-11-04,2025-26,PAE Olympiakos SFP,PSV,1,1,0
+2025-11-04,2025-26,Paris Saint-Germain FC,FC Bayern München,1,2,0
+2025-11-04,2025-26,Liverpool FC,Real Madrid CF,1,0,0
+2025-11-05,2025-26,Paphos FC,Villarreal CF,1,0,0
+2025-11-05,2025-26,Qarabağ Ağdam FK,Chelsea FC,2,2,0
+2025-11-05,2025-26,FC Internazionale Milano,FK Kairat,2,1,0
+2025-11-05,2025-26,Manchester City FC,Borussia Dortmund,4,1,0
+2025-11-05,2025-26,Club Brugge KV,FC Barcelona,3,3,0
+2025-11-05,2025-26,Sport Lisboa e Benfica,Bayer 04 Leverkusen,0,1,0
+2025-11-05,2025-26,Olympique de Marseille,Atalanta BC,0,1,0
+2025-11-05,2025-26,AFC Ajax,Galatasaray SK,0,3,0
+2025-11-05,2025-26,Newcastle United FC,Athletic Club,2,0,0
+2025-11-25,2025-26,AFC Ajax,Sport Lisboa e Benfica,0,2,0
+2025-11-25,2025-26,Galatasaray SK,Royale Union Saint-Gilloise,0,1,0
+2025-11-25,2025-26,Borussia Dortmund,Villarreal CF,4,0,0
+2025-11-25,2025-26,Manchester City FC,Bayer 04 Leverkusen,0,2,0
+2025-11-25,2025-26,FK Bodø/Glimt,Juventus FC,2,3,0
+2025-11-25,2025-26,Olympique de Marseille,Newcastle United FC,2,1,0
+2025-11-25,2025-26,SK Slavia Praha,Athletic Club,0,0,0
+2025-11-25,2025-26,SSC Napoli,Qarabağ Ağdam FK,2,0,0
+2025-11-25,2025-26,Chelsea FC,FC Barcelona,3,0,0
+2025-11-26,2025-26,Paphos FC,AS Monaco FC,2,2,0
+2025-11-26,2025-26,FC København,FK Kairat,3,2,0
+2025-11-26,2025-26,Liverpool FC,PSV,1,4,0
+2025-11-26,2025-26,Paris Saint-Germain FC,Tottenham Hotspur FC,5,3,0
+2025-11-26,2025-26,Eintracht Frankfurt,Atalanta BC,0,3,0
+2025-11-26,2025-26,Sporting Clube de Portugal,Club Brugge KV,3,0,0
+2025-11-26,2025-26,Arsenal FC,FC Bayern München,3,1,0
+2025-11-26,2025-26,PAE Olympiakos SFP,Real Madrid CF,3,4,0
+2025-11-26,2025-26,Club Atlético de Madrid,FC Internazionale Milano,2,1,0
+2025-12-09,2025-26,FK Kairat,PAE Olympiakos SFP,0,1,0
+2025-12-09,2025-26,FC Bayern München,Sporting Clube de Portugal,3,1,0
+2025-12-09,2025-26,FC Barcelona,Eintracht Frankfurt,2,1,0
+2025-12-09,2025-26,PSV,Club Atlético de Madrid,2,3,0
+2025-12-09,2025-26,Royale Union Saint-Gilloise,Olympique de Marseille,2,3,0
+2025-12-09,2025-26,Tottenham Hotspur FC,SK Slavia Praha,3,0,0
+2025-12-09,2025-26,AS Monaco FC,Galatasaray SK,1,0,0
+2025-12-09,2025-26,Atalanta BC,Chelsea FC,2,1,0
+2025-12-09,2025-26,FC Internazionale Milano,Liverpool FC,0,1,0
+2025-12-10,2025-26,Villarreal CF,FC København,2,3,0
+2025-12-10,2025-26,Qarabağ Ağdam FK,AFC Ajax,2,4,0
+2025-12-10,2025-26,Borussia Dortmund,FK Bodø/Glimt,2,2,0
+2025-12-10,2025-26,Athletic Club,Paris Saint-Germain FC,0,0,0
+2025-12-10,2025-26,Bayer 04 Leverkusen,Newcastle United FC,2,2,0
+2025-12-10,2025-26,Club Brugge KV,Arsenal FC,0,3,0
+2025-12-10,2025-26,Sport Lisboa e Benfica,SSC Napoli,2,0,0
+2025-12-10,2025-26,Juventus FC,Paphos FC,2,0,0
+2025-12-10,2025-26,Real Madrid CF,Manchester City FC,1,2,0
+2026-01-20,2025-26,FK Kairat,Club Brugge KV,1,4,0
+2026-01-20,2025-26,FK Bodø/Glimt,Manchester City FC,3,1,0
+2026-01-20,2025-26,Tottenham Hotspur FC,Borussia Dortmund,2,0,0
+2026-01-20,2025-26,Sporting Clube de Portugal,Paris Saint-Germain FC,2,1,0
+2026-01-20,2025-26,PAE Olympiakos SFP,Bayer 04 Leverkusen,2,0,0
+2026-01-20,2025-26,Villarreal CF,AFC Ajax,1,2,0
+2026-01-20,2025-26,FC København,SSC Napoli,1,1,0
+2026-01-20,2025-26,Real Madrid CF,AS Monaco FC,6,1,0
+2026-01-20,2025-26,FC Internazionale Milano,Arsenal FC,1,3,0
+2026-01-21,2025-26,Qarabağ Ağdam FK,Eintracht Frankfurt,3,2,0
+2026-01-21,2025-26,Galatasaray SK,Club Atlético de Madrid,1,1,0
+2026-01-21,2025-26,Olympique de Marseille,Liverpool FC,0,3,0
+2026-01-21,2025-26,SK Slavia Praha,FC Barcelona,2,4,0
+2026-01-21,2025-26,Atalanta BC,Athletic Club,2,3,0
+2026-01-21,2025-26,Juventus FC,Sport Lisboa e Benfica,2,0,0
+2026-01-21,2025-26,Newcastle United FC,PSV,3,0,0
+2026-01-21,2025-26,FC Bayern München,Royale Union Saint-Gilloise,2,0,0
+2026-01-21,2025-26,Chelsea FC,Paphos FC,1,0,0
+2026-01-28,2025-26,Liverpool FC,Qarabağ Ağdam FK,6,0,0
+2026-01-28,2025-26,FC Barcelona,FC København,4,1,0
+2026-01-28,2025-26,Manchester City FC,Galatasaray SK,2,0,0
+2026-01-28,2025-26,Bayer 04 Leverkusen,Villarreal CF,3,0,0
+2026-01-28,2025-26,Arsenal FC,FK Kairat,3,2,0
+2026-01-28,2025-26,Royale Union Saint-Gilloise,Atalanta BC,1,0,0
+2026-01-28,2025-26,Club Brugge KV,Olympique de Marseille,3,0,0
+2026-01-28,2025-26,Eintracht Frankfurt,Tottenham Hotspur FC,0,2,0
+2026-01-28,2025-26,AS Monaco FC,Juventus FC,0,0,0
+2026-01-28,2025-26,Club Atlético de Madrid,FK Bodø/Glimt,1,2,0
+2026-01-28,2025-26,Athletic Club,Sporting Clube de Portugal,2,3,0
+2026-01-28,2025-26,AFC Ajax,PAE Olympiakos SFP,1,2,0
+2026-01-28,2025-26,Paris Saint-Germain FC,Newcastle United FC,1,1,0
+2026-01-28,2025-26,Paphos FC,SK Slavia Praha,4,1,0
+2026-01-28,2025-26,PSV,FC Bayern München,1,2,0
+2026-01-28,2025-26,SSC Napoli,Chelsea FC,2,3,0
+2026-01-28,2025-26,Sport Lisboa e Benfica,Real Madrid CF,4,2,0
+2026-01-28,2025-26,Borussia Dortmund,FC Internazionale Milano,0,2,0
+2026-02-17,2025-26,Galatasaray SK,Juventus FC,5,2,0
+2026-02-17,2025-26,Sport Lisboa e Benfica,Real Madrid CF,0,1,0
+2026-02-17,2025-26,AS Monaco FC,Paris Saint-Germain FC,2,3,0
+2026-02-17,2025-26,Borussia Dortmund,Atalanta BC,2,0,0
+2026-02-18,2025-26,Qarabağ Ağdam FK,Newcastle United FC,1,6,0
+2026-02-18,2025-26,Club Brugge KV,Club Atlético de Madrid,3,3,0
+2026-02-18,2025-26,PAE Olympiakos SFP,Bayer 04 Leverkusen,0,2,0
+2026-02-18,2025-26,FK Bodø/Glimt,FC Internazionale Milano,3,1,0
+2026-02-24,2025-26,Club Atlético de Madrid,Club Brugge KV,4,1,0
+2026-02-24,2025-26,Newcastle United FC,Qarabağ Ağdam FK,3,2,0
+2026-02-24,2025-26,Bayer 04 Leverkusen,PAE Olympiakos SFP,0,0,0
+2026-02-24,2025-26,FC Internazionale Milano,FK Bodø/Glimt,1,2,0
+2026-02-25,2025-26,Atalanta BC,Borussia Dortmund,4,1,0
+2026-02-25,2025-26,Real Madrid CF,Sport Lisboa e Benfica,2,1,0
+2026-02-25,2025-26,Paris Saint-Germain FC,AS Monaco FC,2,2,0
+2026-02-25,2025-26,Juventus FC,Galatasaray SK,3,0,0
+2026-03-10,2025-26,Galatasaray SK,Liverpool FC,1,0,0
+2026-03-10,2025-26,Atalanta BC,FC Bayern München,1,6,0
+2026-03-10,2025-26,Newcastle United FC,FC Barcelona,1,1,0
+2026-03-10,2025-26,Club Atlético de Madrid,Tottenham Hotspur FC,5,2,0
+2026-03-11,2025-26,Bayer 04 Leverkusen,Arsenal FC,1,1,0
+2026-03-11,2025-26,Paris Saint-Germain FC,Chelsea FC,5,2,0
+2026-03-11,2025-26,Real Madrid CF,Manchester City FC,3,0,0
+2026-03-11,2025-26,FK Bodø/Glimt,Sporting Clube de Portugal,3,0,0
+2026-03-17,2025-26,Sporting Clube de Portugal,FK Bodø/Glimt,3,0,0
+2026-03-17,2025-26,Chelsea FC,Paris Saint-Germain FC,0,3,0
+2026-03-17,2025-26,Manchester City FC,Real Madrid CF,1,2,0
+2026-03-17,2025-26,Arsenal FC,Bayer 04 Leverkusen,2,0,0
+2026-03-18,2025-26,FC Barcelona,Newcastle United FC,7,2,0
+2026-03-18,2025-26,Liverpool FC,Galatasaray SK,4,0,0
+2026-03-18,2025-26,FC Bayern München,Atalanta BC,4,1,0
+2026-03-18,2025-26,Tottenham Hotspur FC,Club Atlético de Madrid,3,2,0
+2026-04-07,2025-26,Real Madrid CF,FC Bayern München,1,2,0
+2026-04-07,2025-26,Sporting Clube de Portugal,Arsenal FC,0,1,0
+2026-04-08,2025-26,Paris Saint-Germain FC,Liverpool FC,2,0,0
+2026-04-08,2025-26,FC Barcelona,Club Atlético de Madrid,0,2,0
+2026-04-14,2025-26,Liverpool FC,Paris Saint-Germain FC,0,2,0
+2026-04-14,2025-26,Club Atlético de Madrid,FC Barcelona,1,2,0
+2026-04-15,2025-26,FC Bayern München,Real Madrid CF,4,3,0
+2026-04-15,2025-26,Arsenal FC,Sporting Clube de Portugal,0,0,0
+2026-04-28,2025-26,Paris Saint-Germain FC,FC Bayern München,5,4,0
+2026-04-29,2025-26,Club Atlético de Madrid,Arsenal FC,1,1,0
+2026-05-05,2025-26,Arsenal FC,Club Atlético de Madrid,1,0,0
+2026-05-06,2025-26,FC Bayern München,Paris Saint-Germain FC,1,1,0
+2026-05-30,2025-26,Paris Saint-Germain FC,Arsenal FC,1,1,1

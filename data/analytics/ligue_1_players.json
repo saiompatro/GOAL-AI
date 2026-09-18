@@ -1,0 +1,24 @@
+{
+  "kind": "observed",
+  "source": "Transfermarkt via dcaribou/transfermarkt-datasets",
+  "source_url": "https://github.com/dcaribou/transfermarkt-datasets",
+  "features": [
+    "age",
+    "minutes",
+    "goals",
+    "assists"
+  ],
+  "seasons": [
+    "2021-22",
+    "2022-23",
+    "2023-24",
+    "2024-25"
+  ],
+  "target": "First recorded market valuation within 90 days after the season's final match",
+  "excluded_without_target": 86,
+  "excluded_incomplete_seasons": {
+    "2025": 305
+  },
+  "note": "Observed 2021-22\u20132024-25 season statistics and dated market valuations. Values are estimates, not transfer fees. Historical clubs; not current squads.",
+  "retrieved_at": "2026-09-18T15:30:08.568005+00:00"
+}
