@@ -6,6 +6,15 @@ Each competition workspace combines observed historical data with three separate
 
 > **Scope.** GOAL AI is an analysis and research tool. Model output is not a guarantee of a match result, player value, or transfer fee.
 
+## Demo
+
+[![GOAL AI walkthrough — the Premier League match predictor showing Arsenal 68.0%, draw 17.2%, Chelsea 14.8%](docs/media/goal-ai-demo.jpg)](docs/media/goal-ai-demo.mp4)
+
+A 24-second walkthrough: the competition hub, the three workspace tools (match predictor,
+transfer values, player scouting), and the prediction audit. Every figure in the clip is
+real output from the committed models. GitHub does not play repository-hosted video inline,
+so the still above links to [the MP4](docs/media/goal-ai-demo.mp4) (1920x1080, 7.7 MB).
+
 ## Start here
 
 The committed data snapshots and workspace artifacts let the application run without an API key or a data download.
