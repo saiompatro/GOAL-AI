@@ -179,30 +179,30 @@
         }
       },
       "match": {
-        "accuracy": 0.496,
-        "baseline": 0.488,
-        "log_loss": 1.003,
-        "n_train": 1475,
-        "n_test": 377,
-        "test_season": "2025-26",
-        "train_end": "2025-05-25",
-        "test_start": "2025-08-15",
+        "accuracy": 0.459,
+        "baseline": 0.426,
+        "log_loss": 1.066,
+        "n_train": 1852,
+        "n_test": 61,
+        "test_season": "2026-27",
+        "train_end": "2026-05-24",
+        "test_start": "2026-08-15",
         "method": "Random forest",
         "confusion": [
           [
-            138,
-            5,
-            41
+            20,
+            1,
+            5
           ],
           [
-            59,
-            6,
-            28
+            11,
+            1,
+            2
           ],
           [
-            53,
-            4,
-            43
+            13,
+            1,
+            7
           ]
         ]
       }
@@ -610,6 +610,11 @@
           ]
         ]
       }
+    }
+  },
+  "partial_updates": {
+    "la-liga": {
+      "match": "2026-11-10T18:02:36.730850+00:00"
     }
   }
 }

@@ -67,7 +67,7 @@ The downloadable charts and scouting CSV are generated from the same filtered re
 
 The application deliberately keeps the three workspace datasets independent:
 
-- **Matches:** five recent seasons (2021-22 through 2025-26) from [football-data.co.uk](https://www.football-data.co.uk/data.php) for domestic leagues and [OpenFootball](https://github.com/openfootball/champions-league) for UCL. UCL targets are regulation-time scores; finals are neutral.
+- **Matches:** five recent seasons (2021-22 through 2025-26) from [football-data.co.uk](https://www.football-data.co.uk/data.php) for domestic leagues and [OpenFootball](https://github.com/openfootball/champions-league) for UCL. UCL targets are regulation-time scores; finals are neutral. The in-progress 2026-27 season is added league by league; where football-data.co.uk cannot be reached, completed fixtures come from [OpenFootball football.json](https://github.com/openfootball/football.json) with scores only (no shots). Each dataset's `_matches.json` records the source per season and the latest match date, and [docs/update-log.md](docs/update-log.md) records what was refreshed and when.
 - **Valuations:** 14,695 observed player-season records from [dcaribou/transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets). The target is the first recorded market valuation one to 90 days after the season's final match. A market valuation is an estimate, not a completed transfer fee.
 - **Scouting:** observed 2024-25 FBref-derived Big Five snapshots for domestic leagues. The seven domestic per-90 features are goals, assists, shots, key passes, successful take-ons, tackles, and interceptions. UCL has only goals and assists per 90 and is labelled accordingly.
 
@@ -101,7 +101,9 @@ python src/projects/refresh_data.py all
 python src/projects/refresh_data.py champions-league --years 2023 2024 2025
 \`\`\`
 
-Refreshing match data changes the corresponding input signature, so the next workspace request retrains that match model (or rerun \`train_workspaces.py\` to write an updated artifact immediately).
+The default seasons are 2021-22 through 2026-27. If football-data.co.uk is unreachable, installed seasons are kept untouched and only fixtures that are not installed yet are added from OpenFootball (currently mapped for La Liga in `src/projects/openfootball.py`); a later run with football-data.co.uk reachable replaces those scores-only rows with the full records.
+
+- **Matches:** five recent seasons (2021-22 through 2025-26) from [football-data.co.uk](https://www.football-data.co.uk/data.php) for domestic leagues and [OpenFootball](https://github.com/openfootball/champions-league) for UCL. UCL targets are regulation-time scores; finals are neutral. The in-progress 2026-27 season is added league by league; where football-data.co.uk cannot be reached, completed fixtures come from [OpenFootball football.json](https://github.com/openfootball/football.json) with scores only (no shots). Each dataset's `_matches.json` records the source per season and the latest match date, and [docs/update-log.md](docs/update-log.md) records what was refreshed and when., so the next workspace request retrains that match model (or rerun \`train_workspaces.py\` to write an updated artifact immediately).
 
 ### Import a valuation table
 

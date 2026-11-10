@@ -4,6 +4,9 @@ Pulls season-by-season results from the footballcsv/cache.footballdata GitHub
 mirror of football-data.co.uk (results back to 1993-94, updated ~weekly) and
 writes one consolidated CSV per league to data/club/<key>_results.csv.
 
+Seasons newer than the mirror's last one are appended from the workspace
+match dataset (data/analytics/<key>_matches.csv); see top_up_from_workspace().
+
 Add a league by adding an entry to LEAGUES — `code` is the footballcsv file
 stem for that competition (see footballcsv/cache.footballdata's README for
 the full list: eng.1 Premier League, es.1 La Liga, it.1 Serie A, de.1
@@ -78,6 +81,33 @@ def fetch_league(code):
     return rows
 
 
+def top_up_from_workspace(key, rows):
+    """Append seasons the footballcsv mirror does not carry yet.
+
+    The mirror stopped at 2023-24. data/analytics/<key>_matches.csv (kept current
+    by src/projects/refresh_data.py) uses the same football-data.co.uk club
+    names, so its later seasons extend this history without a second name map.
+    A season the mirror already has is never replaced.
+    """
+    path = os.path.join(os.path.dirname(__file__), "..", "data", "analytics", f"{key}_matches.csv")
+    if not os.path.exists(path):
+        return rows, []
+    have = {r["season"] for r in rows}
+    last = max(have) if have else ""
+    added, seasons = [], set()
+    with open(path, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row["season"] in have or row["season"] <= last:
+                continue
+            added.append({"date": row["date"], "season": row["season"],
+                          "home_team": row["home_team"], "away_team": row["away_team"],
+                          "home_score": int(float(row["home_score"])),
+                          "away_score": int(float(row["away_score"]))})
+            seasons.add(row["season"])
+    rows = sorted(rows + added, key=lambda r: r["date"])
+    return rows, sorted(seasons)
+
+
 def fit_home_advantage(rows):
     """Empirical Elo home-advantage bonus implied by a league's raw results,
     independent of the per-match ML model: if home and away sides were equal
@@ -100,6 +130,9 @@ def main():
     for key in keys:
         info = LEAGUES[key]
         rows = fetch_league(info["code"])
+        rows, topped_up = top_up_from_workspace(key, rows)
+        if topped_up:
+            print(f"{info['name']}: added {', '.join(topped_up)} from data/analytics")
         if not rows:
             print(f"{info['name']}: no data fetched, skipping")
             continue

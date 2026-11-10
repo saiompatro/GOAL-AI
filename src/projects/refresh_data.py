@@ -74,33 +74,102 @@ def parse_ucl(text, start_year):
     return rows
 
 
+def _existing_matches(slug):
+    """Installed matches and their recorded provenance (empty when nothing is installed)."""
+    path = DATA / f"{config(slug)['key']}_matches.csv"
+    if not path.exists():
+        return pd.DataFrame(), {}
+    meta = path.with_suffix(".json")
+    return pd.read_csv(path), json.loads(meta.read_text(encoding="utf-8")) if meta.exists() else {}
+
+
 def fetch_matches(slug, years):
+    """Download completed matches season by season.
+
+    Domestic leagues use football-data.co.uk (scores and shots). When that host
+    cannot be reached, a season already installed is kept as it is and
+    OpenFootball supplies only fixtures that are not installed yet. Those rows
+    carry scores without shots; nothing is estimated to fill the gap.
+    """
     c = config(slug)
-    frames, urls = [], []
+    existing, recorded = None, {}
+    frames, urls, sources = [], [], {}
     for year in years:
         season = f"{year}-{str(year+1)[-2:]}"
         if slug == "champions-league":
             url = f"https://raw.githubusercontent.com/openfootball/champions-league/master/{season}/cl.txt"
             r = requests.get(url, timeout=30)
+            if r.status_code == 404:
+                print(f"{slug} {season}: not published by OpenFootball yet; skipped")
+                continue
             r.raise_for_status()
             df = pd.DataFrame(parse_ucl(r.text, year))
+            sources[season] = "OpenFootball"
         else:
             code = f"{year%100:02}{(year+1)%100:02}"
             url = f"https://www.football-data.co.uk/mmz4281/{code}/{c['csv']}.csv"
-            r = requests.get(url, timeout=30)
-            r.raise_for_status()
-            df = pd.read_csv(StringIO(r.text)).rename(columns={"HomeTeam": "home_team", "AwayTeam": "away_team", "FTHG": "home_score", "FTAG": "away_score", "HS": "home_shots", "AS": "away_shots"})
-            df = df.dropna(subset=["Date", "home_team", "away_team", "home_score", "away_score"]).copy()
-            df["date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed").dt.strftime("%Y-%m-%d")
-            df["season"], df["neutral"] = season, 0
-            columns = ["date", "season", "home_team", "away_team", "home_score", "away_score", "neutral", "home_shots", "away_shots"]
-            df = df[[col for col in columns if col in df]]
+            try:
+                r = requests.get(url, timeout=30)
+                r.raise_for_status()
+            except requests.RequestException as error:
+                if existing is None:
+                    existing, recorded = _existing_matches(slug)
+                kept = existing[existing.season == season] if len(existing) else existing
+                # Rows already installed keep the provenance recorded when they were downloaded.
+                label = recorded.get("season_sources", {}).get(season) or recorded.get("source", "installed dataset")
+                df, top_up_url, sources[season] = _openfootball_top_up(slug, year, season, kept, label, error)
+                if top_up_url:
+                    urls.append(top_up_url)
+                if not len(kept) or "football-data.co.uk" not in label:
+                    url = None
+            else:
+                df = pd.read_csv(StringIO(r.text)).rename(columns={"HomeTeam": "home_team", "AwayTeam": "away_team", "FTHG": "home_score", "FTAG": "away_score", "HS": "home_shots", "AS": "away_shots"})
+                df = df.dropna(subset=["Date", "home_team", "away_team", "home_score", "away_score"]).copy()
+                df["date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed").dt.strftime("%Y-%m-%d")
+                df["season"], df["neutral"] = season, 0
+                columns = ["date", "season", "home_team", "away_team", "home_score", "away_score", "neutral", "home_shots", "away_shots"]
+                df = df[[col for col in columns if col in df]]
+                sources[season] = "football-data.co.uk"
         frames.append(df)
-        urls.append(url)
-    df = pd.concat(frames).sort_values("date").drop_duplicates(["date", "home_team", "away_team"])
+        if url:
+            urls.append(url)
+    df = pd.concat([f for f in frames if len(f)]).sort_values("date", kind="stable").drop_duplicates(["season", "home_team", "away_team"] if slug != "champions-league" else ["date", "home_team", "away_team"])
+    for col in ("home_score", "away_score", "neutral"):
+        df[col] = df[col].astype(int)
+    for col in ("home_shots", "away_shots"):
+        if col in df:  # nullable integers keep scores-only rows empty instead of turning counts into floats
+            df[col] = df[col].astype("Int64")
     if len(df) < 100:
         raise ValueError("Too few completed matches to train and evaluate a model")
-    write_dataset(slug, "matches", df, {"kind": "historical", "source": "OpenFootball" if slug == "champions-league" else "football-data.co.uk", "urls": urls, "target": "90-minute result, excluding extra time and penalties"})
+    used = sorted({part for label in sources.values() for part in label.split(" + ")})
+    metadata = {"kind": "historical", "source": " + ".join(used), "urls": urls, "target": "90-minute result, excluding extra time and penalties",
+                "season_sources": sources, "latest_match": str(df.date.max())}
+    if any("OpenFootball" in s for s in used) and slug != "champions-league":
+        metadata["note"] = "Rows taken from OpenFootball have scores only; shots are empty for them and are not estimated."
+    write_dataset(slug, "matches", df, metadata)
+
+
+def _openfootball_top_up(slug, year, season, kept, label, error):
+    """(rows, OpenFootball URL or None, source label) for a season football-data.co.uk did not serve."""
+    from projects import openfootball
+    if slug not in openfootball.LEAGUES:
+        if len(kept):
+            print(f"{slug} {season}: football-data.co.uk unavailable ({error}); kept {len(kept)} installed rows")
+            return kept, None, label
+        raise error
+    rows = pd.DataFrame(openfootball.fetch_season(slug, year))
+    url = openfootball.season_url(slug, year)
+    if not len(kept):
+        print(f"{slug} {season}: football-data.co.uk unavailable; {len(rows)} OpenFootball rows")
+        return rows, url, "OpenFootball (scores only)"
+    have = set(zip(kept.home_team, kept.away_team))
+    new = rows[[pair not in have for pair in zip(rows.home_team, rows.away_team)]] if len(rows) else rows
+    print(f"{slug} {season}: football-data.co.uk unavailable; kept {len(kept)} installed rows, added {len(new)} from OpenFootball")
+    if not len(new):
+        return kept, None, label
+    if "OpenFootball" not in label:
+        label += " + OpenFootball (scores only)"
+    return pd.concat([kept, new]), url, label
 
 
 def import_players(slug, path, source):
@@ -150,7 +219,7 @@ def fetch_fixtures(slug):
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("competition", choices=[*COMPETITIONS, "all"])
-    p.add_argument("--years", nargs="+", type=int, default=[2021, 2022, 2023, 2024, 2025])
+    p.add_argument("--years", nargs="+", type=int, default=[2021, 2022, 2023, 2024, 2025, 2026])
     p.add_argument("--players", type=Path, help="Import observed player-season CSV instead of downloading matches")
     p.add_argument("--source", help="Required attribution for an imported player dataset")
     p.add_argument("--fixtures", action="store_true", help="Refresh fixtures from football-data.org with your token")

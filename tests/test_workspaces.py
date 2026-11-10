@@ -1,4 +1,5 @@
 """Run: python -m unittest discover -s tests -v"""
+import json
 import sys
 import tempfile
 import unittest
@@ -9,6 +10,8 @@ import numpy as np
 import pandas as pd
 from app import app
 from projects import analytics, competitions as db
+import requests
+from projects import openfootball, refresh_data
 from projects.refresh_data import parse_ucl, import_players
 
 
@@ -75,6 +78,46 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual((rows[1]["home_score"], rows[1]["away_score"]), (0, 0))
         self.assertEqual(rows[1]["neutral"], 1)
         self.assertEqual(rows[1]["date"], "2022-05-28")
+
+    def test_openfootball_rows_keep_only_played_matches_with_known_clubs(self):
+        payload = {"matches": [
+            dict(date="2026-08-15", team1="FC Barcelona", team2="Real Madrid CF", score={"ft": [2, 1], "ht": [1, 0]}),
+            dict(date="2026-08-16", team1="Valencia CF", team2="RC Celta de Vigo", score=[0, 0]),
+            dict(date="2026-08-17", team1="Getafe CF", team2="Sevilla FC", score=None),
+            dict(date="2026-08-18", team1="Elche CF", team2="Levante UD", score={})]}
+        rows = openfootball.parse_season("la-liga", 2026, payload)
+        self.assertEqual([(r["home_team"], r["away_team"], r["home_score"], r["away_score"]) for r in rows],
+                         [("Barcelona", "Real Madrid", 2, 1), ("Valencia", "Celta", 0, 0)])
+        self.assertTrue(all(r["season"] == "2026-27" and r["neutral"] == 0 for r in rows))
+        payload["matches"].append(dict(date="2026-08-19", team1="Unknown FC", team2="Sevilla FC", score=[1, 0]))
+        with self.assertRaises(ValueError):
+            openfootball.parse_season("la-liga", 2026, payload)
+
+    def test_blocked_source_keeps_installed_rows_and_adds_only_new_scores(self):
+        installed = pd.DataFrame([dict(date=f"2025-09-{day:02}", season="2025-26", home_team="Barcelona", away_team=away,
+                                       home_score=1, away_score=0, neutral=0, home_shots=12, away_shots=7)
+                                  for day, away in enumerate(["Sevilla", "Valencia"], 1)])
+        installed = pd.concat([installed, pd.DataFrame([dict(date="2025-10-01", season="2025-26", home_team=f"H{i}", away_team=f"A{i}",
+                               home_score=0, away_score=0, neutral=0, home_shots=9, away_shots=9) for i in range(100)])])
+        feed = {2025: [dict(date="2025-09-01", season="2025-26", home_team="Barcelona", away_team="Sevilla", home_score=9, away_score=9, neutral=0)],
+                2026: [dict(date="2026-08-15", season="2026-27", home_team="Malaga", away_team="Barcelona", home_score=0, away_score=3, neutral=0)]}
+        with tempfile.TemporaryDirectory() as temp:
+            installed.to_csv(Path(temp) / "la_liga_matches.csv", index=False)
+            (Path(temp) / "la_liga_matches.json").write_text('{"source": "football-data.co.uk"}', encoding="utf-8")
+            with patch("projects.refresh_data.DATA", Path(temp)), \
+                 patch("projects.refresh_data.requests.get", side_effect=requests.ConnectionError("blocked")), \
+                 patch.object(openfootball, "fetch_season", side_effect=lambda slug, year: feed[year]):
+                refresh_data.fetch_matches("la-liga", [2025, 2026])
+            out = pd.read_csv(Path(temp) / "la_liga_matches.csv")
+            meta = json.loads((Path(temp) / "la_liga_matches.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(out), len(installed) + 1)
+        kept = out[(out.home_team == "Barcelona") & (out.away_team == "Sevilla")].iloc[0]
+        self.assertEqual((kept.home_score, kept.home_shots), (1, 12))  # installed row is never overwritten
+        new = out[out.season == "2026-27"].iloc[0]
+        self.assertEqual((new.home_team, new.away_score), ("Malaga", 3))
+        self.assertTrue(pd.isna(new.home_shots))  # no shots are invented for scores-only rows
+        self.assertEqual(meta["season_sources"], {"2025-26": "football-data.co.uk", "2026-27": "OpenFootball (scores only)"})
+        self.assertEqual(meta["latest_match"], "2026-08-15")
 
     def test_similarity_does_not_depend_on_result_count(self):
         a = analytics.scouting("premier-league", "Bukayo Saka", 3)

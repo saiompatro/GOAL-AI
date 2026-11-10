@@ -40,7 +40,7 @@ def build_match_table(league_key):
     path = os.path.join(DATA, f"{league_key}_results.csv")
     df = pd.read_csv(path)
     df["date"] = pd.to_datetime(df["date"])
-    df = df.sort_values("date").reset_index(drop=True)
+    df = df.sort_values("date", kind="stable").reset_index(drop=True)  # stable: same-day order must not depend on row count
 
     elo, hist, morale, att, dfn, streak, h2h = {}, {}, {}, {}, {}, {}, {}
     rows = []
