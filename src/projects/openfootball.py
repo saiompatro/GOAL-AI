@@ -27,6 +27,19 @@ LEAGUES = {
         "Valencia CF": "Valencia", "Villarreal CF": "Villarreal",
         "Cádiz CF": "Cadiz", "Granada CF": "Granada", "UD Almería": "Almeria",
     }),
+    "premier-league": ("en.1", {
+        "AFC Bournemouth": "Bournemouth", "Arsenal FC": "Arsenal", "Aston Villa FC": "Aston Villa",
+        "Brentford FC": "Brentford", "Brighton & Hove Albion FC": "Brighton", "Burnley FC": "Burnley",
+        "Chelsea FC": "Chelsea", "Coventry City FC": "Coventry", "Crystal Palace FC": "Crystal Palace",
+        "Everton FC": "Everton", "Fulham FC": "Fulham", "Hull City AFC": "Hull",
+        "Ipswich Town FC": "Ipswich", "Leeds United FC": "Leeds", "Leicester City FC": "Leicester",
+        "Liverpool FC": "Liverpool", "Luton Town FC": "Luton", "Manchester City FC": "Man City",
+        "Manchester United FC": "Man United", "Newcastle United FC": "Newcastle",
+        "Nottingham Forest FC": "Nott'm Forest", "Sheffield United FC": "Sheffield United",
+        "Southampton FC": "Southampton", "Sunderland AFC": "Sunderland",
+        "Tottenham Hotspur FC": "Tottenham", "West Ham United FC": "West Ham",
+        "Wolverhampton Wanderers FC": "Wolves", "Watford FC": "Watford", "Norwich City FC": "Norwich",
+    }),
 }
 
 

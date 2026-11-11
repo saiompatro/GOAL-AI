@@ -93,6 +93,16 @@ class WorkspaceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             openfootball.parse_season("la-liga", 2026, payload)
 
+    def test_openfootball_maps_premier_league_clubs_to_dataset_names(self):
+        payload = {"matches": [
+            dict(date="2026-08-22", team1="Hull City AFC", team2="Nottingham Forest FC", score={"ft": [1, 2]}),
+            dict(date="2026-08-23", team1="Coventry City FC", team2="Manchester United FC", score={"ft": [0, 0]})]}
+        rows = openfootball.parse_season("premier-league", 2026, payload)
+        self.assertEqual([(r["home_team"], r["away_team"]) for r in rows],
+                         [("Hull", "Nott'm Forest"), ("Coventry", "Man United")])
+        installed = set(pd.read_csv(db.DATA / "premier_league_matches.csv").home_team)
+        self.assertLessEqual(installed, set(openfootball.LEAGUES["premier-league"][1].values()))
+
     def test_blocked_source_keeps_installed_rows_and_adds_only_new_scores(self):
         installed = pd.DataFrame([dict(date=f"2025-09-{day:02}", season="2025-26", home_team="Barcelona", away_team=away,
                                        home_score=1, away_score=0, neutral=0, home_shots=12, away_shots=7)

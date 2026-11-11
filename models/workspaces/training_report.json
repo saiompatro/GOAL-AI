@@ -76,30 +76,30 @@
         }
       },
       "match": {
-        "accuracy": 0.459,
-        "baseline": 0.422,
-        "log_loss": 1.058,
-        "n_train": 1472,
-        "n_test": 377,
-        "test_season": "2025-26",
-        "train_end": "2025-05-25",
-        "test_start": "2025-08-15",
+        "accuracy": 0.378,
+        "baseline": 0.333,
+        "log_loss": 1.13,
+        "n_train": 1849,
+        "n_test": 45,
+        "test_season": "2026-27",
+        "train_end": "2026-05-24",
+        "test_start": "2026-08-22",
         "method": "Random forest",
         "confusion": [
           [
-            123,
-            2,
-            34
-          ],
-          [
-            70,
+            10,
             0,
-            34
+            5
           ],
           [
-            63,
-            1,
-            50
+            11,
+            0,
+            4
+          ],
+          [
+            8,
+            0,
+            7
           ]
         ]
       }

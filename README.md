@@ -101,9 +101,9 @@ python src/projects/refresh_data.py all
 python src/projects/refresh_data.py champions-league --years 2023 2024 2025
 \`\`\`
 
-The default seasons are 2021-22 through 2026-27. If football-data.co.uk is unreachable, installed seasons are kept untouched and only fixtures that are not installed yet are added from OpenFootball (currently mapped for La Liga in `src/projects/openfootball.py`); a later run with football-data.co.uk reachable replaces those scores-only rows with the full records.
+The default seasons are 2021-22 through 2026-27. If football-data.co.uk is unreachable, installed seasons are kept untouched and only fixtures that are not installed yet are added from OpenFootball (currently mapped for La Liga and the Premier League in `src/projects/openfootball.py`); a later run with football-data.co.uk reachable replaces those scores-only rows with the full records.
 
-- **Matches:** five recent seasons (2021-22 through 2025-26) from [football-data.co.uk](https://www.football-data.co.uk/data.php) for domestic leagues and [OpenFootball](https://github.com/openfootball/champions-league) for UCL. UCL targets are regulation-time scores; finals are neutral. The in-progress 2026-27 season is added league by league; where football-data.co.uk cannot be reached, completed fixtures come from [OpenFootball football.json](https://github.com/openfootball/football.json) with scores only (no shots). Each dataset's `_matches.json` records the source per season and the latest match date, and [docs/update-log.md](docs/update-log.md) records what was refreshed and when., so the next workspace request retrains that match model (or rerun \`train_workspaces.py\` to write an updated artifact immediately).
+Refreshing match data changes the corresponding input signature, so the next workspace request retrains that match model (or rerun `train_workspaces.py` to write an updated artifact immediately).
 
 ### Import a valuation table
 
