@@ -50,3 +50,15 @@ Next in rotation: **Champions League**.
 - **What would unblock real updates:** allow `www.football-data.co.uk` (domestic results with shots, current to the latest round) and a UCL results host in the environment's network settings. Until then each league can only be brought up to 20 September 2026.
 
 Next in rotation: **Bundesliga**.
+
+### 2026-11-12 — Bundesliga
+
+- **Matches:** added the 2026-27 season to `data/analytics/bundesliga_matches.csv`: 36 completed fixtures (matchdays 1–4), 28 August to 20 September 2026, from OpenFootball (scores only; shots empty). The OpenFootball feed still ends on 20 September, so about seven weeks of results are missing. The five earlier seasons hold the same values as before; their shot columns are now written as integers (`11` instead of `11.0`), which is why every line of the file shows as changed. The new name map was checked against all five installed seasons: 1,530 shared fixtures, no score or date differences.
+- **Teams:** the current-season list is now the 2026-27 division. In: Elversberg, Paderborn, Schalke 04. Out: Heidenheim, St Pauli, Wolfsburg.
+- **Elo model (`data/club`, `models/bundesliga_model.joblib`):** history extended from 2023-24 to 20 September 2026 (648 matches added), features and state rebuilt, model retrained. Held-out seasons 2025-26 and 2026-27 (342 matches): accuracy 50.3%, log loss 1.007, Elo-favourite baseline 53.8%, always-home baseline 44.7%. On this holdout the model is 3.5 points worse than simply picking the Elo favourite; on the previous holdout (2022-23 and 2023-24) it was level with it (51.3% against 50.5%). Top Elo: Bayern Munich 2005, Dortmund 1853, Leverkusen 1762, Stuttgart 1721.
+- **Workspace match model (`models/workspaces/bundesliga_match.*`):** retrained on 1,482 matches. The held-out season is now 2026-27 with only 30 matches, so its accuracy (50.0%, baseline 56.7%) is a small-sample figure and not comparable with the previous full-season 53.1%. Rolling shot features are empty for current-season rows until shot data is available.
+- **Not changed:** player valuations and scouting profiles (pinned snapshots), fixtures, injuries (no club-injury dataset in the project), the other competitions.
+- **Code:** Bundesliga name map in `src/projects/openfootball.py`, one new test (21 pass).
+- **Still blocked:** `www.football-data.co.uk` and every other live results host. Until one is allowed in the environment's network settings, each league can only be brought up to 20 September 2026.
+
+Next in rotation: **Serie A**.

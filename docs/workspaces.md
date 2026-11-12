@@ -102,7 +102,7 @@ python src/projects/refresh_data.py all
 python src/projects/refresh_data.py premier-league --years 2023 2024 2025
 \`\`\`
 
-Domestic downloads come from football-data.co.uk. When that host is unreachable, `refresh_data.py` keeps every installed season as it is and adds only fixtures that are not installed yet from OpenFootball `football.json` (`src/projects/openfootball.py` holds the club-name maps, currently La Liga and the Premier League; an unmapped club stops the refresh). Those rows have scores but no shots, so the rolling shot features for the affected teams are empty and the model's median imputer is used for them until the full records are downloaded. `_matches.json` lists `season_sources` and `latest_match`.
+Domestic downloads come from football-data.co.uk. When that host is unreachable, `refresh_data.py` keeps every installed season as it is and adds only fixtures that are not installed yet from OpenFootball `football.json` (`src/projects/openfootball.py` holds the club-name maps, currently La Liga, the Premier League and the Bundesliga; an unmapped club stops the refresh). Those rows have scores but no shots, so the rolling shot features for the affected teams are empty and the model's median imputer is used for them until the full records are downloaded. `_matches.json` lists `season_sources` and `latest_match`.
 
 The older Elo-based league models (`data/club`, `models/<league>_model.joblib`) read the footballcsv mirror, which ends at 2023-24; `src/fetch_club_results.py` appends later seasons from the workspace match dataset. Rebuild one league with `fetch_club_results.py <key>`, then `club_features.build_match_table(<key>)` and `train_league.train_one(<key>)`.
 

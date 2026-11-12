@@ -40,6 +40,18 @@ LEAGUES = {
         "Tottenham Hotspur FC": "Tottenham", "West Ham United FC": "West Ham",
         "Wolverhampton Wanderers FC": "Wolves", "Watford FC": "Watford", "Norwich City FC": "Norwich",
     }),
+    "bundesliga": ("de.1", {
+        "1. FC Heidenheim 1846": "Heidenheim", "1. FC Köln": "FC Koln", "1. FC Union Berlin": "Union Berlin",
+        "1. FSV Mainz 05": "Mainz", "Arminia Bielefeld": "Bielefeld", "Bayer 04 Leverkusen": "Leverkusen",
+        "Borussia Dortmund": "Dortmund", "Borussia Mönchengladbach": "M'gladbach",
+        "Eintracht Frankfurt": "Ein Frankfurt", "FC Augsburg": "Augsburg", "FC Bayern München": "Bayern Munich",
+        "FC Schalke 04": "Schalke 04", "FC St. Pauli 1910": "St Pauli", "Hamburger SV": "Hamburg",
+        "Hertha BSC": "Hertha", "Holstein Kiel": "Holstein Kiel", "RB Leipzig": "RB Leipzig",
+        "SC Freiburg": "Freiburg", "SC Paderborn 07": "Paderborn", "SV 07 Elversberg": "Elversberg",
+        "SV Darmstadt 98": "Darmstadt", "SV Werder Bremen": "Werder Bremen",
+        "SpVgg Greuther Fürth 1903": "Greuther Furth", "TSG 1899 Hoffenheim": "Hoffenheim",
+        "VfB Stuttgart": "Stuttgart", "VfL Bochum 1848": "Bochum", "VfL Wolfsburg": "Wolfsburg",
+    }),
 }
 
 

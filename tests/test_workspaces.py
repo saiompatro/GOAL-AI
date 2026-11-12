@@ -103,6 +103,16 @@ class WorkspaceTests(unittest.TestCase):
         installed = set(pd.read_csv(db.DATA / "premier_league_matches.csv").home_team)
         self.assertLessEqual(installed, set(openfootball.LEAGUES["premier-league"][1].values()))
 
+    def test_openfootball_maps_bundesliga_clubs_to_dataset_names(self):
+        payload = {"matches": [
+            dict(date="2026-08-29", team1="SV 07 Elversberg", team2="Borussia Mönchengladbach", score={"ft": [2, 1]}),
+            dict(date="2026-08-30", team1="SC Paderborn 07", team2="FC Bayern München", score={"ft": [0, 3]})]}
+        rows = openfootball.parse_season("bundesliga", 2026, payload)
+        self.assertEqual([(r["home_team"], r["away_team"]) for r in rows],
+                         [("Elversberg", "M'gladbach"), ("Paderborn", "Bayern Munich")])
+        installed = set(pd.read_csv(db.DATA / "bundesliga_matches.csv").home_team)
+        self.assertLessEqual(installed, set(openfootball.LEAGUES["bundesliga"][1].values()))
+
     def test_blocked_source_keeps_installed_rows_and_adds_only_new_scores(self):
         installed = pd.DataFrame([dict(date=f"2025-09-{day:02}", season="2025-26", home_team="Barcelona", away_team=away,
                                        home_score=1, away_score=0, neutral=0, home_shots=12, away_shots=7)
