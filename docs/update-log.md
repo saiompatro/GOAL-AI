@@ -62,3 +62,15 @@ Next in rotation: **Bundesliga**.
 - **Still blocked:** `www.football-data.co.uk` and every other live results host. Until one is allowed in the environment's network settings, each league can only be brought up to 20 September 2026.
 
 Next in rotation: **Serie A**.
+
+### 2026-11-13 — Serie A
+
+- **Matches:** added the 2026-27 season to `data/analytics/serie_a_matches.csv`: 50 completed fixtures (rounds 1–5), 22 August to 20 September 2026, from OpenFootball (scores only; shots empty). The OpenFootball feed still ends on 20 September, so about eight weeks of results are missing. The five earlier seasons are unchanged. The new name map was checked against all five installed seasons: 1,890 shared fixtures, no score or date differences (OpenFootball lacks ten 2024-25 fixtures that the installed data has).
+- **Teams:** the current-season list is now the 2026-27 division. In: Frosinone, Monza, Venezia. Out: Cremonese, Pisa, Verona.
+- **Elo model (`data/club`, `models/serie_a_model.joblib`):** history extended from 2023-24 to 20 September 2026 (810 matches added), features and state rebuilt, model retrained. Held-out seasons 2025-26 and 2026-27 (430 matches): accuracy 52.3%, log loss 1.006, Elo-favourite baseline 51.9%, always-home baseline 39.5%. On the previous holdout (2022-23 and 2023-24) it was 52.5% against 52.4%. Top Elo: Inter 1965, Roma 1855, Napoli 1794, Como 1792.
+- **Workspace match model (`models/workspaces/serie-a_match.*`):** retrained on 1,849 matches. The held-out season is now 2026-27 with only 50 matches, so its accuracy (68.0%, baseline 44.0%) is a small-sample figure and not comparable with the previous full-season 49.6%; it predicted no draws. Rolling shot features are empty for current-season rows until shot data is available.
+- **Not changed:** player valuations and scouting profiles (pinned snapshots), fixtures, injuries (no club-injury dataset in the project), the other competitions.
+- **Code:** Serie A club-name map in `src/projects/openfootball.py`, one new test.
+- **Still blocked:** `www.football-data.co.uk` and every other live results host; OpenFootball has no 2026-27 Champions League season. Until a results host is allowed in the environment's network settings, each league can only be brought up to 20 September 2026. All four mapped leagues and the Champions League are now at that limit, so later runs have nothing new to add until the feed resumes or a host is allowed.
+
+Next in rotation: **La Liga**.

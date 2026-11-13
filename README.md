@@ -101,7 +101,7 @@ python src/projects/refresh_data.py all
 python src/projects/refresh_data.py champions-league --years 2023 2024 2025
 \`\`\`
 
-The default seasons are 2021-22 through 2026-27. If football-data.co.uk is unreachable, installed seasons are kept untouched and only fixtures that are not installed yet are added from OpenFootball (currently mapped for La Liga, the Premier League and the Bundesliga in `src/projects/openfootball.py`); a later run with football-data.co.uk reachable replaces those scores-only rows with the full records.
+The default seasons are 2021-22 through 2026-27. If football-data.co.uk is unreachable, installed seasons are kept untouched and only fixtures that are not installed yet are added from OpenFootball (currently mapped for La Liga, the Premier League, the Bundesliga and Serie A in `src/projects/openfootball.py`); a later run with football-data.co.uk reachable replaces those scores-only rows with the full records.
 
 Refreshing match data changes the corresponding input signature, so the next workspace request retrains that match model (or rerun `train_workspaces.py` to write an updated artifact immediately).
 

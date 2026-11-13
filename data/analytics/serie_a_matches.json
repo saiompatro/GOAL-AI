@@ -1,13 +1,24 @@
 {
   "kind": "historical",
-  "source": "football-data.co.uk",
+  "source": "OpenFootball (scores only) + football-data.co.uk",
   "urls": [
     "https://www.football-data.co.uk/mmz4281/2122/I1.csv",
     "https://www.football-data.co.uk/mmz4281/2223/I1.csv",
     "https://www.football-data.co.uk/mmz4281/2324/I1.csv",
     "https://www.football-data.co.uk/mmz4281/2425/I1.csv",
-    "https://www.football-data.co.uk/mmz4281/2526/I1.csv"
+    "https://www.football-data.co.uk/mmz4281/2526/I1.csv",
+    "https://raw.githubusercontent.com/openfootball/football.json/master/2026-27/it.1.json"
   ],
   "target": "90-minute result, excluding extra time and penalties",
-  "retrieved_at": "2026-09-18T14:20:31.541603+00:00"
+  "season_sources": {
+    "2021-22": "football-data.co.uk",
+    "2022-23": "football-data.co.uk",
+    "2023-24": "football-data.co.uk",
+    "2024-25": "football-data.co.uk",
+    "2025-26": "football-data.co.uk",
+    "2026-27": "OpenFootball (scores only)"
+  },
+  "latest_match": "2026-09-20",
+  "note": "Rows taken from OpenFootball have scores only; shots are empty for them and are not estimated.",
+  "retrieved_at": "2026-11-13T17:54:02.285577+00:00"
 }

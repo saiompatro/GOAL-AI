@@ -52,6 +52,16 @@ LEAGUES = {
         "SpVgg Greuther Fürth 1903": "Greuther Furth", "TSG 1899 Hoffenheim": "Hoffenheim",
         "VfB Stuttgart": "Stuttgart", "VfL Bochum 1848": "Bochum", "VfL Wolfsburg": "Wolfsburg",
     }),
+    "serie-a": ("it.1", {
+        "AC Milan": "Milan", "AC Monza": "Monza", "AC Pisa 1909": "Pisa", "ACF Fiorentina": "Fiorentina",
+        "AS Roma": "Roma", "Atalanta BC": "Atalanta", "Bologna FC 1909": "Bologna", "Cagliari Calcio": "Cagliari",
+        "Como 1907": "Como", "Empoli FC": "Empoli", "FC Internazionale Milano": "Inter",
+        "Frosinone Calcio": "Frosinone", "Genoa CFC": "Genoa", "Hellas Verona FC": "Verona",
+        "Juventus FC": "Juventus", "Parma Calcio 1913": "Parma", "SS Lazio": "Lazio", "SSC Napoli": "Napoli",
+        "Spezia Calcio": "Spezia", "Torino FC": "Torino", "UC Sampdoria": "Sampdoria", "US Cremonese": "Cremonese",
+        "US Lecce": "Lecce", "US Salernitana 1919": "Salernitana", "US Sassuolo Calcio": "Sassuolo",
+        "Udinese Calcio": "Udinese", "Venezia FC": "Venezia",
+    }),
 }
 
 
