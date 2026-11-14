@@ -74,3 +74,13 @@ Next in rotation: **Serie A**.
 - **Still blocked:** `www.football-data.co.uk` and every other live results host; OpenFootball has no 2026-27 Champions League season. Until a results host is allowed in the environment's network settings, each league can only be brought up to 20 September 2026. All four mapped leagues and the Champions League are now at that limit, so later runs have nothing new to add until the feed resumes or a host is allowed.
 
 Next in rotation: **La Liga**.
+
+### 2026-11-14 — La Liga (nothing to update); every other competition checked, nothing new
+
+- **La Liga:** no new results from any reachable source. The OpenFootball feed (`football.json` and the `espana` repository) still ends on 20 September 2026 with the same 69 fixtures already installed. `www.football-data.co.uk` is still blocked by the environment's network policy.
+- **Other competitions, checked the same day as the rotation rule requires:** Premier League (50 fixtures), Bundesliga (36) and Serie A (50) are likewise unchanged upstream and end on 20 September. OpenFootball still has no 2026-27 Champions League season.
+- **Changed:** nothing. No data, team list, model or code was modified; retraining on identical inputs would only rewrite timestamps.
+- **Missing as of this run:** about eight weeks of 2026-27 results in all four domestic leagues, the whole 2026-27 Champions League league phase, and shot data for every 2026-27 match.
+- **To unblock:** allow `www.football-data.co.uk` in the environment's network settings (domestic results with shots, current to the latest round). The Champions League additionally needs a results host, or `FOOTBALL_DATA_TOKEN` plus `api.football-data.org`.
+
+Next in rotation: **Champions League**.
