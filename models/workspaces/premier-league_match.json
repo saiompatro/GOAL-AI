@@ -1,8 +1,8 @@
 {
   "signature": {
     "inputs": {
-      "data/analytics/premier_league_matches.csv": "0ac1a5cc1327ce9873db6f225f35aaf1c279c6af2b54b721891a8231dcd1cc62",
-      "data/analytics/premier_league_matches.json": "38b561a0ea084183376a99eba5b5768ff383f9ed5f95d6e0430b4a2e0b7a83c2",
+      "data/analytics/premier_league_matches.csv": "66b5ee39abeae9799781b1ef068b0b26bdf8606aaf079acde18d0b03b33f1c38",
+      "data/analytics/premier_league_matches.json": "3833fded6018a190800f3e371066487f52cfbf53796d35552f4084c3242d33ad",
       "src/projects/analytics.py": "78db6dab4b8161936b425fb9ee5a0748d6905aa13e68e51fb64e97d900430402",
       "src/projects/competitions.py": "2b59f24904187f04595b2e381d10ee1dc94c68442523a53d3406b1eb09094a82",
       "src/projects/common.py": "3047d058b604e3d82f5b91bdf6a66520c6789fd78596344a2583fa172691fd11",
@@ -16,5 +16,5 @@
       "pandas": "3.1.1"
     }
   },
-  "sha256": "38b073431894e76a563928a53ac26da413cbc0eb899553cd45e7d6de32a44537"
+  "sha256": "73670aa91cad893b60c0e65d98132f63deb5386fb157bf4487a86a6fb7c8ea46"
 }

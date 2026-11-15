@@ -5,6 +5,7 @@ import csv
 import json
 import threading
 
+import pandas as pd
 from flask import Blueprint, jsonify, request, send_file, send_from_directory, url_for, Response
 from projects import competitions as db
 from projects import analytics
@@ -66,6 +67,12 @@ def overview(slug):
     if fixtures:
         now = datetime.now(timezone.utc).isoformat()
         fixtures["matches"] = [m for m in fixtures["matches"] if m.get("utcDate", "") > now]
+    path = db.DATA / f"{c['key']}_availability.csv"
+    availability = None
+    if path.exists():
+        absent = pd.read_csv(path, keep_default_na=False, na_values={"chance_of_playing": [""]})
+        availability = {**json.loads(path.with_suffix(".json").read_text(encoding="utf-8")),
+                        "players": json.loads(absent[absent.team.isin(teams)].to_json(orient="records"))}
     return jsonify(competition={"slug": slug, **c},
         players=latest.sort_values("player").to_dict("records"), player_source=provenance,
         scout_players=scouts.sort_values("player").to_dict("records"), scout_source=scout_source,
@@ -74,7 +81,8 @@ def overview(slug):
                      player_seasons=df.season.nunique(), player_latest_season=str(df.season.max()),
                      scouting_season=str(scouts.season.max()), scout_profiles=len(scouts), latest_season=season,
                      through=str(matches.date.max()), first_season=str(matches.season.min())),
-        recent=matches.tail(6).iloc[::-1][["date", "home_team", "away_team", "home_score", "away_score"]].to_dict("records"), fixtures=fixtures)
+        recent=matches.tail(6).iloc[::-1][["date", "home_team", "away_team", "home_score", "away_score"]].to_dict("records"), fixtures=fixtures,
+        availability=availability)
 
 
 @workspace.route("/api/workspaces/<slug>/transfer", methods=["GET", "POST"])

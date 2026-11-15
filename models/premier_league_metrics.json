@@ -1,11 +1,11 @@
 {
- "test_accuracy": 0.4906976744186046,
- "test_logloss": 1.0348098392577458,
- "baseline_home": 0.4186046511627907,
- "baseline_elo": 0.4813953488372093,
- "mae_home": 0.9599729399656265,
- "mae_away": 0.837068006076487,
- "n_test": 430,
+ "test_accuracy": 0.49375,
+ "test_logloss": 1.0337381476317302,
+ "baseline_home": 0.425,
+ "baseline_elo": 0.48333333333333334,
+ "mae_home": 0.9704159350863509,
+ "mae_away": 0.8277600049329753,
+ "n_test": 480,
  "test_seasons": [
   "2025-26",
   "2026-27"

@@ -102,7 +102,20 @@ python src/projects/refresh_data.py all
 python src/projects/refresh_data.py premier-league --years 2023 2024 2025
 \`\`\`
 
-Domestic downloads come from football-data.co.uk. When that host is unreachable, `refresh_data.py` keeps every installed season as it is and adds only fixtures that are not installed yet from OpenFootball `football.json` (`src/projects/openfootball.py` holds the club-name maps, currently La Liga, the Premier League, the Bundesliga and Serie A; an unmapped club stops the refresh). Those rows have scores but no shots, so the rolling shot features for the affected teams are empty and the model's median imputer is used for them until the full records are downloaded. `_matches.json` lists `season_sources` and `latest_match`.
+Domestic downloads come from football-data.co.uk. When that host is unreachable, `refresh_data.py` keeps every season installed from it as it is and fills the rest from a fallback feed:
+
+- **Premier League:** [FPL-Elo-Insights](https://github.com/olbauday/FPL-Elo-Insights) (`src/projects/fpl_insights.py`), read from `raw.githubusercontent.com`, refreshed upstream twice a day, with scores and total shots. Against the installed football-data.co.uk 2025-26 season it agrees on all 380 fixtures and dates, 379 scores and 98.5% of shot counts. Its rows replace scores-only rows for the same fixture; if the two disagree on a score the refresh stops.
+- **La Liga, Bundesliga, Serie A (and the Premier League as a last resort):** OpenFootball `football.json` (`src/projects/openfootball.py`). Those rows have scores but no shots, so the rolling shot features for the affected teams are empty and the model's median imputer is used for them until fuller records are downloaded.
+
+An unmapped club stops the refresh in either feed. `_matches.json` lists `season_sources` and `latest_match`.
+
+The Premier League also has an availability snapshot (injured, doubtful and suspended players, from the same repository):
+
+```powershell
+python src/projects/refresh_data.py premier-league --availability
+```
+
+It writes `data/analytics/premier_league_availability.csv` and `.json`, is returned as `availability` by `/api/workspaces/premier-league`, and is listed on the match page. It is context only: no model reads it. The other competitions have no availability data.
 
 The older Elo-based league models (`data/club`, `models/<league>_model.joblib`) read the footballcsv mirror, which ends at 2023-24; `src/fetch_club_results.py` appends later seasons from the workspace match dataset. Rebuild one league with `fetch_club_results.py <key>`, then `club_features.build_match_table(<key>)` and `train_league.train_one(<key>)`.
 

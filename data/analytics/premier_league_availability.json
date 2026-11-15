@@ -1,0 +1,17 @@
+{
+  "kind": "snapshot",
+  "source": "FPL-Elo-Insights",
+  "urls": [
+    "https://raw.githubusercontent.com/olbauday/FPL-Elo-Insights/main/data/2026-2027/playerstats.csv",
+    "https://raw.githubusercontent.com/olbauday/FPL-Elo-Insights/main/data/2026-2027/players.csv"
+  ],
+  "season": "2026-27",
+  "gameweek": 10,
+  "counts": {
+    "injured": 59,
+    "doubtful": 24,
+    "suspended": 3
+  },
+  "note": "Premier League availability flags (injured, doubtful, suspended) as published at the retrieval time. A snapshot, not a history; it is not an input to any model.",
+  "retrieved_at": "2026-11-15T17:57:50.999805+00:00"
+}

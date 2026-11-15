@@ -830,6 +830,9 @@ footer {
 .table-wrap {
   overflow: auto;
 }
+.table-wrap.availability {
+  max-height: 420px;
+}
 table {
   width: 100%;
   border-collapse: collapse;

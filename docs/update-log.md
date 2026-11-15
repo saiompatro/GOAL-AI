@@ -15,11 +15,12 @@ Each run reads the last entry below, takes the next competition in the list, and
 | Area | Source | Reachable from the scheduled environment |
 | --- | --- | --- |
 | Completed matches with shots | football-data.co.uk | No (host blocked by the environment's network policy) |
-| Completed matches, scores only | OpenFootball `football.json` on GitHub | Yes |
+| Premier League matches with shots | `olbauday/FPL-Elo-Insights` on GitHub | Yes; current to the latest round |
+| Completed matches, scores only | OpenFootball `football.json` on GitHub | Yes, but frozen at 20 September 2026 |
 | UCL matches | OpenFootball `champions-league` on GitHub | Yes, but it has no 2026-27 season yet |
 | Player seasons and valuations | Pinned Transfermarkt/FBref snapshots (`docs/player-source-manifest.json`) | Not refreshed; pinned and audited by design |
 | Fixtures, rosters | football-data.org (token) | No |
-| Injuries | No club-injury dataset exists in the project; only World Cup news sentiment in `src/live.py` | Not applicable |
+| Injuries and suspensions | Premier League only: `olbauday/FPL-Elo-Insights` (`refresh_data.py premier-league --availability`). No source for the other competitions | Yes |
 
 ## Entries
 
@@ -84,3 +85,20 @@ Next in rotation: **La Liga**.
 - **To unblock:** allow `www.football-data.co.uk` in the environment's network settings (domestic results with shots, current to the latest round). The Champions League additionally needs a results host, or `FOOTBALL_DATA_TOKEN` plus `api.football-data.org`.
 
 Next in rotation: **Champions League**.
+
+### 2026-11-15 — Champions League (nothing complete to install), then Premier League
+
+**Champions League.** Still no usable 2026-27 season. OpenFootball `champions-league` was last updated on 2 July 2026 and has no 2026-27 folder. A new source found today, `olbauday/FPL-Elo-Insights`, carries Champions League matches, but only those involving the five English clubs: 20 of the 72 league-phase matches played so far. Installing those alone would cut the current-season team list to the English clubs and their opponents and make the held-out season a sample in which an English club plays every match, so they were not installed. Data and models are unchanged; the installed seasons still end with the 30 May 2026 final.
+
+**Premier League.**
+
+- **New source:** [FPL-Elo-Insights](https://github.com/olbauday/FPL-Elo-Insights) is reachable (GitHub), was updated on the run date, and has scores and total shots. Checked against the installed football-data.co.uk 2025-26 season: 380 of 380 fixtures and dates agree, 379 scores agree (it has Liverpool 0–1 Man United on 19 October 2025; football-data.co.uk has 1–2), and 98.5% of shot counts are identical, the rest within two. Its first 50 fixtures of 2026-27 match the OpenFootball scores already installed.
+- **Matches:** 2026-27 in `data/analytics/premier_league_matches.csv` goes from 50 scores-only fixtures (to 20 September) to 100 fixtures with shots (gameweeks 1–10, to 8 November 2026). The 50 scores-only rows were replaced by the fuller records; the five earlier seasons are unchanged.
+- **Injuries and suspensions (new):** `data/analytics/premier_league_availability.csv` lists 86 players as of gameweek 10: 59 injured, 24 doubtful, 3 suspended. Players flagged unavailable because they left their club are excluded. The match page shows the list; no model uses it.
+- **Elo model (`data/club`, `models/premier_league_model.joblib`):** history extended to 8 November 2026 (50 matches added), features and state rebuilt, model retrained. Held-out seasons 2025-26 and 2026-27 (480 matches): accuracy 49.4%, log loss 1.034, Elo-favourite baseline 48.3%, always-home baseline 42.5%. Top Elo: Arsenal 1921, Man City 1842, Brighton 1771, Liverpool 1762. Largest moves since 20 September: Tottenham +60, Brighton +52, Man City −66, Man United −60.
+- **Workspace match model (`models/workspaces/premier-league_match.*`):** retrained on the same 1,849 earlier matches; the 2026-27 holdout is now 95 matches: accuracy 42.1%, baseline 41.1%, log loss 1.098. It still predicts no draws. Rolling shot features are now filled for current-season rows.
+- **Not changed:** player valuations and scouting profiles (pinned snapshots), fixtures, the other competitions.
+- **Code:** `src/projects/fpl_insights.py` (new), fallback order and scores-only replacement in `src/projects/refresh_data.py`, `--availability`, `availability` in the workspace API, an injuries panel in `web/workspace.js`, four new tests (26 pass).
+- **For later runs:** the environment's git proxy serves anonymous clones of any public GitHub repository, and `raw.githubusercontent.com` is reachable, so a maintained public repository is a workable source. None has been found yet for La Liga, the Bundesliga, Serie A or the full Champions League; those remain at 20 September 2026 (30 May 2026 for the Champions League) until one is found or `www.football-data.co.uk` is allowed in the environment's network settings.
+
+Next in rotation: **Bundesliga**.

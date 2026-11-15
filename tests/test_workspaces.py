@@ -11,7 +11,7 @@ import pandas as pd
 from app import app
 from projects import analytics, competitions as db
 import requests
-from projects import openfootball, refresh_data
+from projects import fpl_insights, openfootball, refresh_data
 from projects.refresh_data import parse_ucl, import_players
 
 
@@ -148,6 +148,82 @@ class WorkspaceTests(unittest.TestCase):
         self.assertTrue(pd.isna(new.home_shots))  # no shots are invented for scores-only rows
         self.assertEqual(meta["season_sources"], {"2025-26": "football-data.co.uk", "2026-27": "OpenFootball (scores only)"})
         self.assertEqual(meta["latest_match"], "2026-08-15")
+
+    def test_fpl_insights_rows_keep_finished_matches_with_uk_dates_and_shots(self):
+        frame = pd.DataFrame([
+            dict(kickoff_time="2026-08-21T19:00:00", home_team=3.0, away_team=9.0, home_score=3.0, away_score=0.0,
+                 finished=True, match_id="a", home_total_shots=20.0, away_total_shots=4.0),
+            # 23:30 UTC in August is 00:30 the next day in the UK, the date football-data.co.uk records.
+            dict(kickoff_time="2026-08-22T23:30:00", home_team=88.0, away_team=1.0, home_score=2.0, away_score=0.0,
+                 finished=True, match_id="b", home_total_shots=None, away_total_shots=None),
+            dict(kickoff_time="2026-11-21T15:00:00", home_team=43.0, away_team=14.0, home_score=None, away_score=None,
+                 finished=False, match_id="c", home_total_shots=None, away_total_shots=None)])
+        rows = fpl_insights.parse_matches("premier-league", 2026, frame)
+        self.assertEqual([(r["date"], r["home_team"], r["away_team"], r["home_score"], r["away_score"], r["home_shots"], r["away_shots"])
+                          for r in rows],
+                         [("2026-08-21", "Arsenal", "Coventry", 3, 0, 20, 4), ("2026-08-23", "Hull", "Man United", 2, 0, None, None)])
+        self.assertTrue(all(r["season"] == "2026-27" and r["neutral"] == 0 for r in rows))
+        installed = set(pd.read_csv(db.DATA / "premier_league_matches.csv").query("season >= '2025-26'").home_team)
+        self.assertLessEqual(installed, set(fpl_insights.LEAGUES["premier-league"][1].values()))
+        frame.loc[0, "home_team"] = 999.0
+        with self.assertRaises(ValueError):
+            fpl_insights.parse_matches("premier-league", 2026, frame)
+
+    def _refresh_premier_league(self, installed, feed):
+        with tempfile.TemporaryDirectory() as temp:
+            installed.to_csv(Path(temp) / "premier_league_matches.csv", index=False)
+            (Path(temp) / "premier_league_matches.json").write_text(json.dumps({"season_sources": {
+                "2025-26": "football-data.co.uk", "2026-27": "OpenFootball (scores only)"}}), encoding="utf-8")
+            with patch("projects.refresh_data.DATA", Path(temp)), \
+                 patch("projects.refresh_data.requests.get", side_effect=requests.ConnectionError("blocked")), \
+                 patch.object(openfootball, "fetch_season", return_value=[]), \
+                 patch.object(fpl_insights, "fetch_season", side_effect=lambda slug, year: feed[year]):
+                refresh_data.fetch_matches("premier-league", [2025, 2026])
+            return (pd.read_csv(Path(temp) / "premier_league_matches.csv"),
+                    json.loads((Path(temp) / "premier_league_matches.json").read_text(encoding="utf-8")))
+
+    def test_feed_with_shots_replaces_scores_only_rows_but_not_downloaded_seasons(self):
+        row = lambda date, season, home, away, hs, as_, shots: dict(
+            date=date, season=season, home_team=home, away_team=away, home_score=hs, away_score=as_, neutral=0,
+            home_shots=shots, away_shots=shots)
+        installed = pd.DataFrame([row("2025-10-01", "2025-26", f"H{i}", f"A{i}", 1, 0, 9) for i in range(100)]
+                                 + [row("2026-08-21", "2026-27", "Arsenal", "Coventry", 3, 0, None)])
+        feed = {2026: [row("2026-08-21", "2026-27", "Arsenal", "Coventry", 3, 0, 20),
+                       row("2026-11-07", "2026-27", "Leeds", "Tottenham", 1, 0, 16)]}
+        out, meta = self._refresh_premier_league(installed, feed)
+        self.assertEqual(len(out), 102)
+        self.assertEqual(out[out.season == "2025-26"].home_shots.tolist(), [9] * 100)  # the complete season is not refetched
+        current = out[out.season == "2026-27"]
+        self.assertEqual(current.home_shots.tolist(), [20, 16])
+        self.assertEqual(meta["season_sources"], {"2025-26": "football-data.co.uk", "2026-27": "FPL-Elo-Insights"})
+        self.assertEqual(meta["latest_match"], "2026-11-07")
+        self.assertNotIn("note", meta)
+        feed[2026][0]["home_score"] = 1  # two sources that disagree on a result stop the refresh
+        with self.assertRaises(ValueError):
+            self._refresh_premier_league(installed, feed)
+
+    def test_availability_lists_injured_doubtful_and_suspended_players_only(self):
+        stats = pd.DataFrame([
+            dict(id=1, gw=9, status="i", chance_of_playing_next_round=0, news="Old flag", minutes=10),
+            dict(id=1, gw=10, status="a", chance_of_playing_next_round=None, news=None, minutes=100),
+            dict(id=2, gw=10, status="d", chance_of_playing_next_round=75.0, news="Calf injury - 75% chance of playing", minutes=461),
+            dict(id=3, gw=10, status="u", chance_of_playing_next_round=0, news="Has joined Al Hilal permanently", minutes=0),
+            dict(id=4, gw=10, status="s", chance_of_playing_next_round=0, news="Suspended until 29 Nov", minutes=19)])
+        players = pd.DataFrame([dict(player_id=i, first_name="First", second_name=f"Last{i}", web_name=f"P{i}", team_code=code, position=pos)
+                                for i, code, pos in [(1, 3, "Forward"), (2, 7, "Midfielder"), (3, 3, "Midfielder"), (4, 3, "Defender")]])
+        rows, gameweek = fpl_insights.parse_availability("premier-league", stats, players)
+        self.assertEqual(gameweek, 10)
+        self.assertEqual([(r["player"], r["team"], r["position"], r["status"], r["chance_of_playing"]) for r in rows],
+                         [("P4", "Arsenal", "DF", "suspended", 0), ("P2", "Aston Villa", "MF", "doubtful", 75)])
+
+    def test_overview_serves_the_availability_snapshot_for_current_teams(self):
+        data = self.client.get("/api/workspaces/premier-league").get_json()
+        snapshot = data["availability"]
+        self.assertEqual(snapshot["source"], "FPL-Elo-Insights")
+        self.assertTrue(snapshot["players"])
+        self.assertLessEqual({p["team"] for p in snapshot["players"]}, set(data["teams"]))
+        self.assertLessEqual({p["status"] for p in snapshot["players"]}, {"injured", "doubtful", "suspended"})
+        self.assertIsNone(self.client.get("/api/workspaces/la-liga").get_json()["availability"])
 
     def test_similarity_does_not_depend_on_result_count(self):
         a = analytics.scouting("premier-league", "Bukayo Saka", 3)

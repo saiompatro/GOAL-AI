@@ -87,9 +87,10 @@ def fetch_matches(slug, years):
     """Download completed matches season by season.
 
     Domestic leagues use football-data.co.uk (scores and shots). When that host
-    cannot be reached, a season already installed is kept as it is and
-    OpenFootball supplies only fixtures that are not installed yet. Those rows
-    carry scores without shots; nothing is estimated to fill the gap.
+    cannot be reached, a season installed from it is kept as it is and a
+    fallback feed supplies the rest: FPL-Elo-Insights (scores and shots) for
+    the Premier League, otherwise OpenFootball (scores without shots). Nothing
+    is estimated to fill a gap.
     """
     c = config(slug)
     existing, recorded = None, {}
@@ -117,7 +118,7 @@ def fetch_matches(slug, years):
                 kept = existing[existing.season == season] if len(existing) else existing
                 # Rows already installed keep the provenance recorded when they were downloaded.
                 label = recorded.get("season_sources", {}).get(season) or recorded.get("source", "installed dataset")
-                df, top_up_url, sources[season] = _openfootball_top_up(slug, year, season, kept, label, error)
+                df, top_up_url, sources[season] = _fallback_season(slug, year, season, kept, label, error, year == max(years))
                 if top_up_url:
                     urls.append(top_up_url)
                 if not len(kept) or "football-data.co.uk" not in label:
@@ -149,26 +150,62 @@ def fetch_matches(slug, years):
     write_dataset(slug, "matches", df, metadata)
 
 
-def _openfootball_top_up(slug, year, season, kept, label, error):
-    """(rows, OpenFootball URL or None, source label) for a season football-data.co.uk did not serve."""
-    from projects import openfootball
-    if slug not in openfootball.LEAGUES:
-        if len(kept):
-            print(f"{slug} {season}: football-data.co.uk unavailable ({error}); kept {len(kept)} installed rows")
-            return kept, None, label
-        raise error
-    rows = pd.DataFrame(openfootball.fetch_season(slug, year))
-    url = openfootball.season_url(slug, year)
+def _fallback_season(slug, year, season, kept, label, error, latest):
+    """(rows, source URL or None, source label) for a season football-data.co.uk did not serve.
+
+    FPL-Elo-Insights (scores and shots) is preferred where it covers the
+    competition; OpenFootball (scores only) is the last resort. Rows installed
+    from football-data.co.uk are never replaced. Scores-only rows are replaced
+    by the fuller record once a source with shots has the same fixture.
+    """
+    from projects import fpl_insights, openfootball
+    complete = len(kept) and label == "football-data.co.uk"
+    if slug in fpl_insights.LEAGUES and year >= fpl_insights.FIRST_YEAR and (latest or not complete):
+        rows = pd.DataFrame(fpl_insights.fetch_season(slug, year))
+        if len(rows):
+            return _merge_fallback(slug, season, kept, label, rows, fpl_insights.LABEL,
+                                   fpl_insights.season_url(slug, year), replace="football-data.co.uk" not in label)
+    if slug in openfootball.LEAGUES:
+        rows = pd.DataFrame(openfootball.fetch_season(slug, year))
+        return _merge_fallback(slug, season, kept, label, rows, "OpenFootball (scores only)",
+                               openfootball.season_url(slug, year), replace=False)
+    if len(kept):
+        print(f"{slug} {season}: football-data.co.uk unavailable ({error}); kept {len(kept)} installed rows")
+        return kept, None, label
+    raise error
+
+
+def _merge_fallback(slug, season, kept, label, rows, source, url, replace):
+    """Combine installed rows with a fallback feed.
+
+    replace=False keeps every installed row and adds only fixtures that are not
+    installed. replace=True (installed rows are scores-only) takes the feed's
+    row for a shared fixture, after checking that both agree on the score.
+    """
     if not len(kept):
-        print(f"{slug} {season}: football-data.co.uk unavailable; {len(rows)} OpenFootball rows")
-        return rows, url, "OpenFootball (scores only)"
+        print(f"{slug} {season}: football-data.co.uk unavailable; {len(rows)} {source} rows")
+        return rows, url, source
+    if not len(rows):
+        return kept, None, label
+    key = ["home_team", "away_team"]
+    if replace:
+        both = kept.merge(rows, on=key, suffixes=("_installed", "_feed"))
+        clash = both[(both.home_score_installed != both.home_score_feed) | (both.away_score_installed != both.away_score_feed)]
+        if len(clash):
+            raise ValueError(f"{slug} {season}: {source} disagrees with installed scores for "
+                             + "; ".join(f"{r.home_team} v {r.away_team}" for r in clash.itertuples()))
+        fed = set(zip(rows.home_team, rows.away_team))
+        left = kept[[pair not in fed for pair in zip(kept.home_team, kept.away_team)]]
+        print(f"{slug} {season}: football-data.co.uk unavailable; {len(rows)} {source} rows "
+              f"({len(both)} replace installed scores-only rows, {len(rows) - len(both)} new), {len(left)} installed rows kept")
+        return pd.concat([left, rows]), url, f"{label} + {source}" if len(left) else source
     have = set(zip(kept.home_team, kept.away_team))
-    new = rows[[pair not in have for pair in zip(rows.home_team, rows.away_team)]] if len(rows) else rows
-    print(f"{slug} {season}: football-data.co.uk unavailable; kept {len(kept)} installed rows, added {len(new)} from OpenFootball")
+    new = rows[[pair not in have for pair in zip(rows.home_team, rows.away_team)]]
+    print(f"{slug} {season}: football-data.co.uk unavailable; kept {len(kept)} installed rows, added {len(new)} from {source}")
     if not len(new):
         return kept, None, label
-    if "OpenFootball" not in label:
-        label += " + OpenFootball (scores only)"
+    if source not in label:
+        label += f" + {source}"
     return pd.concat([kept, new]), url, label
 
 
@@ -216,6 +253,21 @@ def fetch_fixtures(slug):
     print(f"Saved {len(payload.get('matches', []))} scheduled fixtures")
 
 
+def fetch_availability(slug, year):
+    """Snapshot of injured, doubtful and suspended players (Premier League only so far)."""
+    from projects import fpl_insights
+    rows, gameweek = fpl_insights.fetch_availability(slug, year)
+    df = pd.DataFrame(rows, columns=["player", "full_name", "team", "position", "status", "chance_of_playing", "news", "minutes"])
+    if not len(df):
+        raise ValueError("The availability feed returned no flagged players; keeping the installed snapshot")
+    df["chance_of_playing"] = df["chance_of_playing"].astype("Int64")
+    write_dataset(slug, "availability", df, {
+        "kind": "snapshot", "source": fpl_insights.LABEL, "urls": fpl_insights.availability_urls(year),
+        "season": f"{year}-{str(year + 1)[-2:]}", "gameweek": gameweek, "counts": df.status.value_counts().to_dict(),
+        "note": "Premier League availability flags (injured, doubtful, suspended) as published at the retrieval time. "
+                "A snapshot, not a history; it is not an input to any model."})
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("competition", choices=[*COMPETITIONS, "all"])
@@ -223,6 +275,7 @@ if __name__ == "__main__":
     p.add_argument("--players", type=Path, help="Import observed player-season CSV instead of downloading matches")
     p.add_argument("--source", help="Required attribution for an imported player dataset")
     p.add_argument("--fixtures", action="store_true", help="Refresh fixtures from football-data.org with your token")
+    p.add_argument("--availability", action="store_true", help="Refresh the injury and suspension snapshot (Premier League)")
     a = p.parse_args()
     if a.players and (not a.source or a.competition == "all"):
         p.error("Player imports require one competition and --source")
@@ -231,5 +284,7 @@ if __name__ == "__main__":
             import_players(slug, a.players, a.source)
         elif a.fixtures:
             fetch_fixtures(slug)
+        elif a.availability:
+            fetch_availability(slug, max(a.years))
         else:
             fetch_matches(slug, a.years)

@@ -211,7 +211,18 @@ function matchPage() {
           )
           .join("")}</div>`
       : '<p class="desc">No upcoming fixture feed is loaded. You can still explore any match-up above. Connect football-data.org and refresh fixtures using the setup instructions in README.md.</p>'
-  }</section>`;
+  }</section>${availabilityPanel()}`;
+}
+
+function availabilityPanel() {
+  const a = context.availability;
+  if (!a?.players?.length) return "";
+  return `<section class="panel spaced"><div class="panel-head"><h2>Injuries and suspensions</h2>${tag(`GAMEWEEK ${a.gameweek}`)}</div><p class="desc">${a.players.length} players flagged injured, doubtful or suspended · ${esc(a.source)} · retrieved ${esc(a.retrieved_at.slice(0, 10))}. Shown for context; predictions do not use it.</p><div class="table-wrap availability"><table><thead><tr><th>Club</th><th>Player</th><th>Pos</th><th>Status</th><th>Detail</th></tr></thead><tbody>${a.players
+    .map(
+      (p) =>
+        `<tr><td>${esc(p.team)}</td><td>${esc(p.player)}</td><td>${esc(p.position)}</td><td>${esc(p.status)}</td><td>${esc(p.news)}</td></tr>`,
+    )
+    .join("")}</tbody></table></div></section>`;
 }
 
 async function runTask(label, work, render) {

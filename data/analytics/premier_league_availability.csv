@@ -1,0 +1,87 @@
+player,full_name,team,position,status,chance_of_playing,news,minutes
+Saka,Bukayo Saka,Arsenal,MF,injured,0,Thigh injury - Unknown return date,596
+Dowman,Max Dowman,Arsenal,MF,suspended,0,Suspended until 29 Nov,19
+Cash,Matty Cash,Aston Villa,DF,doubtful,75,Concussion - 75% chance of playing,656
+Manzambi,Johan Manzambi,Aston Villa,MF,doubtful,75,Calf injury - 75% chance of playing,461
+Wan-Bissaka,Aaron Wan-Bissaka,Aston Villa,DF,doubtful,50,Hamstring injury - 50% chance of playing,273
+Onana,Amadou Onana,Aston Villa,MF,injured,0,Knee injury - Unknown return date,0
+Ruggeri,Matteo Ruggeri,Aston Villa,DF,injured,0,Hamstring injury - Expected back 2 Jan,158
+J.Araujo,Julián Araujo Zúñiga,Bournemouth,DF,injured,0,Thigh injury - Unknown return date,0
+Milosavljević,Veljko Milosavljevic,Bournemouth,DF,injured,0,Thigh injury - Expected back 31 Oct,0
+Sanchez,Juanlu Sánchez,Bournemouth,DF,injured,0,Ankle injury - Unknown return date,18
+Tóth.A,Alex Tóth,Bournemouth,MF,injured,0,Hamstring injury - Unknown return date,17
+Dasilva,Josh Dasilva,Brentford,MF,doubtful,25,Hamstring injury - 25% chance of playing,0
+Carvalho,Fábio Freitas Gouveia Carvalho,Brentford,MF,injured,0,Knock - Expected back 23 Nov,3
+Furo,Kaye Furo,Brentford,FW,injured,0,Unspecified injury - Unknown return date,0
+Henry,Rico Henry,Brentford,DF,injured,0,Hip injury - Unknown return date,2
+Milambo,Antoni Milambo,Brentford,MF,injured,0,Knee injury - Unknown return date,0
+Thiago,Igor Thiago Nascimento Rodrigues,Brentford,FW,suspended,0,Suspended until 5 Dec,824
+Andrés,José María Andrés Baixauli,Brighton,MF,doubtful,75,Hip injury - 75% chance of playing,450
+Hadjam,Jaouen Hadjam,Brighton,DF,doubtful,75,Unspecified injury - 75% chance of playing,37
+Azeez,Femi Azeez,Brighton,MF,injured,0,Hamstring injury - Expected back 8 Nov,0
+Ferguson,Evan Ferguson,Brighton,FW,injured,0,Ankle injury - Unknown return date,0
+Mitoma,Mitoma Kaoru,Brighton,MF,injured,0,Hamstring injury - Expected back 22 Nov,0
+Struijk,Pascal Struijk,Brighton,DF,injured,0,Hamstring injury - Expected back 8 Nov,154
+Tzimas,Stefanos Tzimas,Brighton,FW,injured,0,Knee injury - Unknown return date,0
+Yohanna,Zadok Yohanna,Brighton,MF,injured,0,Unspecified injury - Expected back 22 Nov,12
+Acheampong,Josh Acheampong,Chelsea,DF,doubtful,75,Unspecified injury - 75% chance of playing,581
+Martinez,Emiliano Martínez Romero,Chelsea,GK,doubtful,75,Head injury - 75% chance of playing,524
+Gittens,Jamie Bynoe-Gittens,Chelsea,MF,injured,0,Ankle injury - Unknown return date,0
+Hato,Jorrel Hato,Chelsea,DF,injured,0,Unspecified injury - Unknown return date,412
+James,Reece James,Chelsea,DF,injured,0,Knee injury - Unknown return date,292
+João Pedro,João Pedro Junqueira de Jesus,Chelsea,FW,injured,0,Thigh injury - Unknown return date,521
+Lacroix,Maxence Lacroix,Chelsea,DF,injured,0,Hamstring injury - Unknown return date,634
+Onyeka,Frank Onyeka,Coventry,MF,doubtful,50,Groin injury - 50% chance of playing,379
+Thomas,Bobby Thomas,Coventry,DF,doubtful,50,Calf injury - 50% chance of playing,676
+Amenda,Aurèle Amenda,Coventry,DF,injured,0,Calf injury - Unknown return date,360
+Eccles,Josh Eccles,Coventry,MF,injured,0,Ankle injury - Unknown return date,0
+Woolfenden,Luke Woolfenden,Coventry,DF,injured,0,Knee injury - Unknown return date,0
+Wright,Haji Wright,Coventry,FW,injured,0,Thigh injury - Unknown return date,0
+Strand Larsen,Jørgen Strand Larsen,Crystal Palace,FW,doubtful,75,Ankle injury - 75% chance of playing,511
+Chadi Riad,Chadi Riad Dnanou,Crystal Palace,DF,injured,0,Knee injury - Unknown return date,72
+Sarr,Ismaïla Sarr,Crystal Palace,MF,injured,0,Groin injury - Expected back 21 Nov,15
+Tomiyasu,Takehiro Tomiyasu,Crystal Palace,DF,injured,0,Calf injury - Expected back 21 Nov,189
+Mateta,Jean-Philippe Mateta,Crystal Palace,FW,suspended,0,Suspended until 2 Dec,164
+Cairney,Tom Cairney,Fulham,MF,injured,0,Knee injury - Expected back 21 Nov,36
+Belloumi,Mohamed Belloumi,Hull,MF,doubtful,75,Hamstring injury - 75% chance of playing,685
+Gyabi,Darko Gyabi,Hull,MF,doubtful,75,Thigh injury - 75% chance of playing,0
+Ansah,Ilyas Ansah,Hull,FW,injured,0,Back injury - Unknown return date,0
+Hughes,Charlie Hughes,Hull,DF,injured,0,Groin injury - Unknown return date,0
+Matazo,Eliot Matazo,Hull,MF,injured,0,Knee injury - Unknown return date,0
+Morita,Hidemasa Morita,Hull,MF,injured,0,Groin injury - Unknown return date,106
+Targett,Matt Targett,Hull,DF,injured,0,Ankle injury - Unknown return date,5
+Gudmundsson,Gabriel Gudmundsson,Leeds,DF,doubtful,75,Hamstring injury - 75% chance of playing,631
+Stach,Anton Stach,Leeds,MF,doubtful,50,Foot injury - 50% chance of playing,676
+Mateo Joseph,Mateo Joseph Fernández-Regatillo,Leeds,FW,injured,0,Knee injury - Unknown return date,0
+Gravenberch,Ryan Gravenberch,Liverpool,MF,doubtful,75,Foot injury - 75% chance of playing,341
+Virgil,Virgil van Dijk,Liverpool,DF,doubtful,75,Unspecified injury - 75% chance of playing,900
+Bradley,Conor Bradley,Liverpool,DF,injured,0,Knee injury - Unknown return date,0
+Ekitiké,Hugo Ekitiké,Liverpool,FW,injured,0,Achilles injury - Unknown return date,0
+Frimpong,Jeremie Frimpong,Liverpool,DF,injured,0,Hamstring injury - Unknown return date,199
+Jaros,Vitezslav Jaros,Liverpool,GK,injured,0,Knee injury - Unknown return date,0
+Leoni,Giovanni Leoni,Liverpool,DF,injured,0,Knee injury - Unknown return date,0
+Guéhi,Marc Guéhi,Man City,DF,doubtful,75,Unspecified injury - 75% chance of playing,720
+Gvardiol,Joško Gvardiol,Man City,DF,doubtful,75,Unspecified injury - 75% chance of playing,700
+Semenyo,Antoine Semenyo,Man City,MF,injured,0,Knee injury - Unknown return date,553
+Dorgu,Patrick Dorgu,Man United,MF,doubtful,75,Hamstring injury - 75% chance of playing,195
+Maguire,Harry Maguire,Man United,DF,doubtful,75,Back injury - 75% chance of playing,855
+Baleba,Carlos Baleba,Man United,MF,injured,0,Hamstring injury - Unknown return date,232
+Rashford,Marcus Rashford,Man United,MF,injured,0,Hip injury - Unknown return date,352
+Shaw,Luke Shaw,Man United,DF,injured,0,Unspecified injury - Unknown return date,425
+Ugarte,Manuel Ugarte Ribeiro,Man United,MF,injured,0,Knee injury - Unknown return date,0
+Šeško,Benjamin Sesko,Man United,FW,injured,0,Shin injury - Unknown return date,76
+Jaouen,Ewen Jaouen,Newcastle,GK,injured,0,Hamstring injury - Unknown return date,0
+Joelinton,Joelinton Cássio Apolinário de Lira,Newcastle,MF,injured,0,Unspecified injury - Unknown return date,278
+Dominguez,Nicolás Domínguez,Nott'm Forest,MF,injured,0,Muscular injury - Expected back 30 Dec,74
+Savona,Nicolò Savona,Nott'm Forest,DF,injured,0,Knee injury - Unknown return date,0
+Brobbey,Brian Brobbey,Sunderland,FW,doubtful,75,Muscular injury - 75% chance of playing,619
+Xhaka,Granit Xhaka,Sunderland,MF,doubtful,75,Calf injury - 75% chance of playing,813
+Ballard,Daniel Ballard,Sunderland,DF,injured,0,Hamstring injury - Unknown return date,450
+Diarra,Habib Diarra,Sunderland,MF,injured,0,Muscular injury - Unknown return date,70
+Mundle,Romaine Mundle,Sunderland,MF,injured,0,Knee injury - Unknown return date,1
+Tel,Mathys Tel,Tottenham,MF,doubtful,75,Ankle injury - 75% chance of playing,477
+Bergvall,Lucas Bergvall,Tottenham,MF,injured,0,Knee injury - Unknown return date,143
+Mudryk,Mykhailo Mudryk,Tottenham,MF,injured,0,Ankle injury - Unknown return date,16
+Odobert,Wilson Odobert,Tottenham,MF,injured,0,Knee injury - Unknown return date,0
+Sávio,Sávio Moreira de Oliveira,Tottenham,MF,injured,0,Muscular injury - Expected back 21 Nov,330
+Xavi,Xavi Simons,Tottenham,MF,injured,0,Knee injury - Unknown return date,0

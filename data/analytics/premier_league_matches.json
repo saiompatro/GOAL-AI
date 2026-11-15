@@ -1,13 +1,13 @@
 {
   "kind": "historical",
-  "source": "OpenFootball (scores only) + football-data.co.uk",
+  "source": "FPL-Elo-Insights + football-data.co.uk",
   "urls": [
     "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
     "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
     "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
     "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
     "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
-    "https://raw.githubusercontent.com/openfootball/football.json/master/2026-27/en.1.json"
+    "https://github.com/olbauday/FPL-Elo-Insights/tree/main/data/2026-2027/By%20Tournament/Premier%20League"
   ],
   "target": "90-minute result, excluding extra time and penalties",
   "season_sources": {
@@ -16,9 +16,8 @@
     "2023-24": "football-data.co.uk",
     "2024-25": "football-data.co.uk",
     "2025-26": "football-data.co.uk",
-    "2026-27": "OpenFootball (scores only)"
+    "2026-27": "FPL-Elo-Insights"
   },
-  "latest_match": "2026-09-20",
-  "note": "Rows taken from OpenFootball have scores only; shots are empty for them and are not estimated.",
-  "retrieved_at": "2026-11-11T17:52:33.505237+00:00"
+  "latest_match": "2026-11-08",
+  "retrieved_at": "2026-11-15T17:55:13.629709+00:00"
 }
