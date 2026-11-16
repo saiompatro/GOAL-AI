@@ -10098,38 +10098,83 @@ date,season,home_team,away_team,home_score,away_score
 2026-05-16,2025-26,Union Berlin,Augsburg,4,0
 2026-05-16,2025-26,Werder Bremen,Dortmund,0,2
 2026-08-28,2026-27,Bayern Munich,Stuttgart,5,1
-2026-08-29,2026-27,RB Leipzig,M'gladbach,3,0
-2026-08-29,2026-27,Mainz,Paderborn,0,0
-2026-08-29,2026-27,Union Berlin,Ein Frankfurt,3,3
-2026-08-29,2026-27,Elversberg,Leverkusen,3,2
 2026-08-29,2026-27,FC Koln,Hoffenheim,3,2
+2026-08-29,2026-27,Union Berlin,Ein Frankfurt,3,3
+2026-08-29,2026-27,Mainz,Paderborn,0,0
+2026-08-29,2026-27,RB Leipzig,M'gladbach,3,0
+2026-08-29,2026-27,Elversberg,Leverkusen,3,2
 2026-08-29,2026-27,Dortmund,Hamburg,2,0
 2026-08-30,2026-27,Freiburg,Werder Bremen,4,1
 2026-08-30,2026-27,Augsburg,Schalke 04,3,0
 2026-09-04,2026-27,Stuttgart,FC Koln,4,1
-2026-09-05,2026-27,Werder Bremen,RB Leipzig,3,1
-2026-09-05,2026-27,Hoffenheim,Dortmund,2,3
 2026-09-05,2026-27,Leverkusen,Union Berlin,4,0
 2026-09-05,2026-27,M'gladbach,Elversberg,3,4
 2026-09-05,2026-27,Paderborn,Freiburg,0,1
+2026-09-05,2026-27,Werder Bremen,RB Leipzig,3,1
+2026-09-05,2026-27,Hoffenheim,Dortmund,2,3
 2026-09-05,2026-27,Schalke 04,Bayern Munich,0,0
 2026-09-06,2026-27,Hamburg,Mainz,0,5
 2026-09-06,2026-27,Ein Frankfurt,Augsburg,1,4
 2026-09-11,2026-27,Union Berlin,Schalke 04,1,3
-2026-09-12,2026-27,Hoffenheim,Stuttgart,2,1
+2026-09-12,2026-27,Mainz,Ein Frankfurt,1,3
 2026-09-12,2026-27,Dortmund,Paderborn,3,0
 2026-09-12,2026-27,Augsburg,Leverkusen,2,2
-2026-09-12,2026-27,Mainz,Ein Frankfurt,1,3
 2026-09-12,2026-27,Freiburg,M'gladbach,5,0
+2026-09-12,2026-27,Hoffenheim,Stuttgart,2,1
 2026-09-12,2026-27,FC Koln,Werder Bremen,1,1
 2026-09-13,2026-27,RB Leipzig,Hamburg,5,0
 2026-09-13,2026-27,Elversberg,Bayern Munich,1,2
 2026-09-18,2026-27,Bayern Munich,Union Berlin,7,0
-2026-09-19,2026-27,Hamburg,FC Koln,2,1
 2026-09-19,2026-27,M'gladbach,Mainz,3,4
-2026-09-19,2026-27,Werder Bremen,Augsburg,3,2
 2026-09-19,2026-27,Ein Frankfurt,Freiburg,2,2
+2026-09-19,2026-27,Hamburg,FC Koln,2,1
+2026-09-19,2026-27,Werder Bremen,Augsburg,3,2
 2026-09-19,2026-27,Stuttgart,Dortmund,0,1
 2026-09-20,2026-27,Leverkusen,RB Leipzig,2,0
 2026-09-20,2026-27,Schalke 04,Elversberg,0,0
 2026-09-20,2026-27,Paderborn,Hoffenheim,3,1
+2026-10-09,2026-27,Dortmund,Werder Bremen,2,2
+2026-10-10,2026-27,Union Berlin,Elversberg,1,0
+2026-10-10,2026-27,Mainz,Leverkusen,3,4
+2026-10-10,2026-27,Augsburg,Bayern Munich,2,2
+2026-10-10,2026-27,Paderborn,Stuttgart,0,2
+2026-10-10,2026-27,Hoffenheim,Hamburg,2,3
+2026-10-10,2026-27,RB Leipzig,Ein Frankfurt,6,0
+2026-10-11,2026-27,FC Koln,M'gladbach,2,1
+2026-10-11,2026-27,Freiburg,Schalke 04,2,1
+2026-10-16,2026-27,Ein Frankfurt,FC Koln,1,0
+2026-10-17,2026-27,Union Berlin,Dortmund,0,0
+2026-10-17,2026-27,Schalke 04,Mainz,0,1
+2026-10-17,2026-27,Hamburg,Stuttgart,1,0
+2026-10-17,2026-27,Elversberg,Augsburg,4,3
+2026-10-17,2026-27,Werder Bremen,Paderborn,2,2
+2026-10-17,2026-27,Bayern Munich,RB Leipzig,6,1
+2026-10-18,2026-27,Leverkusen,Freiburg,2,1
+2026-10-18,2026-27,M'gladbach,Hoffenheim,1,2
+2026-10-23,2026-27,Stuttgart,M'gladbach,2,3
+2026-10-24,2026-27,FC Koln,Schalke 04,0,0
+2026-10-24,2026-27,Mainz,Werder Bremen,2,3
+2026-10-24,2026-27,Augsburg,Union Berlin,1,1
+2026-10-24,2026-27,RB Leipzig,Elversberg,4,0
+2026-10-24,2026-27,Paderborn,Hamburg,1,0
+2026-10-24,2026-27,Dortmund,Ein Frankfurt,1,0
+2026-10-25,2026-27,Hoffenheim,Leverkusen,3,0
+2026-10-25,2026-27,Freiburg,Bayern Munich,1,3
+2026-10-30,2026-27,Elversberg,Mainz,4,1
+2026-10-31,2026-27,Leverkusen,Stuttgart,2,4
+2026-10-31,2026-27,M'gladbach,Paderborn,0,0
+2026-10-31,2026-27,Augsburg,Freiburg,1,2
+2026-10-31,2026-27,Schalke 04,RB Leipzig,0,2
+2026-10-31,2026-27,Werder Bremen,Hoffenheim,2,0
+2026-10-31,2026-27,Bayern Munich,Dortmund,2,2
+2026-11-01,2026-27,Union Berlin,FC Koln,1,1
+2026-11-01,2026-27,Ein Frankfurt,Hamburg,3,1
+2026-11-06,2026-27,Hamburg,M'gladbach,3,1
+2026-11-07,2026-27,Mainz,Bayern Munich,1,2
+2026-11-07,2026-27,Dortmund,Elversberg,2,1
+2026-11-07,2026-27,RB Leipzig,Augsburg,5,2
+2026-11-07,2026-27,Paderborn,Ein Frankfurt,2,2
+2026-11-07,2026-27,Stuttgart,Werder Bremen,1,0
+2026-11-08,2026-27,FC Koln,Leverkusen,1,2
+2026-11-08,2026-27,Freiburg,Union Berlin,2,0
+2026-11-08,2026-27,Hoffenheim,Schalke 04,2,1

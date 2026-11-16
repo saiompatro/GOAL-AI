@@ -479,30 +479,30 @@
         }
       },
       "match": {
-        "accuracy": 0.5,
-        "baseline": 0.567,
-        "log_loss": 1.051,
+        "accuracy": 0.48,
+        "baseline": 0.52,
+        "log_loss": 1.033,
         "n_train": 1482,
-        "n_test": 30,
+        "n_test": 75,
         "test_season": "2026-27",
         "train_end": "2026-05-16",
         "test_start": "2026-08-28",
         "method": "Random forest",
         "confusion": [
           [
-            13,
+            28,
             0,
-            4
+            11
           ],
           [
-            2,
+            9,
             0,
-            4
+            7
           ],
           [
-            5,
+            12,
             0,
-            2
+            8
           ]
         ]
       }

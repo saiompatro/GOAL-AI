@@ -11,7 +11,7 @@ import pandas as pd
 from app import app
 from projects import analytics, competitions as db
 import requests
-from projects import fpl_insights, openfootball, refresh_data
+from projects import fpl_insights, open_matchday, openfootball, refresh_data
 from projects.refresh_data import parse_ucl, import_players
 
 
@@ -201,6 +201,63 @@ class WorkspaceTests(unittest.TestCase):
         feed[2026][0]["home_score"] = 1  # two sources that disagree on a result stop the refresh
         with self.assertRaises(ValueError):
             self._refresh_premier_league(installed, feed)
+
+    def test_open_matchday_rows_map_clubs_and_keep_shots_only_when_observed(self):
+        frame = pd.DataFrame([
+            dict(gw=1, date="2026-08-28", time="19:30", home="FC Bayern München", away="VfB Stuttgart",
+                 ft_home=5, ft_away=1, home_shots=21.0, away_shots=11.0, source="openligadb"),
+            # A row supplied by football-data.co.uk already carries the dataset spelling; shots may be missing.
+            dict(gw=9, date="2026-11-08", time="18:30", home="Hoffenheim", away="FC Schalke 04",
+                 ft_home=2, ft_away=1, home_shots=None, away_shots=None, source="fd.co.uk")])
+        rows = open_matchday.parse_results("bundesliga", 2026, frame)
+        self.assertEqual([(r["date"], r["home_team"], r["away_team"], r["home_score"], r["away_score"], r["home_shots"], r["away_shots"])
+                          for r in rows],
+                         [("2026-08-28", "Bayern Munich", "Stuttgart", 5, 1, 21, 11), ("2026-11-08", "Hoffenheim", "Schalke 04", 2, 1, None, None)])
+        self.assertTrue(all(r["season"] == "2026-27" and r["neutral"] == 0 for r in rows))
+        current = pd.read_csv(db.DATA / "bundesliga_matches.csv").query("season == '2026-27'")
+        self.assertEqual(set(current.home_team), set(open_matchday.LEAGUES["bundesliga"][1].values()))
+        with self.assertRaises(ValueError):  # the same fixture twice
+            open_matchday.parse_results("bundesliga", 2026, pd.concat([frame, frame]))
+        frame.loc[0, "home"] = "FC Hollywood"
+        with self.assertRaises(ValueError):
+            open_matchday.parse_results("bundesliga", 2026, frame)
+
+    def test_open_matchday_fixtures_use_dataset_names_and_utc_kickoffs(self):
+        frame = pd.DataFrame([dict(gw=11, date="2026-11-28", time=None, home="SC Freiburg", away="RB Leipzig"),
+                              dict(gw=10, date="2026-11-20", time="20:30", home="FC Bayern München", away="1. FC Köln")])
+        self.assertEqual(open_matchday.parse_fixtures("bundesliga", frame), [
+            dict(utcDate="2026-11-20T19:30:00Z", matchday=10, homeTeam={"name": "Bayern Munich"}, awayTeam={"name": "FC Koln"}),
+            dict(utcDate="2026-11-28T23:59:00Z", matchday=11, homeTeam={"name": "Freiburg"}, awayTeam={"name": "RB Leipzig"})])
+
+    def test_blocked_source_takes_a_shots_feed_for_a_league_without_fpl_data(self):
+        row = lambda date, season, home, away, hs, as_, shots: dict(
+            date=date, season=season, home_team=home, away_team=away, home_score=hs, away_score=as_, neutral=0,
+            home_shots=shots, away_shots=shots)
+        installed = pd.DataFrame([row("2025-10-01", "2025-26", f"H{i}", f"A{i}", 1, 0, 9) for i in range(100)]
+                                 + [row("2026-08-28", "2026-27", "Bayern Munich", "Stuttgart", 5, 1, None)])
+        feed = [row("2026-08-28", "2026-27", "Bayern Munich", "Stuttgart", 5, 1, 21),
+                row("2026-11-08", "2026-27", "Hoffenheim", "Schalke 04", 2, 1, 15)]
+        with tempfile.TemporaryDirectory() as temp:
+            installed.to_csv(Path(temp) / "bundesliga_matches.csv", index=False)
+            (Path(temp) / "bundesliga_matches.json").write_text(json.dumps({"season_sources": {
+                "2025-26": "football-data.co.uk", "2026-27": "OpenFootball (scores only)"}}), encoding="utf-8")
+            with patch("projects.refresh_data.DATA", Path(temp)), \
+                 patch("projects.refresh_data.requests.get", side_effect=requests.ConnectionError("blocked")), \
+                 patch.object(openfootball, "fetch_season", return_value=[]), \
+                 patch.object(open_matchday, "fetch_season", side_effect=lambda slug, year: feed if year == 2026 else []):
+                refresh_data.fetch_matches("bundesliga", [2025, 2026])
+            out = pd.read_csv(Path(temp) / "bundesliga_matches.csv")
+            meta = json.loads((Path(temp) / "bundesliga_matches.json").read_text(encoding="utf-8"))
+        self.assertEqual(out[out.season == "2025-26"].home_shots.tolist(), [9] * 100)
+        self.assertEqual(out[out.season == "2026-27"].home_shots.tolist(), [21, 15])
+        self.assertEqual(meta["season_sources"], {"2025-26": "football-data.co.uk", "2026-27": "open-matchday"})
+        self.assertEqual((meta["latest_match"], meta["terms"]), ("2026-11-08", open_matchday.TERMS))
+
+    def test_overview_serves_upcoming_fixtures_between_current_teams(self):
+        data = self.client.get("/api/workspaces/bundesliga").get_json()
+        self.assertEqual(data["fixtures"]["source"], "open-matchday")
+        teams = {m[side]["name"] for m in data["fixtures"]["matches"] for side in ("homeTeam", "awayTeam")}
+        self.assertLessEqual(teams, set(data["teams"]))
 
     def test_availability_lists_injured_doubtful_and_suspended_players_only(self):
         stats = pd.DataFrame([

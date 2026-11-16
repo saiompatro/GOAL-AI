@@ -88,9 +88,9 @@ def fetch_matches(slug, years):
 
     Domestic leagues use football-data.co.uk (scores and shots). When that host
     cannot be reached, a season installed from it is kept as it is and a
-    fallback feed supplies the rest: FPL-Elo-Insights (scores and shots) for
-    the Premier League, otherwise OpenFootball (scores without shots). Nothing
-    is estimated to fill a gap.
+    fallback feed supplies the rest: FPL-Elo-Insights (Premier League) or
+    open-matchday (Bundesliga), both with scores and shots, otherwise
+    OpenFootball (scores without shots). Nothing is estimated to fill a gap.
     """
     c = config(slug)
     existing, recorded = None, {}
@@ -147,24 +147,30 @@ def fetch_matches(slug, years):
                 "season_sources": sources, "latest_match": str(df.date.max())}
     if any("OpenFootball" in s for s in used) and slug != "champions-league":
         metadata["note"] = "Rows taken from OpenFootball have scores only; shots are empty for them and are not estimated."
+    if "open-matchday" in used:
+        from projects import open_matchday
+        metadata["terms"] = open_matchday.TERMS
     write_dataset(slug, "matches", df, metadata)
 
 
 def _fallback_season(slug, year, season, kept, label, error, latest):
     """(rows, source URL or None, source label) for a season football-data.co.uk did not serve.
 
-    FPL-Elo-Insights (scores and shots) is preferred where it covers the
-    competition; OpenFootball (scores only) is the last resort. Rows installed
+    A feed with scores and shots (FPL-Elo-Insights, open-matchday) is preferred
+    where one covers the competition; OpenFootball (scores only) is the last resort. Rows installed
     from football-data.co.uk are never replaced. Scores-only rows are replaced
     by the fuller record once a source with shots has the same fixture.
     """
-    from projects import fpl_insights, openfootball
+    from projects import fpl_insights, open_matchday, openfootball
     complete = len(kept) and label == "football-data.co.uk"
-    if slug in fpl_insights.LEAGUES and year >= fpl_insights.FIRST_YEAR and (latest or not complete):
-        rows = pd.DataFrame(fpl_insights.fetch_season(slug, year))
-        if len(rows):
-            return _merge_fallback(slug, season, kept, label, rows, fpl_insights.LABEL,
-                                   fpl_insights.season_url(slug, year), replace="football-data.co.uk" not in label)
+    if latest or not complete:
+        for feed in (fpl_insights, open_matchday):  # feeds with shots, most thoroughly checked first
+            if slug not in feed.LEAGUES or year < feed.FIRST_YEAR:
+                continue
+            rows = pd.DataFrame(feed.fetch_season(slug, year))
+            if len(rows):
+                return _merge_fallback(slug, season, kept, label, rows, feed.LABEL,
+                                       feed.season_url(slug, year), replace="football-data.co.uk" not in label)
     if slug in openfootball.LEAGUES:
         rows = pd.DataFrame(openfootball.fetch_season(slug, year))
         return _merge_fallback(slug, season, kept, label, rows, "OpenFootball (scores only)",
@@ -238,19 +244,30 @@ def import_players(slug, path, source):
                   "note": "User-supplied season statistics and reference market values. Market value is not a completed transfer fee."})
 
 
-def fetch_fixtures(slug):
+def fetch_fixtures(slug, year):
+    """Scheduled fixtures from football-data.org (needs a token), else from open-matchday where it covers the competition."""
+    from projects import open_matchday
     from projects.fetch_players import _token
     token = _token()
-    if not token:
+    if token:
+        r = requests.get(f"https://api.football-data.org/v4/competitions/{config(slug)['code']}/matches",
+                         params={"status": "SCHEDULED,TIMED"}, headers={"X-Auth-Token": token}, timeout=30)
+        r.raise_for_status()
+        payload = {"source": "football-data.org", "matches": r.json().get("matches", [])}
+    elif slug in open_matchday.LEAGUES:
+        payload = {"source": open_matchday.LABEL, "url": open_matchday.file_url(slug, year, "fixtures"),
+                   "terms": open_matchday.TERMS, "matches": open_matchday.fetch_fixtures(slug, year)}
+        if not payload["matches"]:
+            raise ValueError("The fixture feed returned no scheduled matches; keeping the installed fixtures")
+    else:
         raise ValueError("Set FOOTBALL_DATA_TOKEN in .env to download scheduled fixtures")
-    r = requests.get(f"https://api.football-data.org/v4/competitions/{config(slug)['code']}/matches",
-                     params={"status": "SCHEDULED,TIMED"}, headers={"X-Auth-Token": token}, timeout=30)
-    r.raise_for_status()
-    payload = r.json()
+    payload["retrieved_at"] = datetime.now(timezone.utc).isoformat()
     path = DATA / f"{config(slug)['key']}_fixtures.json"
     DATA.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps({"source": "football-data.org", "retrieved_at": datetime.now(timezone.utc).isoformat(), "matches": payload.get("matches", [])}), encoding="utf-8")
-    print(f"Saved {len(payload.get('matches', []))} scheduled fixtures")
+    temporary = path.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(payload), encoding="utf-8")
+    temporary.replace(path)
+    print(f"Saved {len(payload['matches'])} scheduled fixtures from {payload['source']}")
 
 
 def fetch_availability(slug, year):
@@ -274,7 +291,7 @@ if __name__ == "__main__":
     p.add_argument("--years", nargs="+", type=int, default=[2021, 2022, 2023, 2024, 2025, 2026])
     p.add_argument("--players", type=Path, help="Import observed player-season CSV instead of downloading matches")
     p.add_argument("--source", help="Required attribution for an imported player dataset")
-    p.add_argument("--fixtures", action="store_true", help="Refresh fixtures from football-data.org with your token")
+    p.add_argument("--fixtures", action="store_true", help="Refresh fixtures from football-data.org (token) or open-matchday")
     p.add_argument("--availability", action="store_true", help="Refresh the injury and suspension snapshot (Premier League)")
     a = p.parse_args()
     if a.players and (not a.source or a.competition == "all"):
@@ -283,7 +300,7 @@ if __name__ == "__main__":
         if a.players:
             import_players(slug, a.players, a.source)
         elif a.fixtures:
-            fetch_fixtures(slug)
+            fetch_fixtures(slug, max(a.years))
         elif a.availability:
             fetch_availability(slug, max(a.years))
         else:

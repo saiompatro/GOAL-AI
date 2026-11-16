@@ -1,13 +1,13 @@
 {
   "kind": "historical",
-  "source": "OpenFootball (scores only) + football-data.co.uk",
+  "source": "football-data.co.uk + open-matchday",
   "urls": [
     "https://www.football-data.co.uk/mmz4281/2122/D1.csv",
     "https://www.football-data.co.uk/mmz4281/2223/D1.csv",
     "https://www.football-data.co.uk/mmz4281/2324/D1.csv",
     "https://www.football-data.co.uk/mmz4281/2425/D1.csv",
     "https://www.football-data.co.uk/mmz4281/2526/D1.csv",
-    "https://raw.githubusercontent.com/openfootball/football.json/master/2026-27/de.1.json"
+    "https://github.com/oladeeayo/open-matchday/tree/master/data/GER_1_bundesliga"
   ],
   "target": "90-minute result, excluding extra time and penalties",
   "season_sources": {
@@ -16,9 +16,9 @@
     "2023-24": "football-data.co.uk",
     "2024-25": "football-data.co.uk",
     "2025-26": "football-data.co.uk",
-    "2026-27": "OpenFootball (scores only)"
+    "2026-27": "open-matchday"
   },
-  "latest_match": "2026-09-20",
-  "note": "Rows taken from OpenFootball have scores only; shots are empty for them and are not estimated.",
-  "retrieved_at": "2026-11-12T17:52:31.674796+00:00"
+  "latest_match": "2026-11-08",
+  "terms": "open-matchday data is free for non-commercial use with attribution and comes without warranty.",
+  "retrieved_at": "2026-11-16T17:53:40.036069+00:00"
 }

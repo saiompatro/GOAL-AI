@@ -1,8 +1,8 @@
 {
   "signature": {
     "inputs": {
-      "data/analytics/bundesliga_matches.csv": "21a513dcfd6504320f6d63930b0e2ec91e59efe145afbbc0dab2aa5570c7a9bb",
-      "data/analytics/bundesliga_matches.json": "c29695ffd469e987c5ffa6d0479af7251a65f000b1eee4cf1a36b07b6b5378e3",
+      "data/analytics/bundesliga_matches.csv": "9ed5052b8857802b020e34ce5c5ead8a61f9ac745a5d7780ca7e69cffed67e21",
+      "data/analytics/bundesliga_matches.json": "59e59ba4598271c03c6a041bc4074b0d85123ec47885e9fa10514119e81ac2c9",
       "src/projects/analytics.py": "78db6dab4b8161936b425fb9ee5a0748d6905aa13e68e51fb64e97d900430402",
       "src/projects/competitions.py": "2b59f24904187f04595b2e381d10ee1dc94c68442523a53d3406b1eb09094a82",
       "src/projects/common.py": "3047d058b604e3d82f5b91bdf6a66520c6789fd78596344a2583fa172691fd11",
@@ -16,5 +16,5 @@
       "pandas": "3.1.1"
     }
   },
-  "sha256": "45eecd2c26313771b51ce08906144b0ea284438e027b236d3038ddc18a4bc580"
+  "sha256": "bf9b7d9d6807c9798374ca2d80ca186d2ec32c32e7373d79c6c14a67d11ef6d5"
 }

@@ -16,10 +16,11 @@ Each run reads the last entry below, takes the next competition in the list, and
 | --- | --- | --- |
 | Completed matches with shots | football-data.co.uk | No (host blocked by the environment's network policy) |
 | Premier League matches with shots | `olbauday/FPL-Elo-Insights` on GitHub | Yes; current to the latest round |
+| Current-season matches with shots, and upcoming fixtures | `oladeeayo/open-matchday` on GitHub (75 competitions, 2026-27 only, refreshed daily; non-commercial use with attribution). Mapped so far: Bundesliga | Yes; current to the latest round |
 | Completed matches, scores only | OpenFootball `football.json` on GitHub | Yes, but frozen at 20 September 2026 |
 | UCL matches | OpenFootball `champions-league` on GitHub | Yes, but it has no 2026-27 season yet |
 | Player seasons and valuations | Pinned Transfermarkt/FBref snapshots (`docs/player-source-manifest.json`) | Not refreshed; pinned and audited by design |
-| Fixtures, rosters | football-data.org (token) | No |
+| Fixtures, rosters | football-data.org (token) | No (fixtures come from open-matchday instead where it is mapped) |
 | Injuries and suspensions | Premier League only: `olbauday/FPL-Elo-Insights` (`refresh_data.py premier-league --availability`). No source for the other competitions | Yes |
 
 ## Entries
@@ -102,3 +103,22 @@ Next in rotation: **Champions League**.
 - **For later runs:** the environment's git proxy serves anonymous clones of any public GitHub repository, and `raw.githubusercontent.com` is reachable, so a maintained public repository is a workable source. None has been found yet for La Liga, the Bundesliga, Serie A or the full Champions League; those remain at 20 September 2026 (30 May 2026 for the Champions League) until one is found or `www.football-data.co.uk` is allowed in the environment's network settings.
 
 Next in rotation: **Bundesliga**.
+
+### 2026-11-16 — Bundesliga
+
+- **New source:** [open-matchday](https://github.com/oladeeayo/open-matchday) is reachable (GitHub, `master` branch), was refreshed on the run date, and has scores, total shots and the remaining fixture list. It publishes 2026-27 only, so it could not be compared with an installed football-data.co.uk season the way FPL-Elo-Insights was. What was checked: its first 36 fixtures agree with the OpenFootball rows already installed on every score and date; every club has played exactly nine matches; and a news report on matchday 9 matches the resulting table (Bayern and Dortmund level on 21 points). Its terms allow non-commercial use with attribution and give no warranty; `_matches.json` records that.
+- **Matches:** 2026-27 in `data/analytics/bundesliga_matches.csv` goes from 36 scores-only fixtures (to 20 September) to 81 fixtures with shots (matchdays 1–9, to 8 November 2026). The 36 scores-only rows were replaced by the fuller records; the five earlier seasons are unchanged. The league is on an international break and resumes on 20 November, so this is every match played.
+- **Shot counts are higher than last season's:** 16.4 home and 14.2 away per match in these 81 fixtures, against 14.6 and 11.9 in the football-data.co.uk 2025-26 season. Whether that is the early-season sample or a different counting rule at the source is not known. The rolling shot features for current teams are therefore on a slightly different scale from the training seasons.
+- **Fixtures (new):** `data/analytics/bundesliga_fixtures.json` holds the 225 remaining fixtures (matchday 10 starts with Bayern Munich v FC Koln on 20 November). The match page lists the next six and now names the feed they came from.
+- **Teams:** unchanged from the 12 November refresh (18 clubs, all mapped).
+- **Elo model (`data/club`, `models/bundesliga_model.joblib`):** history extended to 8 November 2026 (45 matches added), features and state rebuilt, model retrained. Held-out seasons 2025-26 and 2026-27 (387 matches): accuracy 50.6%, log loss 1.010, Elo-favourite baseline 53.7%, always-home baseline 45.2%. The model is still about three points worse than picking the Elo favourite. Top Elo: Bayern Munich 2009, Dortmund 1853, RB Leipzig 1743, Leverkusen 1734. Largest moves since 20 September: RB Leipzig +43, Werder Bremen +38, Mainz −51, Augsburg −42.
+- **Workspace match model (`models/workspaces/bundesliga_match.*`):** retrained on the same 1,482 earlier matches; the 2026-27 holdout is now 75 matches: accuracy 48.0%, baseline 52.0%, log loss 1.033. It predicts no draws and is below the baseline on this sample. Rolling shot features are now filled for current-season rows.
+- **Not changed:** player valuations and scouting profiles (pinned snapshots), the other competitions. No injury or suspension source exists for the Bundesliga; open-matchday has none.
+- **Code:** `src/projects/open_matchday.py` (new), a list of shot-carrying fallback feeds and `--fixtures` without a token in `src/projects/refresh_data.py`, the fixture panel's source label in `web/workspace.js`, four new tests (30 pass).
+- **For later runs:**
+  - open-matchday also has La Liga (`ESP_1_la-liga`), Serie A (`ITA_1_serie-a`), Ligue 1 and the full Champions League (`UEFA_1_champions-league`). Each needs a club-name map in `open_matchday.LEAGUES` before `refresh_data.py <slug>` will use it; the Champions League additionally needs handling for regulation-time scores and neutral finals. That removes the 20 September limit for those competitions.
+  - `club_features.py` and `train_league.py` rebuild every league when run as scripts, whatever argument is given. For one league call `club_features.build_match_table(key)` (and write the table and state) and `train_league.train_one(key)`.
+  - The saved workspace models record library versions (Python 3.13.18, numpy 2.5.4, pandas 3.1.1 for the recent ones). Train with the same versions, or the saved model is treated as stale and retrained on first request. The La Liga and Champions League match models were saved under older versions and are already in that state.
+  - `www.football-data.co.uk` is still blocked.
+
+Next in rotation: **Serie A**.
